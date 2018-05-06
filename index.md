@@ -2,4 +2,4 @@
 
 ### mathmatics
 
-[Principle of Stationary Phase](https://guides.github.com/features/mastering-markdown/).
+[Principle of Stationary Phase](https://github.com/ok97465/JupyterMath/blob/master/PrincipleOfStationaryPhase.ipynb)
