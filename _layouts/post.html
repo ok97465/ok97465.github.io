@@ -5,17 +5,6 @@
           <div class="row">
             <div class="col-md-8">
               <div class="article">
-			    <script type="text/x-mathjax-config">
-                  MathJax.Hub.Config({
-                    tex2jax: {
-                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-                    processEscapes: true
-                    }
-                  });
-                </script>
-		        <script type="text/javascript"
-                  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-                </script>
                 <div class="well">
                   <h1><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h1>
                   <div class="post-meta">
@@ -42,6 +31,17 @@
                   {% endif %}
                 </div>
               </div>
+			  <script type="text/x-mathjax-config">
+                  MathJax.Hub.Config({
+                    tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    processEscapes: true
+                    }
+                  });
+                </script>
+		        <script type="text/javascript"
+                  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+                </script>
             </div>
             <div class="col-md-4 hidden-xs">
               {% include sidebar.html %}
