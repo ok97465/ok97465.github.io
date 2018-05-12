@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Principle of Stationary Phase"
+comments: true
 date: 2018-05-11 08:27:00
 tags: sympy python math
 description: Principle of Stationary Phase에 대해 기술하고 sympy를 이용하여 확인한다.
