@@ -14,16 +14,16 @@ author: ok97465
 copyright: 2018-
 
 share:
-  facebook: false
-  twitter: false
-  gplus: false
+  facebook: true
+  twitter: true
+  gplus: true
   linkedin: false
   pinterest: false
   email: true
 
 social:
   github: ok97465
-  stackoverflow: ''
+  stackoverflow: '9015220/lowqualitydelivery'
   linkedin:
   instagram: ''
   lastfm: ''

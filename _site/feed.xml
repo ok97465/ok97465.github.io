@@ -7,32 +7,274 @@
 		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Taylor Series Using Sympy</title>
+				<description>&lt;h1 id=&quot;sympy를-이용한-taylor-series-전개&quot;&gt;Sympy를 이용한 Taylor Series 전개&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;p&gt;직관적으로 이해하기 힘든 함수들을 분석하거나 오래 걸리는 연산을 빠르게 하기 위해서 Taylor Series를 종종 사용한다. 대상 함수가 $f(x)$인 경우 Taylor series는 다음과 같다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;T _ { f } ( x ) = \sum _ { n = 0} ^ { \infty } \frac { f ^ { ( n ) } ( x_0 ) } { n ! } ( x - x_0 ) ^ { n } = f ( x_0 ) + f ^ { \prime } ( x_0 ) ( x - x_0 ) + \frac { 1} { 2} f ^ { \prime \prime } ( x_0 ) ( x - x_0 ) ^ { 2} + \frac { 1} { 6} f ^ { \prime \prime \prime } ( x_0 ) ( x - x_0 ) ^ { 3}&lt;/script&gt;
+
+&lt;p&gt;대부분의 경우 $f(x)$의 미분을 구하기가 쉽지 않거나 매우 번거롭기 때문에 이런 업무는 컴퓨터에게 시키는 게 편하다. 다른 사람은 몰라도 최소한 나보다는 컴퓨터가 이런 일을 훨씬 잘한다.&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;sympy를-이용한-1변수-함수univariate-function의-taylor-series&quot;&gt;sympy를 이용한 1변수 함수(univariate function)의 Taylor Series&lt;/h2&gt;
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;IPython.display&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sympy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init_printing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atan&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;init_printing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;f_taylor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f_taylor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sqrt{2} + \frac{\sqrt{2}}{4} \left(x - 1\right) - \frac{\sqrt{2}}{32} \left(x - 1\right)^{2} + \frac{\sqrt{2}}{128} \left(x - 1\right)^{3} + \mathcal{O}\left(\left(x - 1\right)^{4}; x\rightarrow 1\right)&lt;/script&gt;
+
+&lt;p&gt;series의 x0 변수를 이용하여 Taylor series의 미분 지점을 설정할 수 있고 n을 조절하면 Taylor series의 차수를 정할 수 있다.&lt;br /&gt;
+series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O가 함수를 다른 연산에 사용하면 오류가 발생한다. 이 O는 removeO 함수를 이용하여 제거할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;f_taylor_valid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f_taylor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;removeO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f_taylor_valid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\sqrt{2}}{128} \left(x - 1\right)^{3} - \frac{\sqrt{2}}{32} \left(x - 1\right)^{2} + \frac{\sqrt{2}}{4} \left(x - 1\right) + \sqrt{2}&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;sympy를-이용한-다변수-함수multivariate-function의-taylor-series&quot;&gt;sympy를 이용한 다변수 함수(multivariate function)의 Taylor Series&lt;/h2&gt;
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'x'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'y'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atan&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\operatorname{atan}{\left (\frac{y}{x + 1} \right )}&lt;/script&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;num_order&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;f_taylor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;removeO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;removeO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f_taylor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;y^{3} \left(\frac{10 x^{3}}{3} - 2 x^{2} + x - \frac{1}{3}\right) + y \left(- x^{3} + x^{2} - x + 1\right)&lt;/script&gt;
+
+&lt;p&gt;series 함수의 n 값은 변수에 대한 차수이기 때문에 다변수 함수의 전체 차수는 설정한 n보다 커지게 된다.&lt;br /&gt;
+다변수 함수의 전체 차수를 제한하기 위해서 짧은 코딩이 필요하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;remove_high_order_of_sympy_equation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order_required&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;itertools&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;permutations&lt;/span&gt;
+    &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sympy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;O&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;eq_simple&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;num_variable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;variable_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;list_permutation_all&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;permutations&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;order_required&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_variable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;list_permutation&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_permutation_all&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order_required&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list_permutation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;term&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;enumerate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;orders&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;term&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;term&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;variable_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;term&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;variable_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;order&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;term&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;eq_simple&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;O&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;term&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq_simple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;expand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;removeO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;f_taylor_limited&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove_high_order_of_sympy_equation&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f_taylor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_order&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f_taylor_limited&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x^{2} y - x y - \frac{y^{3}}{3} + y&lt;/script&gt;
+</description>
+				<pubDate>Mon, 28 May 2018 17:49:00 +0900</pubDate>
+				<link>/2018/05/TaylorSeriesBySympy</link>
+				<guid isPermaLink="true">/2018/05/TaylorSeriesBySympy</guid>
+			</item>
+		
+			<item>
 				<title>Principle of Stationary Phase</title>
-				<description>&lt;h2 id=&quot;principle-of-stationary-phase&quot;&gt;Principle of Stationary Phase&lt;/h2&gt;
+				<description>&lt;h1 id=&quot;principle-of-stationary-phaseposp&quot;&gt;Principle of Stationary Phase(POSP)&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;p&gt;넓은 주파수 대역을 가지는 1-D 함수의 Fourier Transform 근사 방법이다. Super Chirp($e^{\pm i \pi t^n}$) 형태의 Close form이 없는 함수의 주파수 특성을 유도하기에 매우 유용하다.&lt;/p&gt;
 
-&lt;h3 id=&quot;chirp-signal&quot;&gt;Chirp Signal&lt;/h3&gt;
-&lt;p&gt;잉? 원래 되던건가? $a=5$ 이럴수가&lt;/p&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;I ( f ) = \int _ { - \infty } ^ { + \infty } r ( t ) e ^ { i f \cdot \mu ( t ) } d t&lt;/script&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sympy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init_printing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;r ( t ), \mu ( t ) \text{= real-valued function}&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+위의 적분식에서 지수 함수 $e ^ { i f \cdot \mu ( t ) }$의 진동의 속도는 $f$와 $\mu ( t )$에 비례할 것이다. 만약 f가 크다면, ${\mu} ^{\prime} ( t ) = 0$을 제외한 영역에서  $e ^ { i f \cdot \mu ( t ) }$는 -1과 1 매우 빠르게 진동할 것이고 $r ( t )$보다 빠르게 진동한다면 적분 결과는 매우 작을 것이다.  &lt;br /&gt;
+${\mu}^{\prime} ( t_0 ) = 0$인 영역의 $t_0$을 Stationary point라고 부르고 $t_0$의 영역을 적분 값으로 근사화하는 것을 Principle of Stationary Phase라고 한다.&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;principle-of-stationary-phase를-이용한-fourier-transform-근사&quot;&gt;Principle of Stationary Phase를 이용한 Fourier Transform 근사&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;함수 $x(t)$의 Fourier Transform은 아래와 같다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\left.\begin{array}{l}{  X ( f ) = F  _ { 1} \{ x ( t ) \}  = \int _ { - \infty } ^ { + \infty } x ( t ) e ^ { - 2\pi i f t } d t }\\{  = \int _ { - \infty } ^ { + \infty } ( | x ( t ) | e ^ { i \Phi \{ x ( t ) \} } ) e ^ { - 2\pi i f t } d t }\\{  = \int _ { - \infty } ^ { + \infty } | x ( t ) | e ^ { i ( \Phi \{ x ( t ) \} - 2\pi f t ) } d t }\end{array} \right.&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+$\mu ( t )$를 아래와 같이 정의한다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu ( t ) = \frac { 1} { f } \Phi \{ x ( t ) \} - 2\pi t&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+$\mu ( t )$로 치환한다. 여기서 $f$는 매개변수이고 피적분함수와 독립이므로 $\mu ( t )$에 포함되어 있어도 관계 없다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;X ( f ) = \int _ { - \infty } ^ { + \infty } | x ( t ) | e ^ { i f \cdot \mu ( t ) } d t&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+$\mu ( t )$를 Taylor series 전개한다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\left.\begin{array} { c } { \mu(t) = \mu ( t _ { 0} ) + ( t - t _ { 0} ) \mu ^ { \prime } ( t _ { 0} ) + \frac { ( t - t _ { 0} ) ^ { 2} } { 2} \mu ^ { \prime \prime } ( t _ { 0} ) } \\ { + \cdots + \frac { ( t - t _ { 0} ) ^ { n } } { n ! } \mu ^ { ( n ) } ( t _ { 0} ) + \cdots } \end{array} \right.&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+$\mu ^{\prime} { ( t_0 ) } = 0$이 되는 stationary point $t_0$를 잡아서 위의 Fourier Transform 수식에 대입한다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\left.\begin{array} { q }{ X ( f ) = \int _ { - \infty } ^ { + \infty } | x ( t ) | \operatorname{exp} [ + i f ( \mu ( t _ { 0} ) + \mu ^ { \prime \prime } ( t _ { 0} ) \frac { ( t - t _ { 0} ) ^ { 2} } { 2} + \cdots ) ]  d t}\end{array} \right.&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \int _ { - \infty } ^ { + \infty } | x ( t ) | ( \operatorname{exp} [ + i f \cdot \mu ( t _ { 0} ) ] \cdot \operatorname{exp} [ + i f (\mu ^ { \prime \prime } ( t _ { 0} ) \frac { ( t - t _ { 0} ) ^ { 2} } { 2} )]\dots ) d t&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \operatorname{exp} [ + i f \cdot \mu ( t _ { 0} ) ] \int _ { - \infty } ^ { + \infty } | x [ t ] | \prod _ { n = 2} ^ { + \infty } ( \operatorname{exp} [ + i f ( \mu ^ { ( n ) } ( t _ { 0} ) \frac { ( t - t _ { 0} ) ^ { n} } { n!} ) ] ) d t&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+f가 크다면 지수함수의 진동이 $| x ( t ) |$의 변화량 보다 매우 크다고 가정할 수 있고 이 경우 적분 전체에 미치는 영향을 미미할 것으로 간주한다.  &lt;br /&gt;
+이런 가정하에 적분값을 stationary point 주변값으로 근사화 시킬 수 있다. 또한 n &amp;gt; 2일 경우 $t_0$ 부근에서 $(t - t_0)^n « (t - t_0)^2$이므로 위의 수식은 아래와 같이 근사화 된다.&lt;br /&gt;
+이 근사화로 $|x ( t )|$ 를 $|x ( t _ { 0} )|$ 로 치환 할 수 있다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat { X } [ | f | &gt; &gt; 0] \cong | x ( t _ { 0} ) | \operatorname{exp} [ + i f \cdot \mu ( t _ { 0} ) ] \int _ { t _ { 0} - \epsilon } ^ { t _ { 0} + \epsilon } \operatorname{exp} [ + i f \cdot \mu ^ { \prime \prime } ( t _ { 0} ) \frac { ( t - t _ { 0} ) ^ { 2} } { 2} ] d t&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;  &lt;br /&gt;
+적분 Term을 계산하기 위해 한번 더 근사화가 필요하다. Quadratic-phase를 적분할 경우에도 stationary point에 대부분의 값이 집중되어 있으므로 아래와 같이 근사화 시킨다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\int _ { t _ { 0} - \epsilon } ^ { t _ { 0} + \epsilon } \operatorname{exp} [ + i f \cdot \mu ^ { \prime \prime } ( t _ { 0} ) \frac { ( t - t _ { 0} ) ^ { 2} } { 2} ] d t \cong \int _ { - \infty } ^ { + \infty } \operatorname{exp} [ + i f ( \mu ^ { \prime \prime } ( t _ { 0} ) \frac { ( t - t _ { 0} ) ^ { 2} } { 2} ) ] dt&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+$\pi u^2 \equiv \frac { 1} { 2} f \mu ^ { \prime \prime } ( t _ { 0} ) ( t - t _ { 0} ) ^ { 2}$을 이용해 위의 근사식을 변수 치환한다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\int _ { t = - \infty } ^ { t = + \infty } \operatorname{exp} [ + i f ( \mu ^ { \prime \prime } ( t _ { 0} ) \frac { ( t - t _ { 0} ) ^ { 2} } { 2} ) ] d t = ( \sqrt { \frac { 2\pi } { f \mu ^ { \prime \prime } ( t_ { 0} ) } } ) \int _ { u = - \infty } ^ { u = + \infty } \operatorname{exp} [ + i \pi u ^ { 2} ] d u&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+치환된 수식은 central ordinate theorem을 적용하여 계산할 수 있다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;( \sqrt { \frac { 2\pi } { f \mu ^ { \prime \prime } ( t _ { 0} ) } } ) \int _ { u = - \infty } ^ { u = + \infty } \operatorname{exp} [ + i \pi u ^ { 2} ] d u = ( \sqrt { \frac { 2\pi } { f \cdot \mu ^ { \prime \prime } ( t _ { 0} ) } } ) \quad \operatorname{exp} [ + i \frac { \pi } { 4} ]&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+위의 수식을 정리하면 stationary point $t_0$를 가지는 함수에 대한 Fourier Transform 근사식은 다음과 같다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat { X } ( | f | &gt; &gt; 0) \cong | x ( t _ { 0} ) | ( \sqrt { \frac { 2\pi } { f \cdot \mu ^ { \prime \prime } ( t _ { 0} ) } } ) \quad \operatorname{exp} [ + i \frac { \pi } { 4} ] \quad \operatorname{exp} [ + i f \cdot \mu ( t _ { 0} )]&lt;/script&gt;
+
+&lt;p&gt;만약 stationary point가 여러개일 경우 staionary point별로 계산 후 합한다.&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;linear-frequency-modulation-신호에-posp-적용&quot;&gt;Linear Frequency Modulation 신호에 POSP 적용&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;시간에 따라 주파수가 선형적으로 변화하는 Linear Frequency Modulation 신호를 Chirp이라고 부른다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{chirp}=e^{i \pi k_r t^2}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;k_r \text{: Chirp rate}&lt;/script&gt;
+
+&lt;p&gt;Chirp의 경우 2차항만 존재하므로 Taylor Series에 의한 오차가 없어서 POSP를 이용한 근사가 매우 정확하다.&lt;/p&gt;
+
+&lt;p&gt;Chirp의 경우 $\mu$는 아래와 같이 정의 되고&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu(t)  = \frac{\pi k_r t^2}{f} - 2 \pi t&lt;/script&gt;
+
+&lt;p&gt;위의 POSP 최종 공식에 넣으면 아래와 같다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;X(f) = \frac{1}{\sqrt{k_r}} e ^{-i \pi (\frac{f^2}{k_r} + \frac{1}{4})}&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;sympy를-이용한-chirp의-fourier-transform&quot;&gt;Sympy를 이용한 Chirp의 Fourier Transform&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;Sympy를 이용하여 Chirp의 적분 결과를 확인한다. Sympy를 사용하면 계산 결과 검토 및 복잡한 연산의 힌트를 찾는데 도움이 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sympy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sympy.integrals.transforms&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fourier_transform&lt;/span&gt;
+
 &lt;span class=&quot;n&quot;&gt;sym_t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'t'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;sym_f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'f'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;sym_k_r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Symbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'k_r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;chirp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sym_k_r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sym_t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;chirp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sym_k_r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sym_t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;chirp_fourier_sympy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fourier_transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chirp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sym_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sym_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;e^{- 1.0 i k_{r} t^{2}}&lt;/script&gt;
+&lt;p&gt;$\text{chirp:   }e^{- 1.0 i \pi k_{r} t^{2}}$&lt;/p&gt;
 
-&lt;h3 id=&quot;frequency-response-of-chirp&quot;&gt;Frequency Response Of Chirp&lt;/h3&gt;
+&lt;p&gt;$\text{chirp fourier by sympy:   }\frac{1.0 i}{\sqrt{k_{r}}} e^{i \pi \left(\frac{f^{2}}{k_{r}} - \frac{3}{4}\right)}$&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sympy.integrals.transforms&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fourier_transform&lt;/span&gt;
+&lt;p&gt;위의 POSP 수식과 Sympy의 Fourier Transform 결과가 동일한 것을 알 수 있다&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;span class=&quot;n&quot;&gt;chirp_frequency&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fourier_transform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chirp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sym_t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sym_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;h2 id=&quot;discrete-time-fourier-seriesdtfs와-posp-결과-비교&quot;&gt;Discrete Time Fourier Series(DTFS)와 POSP 결과 비교&lt;/h2&gt;
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Tp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;40e-6&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# [sec]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;50e6&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# [Hz]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;bw&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;20e6&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# [Hz]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;kr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;bw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Tp&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# chirp rate&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;dt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;num_sample&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Tp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_sample&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dt&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;chirp_discrete_time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;- \frac{1.0 i}{\sqrt{k_{r}}} \sqrt{\pi} e^{\frac{i \pi}{4 k_{r}} \left(4.0 \pi f^{2} + k_{r}\right)}&lt;/script&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/2018-05-11-PrincipleOfStationaryPhase/output_12_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/2018-05-11-PrincipleOfStationaryPhase/output_9_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sympy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lambdify&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy.fft&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fftshift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fft&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;frequency&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_sample&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_sample&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fs&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;chirp_fourier_series&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fftshift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fft&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chirp_discrete_time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;chirp_fourier_sympy_subs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lambdify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sym_f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chirp_fourier_sympy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sym_k_r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;numpy&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;chirp_fourier_posp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chirp_fourier_sympy_subs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;frequency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2018-05-11-PrincipleOfStationaryPhase/output_14_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;sympy 결과와 DTFS의 결과가 전혀 다르게 나타난다. 그 이유는 FFT의 특성과 Fourier transform의 scaling property 때문이다.&lt;/p&gt;
+
+&lt;p&gt;Python에서 생성한 discrete chirp이 $x[n]$이고 POSP 유도에서 쓰인 continuous time domain의 chirp이 $x(t)$이면 다음과 같은 관계를 갖는다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;x[n]=x(n \cdot dt)&lt;/script&gt;
+
+&lt;p&gt;하지만 fft의 경우 입력된 신호의 Sampling 간격 dt를 1로 가정하고 주파수 Spectrum을 계산하기 때문에 POSP와 FFT의 결과가 달라지게 되고 그 차이는 Fourier transform의 scaling property를 이용하여 아래와 같이 구할 수 있다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;|F(x[n \cdot 1])| = \frac{|F(x[n \cdot dt])|}{dt}&lt;/script&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;chirp_fourier_posp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chirp_fourier_sympy_subs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;frequency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dt&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2018-05-11-PrincipleOfStationaryPhase/output_17_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;참고자료&quot;&gt;참고자료&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://www.cis.rit.edu/class/simg738/Handouts/stationary_phase.pdf&lt;/li&gt;
+&lt;/ul&gt;
 </description>
 				<pubDate>Fri, 11 May 2018 17:27:00 +0900</pubDate>
 				<link>/2018/05/PrincipleOfStationaryPhase</link>
