@@ -45,7 +45,7 @@ $$\sqrt{2} + \frac{\sqrt{2}}{4} \left(x - 1\right) - \frac{\sqrt{2}}{32} \left(x
 
 
 series의 x0 변수를 이용하여 Taylor series의 미분 지점을 설정할 수 있고 n을 조절하면 Taylor series의 차수를 정할 수 있다.
-series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O가 함수를 다른 연산에 사용하면 오류가 발생한다. 이 O는 removeO 함수를 이용하여 제거할 수 있다.
+series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O를 포함한 방정식을 다른 연산에 사용하면 오류가 발생한다. 이 O는 removeO 함수를 이용하여 제거할 수 있다.
 
 
 ```python

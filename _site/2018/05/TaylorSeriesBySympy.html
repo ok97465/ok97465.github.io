@@ -120,7 +120,7 @@
 <script type="math/tex; mode=display">\sqrt{2} + \frac{\sqrt{2}}{4} \left(x - 1\right) - \frac{\sqrt{2}}{32} \left(x - 1\right)^{2} + \frac{\sqrt{2}}{128} \left(x - 1\right)^{3} + \mathcal{O}\left(\left(x - 1\right)^{4}; x\rightarrow 1\right)</script>
 
 <p>series의 x0 변수를 이용하여 Taylor series의 미분 지점을 설정할 수 있고 n을 조절하면 Taylor series의 차수를 정할 수 있다.<br />
-series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O가 함수를 다른 연산에 사용하면 오류가 발생한다. 이 O는 removeO 함수를 이용하여 제거할 수 있다.</p>
+series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O를 포함한 방정식을 다른 연산에 사용하면 오류가 발생한다. 이 O는 removeO 함수를 이용하여 제거할 수 있다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f_taylor_valid</span> <span class="o">=</span> <span class="n">f_taylor</span><span class="o">.</span><span class="n">removeO</span><span class="p">()</span>
 <span class="n">display</span><span class="p">(</span><span class="n">f_taylor_valid</span><span class="p">)</span>

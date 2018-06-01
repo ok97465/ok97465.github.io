@@ -34,7 +34,7 @@
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\sqrt{2} + \frac{\sqrt{2}}{4} \left(x - 1\right) - \frac{\sqrt{2}}{32} \left(x - 1\right)^{2} + \frac{\sqrt{2}}{128} \left(x - 1\right)^{3} + \mathcal{O}\left(\left(x - 1\right)^{4}; x\rightarrow 1\right)&lt;/script&gt;
 
 &lt;p&gt;series의 x0 변수를 이용하여 Taylor series의 미분 지점을 설정할 수 있고 n을 조절하면 Taylor series의 차수를 정할 수 있다.&lt;br /&gt;
-series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O가 함수를 다른 연산에 사용하면 오류가 발생한다. 이 O는 removeO 함수를 이용하여 제거할 수 있다.&lt;/p&gt;
+series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O를 포함한 방정식을 다른 연산에 사용하면 오류가 발생한다. 이 O는 removeO 함수를 이용하여 제거할 수 있다.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;f_taylor_valid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f_taylor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;removeO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f_taylor_valid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -114,7 +114,7 @@ series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O가
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;r ( t ), \mu ( t ) \text{= real-valued function}&lt;/script&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
-위의 적분식에서 지수 함수 $e ^ { i f \cdot \mu ( t ) }$의 진동의 속도는 $f$와 $\mu ( t )$에 비례할 것이다. 만약 f가 크다면, ${\mu} ^{\prime} ( t ) = 0$을 제외한 영역에서  $e ^ { i f \cdot \mu ( t ) }$는 -1과 1 매우 빠르게 진동할 것이고 $r ( t )$보다 빠르게 진동한다면 적분 결과는 매우 작을 것이다.  &lt;br /&gt;
+위의 적분식에서 지수 함수 $e ^ { i f \cdot \mu ( t ) }$의 진동의 속도는 $f$와 $\mu ( t )$에 비례할 것이다. 만약 f가 크다면, ${\mu} ^{\prime} ( t ) = 0$을 제외한 영역에서  $e ^ { i f \cdot \mu ( t ) }$는 -1과 1 매우 빠르게 진동할 것이고 $r ( t )$보다 빠르게 진동한다면 지수 함수의 큰 진동 때문에 값들이 상쇄되어 적분 결과는 매우 작을 것이다.  &lt;br /&gt;
 ${\mu}^{\prime} ( t_0 ) = 0$인 영역의 $t_0$을 Stationary point라고 부르고 $t_0$의 영역을 적분 값으로 근사화하는 것을 Principle of Stationary Phase라고 한다.&lt;br /&gt;
 &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;

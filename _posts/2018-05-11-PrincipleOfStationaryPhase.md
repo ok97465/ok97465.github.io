@@ -22,7 +22,7 @@ $$ r ( t ), \mu ( t ) \text{= real-valued function} $$
 
 
 <br><br>
-위의 적분식에서 지수 함수 $e ^ { i f \cdot \mu ( t ) }$의 진동의 속도는 $f$와 $\mu ( t )$에 비례할 것이다. 만약 f가 크다면, ${\mu} ^{\prime} ( t ) = 0$을 제외한 영역에서  $e ^ { i f \cdot \mu ( t ) }$는 -1과 1 매우 빠르게 진동할 것이고 $r ( t )$보다 빠르게 진동한다면 적분 결과는 매우 작을 것이다.  
+위의 적분식에서 지수 함수 $e ^ { i f \cdot \mu ( t ) }$의 진동의 속도는 $f$와 $\mu ( t )$에 비례할 것이다. 만약 f가 크다면, ${\mu} ^{\prime} ( t ) = 0$을 제외한 영역에서  $e ^ { i f \cdot \mu ( t ) }$는 -1과 1 매우 빠르게 진동할 것이고 $r ( t )$보다 빠르게 진동한다면 지수 함수의 큰 진동 때문에 값들이 상쇄되어 적분 결과는 매우 작을 것이다.  
 ${\mu}^{\prime} ( t_0 ) = 0$인 영역의 $t_0$을 Stationary point라고 부르고 $t_0$의 영역을 적분 값으로 근사화하는 것을 Principle of Stationary Phase라고 한다.
 <br><br>
 <br><br>
