@@ -49,8 +49,10 @@ permalink: /:year/:month/:title
 #highlighter: rouge
 
 markdown: kramdown
+
 kramdown:
   input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
+  syntax_highlighter: rouge
   hard_wrap: true
 
 exclude: ['README.md', 'LICENSE']
