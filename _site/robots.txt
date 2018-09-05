@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://ok97465.github.io/sitemap.xml

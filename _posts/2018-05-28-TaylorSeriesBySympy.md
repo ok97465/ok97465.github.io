@@ -6,6 +6,9 @@ share: true
 date: 2018-05-28 08:49:00
 description: Sympy를 이용하여 Taylor Series를 전개한다
 tags: sympy python math
+sitemap :
+  changefreq : daily
+  priority : 1.0
 ---
 
 # Sympy를 이용한 Taylor Series 전개

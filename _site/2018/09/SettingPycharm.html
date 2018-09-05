@@ -1,0 +1,439 @@
+
+  
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ok97465 | Pycharm(Python)을 Matlab 처럼 </title>
+  <meta name="theme-color" content="#222222" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/header.js"></script>
+  <script src="/assets/js/toc.js"></script>
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/css/theme.css" rel="stylesheet">
+  <link href="/assets/css/syntax.css" rel="stylesheet">
+  <link href="/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  
+
+  
+
+
+ <script type="text/javascript">
+  WebFontConfig = {
+    google: {
+      families: ['Ubuntu::latin']
+    }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })();
+</script>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">ok97465</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">/home</a></li>
+          <li><a href="/archive.html">/archive</a></li>
+          <li><a href="/tags.html">/tags</a></li>
+          <li><a href="/about.html">/about</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <div class="wrapper">
+      <div class="content">
+        <div class="container container-center">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="article">
+                <div class="well">
+                  <h1><a href="/2018/09/SettingPycharm">Pycharm(Python)을 Matlab 처럼</a></h1>
+                  <div class="post-meta">
+                    <div class="post-time">
+                      <i class="fa fa-calendar"></i>
+                      <time>05 Sep 2018</time>
+                    </div>
+                    <ul>
+                      
+                        <li><a href="/tag/python">python</a></li>
+                      
+                        <li><a href="/tag/pycharm">pycharm</a></li>
+                      
+                        <li><a href="/tag/matlab">matlab</a></li>
+                      
+                    </ul>
+                  </div>
+                  <div class="post-content">
+                    <div id="toc" class="toc"></div>
+                    <h1 id="pycharmpython을-matlab-처럼-사용하기">Pycharm(Python)을 Matlab 처럼 사용하기</h1>
+<hr />
+
+<h2 id="script-run-시-현재-console에서-실행">Script Run 시 현재 Console에서 실행</h2>
+<p>File –&gt; Settings –&gt; Build, Execution, Deployment –&gt; Console</p>
+<ul>
+  <li>Always show debug console : 활성화</li>
+  <li>User existing console for “Run with Python console” : 활성화<br />
+<br /><br /></li>
+</ul>
+
+<h2 id="console에-자주-쓰는-함수-자동-import">Console에 자주 쓰는 함수 자동 import</h2>
+<p>File –&gt; Settings –&gt; Build, Execution, Deployment –&gt; Console –&gt; Python Console –&gt; Start Script에 추가</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
+    <span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
+
+    <span class="kn">from</span> <span class="nn">oklib.init</span> <span class="kn">import</span> <span class="n">load_func_frequently</span>
+    <span class="n">load_func_frequently</span><span class="p">(</span><span class="nb">globals</span><span class="p">())</span>
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h2 id="matplotlib의-cursor-marker-기능-활성화">Matplotlib의 Cursor Marker 기능 활성화</h2>
+<p>File –&gt; Settings –&gt; Build, Execution, Deployment –&gt; Console –&gt; Python Console –&gt; Enviroment variables에 추가  <br />
+Name : MPLCURSORS  <br />
+Value : {“multiple”: 1}<br />
+<br /><br /></p>
+
+<h2 id="variable-창에서-자주-쓰는-함수-숨김">Variable 창에서 자주 쓰는 함수 숨김</h2>
+<p>pycharm 폴더\helpers\pydev_pydev_bundle\pydev_ipython_console.py의 get_ipython_hidden_vars_dict에 추가</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'rad2deg'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'deg2rad'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arange'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arccos'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arcsin'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arctan'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'array'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'conj'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'cos'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sin'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'tan'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'exp'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'zeros'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'pi'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randn'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'standard_normal'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sqrt'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'fig'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'ax'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h2 id="matplotlib의-한글-표시">Matplotlib의 한글 표시</h2>
+<p>파이썬폴더\Lib\site-packages\matplotlib\mpl-data\matplotlibrc 파일 수정</p>
+<ul>
+  <li>backend      : Qt5Agg</li>
+  <li>font.family         : Malgun Gothic</li>
+  <li>axes.unicode_minus  : False</li>
+  <li>savefig.transparent : True</li>
+  <li>figure.facecolor : 0.95<br />
+<br /><br /></li>
+</ul>
+
+<h2 id="자주쓰는-keyword-추가">자주쓰는 Keyword 추가</h2>
+<p>File –&gt; Settings –&gt; Live Templates –&gt; Python 에 아래 명령들 추가</p>
+
+<h3 id="clear-명령">clear 명령</h3>
+<p>Abbreviation : clear  <br />
+Template text :</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">from</span> <span class="nn">oklib.init</span> <span class="kn">import</span> <span class="n">ipython_clear</span>
+    <span class="n">ipython_clear</span><span class="p">(</span><span class="n">b_plot_close</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">oklib.init</span> <span class="kn">import</span> <span class="n">load_func_frequently</span>
+    <span class="n">load_func_frequently</span><span class="p">(</span><span class="nb">globals</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h3 id="새로운-figure-명령">새로운 figure 명령</h3>
+<p>Abbreviation : fig,  <br />
+Template text :</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h3 id="matlab-명령-import">matlab 명령 import</h3>
+<p>Abbreviation : matlab   <br />
+Template text :</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+    <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">hist</span>
+    <span class="kn">from</span> <span class="nn">oklib.signal</span> <span class="kn">import</span> <span class="p">(</span><span class="n">db2</span><span class="p">,</span> <span class="n">nextpow2</span><span class="p">,</span> <span class="n">sind</span><span class="p">,</span> <span class="n">cosd</span><span class="p">,</span> <span class="n">tand</span><span class="p">,</span> <span class="n">arcsind</span><span class="p">,</span> <span class="n">arccosd</span><span class="p">,</span> <span class="n">arctand</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">oklib.plot</span> <span class="kn">import</span> <span class="n">imagesc</span>
+    <span class="kn">from</span> <span class="nn">oklib.file</span> <span class="kn">import</span> <span class="n">save_vars</span><span class="p">,</span> <span class="n">load_vars</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">deg2rad</span><span class="p">,</span> <span class="n">rad2deg</span><span class="p">,</span> <span class="n">unwrap</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">zeros</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">ones</span><span class="p">,</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">cumsum</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">interp</span><span class="p">,</span>
+                       <span class="n">conj</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">tan</span><span class="p">,</span> <span class="n">arcsin</span><span class="p">,</span> <span class="n">arccos</span><span class="p">,</span> <span class="n">arctan</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">amin</span><span class="p">,</span> <span class="n">amax</span><span class="p">,</span> <span class="n">argmin</span><span class="p">,</span> <span class="n">argmax</span><span class="p">,</span> <span class="nb">sum</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">numpy.fft</span> <span class="kn">import</span> <span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span><span class="p">,</span> <span class="n">fft2</span><span class="p">,</span> <span class="n">ifft2</span><span class="p">,</span> <span class="n">fftshift</span><span class="p">,</span> <span class="n">ifftshift</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">svd</span><span class="p">,</span> <span class="n">norm</span>
+    <span class="kn">from</span> <span class="nn">numpy.random_intel</span> <span class="kn">import</span> <span class="n">randn</span><span class="p">,</span> <span class="n">standard_normal</span>
+
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h2 id="file-생성-시-주석-추가">File 생성 시 주석 추가</h2>
+<p>File –&gt; Settings –&gt; File and Code Templates –&gt; Python script에 추가</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c"># -*- coding: utf-8 -*-</span>
+    <span class="s">r"""[Title]
+
+    [Description]
+
+    Example
+    -------
+    [example]
+
+    Notes
+    -----
+    [Notes]
+
+    References
+    ----------
+    .. [] 책: 저자명. (발행년). Title of chapter. In 편집자명 (역할), title of book (쪽). 발행지 : 발행사
+    .. [] 학위 논문: 학위자명, "논문제목", 대학원 이름 석사 학윈논문, 1990 
+    .. [] 저널 논문: 저자. "논문제목". 저널명, . pp.
+
+    :File name: ${NAME}.py
+    :author: ok97465
+    :Date created: ${DATE} ${TIME}
+    """</span>
+
+
+</code></pre></div></div>
+<p><br /><br /></p>
+
+<h2 id="docstring-format-변경">Docstring format 변경</h2>
+<p>File –&gt; Settings –&gt; Tools –&gt; Python Integrated Tools –&gt; Docstring format을 Numpy로 변경<br />
+<br /><br /></p>
+
+<h2 id="offline-환경에서-quick-document-사용-시-버벅임-최소화">Offline 환경에서 Quick Document 사용 시 버벅임 최소화</h2>
+<p>File –&gt; Settings –&gt; Tools –&gt; Python External Documentation의 항목 전체 삭제<br />
+<br /><br /></p>
+
+<h2 id="자주-쓰는-함수-추가">자주 쓰는 함수 추가</h2>
+<p>생성한 Python Project 폴더에 아래 파일을 압축 해제하여 oklib 폴더를 생성한다.  <br />
+<a href="/assets/data/oklib.zip">oklib Download</a></p>
+
+                    
+
+<div class="share-bar">
+  <ul class="share-buttons">
+    
+    <li class="share-facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/09/SettingPycharm" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-facebook fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-twitter">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/09/SettingPycharm&text=Pycharm(Python)을 Matlab 처럼" target="_blank" title="Tweet">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-twitter fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-google-plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/09/SettingPycharm" target="_blank" title="Share on Google Plus">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-google-plus fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="share-envelope">
+      <a href="mailto:?&subject=Pycharm(Python)을 Matlab 처럼&body=Pycharm을 Matlab 처럼 사용할 수 있도록 설정한다. http://localhost:4000/2018/09/SettingPycharm" target="_blank" title="Email">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle-thin fa-stack-2x"></i>
+          <i class="fa fa-envelope-o fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+                  </div>
+                  
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                  </div>
+                  
+                </div>
+				<script type="text/x-mathjax-config">
+                  MathJax.Hub.Config({
+                    tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    processEscapes: true
+                    }
+                  });
+                </script>
+				<script type="text/javascript" async
+                  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+                </script>
+              </div>
+            </div>
+            <div class="col-md-4 hidden-xs">
+              <div class="sidebar ">
+  <h2>Recent Posts</h2>
+  <ul>
+    
+    <li><a href="/2018/09/SettingPycharm">Pycharm(Python)을 Matlab 처럼</a></li>
+    
+    <li><a href="/2018/05/TaylorSeriesBySympy">Taylor Series Using Sympy</a></li>
+    
+    <li><a href="/2018/05/PrincipleOfStationaryPhase">Principle of Stationary Phase</a></li>
+    
+  </ul>
+</div>
+
+<div class="sidebar">
+  <h2>Tags</h2>
+  <ul class="sideBarTags">
+    
+    
+    <li>
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="2">
+        <span>math</span></a></li>
+    
+    <li>
+      <a href="/tag/matlab" data-toggle="tooltip" data-placement="right" title="1">
+        <span>matlab</span></a></li>
+    
+    <li>
+      <a href="/tag/pycharm" data-toggle="tooltip" data-placement="right" title="1">
+        <span>pycharm</span></a></li>
+    
+    <li>
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="3">
+        <span>python</span></a></li>
+    
+    <li>
+      <a href="/tag/signal_system" data-toggle="tooltip" data-placement="right" title="1">
+        <span>signal_system</span></a></li>
+    
+    <li>
+      <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="2">
+        <span>sympy</span></a></li>
+    
+  </ul>
+</div>
+
+            </div>
+          </div>
+        </div>
+        
+<!-- Add Disqus comments. -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
+  var disqus_identifier = "/2018/09/SettingPycharm";
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </div>
+          <footer class="footer-distributed">
+      <div class="container">
+        <div class="footer">
+          <p>ok97465 &copy; 2018-</p>
+          <h6>Follow me</h6>
+
+<ul class="social-media">
+
+  
+    <li>
+      <a title="ok97465 on Github" href="https://github.com/ok97465" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="9015220/lowqualitydelivery on StackOverflow" href="https://stackoverflow.com/users/9015220/lowqualitydelivery" target="_blank"><i class="fa fa-stack-overflow fa-2x"></i></a>
+    </li>
+  
+
+  
+
+  
+    <li>
+      <a title=" on Instagram" href="https://instagram.com/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title=" on Last.fm" href="https://www.lastfm.com/user/" target="_blank"><i class="fa fa-lastfm fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="feed.xml RSS" href="/feed.xml" target="_blank"><i class="fa fa-rss fa-2x"></i></a>
+    </li>
+  
+
+</ul>
+
+        </div>
+      </div>
+    </footer>
+
+    </div>
+  </body>
+</html>
