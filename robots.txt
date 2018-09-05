@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://ok97465.github.io/sitemap.xml
+Sitemap: https://ok97465.github.io/sitemap.xml
