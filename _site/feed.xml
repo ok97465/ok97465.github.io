@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 06 Sep 2018 01:31:34 +0900</pubDate>
-    <lastBuildDate>Thu, 06 Sep 2018 01:31:34 +0900</lastBuildDate>
+    <pubDate>Thu, 06 Sep 2018 19:47:40 +0900</pubDate>
+    <lastBuildDate>Thu, 06 Sep 2018 19:47:40 +0900</lastBuildDate>
     <generator>Jekyll v3.8.1</generator>
     
       <item>
@@ -14,15 +14,18 @@
         <description>&lt;h1 id=&quot;pycharmpython을-matlab-처럼-사용하기&quot;&gt;Pycharm(Python)을 Matlab 처럼 사용하기&lt;/h1&gt;
 &lt;hr /&gt;
 
-&lt;h2 id=&quot;script-run-시-현재-console에서-실행&quot;&gt;Script Run 시 현재 Console에서 실행&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;1-script-run-시-현재-console에서-실행&quot;&gt;1. Script Run 시 현재 Console에서 실행&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; Build, Execution, Deployment –&amp;gt; Console&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Always show debug console : 활성화&lt;/li&gt;
-  &lt;li&gt;User existing console for “Run with Python console” : 활성화&lt;br /&gt;
-&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;User existing console for “Run with Python console” : 활성화&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;console에-자주-쓰는-함수-자동-import&quot;&gt;Console에 자주 쓰는 함수 자동 import&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-console에-자주-쓰는-함수-자동-import&quot;&gt;2. Console에 자주 쓰는 함수 자동 import&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; Build, Execution, Deployment –&amp;gt; Console –&amp;gt; Python Console –&amp;gt; Start Script에 추가&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load_ext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;autoreload&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoreload&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
@@ -30,15 +33,17 @@
     &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;oklib.init&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load_func_frequently&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;load_func_frequently&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;globals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;matplotlib의-cursor-marker-기능-활성화&quot;&gt;Matplotlib의 Cursor Marker 기능 활성화&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3-matplotlib의-cursor-marker-기능-활성화&quot;&gt;3. Matplotlib의 Cursor Marker 기능 활성화&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; Build, Execution, Deployment –&amp;gt; Console –&amp;gt; Python Console –&amp;gt; Enviroment variables에 추가  &lt;br /&gt;
 Name : MPLCURSORS  &lt;br /&gt;
-Value : {“multiple”: 1}&lt;br /&gt;
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+Value : {“multiple”: 1}&lt;/p&gt;
 
-&lt;h2 id=&quot;variable-창에서-자주-쓰는-함수-숨김&quot;&gt;Variable 창에서 자주 쓰는 함수 숨김&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;4-variable-창에서-자주-쓰는-함수-숨김&quot;&gt;4. Variable 창에서 자주 쓰는 함수 숨김&lt;/h2&gt;
 &lt;p&gt;pycharm 폴더\helpers\pydev_pydev_bundle\pydev_ipython_console.py의 get_ipython_hidden_vars_dict에 추가&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;user_hidden_dict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setdefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'rad2deg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;user_hidden_dict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setdefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'deg2rad'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -60,23 +65,27 @@ Value : {“multiple”: 1}&lt;br /&gt;
     &lt;span class=&quot;n&quot;&gt;user_hidden_dict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setdefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'fig'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;user_hidden_dict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setdefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'ax'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;matplotlib의-한글-표시&quot;&gt;Matplotlib의 한글 표시&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;5-matplotlib의-한글-표시&quot;&gt;5. Matplotlib의 한글 표시&lt;/h2&gt;
 &lt;p&gt;파이썬폴더\Lib\site-packages\matplotlib\mpl-data\matplotlibrc 파일 수정&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;backend      : Qt5Agg&lt;/li&gt;
   &lt;li&gt;font.family         : Malgun Gothic&lt;/li&gt;
   &lt;li&gt;axes.unicode_minus  : False&lt;/li&gt;
   &lt;li&gt;savefig.transparent : True&lt;/li&gt;
-  &lt;li&gt;figure.facecolor : 0.95&lt;br /&gt;
-&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;figure.facecolor : 0.95&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;자주쓰는-keyword-추가&quot;&gt;자주쓰는 Keyword 추가&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;6-자주쓰는-keyword-추가&quot;&gt;6. 자주쓰는 Keyword 추가&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; Live Templates –&amp;gt; Python 에 아래 명령들 추가&lt;/p&gt;
 
-&lt;h3 id=&quot;clear-명령&quot;&gt;clear 명령&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;61-clear-명령&quot;&gt;6.1. clear 명령&lt;/h3&gt;
 &lt;p&gt;Abbreviation : clear  &lt;br /&gt;
 Template text :&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;oklib.init&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ipython_clear&lt;/span&gt;
@@ -88,16 +97,18 @@ Template text :&lt;/p&gt;
         &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;새로운-figure-명령&quot;&gt;새로운 figure 명령&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;62-새로운-figure-명령&quot;&gt;6.2. 새로운 figure 명령&lt;/h3&gt;
 &lt;p&gt;Abbreviation : fig,  &lt;br /&gt;
 Template text :&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subplots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;matlab-명령-import&quot;&gt;matlab 명령 import&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;63-matlab-명령-import&quot;&gt;6.3. matlab 명령 import&lt;/h3&gt;
 &lt;p&gt;Abbreviation : matlab   &lt;br /&gt;
 Template text :&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
@@ -115,9 +126,10 @@ Template text :&lt;/p&gt;
     &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy.random_intel&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;randn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;standard_normal&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;file-생성-시-주석-추가&quot;&gt;File 생성 시 주석 추가&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;7-file-생성-시-주석-추가&quot;&gt;7. File 생성 시 주석 추가&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; File and Code Templates –&amp;gt; Python script에 추가&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c&quot;&gt;# -*- coding: utf-8 -*-&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;r&quot;&quot;&quot;[Title]
@@ -145,17 +157,20 @@ Template text :&lt;/p&gt;
 
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;docstring-format-변경&quot;&gt;Docstring format 변경&lt;/h2&gt;
-&lt;p&gt;File –&amp;gt; Settings –&amp;gt; Tools –&amp;gt; Python Integrated Tools –&amp;gt; Docstring format을 Numpy로 변경&lt;br /&gt;
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;offline-환경에서-quick-document-사용-시-버벅임-최소화&quot;&gt;Offline 환경에서 Quick Document 사용 시 버벅임 최소화&lt;/h2&gt;
-&lt;p&gt;File –&amp;gt; Settings –&amp;gt; Tools –&amp;gt; Python External Documentation의 항목 전체 삭제&lt;br /&gt;
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;8-docstring-format-변경&quot;&gt;8. Docstring format 변경&lt;/h2&gt;
+&lt;p&gt;File –&amp;gt; Settings –&amp;gt; Tools –&amp;gt; Python Integrated Tools –&amp;gt; Docstring format을 Numpy로 변경&lt;/p&gt;
 
-&lt;h2 id=&quot;자주-쓰는-함수-추가&quot;&gt;자주 쓰는 함수 추가&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;9-offline-환경에서-quick-document-사용-시-버벅임-최소화&quot;&gt;9. Offline 환경에서 Quick Document 사용 시 버벅임 최소화&lt;/h2&gt;
+&lt;p&gt;File –&amp;gt; Settings –&amp;gt; Tools –&amp;gt; Python External Documentation의 항목 전체 삭제&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;10-자주-쓰는-함수-추가&quot;&gt;10. 자주 쓰는 함수 추가&lt;/h2&gt;
 &lt;p&gt;생성한 Python Project 폴더에 아래 파일을 압축 해제하여 oklib 폴더를 생성한다.  &lt;br /&gt;
 &lt;a href=&quot;/assets/data/oklib.zip&quot;&gt;oklib Download&lt;/a&gt;&lt;/p&gt;
 </description>

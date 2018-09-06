@@ -4,7 +4,7 @@ title: "Pycharm(Python)을 Matlab 처럼"
 comments: true
 share: true
 date: 2018-09-04 23:15:00
-description: Pycharm을 Matlab 처럼 사용할 수 있도록 설정한다.
+description: Spyder IDE는 Python을 Matlab처럼 사용 할 수 있는 Open Source 이지만, 안정성과 편의성이 좀 떨어진다. 그래서 개발툴로서 완성도 높은 Pycharm의 설정을 수정하여 Matlab처럼 사용하는 방안을 기술한다.
 tags: python pycharm matlab
 sitemap :
   changefreq : daily
@@ -14,13 +14,16 @@ sitemap :
 # Pycharm(Python)을 Matlab 처럼 사용하기
 ---
 
-## Script Run 시 현재 Console에서 실행
+<br>
+
+## 1. Script Run 시 현재 Console에서 실행
 File --> Settings --> Build, Execution, Deployment --> Console
   * Always show debug console : 활성화
   * User existing console for "Run with Python console" : 활성화
-<br><br>
 
-## Console에 자주 쓰는 함수 자동 import
+<br>
+
+## 2. Console에 자주 쓰는 함수 자동 import
 File --> Settings --> Build, Execution, Deployment --> Console --> Python Console --> Start Script에 추가
 ``` python
     %load_ext autoreload
@@ -29,15 +32,17 @@ File --> Settings --> Build, Execution, Deployment --> Console --> Python Consol
     from oklib.init import load_func_frequently
     load_func_frequently(globals())
 ```
-<br><br>
 
-## Matplotlib의 Cursor Marker 기능 활성화
+<br>
+
+## 3. Matplotlib의 Cursor Marker 기능 활성화
 File --> Settings --> Build, Execution, Deployment --> Console --> Python Console --> Enviroment variables에 추가  
 Name : MPLCURSORS  
 Value : {"multiple": 1}
-<br><br>
 
-## Variable 창에서 자주 쓰는 함수 숨김
+<br>
+
+## 4. Variable 창에서 자주 쓰는 함수 숨김
 pycharm 폴더\helpers\pydev\_pydev_bundle\pydev_ipython_console.py의 get_ipython_hidden_vars_dict에 추가
 ``` python
     user_hidden_dict.setdefault('rad2deg', '')
@@ -60,21 +65,25 @@ pycharm 폴더\helpers\pydev\_pydev_bundle\pydev_ipython_console.py의 get_ipyth
     user_hidden_dict.setdefault('fig', '')
     user_hidden_dict.setdefault('ax', '')
 ```
-<br><br>
 
-## Matplotlib의 한글 표시
+<br>
+
+## 5. Matplotlib의 한글 표시
 파이썬폴더\Lib\site-packages\matplotlib\mpl-data\matplotlibrc 파일 수정  
   * backend      : Qt5Agg  
   * font.family         : Malgun Gothic  
   * axes.unicode_minus  : False  
   * savefig.transparent : True  
   * figure.facecolor : 0.95
-<br><br>
 
-## 자주쓰는 Keyword 추가
+<br>
+
+## 6. 자주쓰는 Keyword 추가
 File --> Settings --> Live Templates --> Python 에 아래 명령들 추가
 
-### clear 명령
+<br>
+
+### 6.1. clear 명령
 Abbreviation : clear  
 Template text :  
 ``` python
@@ -87,17 +96,19 @@ Template text :
         pass
 
 ```
-<br><br>
 
-### 새로운 figure 명령
+<br>
+
+### 6.2. 새로운 figure 명령
 Abbreviation : fig,  
 Template text :  
 ``` python
     fig, ax = plt.subplots()
 ```
-<br><br>
 
-### matlab 명령 import
+<br>
+
+### 6.3. matlab 명령 import
 Abbreviation : matlab   
 Template text :  
 ``` python
@@ -116,9 +127,10 @@ Template text :
     from numpy.random_intel import randn, standard_normal
 
 ```
-<br><br>
 
-## File 생성 시 주석 추가
+<br>
+
+## 7. File 생성 시 주석 추가
 File --> Settings --> File and Code Templates --> Python script에 추가
 ``` python
     # -*- coding: utf-8 -*-
@@ -147,16 +159,19 @@ File --> Settings --> File and Code Templates --> Python script에 추가
 
 
 ```
-<br><br>
 
-## Docstring format 변경
+<br>
+
+## 8. Docstring format 변경
 File --> Settings --> Tools --> Python Integrated Tools --> Docstring format을 Numpy로 변경
-<br><br>
 
-## Offline 환경에서 Quick Document 사용 시 버벅임 최소화
+<br>
+
+## 9. Offline 환경에서 Quick Document 사용 시 버벅임 최소화
 File --> Settings --> Tools --> Python External Documentation의 항목 전체 삭제
-<br><br>
 
-## 자주 쓰는 함수 추가
+<br>
+
+## 10. 자주 쓰는 함수 추가
 생성한 Python Project 폴더에 아래 파일을 압축 해제하여 oklib 폴더를 생성한다.  
 [oklib Download](/assets/data/oklib.zip)
