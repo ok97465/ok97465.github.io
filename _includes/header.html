@@ -7,9 +7,14 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ site.name }}{% if page.title %} | {{ page.title }} {% endif %}</title>
-  <meta name="Description" content="{% if page.description %}{{page.description}}{% endif %}" />
-  <meta name="theme-color" content="#222222" />
+  <meta name="description" content="{% if page.description %}{{page.description}}{% endif %}">
+  <meta name="theme-color" content="#222222">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% if page.title %} | {{ page.title }} {% endif %}">
+  <meta property="og:description" content="{% if page.description %}{{page.description}}{% endif %}">
+  <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
+  <meta property="og:url" content="http://ok97465.github.io">
   <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/bootstrap.min.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/header.js' | relative_url }}"></script>
