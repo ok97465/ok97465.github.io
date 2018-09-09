@@ -5,9 +5,62 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 07 Sep 2018 00:29:07 +0900</pubDate>
-    <lastBuildDate>Fri, 07 Sep 2018 00:29:07 +0900</lastBuildDate>
+    <pubDate>Sun, 09 Sep 2018 10:29:25 +0900</pubDate>
+    <lastBuildDate>Sun, 09 Sep 2018 10:29:25 +0900</lastBuildDate>
     <generator>Jekyll v3.8.1</generator>
+    
+      <item>
+        <title>Jupyter NoteBook에서 신호처리를 위한 설정</title>
+        <description>&lt;h1 id=&quot;jupyter-notebook에서-신호처리를-위한-설정&quot;&gt;Jupyter NoteBook에서 신호처리를 위한 설정&lt;/h1&gt;
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;1-nbextension-설정&quot;&gt;1. NBExtension 설정&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;hide input 활설화&lt;/li&gt;
+  &lt;li&gt;hide input all 활성화&lt;/li&gt;
+  &lt;li&gt;comment/uncomment hotkey 활성화
+    &lt;ul&gt;
+      &lt;li&gt;단축키 Ctrl+R로 변경&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;spell checker 활성화&lt;/li&gt;
+  &lt;li&gt;table of contents(2) 활성화&lt;/li&gt;
+  &lt;li&gt;runtools 활성화
+    &lt;ul&gt;
+      &lt;li&gt;run all cells 단축키 Ctrl+F5로 변경&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;snippets 활성화
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;/assets/data/SettingJupyterNotebook/snippets.json&quot;&gt;snippets.json&lt;/a&gt;을 파이선폴더/share/jupyter/nbextensions/snippets에 복사한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;snippets Menu 활성화&lt;/li&gt;
+  &lt;li&gt;scratchpad 활성화&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-theme-설정&quot;&gt;2. Theme 설정&lt;/h2&gt;
+&lt;p&gt;onedork theme 설정  &lt;br /&gt;
+./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3-qtconsole-style변경&quot;&gt;3. qtconsole style변경&lt;/h2&gt;
+&lt;p&gt;%qtconsole로 외부 console 실행 시 theme를 설정한다.  &lt;br /&gt;
+&lt;a href=&quot;/assets/data/SettingJupyterNotebook/jupyter_qtconsole_config.py&quot;&gt;jupyter_qtconsole_config.py&lt;/a&gt;를 ~/.jupyter에 복사 한다.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 09 Sep 2018 10:08:00 +0900</pubDate>
+        <link>http://localhost:4000/2018/09/SettingJupyterNotebook</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/SettingJupyterNotebook</guid>
+        
+        <category>python</category>
+        
+        
+      </item>
     
       <item>
         <title>Pycharm(Python)을 Matlab 처럼</title>
@@ -147,7 +200,7 @@ Template text :&lt;/p&gt;
     References
     ----------
     .. [] 책: 저자명. (발행년). Title of chapter. In 편집자명 (역할), title of book (쪽). 발행지 : 발행사
-    .. [] 학위 논문: 학위자명, &quot;논문제목&quot;, 대학원 이름 석사 학윈논문, 1990 
+    .. [] 학위 논문: 학위자명, &quot;논문제목&quot;, 대학원 이름 석사 학위논문, 1990 
     .. [] 저널 논문: 저자. &quot;논문제목&quot;. 저널명, . pp.
 
     :File name: ${NAME}.py

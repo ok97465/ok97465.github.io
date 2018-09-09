@@ -149,7 +149,7 @@ File --> Settings --> File and Code Templates --> Python script에 추가
     References
     ----------
     .. [] 책: 저자명. (발행년). Title of chapter. In 편집자명 (역할), title of book (쪽). 발행지 : 발행사
-    .. [] 학위 논문: 학위자명, "논문제목", 대학원 이름 석사 학윈논문, 1990 
+    .. [] 학위 논문: 학위자명, "논문제목", 대학원 이름 석사 학위논문, 1990 
     .. [] 저널 논문: 저자. "논문제목". 저널명, . pp.
 
     :File name: ${NAME}.py
