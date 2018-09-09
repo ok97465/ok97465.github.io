@@ -132,7 +132,7 @@
   </li>
   <li>snippets 활성화
     <ul>
-      <li><a href="/assets/data/SettingJupyterNotebook/snippets.json">snippets.json</a>을 파이선폴더/share/jupyter/nbextensions/snippets에 복사한다.</li>
+      <li><a href="/assets/data/SettingJupyterNotebook/snippets.json">snippets.json</a>을 파이선폴더/share/jupyter/nbextensions/snippets에 복사 한다.</li>
     </ul>
   </li>
   <li>snippets Menu 활성화</li>
@@ -148,8 +148,59 @@
 <p><br /></p>
 
 <h2 id="3-qtconsole-style변경">3. qtconsole style변경</h2>
-<p>%qtconsole로 외부 console 실행 시 theme를 설정한다.  <br />
+<p>%qtconsole로 외부 console 실행 시 theme를 설정 한다.  <br />
 <a href="/assets/data/SettingJupyterNotebook/jupyter_qtconsole_config.py">jupyter_qtconsole_config.py</a>를 ~/.jupyter에 복사 한다.</p>
+
+<p><br /></p>
+
+<h2 id="4-jupyter-notebook-1회만-실행">4. Jupyter Notebook 1회만 실행</h2>
+<p>jupyter notebook을 아이콘으로 만들어 실행 하려다 보면 아이콘 클릭 시 마다 새로운 jupyter server가 실행된다. 이런 문제를 해결하기 위해서 간단한 python 코드와 Script를 작성하여 script를 바로가기로 지정한다.</p>
+
+<ul>
+  <li>Python Code (run_jupyter.py)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">webbrowser</span>
+<span class="kn">from</span> <span class="nn">notebook</span> <span class="kn">import</span> <span class="n">notebookapp</span>
+<span class="kn">from</span> <span class="nn">notebook.notebookapp</span> <span class="kn">import</span> <span class="n">main</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="mi">9876</span>
+    <span class="n">jupyter_server_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">notebookapp</span><span class="o">.</span><span class="n">list_running_servers</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">jupyter_server_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">server</span><span class="p">[</span><span class="s">'port'</span><span class="p">]</span> <span class="o">==</span> <span class="n">port</span><span class="p">:</span>
+                <span class="n">webbrowser</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'url'</span><span class="p">]</span><span class="o">+</span><span class="s">'tree'</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">'/home/ok97465/python/BlogSrcByJupyter'</span><span class="p">)</span>  <span class="c"># notebook을 저장할 폴더</span>
+    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Linux용 script (run_jupyter.sh)</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<span class="nb">export </span><span class="nv">MPLCURSORS</span><span class="o">=</span><span class="s1">'{"multiple": 1}'</span>  <span class="c"># maplotlib Cusor Marker</span>
+<span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/home/ok97465/python/scientific  <span class="c"># oklib를 포함하는 폴더  </span>
+~/anaconda3/bin/python ~/python/run_jupyter.py
+</code></pre></div></div>
+
+<ul>
+  <li>Window용 스크립트 (run_jupyter.vbs)</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set oShell = CreateObject ("Wscript.Shell")
+Dim strArgs
+strArgs = "cmd /v:on /k (set MPLCURSORS=" + "{" + Chr(34) + "multiple" + Chr(34) + ": 1" + "}" + ")" + " &amp; (set PYTHONPATH=D:\python\scientific) &amp; C:\IntelPython3\python.exe D:\python\start_jupyter.py"
+oShell.Run strArgs, 0, false
+</code></pre></div></div>
 
                     
 
