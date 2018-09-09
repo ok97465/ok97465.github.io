@@ -47,7 +47,7 @@ onedork theme 설정
 ## 4. Jupyter Notebook 1회만 실행
 jupyter notebook을 아이콘으로 만들어 실행 하려다 보면 아이콘 클릭 시 마다 새로운 jupyter server가 실행된다. 이런 문제를 해결하기 위해서 간단한 python 코드와 Script를 작성하여 script를 바로가기로 지정한다.
   
-  * Python Code (run_jupyter.py)
+  * Python Code (run\_jupyter.py)
   
 ``` python
 import re
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     sys.exit(main(port=port))
 ```
 
-  * Linux용 script (run_jupyter.sh)
+  * Linux용 script (run\_jupyter.sh)
   
 ```bash
 #!/bin/sh
@@ -81,7 +81,7 @@ export PYTHONPATH=/home/ok97465/python/scientific  # oklib를 포함하는 폴�
 ~/anaconda3/bin/python ~/python/run_jupyter.py
 ```
 
-  * Window용 스크립트 (run_jupyter.vbs)
+  * Window용 스크립트 (run\_jupyter.vbs)
   
 ```
 Set oShell = CreateObject ("Wscript.Shell")

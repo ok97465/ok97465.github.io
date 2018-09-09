@@ -146,7 +146,8 @@ Value : {“multiple”: 1}</p>
 <p><br /></p>
 
 <h2 id="4-variable-창에서-자주-쓰는-함수-숨김">4. Variable 창에서 자주 쓰는 함수 숨김</h2>
-<p>pycharm 폴더\helpers\pydev_pydev_bundle\pydev_ipython_console.py의 get_ipython_hidden_vars_dict에 추가</p>
+<p>pycharm 폴더/helpers/pydev/_pydev_bundle/pydev_ipython_console.py의 get_ipython_hidden_vars_dict에 추가</p>
+
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'rad2deg'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
     <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'deg2rad'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
     <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arange'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
@@ -171,7 +172,7 @@ Value : {“multiple”: 1}</p>
 <p><br /></p>
 
 <h2 id="5-matplotlib의-한글-표시">5. Matplotlib의 한글 표시</h2>
-<p>파이썬폴더\Lib\site-packages\matplotlib\mpl-data\matplotlibrc 파일 수정</p>
+<p>파이썬폴더/Lib/site-packages/matplotlib/mpl-data/matplotlibrc 파일 수정</p>
 <ul>
   <li>backend      : Qt5Agg</li>
   <li>font.family         : Malgun Gothic</li>

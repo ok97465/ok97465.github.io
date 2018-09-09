@@ -43,7 +43,8 @@ Value : {"multiple": 1}
 <br>
 
 ## 4. Variable 창에서 자주 쓰는 함수 숨김
-pycharm 폴더\helpers\pydev\_pydev_bundle\pydev_ipython_console.py의 get_ipython_hidden_vars_dict에 추가
+pycharm 폴더/helpers/pydev/\_pydev\_bundle/pydev\_ipython\_console.py의 get\_ipython\_hidden\_vars\_dict에 추가
+
 ``` python
     user_hidden_dict.setdefault('rad2deg', '')
     user_hidden_dict.setdefault('deg2rad', '')
@@ -69,7 +70,7 @@ pycharm 폴더\helpers\pydev\_pydev_bundle\pydev_ipython_console.py의 get_ipyth
 <br>
 
 ## 5. Matplotlib의 한글 표시
-파이썬폴더\Lib\site-packages\matplotlib\mpl-data\matplotlibrc 파일 수정  
+파이썬폴더/Lib/site-packages/matplotlib/mpl-data/matplotlibrc 파일 수정  
   * backend      : Qt5Agg  
   * font.family         : Malgun Gothic  
   * axes.unicode_minus  : False  
