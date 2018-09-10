@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Conway's Game of Life"
+title: "Conway's Game of Life (생명 게임)"
 comments: true
 share: true
 date: 2018-09-09 13:51:00
@@ -11,7 +11,7 @@ sitemap :
     priority : 1.0
 ---
 
-# Conway's Game of Life
+# Conway's Game of Life (생명 게임)
 ---
 
 ## 규칙
@@ -340,7 +340,7 @@ AB1kYXRhAAAAAQAAAABMYXZmNTcuODMuMTAw
 
 
 ## Conway Example (glider gun)
-gliber gun array는 [3] 참조
+glider gun array는 [3] 참조
 
 
 ```python
