@@ -75,6 +75,23 @@
                 ".. [] 저널 논문: 저자. \"논문제목\". 저널명, . pp.",
                 "\"\"\""
             ]
+        },
+        {
+            "name": "Header of Blog Post",
+            "code": [
+                "///---",
+                "layout: post",
+                "title: \"<Title>\"",
+                "comments: true",
+                "share: true",
+                "date: 2018-00-00 00:00:00",
+                "description: <Description>",
+                "tags: sympy python math signal_system",
+                "sitemap :",
+                "    changefreq : daily",
+                "    priority : 1.0",
+                "///---"
+            ]
         }
     ]
 }
