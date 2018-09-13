@@ -1,0 +1,416 @@
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ok97465 | 정사각형 내의 임의의 두점의 거리 </title>
+  <meta name="description" content="정사각형 내에 임의의 두점을 선정 했을 때의 두점 사이의 거리의 기대 값을 수식과 Simulation으로 계산한다.">
+  <meta name="theme-color" content="#222222">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="정사각형 내의 임의의 두점의 거리">
+  <meta property="og:description" content="정사각형 내에 임의의 두점을 선정 했을 때의 두점 사이의 거리의 기대 값을 수식과 Simulation으로 계산한다.">
+  <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
+  <meta property="og:url" content="http://ok97465.github.io">
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/header.js"></script>
+  <script src="/assets/js/toc.js"></script>
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/css/theme.css" rel="stylesheet">
+  <link href="/assets/css/syntax.css" rel="stylesheet">
+  <link href="/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-125307858-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+  
+
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: {
+        families: ['Ubuntu::latin']
+      }
+    };
+    (function () {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">ok97465</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">/home</a></li>
+          <li><a href="/archive.html">/archive</a></li>
+          <li><a href="/tags.html">/tags</a></li>
+          <li><a href="/about.html">/about</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div class="wrapper">
+      <div class="content">
+        <div class="container container-center">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="article">
+                <div class="well">
+                  <h1><a href="/2018/09/DistanceBetweenTwoPointsOfQuadrate">정사각형 내의 임의의 두점의 거리</a></h1>
+                  <div class="post-meta">
+                    <div class="post-time">
+                      <i class="fa fa-calendar"></i>
+                      <time>11 Sep 2018</time>
+                    </div>
+                    <ul>
+                      
+                        <li><a href="/tag/math">math</a></li>
+                      
+                    </ul>
+                  </div>
+                  <div class="post-content">
+                    <div id="toc" class="toc"></div>
+                    <h1 id="정사각형-내의-임의의-두점의-거리">정사각형 내의 임의의 두점의 거리</h1>
+<hr />
+<p>정사각형 내의 임의의 두 점 P1, P2 사이의 거리의 기댓값을 계산한다.  <br />
+P1 = ($x_1$, $y_1$)  <br />
+P2 = ($x_2$, $y_2$)  <br />
+$x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.</p>
+
+<p align="center"> 
+    <img src="/assets/images/DistanceBetweenTwoPointsOfQuadrate/DistanceOfpoints_onedork.png" alt="distance img" width="313" height="270" />
+ </p>
+
+<p>간단해 보이는 문제 이지만 쉽게 풀 수 없고 답 또한 직관적이지 않다.</p>
+
+<p><br /></p>
+
+<h2 id="1-simulation">1. Simulation</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">mean</span>
+<span class="kn">from</span> <span class="nn">numpy.random_intel</span> <span class="kn">import</span> <span class="n">uniform</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">26</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="n">distances</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">distances_mean</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>정사각형 내 두 점 사이의 거리 평균 = 0.5214281380686739
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-수치해석">2. 수치해석</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">nquad</span>
+
+<span class="n">integrand</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">:</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">x1</span><span class="o">-</span><span class="n">x2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="n">distances_mean</span><span class="p">,</span> <span class="n">abserr</span><span class="p">,</span> <span class="n">out_dict</span><span class="p">)</span> <span class="o">=</span> <span class="n">nquad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">full_output</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>정사각형 내 두 점 사이의 거리 평균 = 0.5214054334862938
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3-함수-적분1">3. 함수 적분[1]</h2>
+<ul>
+  <li>단순 무식한 적분 수식  <br />
+이 적분의 해가 있는지는 모르겠고 참고자료에서는 다른 적분식을 이용한다.<br />
+<script type="math/tex">\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { \left( { x }_{ 1 }-{ x }_{ 2 } \right) +\left( { y }_{ 1 }-y_{ 2 } \right)  } d{ x }_{ 1 } } d{ x }_{ 2 } } dy_{ 1 } } d{ y }_{ 2 } }</script>  <br />
+<br /></li>
+  <li>두 점의 x축, y축의 차이를 변수로 하는 수식  <br />
+위의 수식에서 $|x_1-x_2|=u,\text{    }|y_1-y_2|=v$로 치환한다.  <br />
+$|a-b|=c$이고 a, b가 uniform random variable이면 c의 PDF는 2(1-c)임을 이용하여 적분식을 정리하면 아래와 같다. [아래 절 참조]<br />
+<script type="math/tex">4\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { { u }^{ 2 }+{ v }^{ 2 } } \left( 1-u \right) \left( 1-v \right) du } dv }</script><br />
+<br /><br />
+위의 수식을 적분하기 위해 변수를 Polar Form으로 변환한다. 변환 시 적분 구간에 유의 해야한다.  <br />
+<script type="math/tex">% <![CDATA[
+\begin{matrix} u=r\cos{\theta} & 0\le{\theta}\le\pi/4 \\ v=r\sin{\theta} & 0\le{r}\le{1/\cos{\theta}} \end{matrix} %]]></script>  <br />
+<br /><br />
+정사각형 내의 점들의 길이를 구하는 것이므로 r은 $1/\cos{\theta}$를 넘을 수 없다.</li>
+</ul>
+<p align="center"> 
+  <img src="/assets/images/DistanceBetweenTwoPointsOfQuadrate/IntegralRegion_onedork.png" alt="Integral Region" width="360" height="240" />
+</p>
+<p><br /><br />
+변수를 치환하면 아래와 같고 적분 구간을 정사각형의 절반만 정의하였으므로 2가 곱해진다.<br />
+<script type="math/tex">4\int _{ 0 }^{ \pi /4 }{ 2\int _{ 0 }^{ 1/\cos { \theta  }  }{ \sqrt { r^{ { 2 } }{ \cos   }^{ { 2 } }\theta +r^{ { 2 } }{ \sin   }^{ { 2 } }\theta  } (1-r{ \cos   }\theta )(1-r{ \sin   }\theta )rdr } d\theta  }</script><br />
+<script type="math/tex">=8\int _{ 0 }^{ \pi /4 }{ \int _{ 0 }^{ 1/\cos { \theta  }  }{ r^{ { 2 } }-r^{ { 3 } }{ \cos   }\theta -r^{ { 3 } }{ \sin   }\theta +r^{ { 4 } }{ \cos }\theta { \sin }\theta dr} d\theta  }</script><br />
+<script type="math/tex">=8\int _{ 0 }^{ \pi /4 }{ \frac { { \sec } ^ { 3 } \theta } { 12 } - \frac { { \sec } ^ { 3 } \theta { \tan } \theta } { 20 }d\theta  }</script><br />
+<script type="math/tex">=8\cdot \left( \frac { { \sec   }\theta { \tan   }\theta +{ \ln { \left| { \sec   }\theta +{ \tan   }\theta  \right|}}}{ 24 } -\frac { { \sec   }^{ { 3 } }\theta  }{ 60 }  \right) _{ { 0 } }^{ { \pi /4 } }</script><br />
+<script type="math/tex">=\frac { 2+\sqrt { 2 } +5{ \ln { (\sqrt { 2 } +1) }  } }{ 15 }</script><br />
+<script type="math/tex">=0.5214054331647207</script></p>
+
+<p><br /></p>
+
+<h3 id="31-a-b의-pdfprobability-density-function">3.1. |a-b|의 PDF(Probability Density Function)</h3>
+<p>두 random variable의 합의 PDF는 각각의 PDF의 Convolution이다</p>
+<p align="center"> 
+  <img src="/assets/images/DistanceBetweenTwoPointsOfQuadrate/ab_convolution_onedork.png" alt="a plus b pdf" width="720" height="144" />
+</p>
+
+<p><br /><br />
+a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계산된다.</p>
+<p align="center"> 
+  <img src="/assets/images/DistanceBetweenTwoPointsOfQuadrate/ad_convolution_onedork.png" alt="a minus b pdf" width="720" height="144" />
+</p>
+<p><br /><br />
+(a-b) &lt; 0인 경우와 (a-b) &gt; 0인 경우의 확률은 대칭이므로 |a-b|의 확률은 아래와 같다.</p>
+<p align="center"> 
+  <img src="/assets/images/DistanceBetweenTwoPointsOfQuadrate/a_b_minus_abs_pdf_onedork.png" alt="|a-b| pdf" width="216" height="144" />
+</p>
+
+<p><br /></p>
+
+<h2 id="4-참고자료">4. 참고자료</h2>
+<p>[1] https://www.youtube.com/watch?v=i4VqXRRXi68&amp;t=275s</p>
+
+                    
+
+<div class="share-bar">
+  <ul class="share-buttons">
+    
+    <li class="share-facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/09/DistanceBetweenTwoPointsOfQuadrate" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-facebook fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-twitter">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/09/DistanceBetweenTwoPointsOfQuadrate&text=정사각형 내의 임의의 두점의 거리" target="_blank" title="Tweet">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-twitter fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-google-plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/09/DistanceBetweenTwoPointsOfQuadrate" target="_blank" title="Share on Google Plus">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-google-plus fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="share-envelope">
+      <a href="mailto:?&subject=정사각형 내의 임의의 두점의 거리&body=정사각형 내에 임의의 두점을 선정 했을 때의 두점 사이의 거리의 기대 값을 수식과 Simulation으로 계산한다. http://localhost:4000/2018/09/DistanceBetweenTwoPointsOfQuadrate" target="_blank" title="Email">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle-thin fa-stack-2x"></i>
+          <i class="fa fa-envelope-o fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+                  </div>
+                  
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                  </div>
+                  
+                </div>
+				<script type="text/x-mathjax-config">
+                  MathJax.Hub.Config({
+                    tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    processEscapes: true
+                    }
+                  });
+                </script>
+				<script type="text/javascript" async
+                  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+                </script>
+              </div>
+            </div>
+            <div class="col-md-4 hidden-xs">
+              <div class="sidebar ">
+  <h2>Recent Posts</h2>
+  <ul>
+    
+    <li><a href="/2018/09/DistanceBetweenTwoPointsOfQuadrate">정사각형 내의 임의의 두점의 거리</a></li>
+    
+    <li><a href="/2018/09/ConwayGame">Conway's Game of Life (생명 게임)</a></li>
+    
+    <li><a href="/2018/09/SettingJupyterNotebook">Jupyter NoteBook에서 신호처리를 위한 설정</a></li>
+    
+    <li><a href="/2018/09/SettingPycharm">Pycharm(Python)을 Matlab 처럼</a></li>
+    
+    <li><a href="/2018/05/TaylorSeriesBySympy">Taylor Series Using Sympy</a></li>
+    
+  </ul>
+</div>
+
+<div class="sidebar">
+  <h2>Tags</h2>
+  <ul class="sideBarTags">
+    
+    
+    <li>
+      <a href="/tag/jupyter" data-toggle="tooltip" data-placement="right" title="1">
+        <span>jupyter</span></a></li>
+    
+    <li>
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="4">
+        <span>math</span></a></li>
+    
+    <li>
+      <a href="/tag/matlab" data-toggle="tooltip" data-placement="right" title="1">
+        <span>matlab</span></a></li>
+    
+    <li>
+      <a href="/tag/pycharm" data-toggle="tooltip" data-placement="right" title="1">
+        <span>pycharm</span></a></li>
+    
+    <li>
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="5">
+        <span>python</span></a></li>
+    
+    <li>
+      <a href="/tag/signal_system" data-toggle="tooltip" data-placement="right" title="1">
+        <span>signal_system</span></a></li>
+    
+    <li>
+      <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="2">
+        <span>sympy</span></a></li>
+    
+  </ul>
+</div>
+
+            </div>
+          </div>
+        </div>
+        
+<!-- Add Disqus comments. -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
+  var disqus_identifier = "/2018/09/DistanceBetweenTwoPointsOfQuadrate";
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </div>
+          <footer class="footer-distributed">
+      <div class="container">
+        <div class="footer">
+          <p>ok97465 &copy; 2018-</p>
+          <h6>Follow me</h6>
+
+<ul class="social-media">
+
+  
+    <li>
+      <a title="ok97465 on Github" href="https://github.com/ok97465" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="9015220/lowqualitydelivery on StackOverflow" href="https://stackoverflow.com/users/9015220/lowqualitydelivery" target="_blank"><i class="fa fa-stack-overflow fa-2x"></i></a>
+    </li>
+  
+
+  
+
+  
+    <li>
+      <a title=" on Instagram" href="https://instagram.com/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title=" on Last.fm" href="https://www.lastfm.com/user/" target="_blank"><i class="fa fa-lastfm fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="feed.xml RSS" href="/feed.xml" target="_blank"><i class="fa fa-rss fa-2x"></i></a>
+    </li>
+  
+
+</ul>
+
+        </div>
+      </div>
+    </footer>
+
+    </div>
+  </body>
+</html>

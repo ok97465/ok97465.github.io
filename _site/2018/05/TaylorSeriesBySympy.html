@@ -119,11 +119,11 @@
 
 <script type="math/tex; mode=display">T _ { f } ( x ) = \sum _ { n = 0} ^ { \infty } \frac { f ^ { ( n ) } ( x_0 ) } { n ! } ( x - x_0 ) ^ { n } = f ( x_0 ) + f ^ { \prime } ( x_0 ) ( x - x_0 ) + \frac { 1} { 2} f ^ { \prime \prime } ( x_0 ) ( x - x_0 ) ^ { 2} + \frac { 1} { 6} f ^ { \prime \prime \prime } ( x_0 ) ( x - x_0 ) ^ { 3}</script>
 
-<p>대부분의 경우 $f(x)$의 미분을 구하기가 쉽지 않거나 매우 번거롭기 때문에 이런 업무는 컴퓨터에게 시키는 게 편하다. 다른 사람은 몰라도 최소한 나보다는 컴퓨터가 이런 일을 훨씬 잘한다.<br />
-<br /><br /></p>
+<p>대부분의 경우 $f(x)$의 미분을 구하기가 쉽지 않거나 매우 번거롭기 때문에 이런 업무는 컴퓨터에게 시키는 게 편하다. 다른 사람은 몰라도 최소한 나보다는 컴퓨터가 이런 일을 훨씬 잘한다.</p>
 
-<h2 id="sympy를-이용한-1변수-함수univariate-function의-taylor-series">sympy를 이용한 1변수 함수(univariate function)의 Taylor Series</h2>
-<hr />
+<p><br /></p>
+
+<h2 id="1-sympy를-이용한-1변수-함수univariate-function의-taylor-series">1. sympy를 이용한 1변수 함수(univariate function)의 Taylor Series</h2>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
 <span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">init_printing</span><span class="p">,</span> <span class="n">atan</span><span class="p">,</span> <span class="n">sqrt</span>
@@ -147,10 +147,9 @@ series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O를
 
 <script type="math/tex; mode=display">\frac{\sqrt{2}}{128} \left(x - 1\right)^{3} - \frac{\sqrt{2}}{32} \left(x - 1\right)^{2} + \frac{\sqrt{2}}{4} \left(x - 1\right) + \sqrt{2}</script>
 
-<p><br /><br /></p>
+<p><br /></p>
 
-<h2 id="sympy를-이용한-다변수-함수multivariate-function의-taylor-series">sympy를 이용한 다변수 함수(multivariate function)의 Taylor Series</h2>
-<hr />
+<h2 id="2-sympy를-이용한-다변수-함수multivariate-function의-taylor-series">2. sympy를 이용한 다변수 함수(multivariate function)의 Taylor Series</h2>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s">'y'</span><span class="p">)</span>
@@ -285,6 +284,8 @@ series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O를
   <h2>Recent Posts</h2>
   <ul>
     
+    <li><a href="/2018/09/DistanceBetweenTwoPointsOfQuadrate">정사각형 내의 임의의 두점의 거리</a></li>
+    
     <li><a href="/2018/09/ConwayGame">Conway's Game of Life (생명 게임)</a></li>
     
     <li><a href="/2018/09/SettingJupyterNotebook">Jupyter NoteBook에서 신호처리를 위한 설정</a></li>
@@ -292,8 +293,6 @@ series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O를
     <li><a href="/2018/09/SettingPycharm">Pycharm(Python)을 Matlab 처럼</a></li>
     
     <li><a href="/2018/05/TaylorSeriesBySympy">Taylor Series Using Sympy</a></li>
-    
-    <li><a href="/2018/05/PrincipleOfStationaryPhase">Principle of Stationary Phase</a></li>
     
   </ul>
 </div>
@@ -308,7 +307,7 @@ series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O를
         <span>jupyter</span></a></li>
     
     <li>
-      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="3">
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="4">
         <span>math</span></a></li>
     
     <li>

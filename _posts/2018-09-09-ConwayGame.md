@@ -14,7 +14,9 @@ sitemap :
 # Conway's Game of Life (생명 게임)
 ---
 
-## 규칙
+<br>
+
+## 1. 규칙
 
 콘웨이의 생명 게임에 관한 자세한 설명은 위키 피디아에 자세하게 나와있으니 여기서는 간단한 규칙[1]만 소개한다.
   * 삷과 죽음의 규칙
@@ -28,7 +30,9 @@ sitemap :
   
   
 
-## Conway 코드
+<br>
+
+## 2. Conway 코드
 scipy.ndimage의 generic_filter를 이용하면 매우 쉽게 Conway 게임을 코딩 할 수 있다[2].  
 삷과 죽음의 규칙은 conway_filter에서 처리하고 외곽 규칙은 generic_filter mode를 'wrap'으로 설정하여 만족 시킬 수 있다.
 
@@ -57,7 +61,9 @@ data_prev = pad(data_init, [5, 5], mode='constant', constant_values=0)
 data_post = generic_filter(data_prev, conway_filter, size=3, mode='wrap')
 ```
 
-## Conway Animation Code
+<br>
+
+## 3. Conway Animation Code
 
 
 ```python
@@ -96,7 +102,9 @@ def imshow_conway_seq(i: int):
     return (im,)
 ```
 
-## Conway Example (+)
+<br>
+
+## 4. Conway Example (+)
 
 
 ```python
@@ -339,7 +347,9 @@ AB1kYXRhAAAAAQAAAABMYXZmNTcuODMuMTAw
 ![img]({{ '/assets/images/2018-09-09-ConwayGame/output_9_1.png' | relative_url }}){: .center-image }
 
 
-## Conway Example (glider gun)
+<br>
+
+## 5. Conway Example (glider gun)
 glider gun array는 [3] 참조
 
 
@@ -1734,7 +1744,9 @@ ZjU3LjgzLjEwMA==
 ![img]({{ '/assets/images/2018-09-09-ConwayGame/output_11_1.png' | relative_url }}){: .center-image }
 
 
-## 참고문헌
+<br>
+
+## 6. 참고문헌
 [1] https://namu.wiki/w/콘웨이의%20생명%20게임  
 [2] 스테판 판데르발트. (2018). 이미지 지역망: ndimage, 우아한 사이파이 (쪽). 한빛미디어  
 [3] https://jakevdp.github.io/blog/2013/08/07/conways-game-of-life/

@@ -114,7 +114,9 @@
                     <h1 id="conways-game-of-life-생명-게임">Conway’s Game of Life (생명 게임)</h1>
 <hr />
 
-<h2 id="규칙">규칙</h2>
+<p><br /></p>
+
+<h2 id="1-규칙">1. 규칙</h2>
 
 <p>콘웨이의 생명 게임에 관한 자세한 설명은 위키 피디아에 자세하게 나와있으니 여기서는 간단한 규칙[1]만 소개한다.</p>
 <ul>
@@ -132,7 +134,9 @@
   </li>
 </ul>
 
-<h2 id="conway-코드">Conway 코드</h2>
+<p><br /></p>
+
+<h2 id="2-conway-코드">2. Conway 코드</h2>
 <p>scipy.ndimage의 generic_filter를 이용하면 매우 쉽게 Conway 게임을 코딩 할 수 있다[2].  <br />
 삷과 죽음의 규칙은 conway_filter에서 처리하고 외곽 규칙은 generic_filter mode를 ‘wrap’으로 설정하여 만족 시킬 수 있다.</p>
 
@@ -159,7 +163,9 @@
 <span class="n">data_post</span> <span class="o">=</span> <span class="n">generic_filter</span><span class="p">(</span><span class="n">data_prev</span><span class="p">,</span> <span class="n">conway_filter</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">'wrap'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h2 id="conway-animation-code">Conway Animation Code</h2>
+<p><br /></p>
+
+<h2 id="3-conway-animation-code">3. Conway Animation Code</h2>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">pad</span><span class="p">,</span> <span class="n">zeros</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
@@ -196,7 +202,9 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">im</span><span class="p">,)</span>
 </code></pre></div></div>
 
-<h2 id="conway-example-">Conway Example (+)</h2>
+<p><br /></p>
+
+<h2 id="4-conway-example-">4. Conway Example (+)</h2>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data_init</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -430,7 +438,9 @@ AB1kYXRhAAAAAQAAAABMYXZmNTcuODMuMTAw
 
 <p><img src="/assets/images/2018-09-09-ConwayGame/output_9_1.png" alt="img" class="center-image" /></p>
 
-<h2 id="conway-example-glider-gun">Conway Example (glider gun)</h2>
+<p><br /></p>
+
+<h2 id="5-conway-example-glider-gun">5. Conway Example (glider gun)</h2>
 <p>glider gun array는 [3] 참조</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data_init</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
@@ -1816,7 +1826,9 @@ ZjU3LjgzLjEwMA==
 
 <p><img src="/assets/images/2018-09-09-ConwayGame/output_11_1.png" alt="img" class="center-image" /></p>
 
-<h2 id="참고문헌">참고문헌</h2>
+<p><br /></p>
+
+<h2 id="6-참고문헌">6. 참고문헌</h2>
 <p>[1] https://namu.wiki/w/콘웨이의%20생명%20게임  <br />
 [2] 스테판 판데르발트. (2018). 이미지 지역망: ndimage, 우아한 사이파이 (쪽). 한빛미디어  <br />
 [3] https://jakevdp.github.io/blog/2013/08/07/conways-game-of-life/</p>
@@ -1903,6 +1915,8 @@ ZjU3LjgzLjEwMA==
   <h2>Recent Posts</h2>
   <ul>
     
+    <li><a href="/2018/09/DistanceBetweenTwoPointsOfQuadrate">정사각형 내의 임의의 두점의 거리</a></li>
+    
     <li><a href="/2018/09/ConwayGame">Conway's Game of Life (생명 게임)</a></li>
     
     <li><a href="/2018/09/SettingJupyterNotebook">Jupyter NoteBook에서 신호처리를 위한 설정</a></li>
@@ -1910,8 +1924,6 @@ ZjU3LjgzLjEwMA==
     <li><a href="/2018/09/SettingPycharm">Pycharm(Python)을 Matlab 처럼</a></li>
     
     <li><a href="/2018/05/TaylorSeriesBySympy">Taylor Series Using Sympy</a></li>
-    
-    <li><a href="/2018/05/PrincipleOfStationaryPhase">Principle of Stationary Phase</a></li>
     
   </ul>
 </div>
@@ -1926,7 +1938,7 @@ ZjU3LjgzLjEwMA==
         <span>jupyter</span></a></li>
     
     <li>
-      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="3">
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="4">
         <span>math</span></a></li>
     
     <li>

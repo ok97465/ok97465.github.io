@@ -1,7 +1,7 @@
 {
     "snippets": [
         {
-            "name": "init & matlab command",
+            "name": "Python : init & matlab command",
             "code": [
                 "%load_ext autoreload",
                 "%autoreload 2",
@@ -27,15 +27,7 @@
             ]
         },
         {
-            "name": "Comment Reference",
-            "code": [
-                "[] 책: 저자명. (발행년). Title of chapter. In 편집자명 (역할), title of book (쪽). 발행지 : 발행사",
-                "[] 학위 논문: 학위자명, \"논문제목\", 대학원 이름 석사 학위논문, 1990",
-                "[] 저널 논문: 저자. \"논문제목\". 저널명, . pp."
-            ]
-        },
-        {
-            "name": "Numpy Docstring",
+            "name": "Python : Numpy Docstring",
             "code": [
                 "r\"\"\"This is an example of a module level function.",
                 "",
@@ -77,7 +69,7 @@
             ]
         },
         {
-            "name": "Header of Blog Post",
+            "name": "Markdown : Header of Blog Post",
             "code": [
                 "///---",
                 "layout: post",
@@ -91,6 +83,22 @@
                 "    changefreq : daily",
                 "    priority : 1.0",
                 "///---"
+            ]
+        },
+        {
+            "name": "Markdown : link Image",
+            "code": [
+                "<p align=\"center\"> ",
+                "  <img src=\"\" alt=\"description\" width=\"720\" height=\"\">",
+                "</p>"
+            ]
+        },
+        {
+            "name": "Markdown : Comment Reference",
+            "code": [
+                "[] 책: 저자명. (발행년). Title of chapter. In 편집자명 (역할), title of book (쪽). 발행지 : 발행사",
+                "[] 학위 논문: 학위자명, \"논문제목\", 대학원 이름 석사 학위논문, 1990",
+                "[] 저널 논문: 저자. \"논문제목\". 저널명, . pp."
             ]
         }
     ]

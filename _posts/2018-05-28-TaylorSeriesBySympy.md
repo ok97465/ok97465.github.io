@@ -21,10 +21,10 @@ $$T _ { f } ( x ) = \sum _ { n = 0} ^ { \infty } \frac { f ^ { ( n ) } ( x_0 ) }
 
 
 대부분의 경우 $f(x)$의 미분을 구하기가 쉽지 않거나 매우 번거롭기 때문에 이런 업무는 컴퓨터에게 시키는 게 편하다. 다른 사람은 몰라도 최소한 나보다는 컴퓨터가 이런 일을 훨씬 잘한다.
-<br><br>
 
-## sympy를 이용한 1변수 함수(univariate function)의 Taylor Series
----
+<br>
+
+## 1. sympy를 이용한 1변수 함수(univariate function)의 Taylor Series
 
 
 
@@ -60,10 +60,9 @@ display(f_taylor_valid)
 $$\frac{\sqrt{2}}{128} \left(x - 1\right)^{3} - \frac{\sqrt{2}}{32} \left(x - 1\right)^{2} + \frac{\sqrt{2}}{4} \left(x - 1\right) + \sqrt{2}$$
 
 
-<br><br>
+<br>
 
-## sympy를 이용한 다변수 함수(multivariate function)의 Taylor Series
----
+## 2. sympy를 이용한 다변수 함수(multivariate function)의 Taylor Series
 
 
 ```python
