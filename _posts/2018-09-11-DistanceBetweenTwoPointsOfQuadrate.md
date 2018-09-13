@@ -13,7 +13,7 @@ sitemap :
 
 # 정사각형 내의 임의의 두점의 거리
 ---
-정사각형 내의 임의의 두 점 P1, P2 사이의 거리의 기댓값을 계산한다.  
+정사각형 내 임의의 두 점 P1, P2 사이의 거리의 기댓값을 계산한다.  
 P1 = ($x_1$, $y_1$)  
 P2 = ($x_2$, $y_2$)  
 $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.  
@@ -22,7 +22,7 @@ $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.
     <img src="/assets/images/DistanceBetweenTwoPointsOfQuadrate/DistanceOfpoints_onedork.png" alt="distance img" width="313" height="270">
  </p>
  
- 간단해 보이는 문제 이지만 쉽게 풀 수 없고 답 또한 직관적이지 않다.
+ 간단해 보이는 문제이지만 쉽게 풀리지도 않고 답 또한 딱 떨어지지 않는다.
  
 
 <br>
