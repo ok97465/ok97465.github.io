@@ -65,7 +65,7 @@ $$\dot { \theta } = \frac { d } { d t } \theta = \frac { d } { d t } ( \frac { \
 
 ## 4. 등속 원운동의 가속도 계산
 
-등속 원운동은 속도가 상수인 운동, 즉 $\frac{d}{dt}=0$인 운동이므로 등속 원운동의 가속도는 아래와 같이 정리 된다.  
+등속 원운동은 속도가 상수인 운동, 즉 $\frac{d}{dt}v=0$인 운동이므로 등속 원운동의 가속도는 아래와 같이 정리 된다.  
 
 $$\vec { a } = \frac { d } { d t } \vec { v } = \frac { d } { d t } \left( \nu \hat { \theta } \right)= \frac { d } { d t }v \cdot \hat { \theta } +v\cdot \frac { d } { d t }\hat{\theta}= v \dot { \hat { \theta } } = - v \dot { \theta } \hat { r }$$  
 

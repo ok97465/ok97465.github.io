@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 23 Oct 2018 23:23:35 +0900</pubDate>
-    <lastBuildDate>Tue, 23 Oct 2018 23:23:35 +0900</lastBuildDate>
+    <pubDate>Tue, 23 Oct 2018 23:36:03 +0900</pubDate>
+    <lastBuildDate>Tue, 23 Oct 2018 23:36:03 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -62,7 +62,7 @@
 
 &lt;h2 id=&quot;4-등속-원운동의-가속도-계산&quot;&gt;4. 등속 원운동의 가속도 계산&lt;/h2&gt;
 
-&lt;p&gt;등속 원운동은 속도가 상수인 운동, 즉 $\frac{d}{dt}=0$인 운동이므로 등속 원운동의 가속도는 아래와 같이 정리 된다.&lt;/p&gt;
+&lt;p&gt;등속 원운동은 속도가 상수인 운동, 즉 $\frac{d}{dt}v=0$인 운동이므로 등속 원운동의 가속도는 아래와 같이 정리 된다.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\vec { a } = \frac { d } { d t } \vec { v } = \frac { d } { d t } \left( \nu \hat { \theta } \right)= \frac { d } { d t }v \cdot \hat { \theta } +v\cdot \frac { d } { d t }\hat{\theta}= v \dot { \hat { \theta } } = - v \dot { \theta } \hat { r }&lt;/script&gt;
 
@@ -2042,9 +2042,6 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjEyLjEwMA==
 Dim strArgs
 strArgs = &quot;cmd /v:on /k (set MPLCURSORS=&quot; + &quot;{&quot; + Chr(34) + &quot;multiple&quot; + Chr(34) + &quot;: 1&quot; + &quot;}&quot; + &quot;)&quot; + &quot; &amp;amp; (set PYTHONPATH=D:\python\scientific) &amp;amp; C:\IntelPython3\python.exe D:\python\start_jupyter.py&quot;
 oShell.Run strArgs, 0, false
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sun, 09 Sep 2018 10:08:00 +0900</pubDate>
