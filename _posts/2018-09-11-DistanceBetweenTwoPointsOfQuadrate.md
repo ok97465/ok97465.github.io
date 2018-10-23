@@ -129,3 +129,8 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
 
 ## 4. 참고자료
 [1] https://www.youtube.com/watch?v=i4VqXRRXi68&t=275s
+
+
+```python
+
+```

@@ -11,13 +11,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>ok97465 | Jupyter NoteBook에서 신호처리를 위한 설정 </title>
-  <meta name="description" content="Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다.">
+  <title>ok97465 | 등속 원운동의 구심력 유도 </title>
+  <meta name="description" content="등속으로 회전하는 물체의 가속도를 유도한다.">
   <meta name="theme-color" content="#222222">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Jupyter NoteBook에서 신호처리를 위한 설정">
-  <meta property="og:description" content="Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다.">
+  <meta property="og:title" content="등속 원운동의 구심력 유도">
+  <meta property="og:description" content="등속으로 회전하는 물체의 가속도를 유도한다.">
   <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
   <meta property="og:url" content="http://ok97465.github.io">
   <script src="/assets/js/jquery.min.js"></script>
@@ -95,117 +95,83 @@
             <div class="col-md-8">
               <div class="article">
                 <div class="well">
-                  <h1><a href="/2018/09/SettingJupyterNotebook">Jupyter NoteBook에서 신호처리를 위한 설정</a></h1>
+                  <h1><a href="/2018/09/CentripetalForce">등속 원운동의 구심력 유도</a></h1>
                   <div class="post-meta">
                     <div class="post-time">
                       <i class="fa fa-calendar"></i>
-                      <time>09 Sep 2018</time>
+                      <time>23 Sep 2018</time>
                     </div>
                     <ul>
                       
-                        <li><a href="/tag/python">python</a></li>
-                      
-                        <li><a href="/tag/jupyter">jupyter</a></li>
+                        <li><a href="/tag/physics">physics</a></li>
                       
                     </ul>
                   </div>
                   <div class="post-content">
                     <div id="toc" class="toc"></div>
-                    <h1 id="jupyter-notebook에서-신호처리를-위한-설정">Jupyter NoteBook에서 신호처리를 위한 설정</h1>
-<hr />
+                    <h1 id="등속-원운동의-구심력-유도">등속 원운동의 구심력 유도</h1>
+
+<p>등속 원운동의 경우 속력은 일정하나 속도의 방향은 항상 변하기 때문에 가속도 운동이다. 이 가속도의 방향과 크기를 유도한다.</p>
+<figure>
+    <img src="/assets/images/CentripetalForce/rotate_vector_onedork.png" alt="등속 원운동 그림" width="360" />
+    <figcaption class="figure-caption">등속 원운동</figcaption>
+</figure>
 
 <p><br /></p>
 
-<h2 id="1-nbextension-설정">1. NBExtension 설정</h2>
-<ul>
-  <li>hide input 활설화</li>
-  <li>hide input all 활성화</li>
-  <li>comment/uncomment hotkey 활성화
-    <ul>
-      <li>단축키 Ctrl+R로 변경</li>
-    </ul>
-  </li>
-  <li>spell checker 활성화</li>
-  <li>table of contents(2) 활성화</li>
-  <li>runtools 활성화
-    <ul>
-      <li>run all cells 단축키 Ctrl+F5로 변경</li>
-    </ul>
-  </li>
-  <li>snippets 활성화
-    <ul>
-      <li><a href="/assets/data/SettingJupyterNotebook/snippets.json">snippets.json</a>을 파이선폴더/share/jupyter/nbextensions/snippets에 복사 한다.</li>
-    </ul>
-  </li>
-  <li>snippets Menu 활성화</li>
-  <li>scratchpad 활성화</li>
-</ul>
+<h2 id="1-좌표정의">1. 좌표정의</h2>
+
+<p>원운동의 중점을 원점으로 설정하고, 원운동하는 물체의 위치 벡터를 $\vec{p}$로 설정한다.</p>
+
+<figure>
+    <img src="/assets/images/CentripetalForce/rotate_coordinate_onedork.png" alt="등속 원운동 좌표 정의" width="360" />
+    <figcaption class="figure-caption">등속 원운동 좌표 정의</figcaption>
+</figure>
+
+<script type="math/tex; mode=display">\vec{p} = \left( x, y \right)= x \hat{x} + y \hat{y} = \cos{\theta}\hat{x} + \sin{\theta}\hat{y}=\hat{r}</script>
+
+<p>$\vec{p}$는 Polar 좌표계의 $\vec{r}$로 정의 할 수 있고 $\hat{\theta}$은 원주를 돌아가는 접선 방향이므로 $\vec{r}$와 수직이여야 한다.  <br />
+위의 그림에서 알 수 있듯이 Polar 좌표계의 $\hat{\theta}$은 다음과 같이 정의된다.</p>
+
+<script type="math/tex; mode=display">\hat{\theta} = -\sin{\theta}\hat{x} + \cos{\theta}\hat{y}</script>
 
 <p><br /></p>
 
-<h2 id="2-theme-설정">2. Theme 설정</h2>
-<p>onedork theme 설정  <br />
-./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T</p>
+<h2 id="2-polar-좌표계의-기저-벡터의-미분">2. Polar 좌표계의 기저 벡터의 미분</h2>
+
+<p>$\hat{r}$, $\hat{\theta}$의 시간변화량을 계산하면 다음과 같다.</p>
+
+<script type="math/tex; mode=display">\left.\begin{array}{l}{ \frac { d \hat { r } } { d t } = \left( \frac { d } { d t } \operatorname { cos } \theta , \frac { d } { d t } \operatorname { sin } \theta \right) = \left( \left( \frac { d } { d \theta } \operatorname { cos } \theta \right) \cdot \frac { d \theta } { d t } , \left( \frac { d } { d \theta } \operatorname { sin } \theta \right) \cdot \frac { d \theta } { d t } \right) }\\{ = \left( - \operatorname { sin } \theta \cdot \dot { \theta } , \operatorname { cos } \theta \cdot \dot { \theta } \right) }\\{ = \dot { \theta } \left( - \operatorname { sin } \theta , \operatorname { cos } \theta \right) = \dot { \theta } \hat { \theta } }\\{ \frac { d \hat { \theta } } { d t } = \left( - \operatorname { cos } \theta \cdot \dot { \theta } , - \operatorname { sin } \theta \cdot \dot { \theta } \right) = - \dot { \theta } \left( \operatorname { cos } \theta , \operatorname { sin } \theta \right) = - \dot { \theta } \hat { r } }\end{array} \right.</script>
+
+<p>다시 정리하면 다음과 같다.</p>
+
+<script type="math/tex; mode=display">\frac { d } { d t } \hat { r } = \dot { \hat { r } } = \dot { \theta } \hat { \theta } , \quad \frac { d } { d t } \hat { \theta } = \dot { \hat { \theta } } = - \dot { \theta } \hat { r }</script>
 
 <p><br /></p>
 
-<h2 id="3-qtconsole-style변경">3. qtconsole style변경</h2>
-<p>%qtconsole로 외부 console 실행 시 theme를 설정 한다.  <br />
-<a href="/assets/data/SettingJupyterNotebook/jupyter_qtconsole_config.py">jupyter_qtconsole_config.py</a>를 ~/.jupyter에 복사 한다.</p>
+<h2 id="3-각속도-계산">3. 각속도 계산</h2>
+
+<p>$\dot{\theta}=\frac{d}{dt}\theta$ 는 시간에 대한 각도의 변화로서, 흔히 ‘각속도’(angular velocity)라고 부른다. 각속도는 초당 얼마의 각도만큼 회전했는가를 나타낸다. 각속도의 단위는 sec<sup>-1</sup>이다. 각도는 단위가 없는 양이라고 했다. 단위가 없는 각도를 시간으로 미분했으니 단위가 시간의 (<sup>-1</sup>)승이 된 것이다. sec<sup>-1</sup> 은 특별히 Hz(헤르츠)라고도 부른다. Hz는 진동수 즉, 초당 몇 번 진동하는가를 나타내기도 한다.  <br />
+각도는 호도법으로 쟀을 때 호의 길이에 대한 반지름의 비율이다. 따라서 호의 길이를 $\ell$ 이라 하면 각속도는 다음과 같다.</p>
+
+<script type="math/tex; mode=display">\dot { \theta } = \frac { d } { d t } \theta = \frac { d } { d t } ( \frac { \ell } { r } ) = \frac { 1 } { r } \frac { d } { d t } \ell = \frac { v } { r }</script>
 
 <p><br /></p>
 
-<h2 id="4-jupyter-notebook-1회만-실행">4. Jupyter Notebook 1회만 실행</h2>
-<p>jupyter notebook을 아이콘으로 만들어 실행 하려다 보면 아이콘 클릭 시 마다 새로운 jupyter server가 실행된다. 이런 문제를 해결하기 위해서 간단한 python 코드와 Script를 작성하여 script를 바로가기로 지정한다.</p>
+<h2 id="4-등속-원운동의-가속도-계산">4. 등속 원운동의 가속도 계산</h2>
 
-<ul>
-  <li>Python Code (run_jupyter.py)</li>
-</ul>
+<p>등속 원운동은 속도가 상수인 운동, 즉 $\frac{d}{dt}=0$인 운동이므로 등속 원운동의 가속도는 아래와 같이 정리 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">webbrowser</span>
-<span class="kn">from</span> <span class="nn">notebook</span> <span class="kn">import</span> <span class="n">notebookapp</span>
-<span class="kn">from</span> <span class="nn">notebook.notebookapp</span> <span class="kn">import</span> <span class="n">main</span>
+<script type="math/tex; mode=display">\vec { a } = \frac { d } { d t } \vec { v } = \frac { d } { d t } \left( \nu \hat { \theta } \right)= \frac { d } { d t }v \cdot \hat { \theta } +v\cdot \frac { d } { d t }\hat{\theta}= v \dot { \hat { \theta } } = - v \dot { \theta } \hat { r }</script>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">port</span> <span class="o">=</span> <span class="mi">9876</span>
-    <span class="n">jupyter_server_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">notebookapp</span><span class="o">.</span><span class="n">list_running_servers</span><span class="p">())</span>
+<p>위에서 정리한 기적벡터의 각속도를 대입하여 등속 원운동의 가속도를 구한다.</p>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">jupyter_server_list</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">server</span><span class="p">[</span><span class="s">'port'</span><span class="p">]</span> <span class="o">==</span> <span class="n">port</span><span class="p">:</span>
-                <span class="n">webbrowser</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'url'</span><span class="p">]</span><span class="o">+</span><span class="s">'tree'</span><span class="p">)</span>
-                <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<script type="math/tex; mode=display">\vec { a } = - v \dot { \theta } \hat { r } = - \frac { v ^ { 2 } } { r } \hat { r }</script>
 
-    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">'/home/ok97465/python/BlogSrcByJupyter'</span><span class="p">)</span>  <span class="c1"># notebook을 저장할 폴더
-</span>    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">))</span>
-</code></pre></div></div>
+<p><br /></p>
 
-<ul>
-  <li>Linux용 script (run_jupyter.sh)</li>
-</ul>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
-<span class="nb">export </span><span class="nv">MPLCURSORS</span><span class="o">=</span><span class="s1">'{"multiple": 1}'</span>  <span class="c"># maplotlib Cusor Marker</span>
-<span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/home/ok97465/python/scientific  <span class="c"># oklib를 포함하는 폴더  </span>
-~/anaconda3/bin/python ~/python/run_jupyter.py
-</code></pre></div></div>
-
-<ul>
-  <li>Window용 스크립트 (run_jupyter.vbs)</li>
-</ul>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set oShell = CreateObject ("Wscript.Shell")
-Dim strArgs
-strArgs = "cmd /v:on /k (set MPLCURSORS=" + "{" + Chr(34) + "multiple" + Chr(34) + ": 1" + "}" + ")" + " &amp; (set PYTHONPATH=D:\python\scientific) &amp; C:\IntelPython3\python.exe D:\python\start_jupyter.py"
-oShell.Run strArgs, 0, false
-</code></pre></div></div>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-</code></pre></div></div>
+<h2 id="5-참고자료">5. 참고자료</h2>
+<p>[1] 이종필. (2017). 18. 고전역학 강의, 이종필의 아주 특별한 상대성이론 강의 (쪽). 동아시아</p>
 
                     
 
@@ -213,7 +179,7 @@ oShell.Run strArgs, 0, false
   <ul class="share-buttons">
     
     <li class="share-facebook">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/09/SettingJupyterNotebook" target="_blank" title="Share on Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/09/CentripetalForce" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-facebook fa-stack-1x"></i>
@@ -224,7 +190,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/09/SettingJupyterNotebook&text=Jupyter NoteBook에서 신호처리를 위한 설정" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/09/CentripetalForce&text=등속 원운동의 구심력 유도" target="_blank" title="Tweet">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-twitter fa-stack-1x"></i>
@@ -235,7 +201,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/09/SettingJupyterNotebook" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/09/CentripetalForce" target="_blank" title="Share on Google Plus">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-google-plus fa-stack-1x"></i>
@@ -250,7 +216,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Jupyter NoteBook에서 신호처리를 위한 설정&body=Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다. http://localhost:4000/2018/09/SettingJupyterNotebook" target="_blank" title="Email">
+      <a href="mailto:?&subject=등속 원운동의 구심력 유도&body=등속으로 회전하는 물체의 가속도를 유도한다. http://localhost:4000/2018/09/CentripetalForce" target="_blank" title="Email">
         <span class="fa-stack fa-lg">
           <i class="fa fa-circle-thin fa-stack-2x"></i>
           <i class="fa fa-envelope-o fa-stack-1x"></i>
@@ -351,7 +317,7 @@ oShell.Run strArgs, 0, false
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
-  var disqus_identifier = "/2018/09/SettingJupyterNotebook";
+  var disqus_identifier = "/2018/09/CentripetalForce";
 
   /* * * DON'T EDIT BELOW THIS LINE * * */
   (function() {

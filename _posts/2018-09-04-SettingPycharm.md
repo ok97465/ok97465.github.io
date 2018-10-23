@@ -4,7 +4,7 @@ title: "Pycharm(Python)을 Matlab 처럼"
 comments: true
 share: true
 date: 2018-09-04 23:15:00
-description: Spyder IDE는 Python을 Matlab처럼 사용 할 수 있는 Open Source 이지만, 안정성과 편의성이 좀 떨어진다. 그래서 개발툴로서 완성도 높은 Pycharm의 설정을 수정하여 Matlab처럼 사용하는 방안을 기술한다.
+description: Spyder IDE는 Python을 Matlab처럼 사용 할 수 있는 Open Source 이지만, 안정성과 편의성이 좀 떨어진다. 그래서 개발툴로서 완성도 높은 Pycharm의 설정을 수정하여 Matlab처럼 사용하는 방법을 정리한다.
 tags: python pycharm matlab
 sitemap :
   changefreq : daily
@@ -36,6 +36,9 @@ File --> Settings --> Build, Execution, Deployment --> Console --> Python Consol
 <br>
 
 ## 3. Matplotlib의 Cursor Marker 기능 활성화
+```sh
+pip install mplcursors
+```
 File --> Settings --> Build, Execution, Deployment --> Console --> Python Console --> Enviroment variables에 추가  
 Name : MPLCURSORS  
 Value : {"multiple": 1}
@@ -62,6 +65,7 @@ pycharm 폴더/helpers/pydev/\_pydev\_bundle/pydev\_ipython\_console.py의 get\_
     user_hidden_dict.setdefault('pi', '')
     user_hidden_dict.setdefault('randn', '')
     user_hidden_dict.setdefault('standard_normal', '')
+    user_hidden_dict.setdefault('randint', '')
     user_hidden_dict.setdefault('sqrt', '')
     user_hidden_dict.setdefault('fig', '')
     user_hidden_dict.setdefault('ax', '')
@@ -93,9 +97,6 @@ Template text :
     from oklib.init import load_func_frequently
     load_func_frequently(globals())
 
-    if __name__ == "__main__":
-        pass
-
 ```
 
 <br>
@@ -115,7 +116,7 @@ Template text :
 ``` python
     import numpy as np
     import matplotlib.pyplot as plt
-    from matplotlib.pyplot import plot, hist
+    from matplotlib.pyplot import plot, hist, figure
     from oklib.signal import (db2, nextpow2, sind, cosd, tand, arcsind, arccosd, arctand)
     from oklib.plot import imagesc
     from oklib.file import save_vars, load_vars
@@ -125,8 +126,23 @@ Template text :
     from numpy import (amin, amax, argmin, argmax, sum, mean)
     from numpy.fft import (fft, ifft, fft2, ifft2, fftshift, ifftshift)
     from numpy.linalg import svd, norm
-    from numpy.random_intel import randn, standard_normal
+    from numpy.random_intel import randn, standard_normal, randint
 
+```
+
+<br>
+
+### 6.4. save/load 명령추가
+Abbreviation : save  
+Template text :  
+``` python
+    save_vars('$END$', globals())
+```
+
+Abbreviation : load  
+Template text :  
+``` python
+    load_vars('$END$', globals())
 ```
 
 <br>

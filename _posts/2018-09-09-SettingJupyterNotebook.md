@@ -89,3 +89,8 @@ Dim strArgs
 strArgs = "cmd /v:on /k (set MPLCURSORS=" + "{" + Chr(34) + "multiple" + Chr(34) + ": 1" + "}" + ")" + " & (set PYTHONPATH=D:\python\scientific) & C:\IntelPython3\python.exe D:\python\start_jupyter.py"
 oShell.Run strArgs, 0, false
 ```
+
+
+```python
+
+```

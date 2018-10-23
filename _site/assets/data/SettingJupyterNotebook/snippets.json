@@ -12,7 +12,7 @@
                 "",
                 "import numpy as np",
                 "import matplotlib.pyplot as plt",
-                "from matplotlib.pyplot import plot, hist",
+                "from matplotlib.pyplot import plot, hist, figure",
                 "from oklib.signal import (db2, nextpow2, sind, cosd, tand, arcsind, arccosd, arctand)",
                 "from oklib.plot import imagesc",
                 "from oklib.file import save_vars, load_vars",
@@ -21,7 +21,7 @@
                 "from numpy import (amin, amax, argmin, argmax, sum, mean)",
                 "from numpy.fft import (fft, ifft, fft2, ifft2, fftshift, ifftshift)",
                 "from numpy.linalg import svd, norm",
-                "from numpy.random_intel import randn, standard_normal",
+                "from numpy.random_intel import randn, standard_normal, randint",
                 "from oklib.var_list import wh",
                 ""
             ]

@@ -414,3 +414,21 @@ table.inner-borders {
   }
 }
 
+//figure {
+//display: inline-block;
+//margin: 20px;
+//}
+
+figure {
+  display: table;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+figure img {
+vertical-align: top;
+}
+
+figure figcaption {
+text-align: center;
+}

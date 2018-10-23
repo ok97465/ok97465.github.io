@@ -323,3 +323,13 @@ table.inner-borders {
 
   .footer-distributed .footer {
     line-height: 1.8; } }
+figure {
+  display: table;
+  margin-right: auto;
+  margin-left: auto; }
+
+figure img {
+  vertical-align: top; }
+
+figure figcaption {
+  text-align: center; }

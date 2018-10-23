@@ -151,16 +151,16 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">0</span>
     
-<span class="c"># 0: death, 1: live</span>
-<span class="n">data_init</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+<span class="c1"># 0: death, 1: live
+</span><span class="n">data_init</span> <span class="o">=</span> <span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
                    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
                    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 
-<span class="c"># data_init 외곽에 0을 5개씩 추가한다.</span>
-<span class="n">data_prev</span> <span class="o">=</span> <span class="n">pad</span><span class="p">(</span><span class="n">data_init</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s">'constant'</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># data_init 외곽에 0을 5개씩 추가한다.
+</span><span class="n">data_prev</span> <span class="o">=</span> <span class="n">pad</span><span class="p">(</span><span class="n">data_init</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s">'constant'</span><span class="p">,</span> <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="c"># Conway 다음 상황을 계산한다.</span>
-<span class="n">data_post</span> <span class="o">=</span> <span class="n">generic_filter</span><span class="p">(</span><span class="n">data_prev</span><span class="p">,</span> <span class="n">conway_filter</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">'wrap'</span><span class="p">)</span>
+<span class="c1"># Conway 다음 상황을 계산한다.
+</span><span class="n">data_post</span> <span class="o">=</span> <span class="n">generic_filter</span><span class="p">(</span><span class="n">data_prev</span><span class="p">,</span> <span class="n">conway_filter</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">'wrap'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -177,8 +177,8 @@
 <span class="k">def</span> <span class="nf">imshow_init</span><span class="p">(</span><span class="n">b_grid</span><span class="p">):</span>
     
     <span class="k">global</span> <span class="n">data_prev</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">im</span>
-    <span class="c"># Grid를 그린다</span>
-    <span class="k">if</span> <span class="n">b_grid</span><span class="p">:</span>
+    <span class="c1"># Grid를 그린다
+</span>    <span class="k">if</span> <span class="n">b_grid</span><span class="p">:</span>
         <span class="n">major_ticks_x</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data_prev</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">major_ticks_x</span><span class="p">)</span>
 
@@ -186,8 +186,8 @@
         <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">major_ticks_y</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">)</span>
     
-    <span class="c"># 축의 글씨를 지운다</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">'both'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="c1"># 축의 글씨를 지운다
+</span>    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s">'both'</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s">'both'</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
                    <span class="n">labelbottom</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">labelleft</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">im</span><span class="o">.</span><span class="n">set_array</span><span class="p">([[]])</span>
@@ -223,8 +223,8 @@
 
 <video width="432" height="288" controls="" autoplay="" loop="">
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAAqRW1kYXQAAAKtBgX//6ncRem9
-5tlIt5Ys2CDZI+7veDI2NCAtIGNvcmUgMTUyIHIyODU0IGU5YTU5MDMgLSBILjI2NC9NUEVHLTQg
-QVZDIGNvZGVjIC0gQ29weWxlZnQgMjAwMy0yMDE3IC0gaHR0cDovL3d3dy52aWRlb2xhbi5vcmcv
+5tlIt5Ys2CDZI+7veDI2NCAtIGNvcmUgMTU1IHIyOTE3IDBhODRkOTggLSBILjI2NC9NUEVHLTQg
+QVZDIGNvZGVjIC0gQ29weWxlZnQgMjAwMy0yMDE4IC0gaHR0cDovL3d3dy52aWRlb2xhbi5vcmcv
 eDI2NC5odG1sIC0gb3B0aW9uczogY2FiYWM9MSByZWY9MyBkZWJsb2NrPTE6MDowIGFuYWx5c2U9
 MHgzOjB4MTEzIG1lPWhleCBzdWJtZT03IHBzeT0xIHBzeV9yZD0xLjAwOjAuMDAgbWl4ZWRfcmVm
 PTEgbWVfcmFuZ2U9MTYgY2hyb21hX21lPTEgdHJlbGxpcz0xIDh4OGRjdD0xIGNxbT0wIGRlYWR6
@@ -428,7 +428,7 @@ AAABAADAAAAAAAEAAEAAAAAAAQABQAAAAAABAACAAAAAAAEAAAAAAAAAAQAAQAAAAAABAADAAAAA
 AAEAAEAAAAAAHHN0c2MAAAAAAAAAAQAAAAEAAAAJAAAAAQAAADhzdHN6AAAAAAAAAAAAAAAJAAAS
 hQAAAlkAAAGgAAAE4AAABMUAAAENAAAEcAAAAC4AAARvAAAAFHN0Y28AAAAAAAAAAQAAACwAAABi
 dWR0YQAAAFptZXRhAAAAAAAAACFoZGxyAAAAAAAAAABtZGlyYXBwbAAAAAAAAAAAAAAAAC1pbHN0
-AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU3LjgzLjEwMA==
+AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjEyLjEwMA==
 " />
   Your browser does not support the video tag.
 </video>
@@ -464,8 +464,8 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU3LjgzLjEwMA==
 
 <video width="432" height="288" controls="" autoplay="" loop="">
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAEihG1kYXQAAAKuBgX//6rcRem9
-5tlIt5Ys2CDZI+7veDI2NCAtIGNvcmUgMTUyIHIyODU0IGU5YTU5MDMgLSBILjI2NC9NUEVHLTQg
-QVZDIGNvZGVjIC0gQ29weWxlZnQgMjAwMy0yMDE3IC0gaHR0cDovL3d3dy52aWRlb2xhbi5vcmcv
+5tlIt5Ys2CDZI+7veDI2NCAtIGNvcmUgMTU1IHIyOTE3IDBhODRkOTggLSBILjI2NC9NUEVHLTQg
+QVZDIGNvZGVjIC0gQ29weWxlZnQgMjAwMy0yMDE4IC0gaHR0cDovL3d3dy52aWRlb2xhbi5vcmcv
 eDI2NC5odG1sIC0gb3B0aW9uczogY2FiYWM9MSByZWY9MyBkZWJsb2NrPTE6MDowIGFuYWx5c2U9
 MHgzOjB4MTEzIG1lPWhleCBzdWJtZT03IHBzeT0xIHBzeV9yZD0xLjAwOjAuMDAgbWl4ZWRfcmVm
 PTEgbWVfcmFuZ2U9MTYgY2hyb21hX21lPTEgdHJlbGxpcz0xIDh4OGRjdD0xIGNxbT0wIGRlYWR6
@@ -1824,7 +1824,7 @@ AAHcAAABsAAAAn0AAAF4AAABewAAAZwAAAJKAAABuAAAAaYAAAHIAAACAQAAAZkAAAHBAAABhwAA
 AdwAAAFhAAABiwAAAowAAAFXAAABYQAAAXQAAAJBAAABvAAAAW0AAAHwAAACcAAAAaIAAAHHAAAB
 WAAAAk0AAAIWAAABggAAAbAAAAIXAAAB7gAAATQAAAGtAAAAFHN0Y28AAAAAAAAAAQAAACwAAABi
 dWR0YQAAAFptZXRhAAAAAAAAACFoZGxyAAAAAAAAAABtZGlyYXBwbAAAAAAAAAAAAAAAAC1pbHN0
-AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU3LjgzLjEwMA==
+AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjEyLjEwMA==
 " />
   Your browser does not support the video tag.
 </video>
@@ -1920,6 +1920,8 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU3LjgzLjEwMA==
   <h2>Recent Posts</h2>
   <ul>
     
+    <li><a href="/2018/09/CentripetalForce">등속 원운동의 구심력 유도</a></li>
+    
     <li><a href="/2018/09/DistanceBetweenTwoPointsOfQuadrate">정사각형 내 임의의 두점의 거리</a></li>
     
     <li><a href="/2018/09/ConwayGame">Conway's Game of Life (생명 게임)</a></li>
@@ -1927,8 +1929,6 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU3LjgzLjEwMA==
     <li><a href="/2018/09/SettingJupyterNotebook">Jupyter NoteBook에서 신호처리를 위한 설정</a></li>
     
     <li><a href="/2018/09/SettingPycharm">Pycharm(Python)을 Matlab 처럼</a></li>
-    
-    <li><a href="/2018/05/TaylorSeriesBySympy">Taylor Series Using Sympy</a></li>
     
   </ul>
 </div>
@@ -1949,6 +1949,10 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU3LjgzLjEwMA==
     <li>
       <a href="/tag/matlab" data-toggle="tooltip" data-placement="right" title="1">
         <span>matlab</span></a></li>
+    
+    <li>
+      <a href="/tag/physics" data-toggle="tooltip" data-placement="right" title="1">
+        <span>physics</span></a></li>
     
     <li>
       <a href="/tag/pycharm" data-toggle="tooltip" data-placement="right" title="1">
