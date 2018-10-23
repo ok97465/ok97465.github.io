@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 23 Oct 2018 23:36:03 +0900</pubDate>
-    <lastBuildDate>Tue, 23 Oct 2018 23:36:03 +0900</lastBuildDate>
+    <pubDate>Wed, 24 Oct 2018 07:56:50 +0900</pubDate>
+    <lastBuildDate>Wed, 24 Oct 2018 07:56:50 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -76,8 +76,8 @@
 &lt;p&gt;[1] 이종필. (2017). 18. 고전역학 강의, 이종필의 아주 특별한 상대성이론 강의 (쪽). 동아시아&lt;/p&gt;
 </description>
         <pubDate>Sun, 23 Sep 2018 10:32:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/09/CentripetalForce</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/CentripetalForce</guid>
+        <link>http://localhost:4000/2018/09/180922_CentripetalForce</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/180922_CentripetalForce</guid>
         
         <category>physics</category>
         
@@ -201,8 +201,8 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Tue, 11 Sep 2018 23:50:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/09/DistanceBetweenTwoPointsOfQuadrate</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/DistanceBetweenTwoPointsOfQuadrate</guid>
+        <link>http://localhost:4000/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate</guid>
         
         <category>math</category>
         
@@ -533,7 +533,7 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjEyLjEwMA==
   Your browser does not support the video tag.
 &lt;/video&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/2018-09-09-ConwayGame/output_10_1.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/2018-09-09-180909_ConwayGame/output_10_1.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -1929,7 +1929,7 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjEyLjEwMA==
   Your browser does not support the video tag.
 &lt;/video&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/2018-09-09-ConwayGame/output_12_1.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/2018-09-09-180909_ConwayGame/output_12_1.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -1939,8 +1939,8 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjEyLjEwMA==
 [3] https://jakevdp.github.io/blog/2013/08/07/conways-game-of-life/&lt;/p&gt;
 </description>
         <pubDate>Sun, 09 Sep 2018 22:51:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/09/ConwayGame</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/ConwayGame</guid>
+        <link>http://localhost:4000/2018/09/180909_ConwayGame</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/180909_ConwayGame</guid>
         
         <category>python</category>
         
@@ -2045,8 +2045,8 @@ oShell.Run strArgs, 0, false
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sun, 09 Sep 2018 10:08:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/09/SettingJupyterNotebook</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/SettingJupyterNotebook</guid>
+        <link>http://localhost:4000/2018/09/180909_SettingJupyterNotebook</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/180909_SettingJupyterNotebook</guid>
         
         <category>python</category>
         
@@ -2235,8 +2235,8 @@ Template text :&lt;/p&gt;
 &lt;a href=&quot;/assets/data/oklib.zip&quot;&gt;oklib Download&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 05 Sep 2018 08:15:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/09/SettingPycharm</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/09/SettingPycharm</guid>
+        <link>http://localhost:4000/2018/09/180904_SettingPycharm</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/180904_SettingPycharm</guid>
         
         <category>python</category>
         
@@ -2339,8 +2339,8 @@ series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O를
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;x^{2} y - x y - \frac{y^{3}}{3} + y&lt;/script&gt;
 </description>
         <pubDate>Mon, 28 May 2018 17:49:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/05/TaylorSeriesBySympy</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/TaylorSeriesBySympy</guid>
+        <link>http://localhost:4000/2018/05/180528_TaylorSeriesBySympy</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/180528_TaylorSeriesBySympy</guid>
         
         <category>sympy</category>
         
@@ -2485,7 +2485,7 @@ $\pi u^2 \equiv \frac { 1} { 2} f \mu ^ { \prime \prime } ( t _ { 0} ) ( t - t _
 &lt;span class=&quot;n&quot;&gt;chirp_discrete_time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1j&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/2018-05-11-PrincipleOfStationaryPhase/output_12_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/2018-05-11-180511_PrincipleOfStationaryPhase/output_12_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sympy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lambdify&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy.fft&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fftshift&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fft&lt;/span&gt;
@@ -2497,7 +2497,7 @@ $\pi u^2 \equiv \frac { 1} { 2} f \mu ^ { \prime \prime } ( t _ { 0} ) ( t - t _
 &lt;span class=&quot;n&quot;&gt;chirp_fourier_posp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chirp_fourier_sympy_subs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;frequency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/2018-05-11-PrincipleOfStationaryPhase/output_14_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/2018-05-11-180511_PrincipleOfStationaryPhase/output_14_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;sympy 결과와 DTFS의 결과가 전혀 다르게 나타난다. 그 이유는 FFT의 특성과 Fourier transform의 scaling property 때문이다.&lt;/p&gt;
 
@@ -2512,7 +2512,7 @@ $\pi u^2 \equiv \frac { 1} { 2} f \mu ^ { \prime \prime } ( t _ { 0} ) ( t - t _
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;chirp_fourier_posp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;chirp_fourier_sympy_subs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;frequency&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dt&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/2018-05-11-PrincipleOfStationaryPhase/output_17_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/2018-05-11-180511_PrincipleOfStationaryPhase/output_17_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2525,8 +2525,8 @@ $\pi u^2 \equiv \frac { 1} { 2} f \mu ^ { \prime \prime } ( t _ { 0} ) ( t - t _
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 11 May 2018 17:27:00 +0900</pubDate>
-        <link>http://localhost:4000/2018/05/PrincipleOfStationaryPhase</link>
-        <guid isPermaLink="true">http://localhost:4000/2018/05/PrincipleOfStationaryPhase</guid>
+        <link>http://localhost:4000/2018/05/180511_PrincipleOfStationaryPhase</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/180511_PrincipleOfStationaryPhase</guid>
         
         <category>sympy</category>
         

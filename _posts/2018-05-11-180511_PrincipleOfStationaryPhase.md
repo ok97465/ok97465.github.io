@@ -222,7 +222,7 @@ chirp_discrete_time = exp(1j * pi * kr * t**2)
 
 
 
-![img]({{ '/assets/images/2018-05-11-PrincipleOfStationaryPhase/output_12_0.png' | relative_url }}){: .center-image }
+![img]({{ '/assets/images/2018-05-11-180511_PrincipleOfStationaryPhase/output_12_0.png' | relative_url }}){: .center-image }
 
 
 
@@ -240,7 +240,7 @@ chirp_fourier_posp = chirp_fourier_sympy_subs(frequency)
 
 
 
-![img]({{ '/assets/images/2018-05-11-PrincipleOfStationaryPhase/output_14_0.png' | relative_url }}){: .center-image }
+![img]({{ '/assets/images/2018-05-11-180511_PrincipleOfStationaryPhase/output_14_0.png' | relative_url }}){: .center-image }
 
 
 sympy 결과와 DTFS의 결과가 전혀 다르게 나타난다. 그 이유는 FFT의 특성과 Fourier transform의 scaling property 때문이다.  
@@ -265,7 +265,7 @@ chirp_fourier_posp = chirp_fourier_sympy_subs(frequency)/dt
 
 
 
-![img]({{ '/assets/images/2018-05-11-PrincipleOfStationaryPhase/output_17_0.png' | relative_url }}){: .center-image }
+![img]({{ '/assets/images/2018-05-11-180511_PrincipleOfStationaryPhase/output_17_0.png' | relative_url }}){: .center-image }
 
 
 <br>
