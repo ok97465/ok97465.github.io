@@ -167,6 +167,8 @@ Value : {“multiple”: 1}</p>
     <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randn'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
     <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'standard_normal'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
     <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randint'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'uniform'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'choice'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
     <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sqrt'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
     <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'fig'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
     <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'ax'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
@@ -194,10 +196,10 @@ Value : {“multiple”: 1}</p>
 <h3 id="61-clear-명령">6.1. clear 명령</h3>
 <p>Abbreviation : clear  <br />
 Template text :</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">from</span> <span class="nn">oklib.init</span> <span class="kn">import</span> <span class="n">ipython_clear</span>
-    <span class="n">ipython_clear</span><span class="p">(</span><span class="n">b_plot_close</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">oklib.init</span> <span class="kn">import</span> <span class="n">load_func_frequently</span>
-    <span class="n">load_func_frequently</span><span class="p">(</span><span class="nb">globals</span><span class="p">())</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">oklib.init</span> <span class="kn">import</span> <span class="n">ipython_clear</span>
+<span class="n">ipython_clear</span><span class="p">(</span><span class="n">b_plot_close</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">oklib.init</span> <span class="kn">import</span> <span class="n">load_func_frequently</span>
+<span class="n">load_func_frequently</span><span class="p">(</span><span class="nb">globals</span><span class="p">())</span>
 
 </code></pre></div></div>
 
@@ -206,7 +208,7 @@ Template text :</p>
 <h3 id="62-새로운-figure-명령">6.2. 새로운 figure 명령</h3>
 <p>Abbreviation : fig,  <br />
 Template text :</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -214,33 +216,41 @@ Template text :</p>
 <h3 id="63-matlab-명령-import">6.3. matlab 명령 import</h3>
 <p>Abbreviation : matlab   <br />
 Template text :</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
-    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-    <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">hist</span><span class="p">,</span> <span class="n">figure</span>
-    <span class="kn">from</span> <span class="nn">oklib.signal</span> <span class="kn">import</span> <span class="p">(</span><span class="n">db2</span><span class="p">,</span> <span class="n">nextpow2</span><span class="p">,</span> <span class="n">sind</span><span class="p">,</span> <span class="n">cosd</span><span class="p">,</span> <span class="n">tand</span><span class="p">,</span> <span class="n">arcsind</span><span class="p">,</span> <span class="n">arccosd</span><span class="p">,</span> <span class="n">arctand</span><span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">oklib.plot</span> <span class="kn">import</span> <span class="n">imagesc</span>
-    <span class="kn">from</span> <span class="nn">oklib.file</span> <span class="kn">import</span> <span class="n">save_vars</span><span class="p">,</span> <span class="n">load_vars</span>
-    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">deg2rad</span><span class="p">,</span> <span class="n">rad2deg</span><span class="p">,</span> <span class="n">unwrap</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">zeros</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">ones</span><span class="p">,</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">cumsum</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">interp</span><span class="p">,</span>
-                       <span class="n">conj</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">tan</span><span class="p">,</span> <span class="n">arcsin</span><span class="p">,</span> <span class="n">arccos</span><span class="p">,</span> <span class="n">arctan</span><span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">amin</span><span class="p">,</span> <span class="n">amax</span><span class="p">,</span> <span class="n">argmin</span><span class="p">,</span> <span class="n">argmax</span><span class="p">,</span> <span class="nb">sum</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">numpy.fft</span> <span class="kn">import</span> <span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span><span class="p">,</span> <span class="n">fft2</span><span class="p">,</span> <span class="n">ifft2</span><span class="p">,</span> <span class="n">fftshift</span><span class="p">,</span> <span class="n">ifftshift</span><span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">svd</span><span class="p">,</span> <span class="n">norm</span>
-    <span class="kn">from</span> <span class="nn">numpy.random_intel</span> <span class="kn">import</span> <span class="n">randn</span><span class="p">,</span> <span class="n">standard_normal</span><span class="p">,</span> <span class="n">randint</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">hist</span><span class="p">,</span> <span class="n">figure</span><span class="p">,</span> <span class="n">subplots</span>
+<span class="kn">from</span> <span class="nn">oklib.signal</span> <span class="kn">import</span> <span class="p">(</span><span class="n">db2</span><span class="p">,</span> <span class="n">nextpow2</span><span class="p">,</span> <span class="n">sind</span><span class="p">,</span> <span class="n">cosd</span><span class="p">,</span> <span class="n">tand</span><span class="p">,</span> <span class="n">arcsind</span><span class="p">,</span> <span class="n">arccosd</span><span class="p">,</span> <span class="n">arctand</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">oklib.plot</span> <span class="kn">import</span> <span class="n">imagesc</span>
+<span class="kn">from</span> <span class="nn">oklib.file</span> <span class="kn">import</span> <span class="n">save_vars</span><span class="p">,</span> <span class="n">load_vars</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">pi</span><span class="p">,</span> <span class="n">deg2rad</span><span class="p">,</span> <span class="n">rad2deg</span><span class="p">,</span> <span class="n">unwrap</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">zeros</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">ones</span><span class="p">,</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">cumsum</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">interp</span><span class="p">,</span>
+                   <span class="n">conj</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">vstack</span><span class="p">,</span> <span class="n">hstack</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">tan</span><span class="p">,</span> <span class="n">arcsin</span><span class="p">,</span> <span class="n">arccos</span><span class="p">,</span> <span class="n">arctan</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">amin</span><span class="p">,</span> <span class="n">amax</span><span class="p">,</span> <span class="n">argmin</span><span class="p">,</span> <span class="n">argmax</span><span class="p">,</span> <span class="nb">sum</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy.fft</span> <span class="kn">import</span> <span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span><span class="p">,</span> <span class="n">fft2</span><span class="p">,</span> <span class="n">ifft2</span><span class="p">,</span> <span class="n">fftshift</span><span class="p">,</span> <span class="n">ifftshift</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">svd</span><span class="p">,</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">numpy.random_intel</span> <span class="kn">import</span> <span class="n">randn</span><span class="p">,</span> <span class="n">standard_normal</span><span class="p">,</span> <span class="n">randint</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="n">uniform</span>
 
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h3 id="64-saveload-명령추가">6.4. save/load 명령추가</h3>
+<h3 id="64-모든-figure-창-닫기">6.4. 모든 figure 창 닫기</h3>
+<p>Abbreviation : close all<br />
+Template text :</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s">'all'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="65-saveload-명령추가">6.5. save/load 명령추가</h3>
 <p>Abbreviation : save  <br />
 Template text :</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">save_vars</span><span class="p">(</span><span class="s">'$END$'</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">save_vars</span><span class="p">(</span><span class="s">'$END$'</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
 </code></pre></div></div>
 
 <p>Abbreviation : load  <br />
 Template text :</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">load_vars</span><span class="p">(</span><span class="s">'$END$'</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load_vars</span><span class="p">(</span><span class="s">'$END$'</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
 </code></pre></div></div>
 
 <p><br /></p>

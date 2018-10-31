@@ -272,8 +272,3 @@ chirp_fourier_posp = chirp_fourier_sympy_subs(frequency)/dt
 
 # 참고자료
 - https://www.cis.rit.edu/class/simg738/Handouts/stationary_phase.pdf
-
-
-```python
-
-```
