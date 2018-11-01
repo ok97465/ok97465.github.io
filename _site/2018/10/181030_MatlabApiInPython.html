@@ -11,13 +11,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>ok97465 | Jupyter NoteBook에서 신호처리를 위한 설정 </title>
-  <meta name="description" content="Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다.">
+  <title>ok97465 | Python에서 Matlab 사용하기 </title>
+  <meta name="description" content="Python에서 Matlab을 실행하고 데이터를 주고 받는다.">
   <meta name="theme-color" content="#222222">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Jupyter NoteBook에서 신호처리를 위한 설정">
-  <meta property="og:description" content="Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다.">
+  <meta property="og:title" content="Python에서 Matlab 사용하기">
+  <meta property="og:description" content="Python에서 Matlab을 실행하고 데이터를 주고 받는다.">
   <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
   <meta property="og:url" content="http://ok97465.github.io">
   <script src="/assets/js/jquery.min.js"></script>
@@ -95,113 +95,100 @@
             <div class="col-md-8">
               <div class="article">
                 <div class="well">
-                  <h1><a href="/2018/09/180909_SettingJupyterNotebook">Jupyter NoteBook에서 신호처리를 위한 설정</a></h1>
+                  <h1><a href="/2018/10/181030_MatlabApiInPython">Python에서 Matlab 사용하기</a></h1>
                   <div class="post-meta">
                     <div class="post-time">
                       <i class="fa fa-calendar"></i>
-                      <time>09 Sep 2018</time>
+                      <time>10 Oct 2018</time>
                     </div>
                     <ul>
                       
                         <li><a href="/tag/python">python</a></li>
                       
-                        <li><a href="/tag/jupyter">jupyter</a></li>
+                        <li><a href="/tag/matlab">matlab</a></li>
                       
                     </ul>
                   </div>
                   <div class="post-content">
                     <div id="toc" class="toc"></div>
-                    <h1 id="jupyter-notebook에서-신호처리를-위한-설정">Jupyter NoteBook에서 신호처리를 위한 설정</h1>
-<hr />
+                    <h1 id="matlab-api-in-python">MATLAB API in Python</h1>
 
-<p><br /></p>
-
-<h2 id="1-nbextension-설정">1. NBExtension 설정</h2>
-<ul>
-  <li>hide input 활설화</li>
-  <li>hide input all 활성화</li>
-  <li>comment/uncomment hotkey 활성화
-    <ul>
-      <li>단축키 Ctrl+R로 변경</li>
-    </ul>
-  </li>
-  <li>spell checker 활성화</li>
-  <li>table of contents(2) 활성화</li>
-  <li>runtools 활성화
-    <ul>
-      <li>run all cells 단축키 Ctrl+F5로 변경</li>
-    </ul>
-  </li>
-  <li>snippets 활성화
-    <ul>
-      <li><a href="/assets/data/SettingJupyterNotebook/snippets.json">snippets.json</a>을 파이선폴더/share/jupyter/nbextensions/snippets에 복사 한다.</li>
-    </ul>
-  </li>
-  <li>snippets Menu 활성화</li>
-  <li>scratchpad 활성화</li>
-</ul>
-
-<p><br /></p>
-
-<h2 id="2-theme-설정">2. Theme 설정</h2>
-<p>onedork theme 설정  <br />
-./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T</p>
-
-<p><br /></p>
-
-<h2 id="3-qtconsole-style변경">3. qtconsole style변경</h2>
-<p>%qtconsole로 외부 console 실행 시 theme를 설정 한다.  <br />
-<a href="/assets/data/SettingJupyterNotebook/jupyter_qtconsole_config.py">jupyter_qtconsole_config.py</a>를 ~/.jupyter에 복사 한다.</p>
-
-<p><br /></p>
-
-<h2 id="4-jupyter-notebook-1회만-실행">4. Jupyter Notebook 1회만 실행</h2>
-<p>jupyter notebook을 아이콘으로 만들어 실행 하려다 보면 아이콘 클릭 시 마다 새로운 jupyter server가 실행된다. 이런 문제를 해결하기 위해서 간단한 python 코드와 Script를 작성하여 script를 바로가기로 지정한다.</p>
-
-<ul>
-  <li>Python Code (run_jupyter.py)</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">webbrowser</span>
-<span class="kn">from</span> <span class="nn">notebook</span> <span class="kn">import</span> <span class="n">notebookapp</span>
-<span class="kn">from</span> <span class="nn">notebook.notebookapp</span> <span class="kn">import</span> <span class="n">main</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">port</span> <span class="o">=</span> <span class="mi">9876</span>
-    <span class="n">jupyter_server_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">notebookapp</span><span class="o">.</span><span class="n">list_running_servers</span><span class="p">())</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">jupyter_server_list</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">server</span><span class="p">[</span><span class="s">'port'</span><span class="p">]</span> <span class="o">==</span> <span class="n">port</span><span class="p">:</span>
-                <span class="n">webbrowser</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'url'</span><span class="p">]</span><span class="o">+</span><span class="s">'tree'</span><span class="p">)</span>
-                <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">'/home/ok97465/python/BlogSrcByJupyter'</span><span class="p">)</span>  <span class="c1"># notebook을 저장할 폴더
-</span>    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">))</span>
+<h2 id="1-matlab-api-설치">1. MATLAB API 설치</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span>  /<span class="k">${</span><span class="nv">MATLAB</span><span class="k">}</span>/extern/engines/python
+python setup.py <span class="nb">install</span>
 </code></pre></div></div>
 
-<ul>
-  <li>Linux용 script (run_jupyter.sh)</li>
-</ul>
+<p><br /></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
-<span class="nb">export </span><span class="nv">MPLCURSORS</span><span class="o">=</span><span class="s1">'{"multiple": 1}'</span>  <span class="c"># maplotlib Cusor Marker</span>
-<span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/home/ok97465/python/scientific  <span class="c"># oklib를 포함하는 폴더  </span>
-~/anaconda3/bin/python ~/python/run_jupyter.py
+<h2 id="2-import-matlab">2. Import MATLAB</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matlab.engine</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span><span class="p">,</span> <span class="n">arange</span>
+<span class="kn">from</span> <span class="nn">matlab</span> <span class="kn">import</span> <span class="n">double</span> <span class="k">as</span> <span class="n">double_m</span>
 </code></pre></div></div>
 
-<ul>
-  <li>Window용 스크립트 (run_jupyter.vbs)</li>
-</ul>
+<p><br /></p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set oShell = CreateObject ("Wscript.Shell")
-Dim strArgs
-strArgs = "cmd /v:on /k (set MPLCURSORS=" + "{" + Chr(34) + "multiple" + Chr(34) + ": 1" + "}" + ")" + " &amp; (set PYTHONPATH=D:\python\scientific) &amp; C:\IntelPython3\python.exe D:\python\start_jupyter.py"
-oShell.Run strArgs, 0, false
+<h2 id="3-matlab-시작하기">3. MATLAB 시작하기</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">start_matlab</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="4-python과-동기된-matlab-gui-띄우기">4. Python과 동기된 MATLAB GUI 띄우기</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="o">.</span><span class="n">desktop</span><span class="p">(</span><span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="5-matlab에-명령-보내기">5. MATLAB에 명령 보내기</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="o">.</span><span class="n">workspace</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="s">"x+3;"</span><span class="p">)</span>
+<span class="n">eng</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="s">"y = 5;"</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">eng</span><span class="o">.</span><span class="n">workspace</span><span class="p">[</span><span class="s">'x'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="6-matlab-행렬-읽어오기">6. MATLAB 행렬 읽어오기</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x_matlab</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">x_py</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">x_matlab</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="7-matlab에-경로-추가">7. MATLAB에 경로 추가</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="o">.</span><span class="n">addpath</span><span class="p">(</span><span class="s">'/home/kkk/matlab_utility'</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="8-matlab의-함수-실행">8. MATLAB의 함수 실행</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x_randn_matlab</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">x_randn_matlab_T</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">x_randn_matlab</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="9-matlab에-데이터-저장하기">9. MATLAB에 데이터 저장하기</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">y_matlab</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">double</span><span class="p">(</span><span class="n">double_m</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
+<span class="n">y_matlab_T</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">y_matlab</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="10-matlab-종료하기">10. MATLAB 종료하기</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 </code></pre></div></div>
 
                     
@@ -210,7 +197,7 @@ oShell.Run strArgs, 0, false
   <ul class="share-buttons">
     
     <li class="share-facebook">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/09/180909_SettingJupyterNotebook" target="_blank" title="Share on Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/10/181030_MatlabApiInPython" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-facebook fa-stack-1x"></i>
@@ -221,7 +208,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/09/180909_SettingJupyterNotebook&text=Jupyter NoteBook에서 신호처리를 위한 설정" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/10/181030_MatlabApiInPython&text=Python에서 Matlab 사용하기" target="_blank" title="Tweet">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-twitter fa-stack-1x"></i>
@@ -232,7 +219,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/09/180909_SettingJupyterNotebook" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/10/181030_MatlabApiInPython" target="_blank" title="Share on Google Plus">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-google-plus fa-stack-1x"></i>
@@ -247,7 +234,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Jupyter NoteBook에서 신호처리를 위한 설정&body=Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다. http://localhost:4000/2018/09/180909_SettingJupyterNotebook" target="_blank" title="Email">
+      <a href="mailto:?&subject=Python에서 Matlab 사용하기&body=Python에서 Matlab을 실행하고 데이터를 주고 받는다. http://localhost:4000/2018/10/181030_MatlabApiInPython" target="_blank" title="Email">
         <span class="fa-stack fa-lg">
           <i class="fa fa-circle-thin fa-stack-2x"></i>
           <i class="fa fa-envelope-o fa-stack-1x"></i>
@@ -348,7 +335,7 @@ oShell.Run strArgs, 0, false
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
-  var disqus_identifier = "/2018/09/180909_SettingJupyterNotebook";
+  var disqus_identifier = "/2018/10/181030_MatlabApiInPython";
 
   /* * * DON'T EDIT BELOW THIS LINE * * */
   (function() {
