@@ -12,6 +12,11 @@ sitemap :
 ---
 
 # MATLAB API in Python
+  
+Python으로 Matlab 대부분의 일을 할 수 있기 때문에 Maltab을 사용할 일이 거의 없지만 간혹 Matlab으로 작성된 유물 코드를 급하게 활용해야 할 경우가 발생한다. 
+이런 경우엔 MATLAB API를 사용하면 Python과 연동하여 Matlab를 사용 할 수 있다.
+
+<br>
 
 ## 1. MATLAB API 설치
 ```bash
@@ -63,12 +68,15 @@ print(eng.workspace['x'])
 
 <br>
 
-## 6. MATLAB 행렬 읽어오기
+## 6. MATLAB 행렬 Numpy에 저장
 
 
 ```python
 x_matlab = eng.linspace(0, 1000, -1, 1000)
 x_py = array(x_matlab)
+
+eng.eval('x = linspace(0, 1000, -1, 1000)', nargout=0)
+x_py = array(eng.workspace['x'])
 ```
 
 <br>
@@ -92,13 +100,13 @@ x_randn_matlab_T = eng.transpose(x_randn_matlab)
 
 <br>
 
-## 9. MATLAB에 데이터 저장하기
+## 9. Numpy 데이터를 Matlab에서 사용하기
 
 
 ```python
 y = arange(16).reshape(4, 4)
 y_matlab = eng.double(double_m(y.tolist()))
-y_matlab_T = eng.transpose(y_matlab)
+eng.workspace['y'] = y_matlab
 ```
 
 <br>
