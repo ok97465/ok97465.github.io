@@ -46,7 +46,7 @@ distances_mean = mean(distances)
 
 
 
-    정사각형 내 두 점 사이의 거리 평균 = 0.5213762305547626
+    정사각형 내 두 점 사이의 거리 평균 = 0.5213815545906049
 
 
 <br>
@@ -66,6 +66,9 @@ integrand = lambda x1, x2, y1, y2: sqrt((x1-x2)**2 + (y1-y2)**2)
 (distances_mean, abserr, out_dict) = nquad(integrand, [[0, 1], [0, 1], [0, 1], [0, 1]], full_output=True)
 ```
 
+
+
+    정사각형 내 두 점 사이의 거리 평균 = 0.5214054334862938
 
 
 <br>

@@ -62,8 +62,9 @@ eng.desktop(nargout=0)
 ```python
 eng.workspace['x'] = 3
 a = eng.eval("x+3;")
+
 eng.eval("y = 5;", nargout=0)
-print(eng.workspace['x'])
+print(eng.workspace['y'])
 ```
 
 <br>

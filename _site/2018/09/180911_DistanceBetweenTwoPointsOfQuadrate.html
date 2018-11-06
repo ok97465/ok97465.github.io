@@ -140,7 +140,7 @@ $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.</
 <span class="n">distances_mean</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>정사각형 내 두 점 사이의 거리 평균 = 0.5213762305547626
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>정사각형 내 두 점 사이의 거리 평균 = 0.5213815545906049
 </code></pre></div></div>
 
 <p><br /></p>
@@ -155,6 +155,9 @@ $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.</
 
 <span class="n">integrand</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">:</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">x1</span><span class="o">-</span><span class="n">x2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 <span class="p">(</span><span class="n">distances_mean</span><span class="p">,</span> <span class="n">abserr</span><span class="p">,</span> <span class="n">out_dict</span><span class="p">)</span> <span class="o">=</span> <span class="n">nquad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">full_output</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>정사각형 내 두 점 사이의 거리 평균 = 0.5214054334862938
 </code></pre></div></div>
 
 <p><br /></p>
@@ -299,6 +302,8 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
   <h2>Recent Posts</h2>
   <ul>
     
+    <li><a href="/2018/11/181105_Reflection_Refraction">빛의 반사 및 굴절의 특성 유도</a></li>
+    
     <li><a href="/2018/10/181030_MatlabApiInPython">Python에서 Matlab 사용하기</a></li>
     
     <li><a href="/2018/09/180922_CentripetalForce">등속 원운동의 구심력 유도</a></li>
@@ -306,8 +311,6 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
     <li><a href="/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate">정사각형 내 임의의 두점의 거리</a></li>
     
     <li><a href="/2018/09/180909_ConwayGame">Conway's Game of Life (생명 게임)</a></li>
-    
-    <li><a href="/2018/09/180909_SettingJupyterNotebook">Jupyter NoteBook에서 신호처리를 위한 설정</a></li>
     
   </ul>
 </div>
@@ -330,7 +333,7 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
         <span>matlab</span></a></li>
     
     <li>
-      <a href="/tag/physics" data-toggle="tooltip" data-placement="right" title="1">
+      <a href="/tag/physics" data-toggle="tooltip" data-placement="right" title="2">
         <span>physics</span></a></li>
     
     <li>
@@ -338,7 +341,7 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
         <span>pycharm</span></a></li>
     
     <li>
-      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="6">
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="7">
         <span>python</span></a></li>
     
     <li>
@@ -346,7 +349,7 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
         <span>signal_system</span></a></li>
     
     <li>
-      <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="2">
+      <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="3">
         <span>sympy</span></a></li>
     
   </ul>

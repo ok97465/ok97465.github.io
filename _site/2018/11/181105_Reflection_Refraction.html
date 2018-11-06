@@ -1,0 +1,478 @@
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ok97465 | 빛의 반사 및 굴절의 특성 유도 </title>
+  <meta name="description" content="빛이 반사(reflection) 또는 굴절(Snells's law of refraction) 될 때 특성을 sympy를 이용하여 유도한다.">
+  <meta name="theme-color" content="#222222">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="빛의 반사 및 굴절의 특성 유도">
+  <meta property="og:description" content="빛이 반사(reflection) 또는 굴절(Snells's law of refraction) 될 때 특성을 sympy를 이용하여 유도한다.">
+  <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
+  <meta property="og:url" content="http://ok97465.github.io">
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/header.js"></script>
+  <script src="/assets/js/toc.js"></script>
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/css/theme.css" rel="stylesheet">
+  <link href="/assets/css/syntax.css" rel="stylesheet">
+  <link href="/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-125307858-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+  
+
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: {
+        families: ['Ubuntu::latin']
+      }
+    };
+    (function () {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">ok97465</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">/home</a></li>
+          <li><a href="/archive.html">/archive</a></li>
+          <li><a href="/tags.html">/tags</a></li>
+          <li><a href="/about.html">/about</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div class="wrapper">
+      <div class="content">
+        <div class="container container-center">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="article">
+                <div class="well">
+                  <h1><a href="/2018/11/181105_Reflection_Refraction">빛의 반사 및 굴절의 특성 유도</a></h1>
+                  <div class="post-meta">
+                    <div class="post-time">
+                      <i class="fa fa-calendar"></i>
+                      <time>05 Nov 2018</time>
+                    </div>
+                    <ul>
+                      
+                        <li><a href="/tag/physics">physics</a></li>
+                      
+                        <li><a href="/tag/python">python</a></li>
+                      
+                        <li><a href="/tag/sympy">sympy</a></li>
+                      
+                    </ul>
+                  </div>
+                  <div class="post-content">
+                    <div id="toc" class="toc"></div>
+                    <h1 id="빛의-반사-및-굴절의-특성-유도">빛의 반사 및 굴절의 특성 유도</h1>
+<p>Fermat의 원리[1]는 ‘빛은 최단 시간으로 이동할 수 있는 경로를 택한다’는 것으로 이 원리를 이용하여 반사 및 굴절의 특성을 유도한다.</p>
+
+<p><br /></p>
+
+<h2 id="1-빛의-반사-유도">1. 빛의 반사 유도</h2>
+
+<p>빛의 반사 법칙은 그림 1에서 ${\theta}$(입사각)과 ${\phi}$(반사각)이 항상 같다는 것을 말한다.</p>
+
+<figure>
+    <img src="/assets/images/reflection_refraction/reflection_dark.png" alt="빛의 반사" width="280" />
+    <figcaption class="figure-caption">그림 1. 빛의 반사</figcaption>
+</figure>
+
+<script type="math/tex; mode=display">A=\left(x_1, y_1\right)</script>
+
+<script type="math/tex; mode=display">B=\left(x_2, y_2\right)</script>
+
+<script type="math/tex; mode=display">P=\left(x, 0\right)</script>
+
+<p>빛은 최단 시간으로 이동할 수 있는 경로를 택한다는 특성[1]을 이용하면 ${\theta}$와 ${\phi}$가 같음을 보일 수 있다.</p>
+
+<p>A, B는 고정위치이고 P를 변하는 위치라고 가정하면 반사되는 빛의 이동경로는 APB가 된다.  <br />
+빛의 이동거리를 D=$|APB|$로 놓으면 빛의 이동 시간 $T=\left((n/c)D\right)$로 정리 할 수 있다.</p>
+
+<p>최단 시간을 가지는 P를 계산하기 위해서 T의 미분을 이용하여 T가 최소가 되는 x를 계산한다.</p>
+
+<script type="math/tex; mode=display">\frac{dt}{dx} = \left(\frac{n}{c}\frac{dD}{dx}\right)=0</script>
+
+<p>이렇게 구한 x로 입사각과 반사각이 동일함을 보인다.</p>
+
+<p><br /></p>
+
+<h3 id="11-빛의-이동-거리d">1.1. 빛의 이동 거리(D)</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">sympy.printing</span> <span class="kn">import</span> <span class="n">latex</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">init_printing</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">solve</span><span class="p">,</span> <span class="n">Abs</span><span class="p">,</span> <span class="n">simplify</span>
+<span class="n">init_printing</span><span class="p">()</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'x_1 x_2'</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">constant</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'y_1 y_2'</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">constant</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Latex</span><span class="p">(</span><span class="s">'$$D='</span> <span class="o">+</span> <span class="n">latex</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="o">+</span> <span class="s">'$$'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<script type="math/tex; mode=display">D=\sqrt{y_{1}^{2} + \left(- x + x_{1}\right)^{2}} + \sqrt{y_{2}^{2} + \left(- x + x_{2}\right)^{2}}</script>
+
+<p><br /></p>
+
+<h3 id="12-d의-미분">1.2. D의 미분</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dD</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<script type="math/tex; mode=display">\frac{dD}{dx}=\frac{x - x_{1}}{\sqrt{y_{1}^{2} + \left(- x + x_{1}\right)^{2}}} + \frac{x - x_{2}}{\sqrt{y_{2}^{2} + \left(- x + x_{2}\right)^{2}}}</script>
+
+<p><br /></p>
+
+<h3 id="13-fracdddx0-으로-하는-x">1.3. $\frac{dD}{dx}=0$ 으로 하는 x</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x_ans</span><span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">dD</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<script type="math/tex; mode=display">x=\left [ \frac{- x_{1} y_{2} + x_{2} y_{1}}{y_{1} - y_{2}}, \quad \frac{x_{1} y_{2} + x_{2} y_{1}}{y_{1} + y_{2}}\right ]</script>
+
+<p>첫번째 근은 $y_1$과 $y_2$가 같은 경우 발산하므로 제거한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x_ans</span> <span class="o">=</span> <span class="n">x_ans</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="14-sintheta-sinphi">1.4. $\sin(\theta)$, $\sin(\phi)$</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sin_theta</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x_ans</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">Abs</span><span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x_ans</span><span class="p">)</span>
+<span class="n">sin_phi</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x_ans</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">Abs</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x_ans</span><span class="p">)</span>
+</code></pre></div></div>
+
+<script type="math/tex; mode=display">\sin({\theta})=\frac{\sqrt{y_{1}^{2} + \left(x_{1} - \frac{x_{1} y_{2} + x_{2} y_{1}}{y_{1} + y_{2}}\right)^{2}}}{\left|{x_{1} - \frac{x_{1} y_{2} + x_{2} y_{1}}{y_{1} + y_{2}}}\right|}</script>
+
+<script type="math/tex; mode=display">\sin({\phi})=\frac{\sqrt{y_{2}^{2} + \left(x_{2} - \frac{x_{1} y_{2} + x_{2} y_{1}}{y_{1} + y_{2}}\right)^{2}}}{\left|{x_{2} - \frac{x_{1} y_{2} + x_{2} y_{1}}{y_{1} + y_{2}}}\right|}</script>
+
+<p><br /></p>
+
+<h3 id="15-sintheta--sinphi">1.5. $\sin(\theta)$ / $\sin(\phi)$</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display</span><span class="p">(</span><span class="n">sin_theta</span><span class="o">/</span><span class="n">sin_phi</span><span class="p">)</span>
+</code></pre></div></div>
+
+<script type="math/tex; mode=display">\frac{\sqrt{y_{1}^{2} + \left(x_{1} - \frac{x_{1} y_{2} + x_{2} y_{1}}{y_{1} + y_{2}}\right)^{2}} \left|{x_{2} - \frac{x_{1} y_{2} + x_{2} y_{1}}{y_{1} + y_{2}}}\right|}{\sqrt{y_{2}^{2} + \left(x_{2} - \frac{x_{1} y_{2} + x_{2} y_{1}}{y_{1} + y_{2}}\right)^{2}} \left|{x_{1} - \frac{x_{1} y_{2} + x_{2} y_{1}}{y_{1} + y_{2}}}\right|}</script>
+
+<p>반사각과 입사각이 동일하다면 위의 결과가 1이 나와야 하는데 복잡한 결과가 도출되었다.  <br />
+이유는 sympy에서 simplify 명령 추가하지 않으면 수식을 정리하지 않기 때문이다.<br />
+simplify 이용하여 다시 결과를 뽑아보면 다음과 같다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">display</span><span class="p">(</span><span class="n">simplify</span><span class="p">(</span><span class="n">sin_theta</span><span class="o">/</span><span class="n">sin_phi</span><span class="p">))</span>
+</code></pre></div></div>
+
+<script type="math/tex; mode=display">1</script>
+
+<p>$\frac{\sin(\theta)}{\sin(\phi)} = 1$이므로 반사각과 입사각은 동일하다.</p>
+
+<p><br /></p>
+
+<h2 id="2-빛의-굴절-유도">2. 빛의 굴절 유도</h2>
+
+<figure>
+    <img src="/assets/images/reflection_refraction/refraction_dark.png" alt="빛의 굴절" width="280" />
+    <figcaption class="figure-caption">그림 2. 빛의 굴절</figcaption>
+</figure>
+
+<p>빛의 굴절은 다음과 같은 특성을 가진다.</p>
+
+<script type="math/tex; mode=display">n_1\sin\left(\theta\right) = n_2\sin\left(\phi\right)</script>
+
+<p>빛의 굴절도 페르마의 정리를 이용하여 빛의 반사와 유사하게 유도한다.  <br />
+빛이 A에서 B까지 이동하는데 걸리는 시간 T는 아래와 같이 정리 된다.</p>
+
+<script type="math/tex; mode=display">T = \frac{n_1}{c}|AP| + \frac{n_2}{c}|PB|</script>
+
+<p>$\frac{dT}{dx} = 0$에서 위의 수식을 확인한다.</p>
+
+<p><br /></p>
+
+<h1 id="빛의-이동-시간">빛의 이동 시간</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'x_1 x_2 y_1 y_2'</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">constant</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'n_1 n_2 c'</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">constant</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="p">(</span><span class="n">n1</span><span class="o">/</span><span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">n2</span><span class="o">/</span><span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">((</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Latex</span><span class="p">(</span><span class="s">'$$T='</span> <span class="o">+</span> <span class="n">latex</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="s">'$$'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<script type="math/tex; mode=display">T=\frac{n_{1} \sqrt{y_{1}^{2} + \left(- x + x_{1}\right)^{2}}}{c} + \frac{n_{2} \sqrt{y_{2}^{2} + \left(- x + x_{2}\right)^{2}}}{c}</script>
+
+<p><br /></p>
+
+<h3 id="21-t의-미분">2.1. T의 미분</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dT</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<script type="math/tex; mode=display">\frac{dT}{dx}=\frac{n_{1} \left(x - x_{1}\right)}{c \sqrt{y_{1}^{2} + \left(- x + x_{1}\right)^{2}}} + \frac{n_{2} \left(x - x_{2}\right)}{c \sqrt{y_{2}^{2} + \left(- x + x_{2}\right)^{2}}}=0</script>
+
+<p>위의 수식은 빛의 굴절 공식과 동일하다.</p>
+
+<p><br /></p>
+
+<h2 id="3-참고자료">3. 참고자료</h2>
+<p>[1] https://ko.wikipedia.org/wiki/%ED%8E%98%EB%A5%B4%EB%A7%88%EC%9D%98_%EC%9B%90%EB%A6%AC</p>
+
+                    
+
+<div class="share-bar">
+  <ul class="share-buttons">
+    
+    <li class="share-facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/11/181105_Reflection_Refraction" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-facebook fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-twitter">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/11/181105_Reflection_Refraction&text=빛의 반사 및 굴절의 특성 유도" target="_blank" title="Tweet">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-twitter fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-google-plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/11/181105_Reflection_Refraction" target="_blank" title="Share on Google Plus">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-google-plus fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="share-envelope">
+      <a href="mailto:?&subject=빛의 반사 및 굴절의 특성 유도&body=빛이 반사(reflection) 또는 굴절(Snells's law of refraction) 될 때 특성을 sympy를 이용하여 유도한다. http://localhost:4000/2018/11/181105_Reflection_Refraction" target="_blank" title="Email">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle-thin fa-stack-2x"></i>
+          <i class="fa fa-envelope-o fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+                  </div>
+                  
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                  </div>
+                  
+                </div>
+				<script type="text/x-mathjax-config">
+                  MathJax.Hub.Config({
+                    tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    processEscapes: true
+                    }
+                  });
+                </script>
+				<script type="text/javascript" async
+                  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+                </script>
+              </div>
+            </div>
+            <div class="col-md-4 hidden-xs">
+              <div class="sidebar ">
+  <h2>Recent Posts</h2>
+  <ul>
+    
+    <li><a href="/2018/11/181105_Reflection_Refraction">빛의 반사 및 굴절의 특성 유도</a></li>
+    
+    <li><a href="/2018/10/181030_MatlabApiInPython">Python에서 Matlab 사용하기</a></li>
+    
+    <li><a href="/2018/09/180922_CentripetalForce">등속 원운동의 구심력 유도</a></li>
+    
+    <li><a href="/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate">정사각형 내 임의의 두점의 거리</a></li>
+    
+    <li><a href="/2018/09/180909_ConwayGame">Conway's Game of Life (생명 게임)</a></li>
+    
+  </ul>
+</div>
+
+<div class="sidebar">
+  <h2>Tags</h2>
+  <ul class="sideBarTags">
+    
+    
+    <li>
+      <a href="/tag/jupyter" data-toggle="tooltip" data-placement="right" title="1">
+        <span>jupyter</span></a></li>
+    
+    <li>
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="4">
+        <span>math</span></a></li>
+    
+    <li>
+      <a href="/tag/matlab" data-toggle="tooltip" data-placement="right" title="2">
+        <span>matlab</span></a></li>
+    
+    <li>
+      <a href="/tag/physics" data-toggle="tooltip" data-placement="right" title="2">
+        <span>physics</span></a></li>
+    
+    <li>
+      <a href="/tag/pycharm" data-toggle="tooltip" data-placement="right" title="1">
+        <span>pycharm</span></a></li>
+    
+    <li>
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="7">
+        <span>python</span></a></li>
+    
+    <li>
+      <a href="/tag/signal_system" data-toggle="tooltip" data-placement="right" title="1">
+        <span>signal_system</span></a></li>
+    
+    <li>
+      <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="3">
+        <span>sympy</span></a></li>
+    
+  </ul>
+</div>
+
+            </div>
+          </div>
+        </div>
+        
+<!-- Add Disqus comments. -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
+  var disqus_identifier = "/2018/11/181105_Reflection_Refraction";
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </div>
+          <footer class="footer-distributed">
+      <div class="container">
+        <div class="footer">
+          <p>ok97465 &copy; 2018-</p>
+          <h6>Follow me</h6>
+
+<ul class="social-media">
+
+  
+    <li>
+      <a title="ok97465 on Github" href="https://github.com/ok97465" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="9015220/lowqualitydelivery on StackOverflow" href="https://stackoverflow.com/users/9015220/lowqualitydelivery" target="_blank"><i class="fa fa-stack-overflow fa-2x"></i></a>
+    </li>
+  
+
+  
+
+  
+    <li>
+      <a title=" on Instagram" href="https://instagram.com/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title=" on Last.fm" href="https://www.lastfm.com/user/" target="_blank"><i class="fa fa-lastfm fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="feed.xml RSS" href="/feed.xml" target="_blank"><i class="fa fa-rss fa-2x"></i></a>
+    </li>
+  
+
+</ul>
+
+        </div>
+      </div>
+    </footer>
+
+    </div>
+  </body>
+</html>

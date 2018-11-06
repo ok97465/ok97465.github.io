@@ -17,7 +17,7 @@ sitemap :
 <br>
 
 ## 1. NBExtension 설정
-  * hide input 활설화
+  * hide input 활성화
   * hide input all 활성화
   * comment/uncomment hotkey 활성화
     * 단축키 Ctrl+R로 변경
