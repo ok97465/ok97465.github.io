@@ -209,10 +209,10 @@ Template text :</p>
 <p>Abbreviation : fig,  <br />
 Template text :</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="err">$</span><span class="n">DATA</span><span class="err">$</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'$TITLE$'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'$XLABEL$'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'$YLABEL$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="err">$</span><span class="mi">1</span><span class="err">$</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'$2$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'$3$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'$4$'</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -259,6 +259,49 @@ Template text :</p>
 <p>Abbreviation : load  <br />
 Template text :</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load_vars</span><span class="p">(</span><span class="s">'$END$'</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="67-sympy-명령">6.7. sympy 명령</h3>
+<p>Abbreviation : sympy  <br />
+Template text :</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">symbols</span><span class="p">,</span> <span class="n">init_printing</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">tan</span><span class="p">,</span> <span class="n">atan</span><span class="p">,</span>
+                   <span class="n">diff</span><span class="p">,</span> <span class="n">integrate</span><span class="p">,</span> <span class="n">solve</span><span class="p">,</span> <span class="n">Abs</span><span class="p">,</span> <span class="n">Eq</span><span class="p">,</span> <span class="n">simplify</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sympy.integrals.transforms</span> <span class="kn">import</span> <span class="n">fourier_transform</span>
+<span class="n">init_printing</span><span class="p">()</span>
+<span class="err">$</span><span class="n">END</span><span class="err">$</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">th1</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'x y theta_1'</span><span class="p">)</span>
+
+<span class="c1"># simultaneous Equation
+</span><span class="n">eq1</span> <span class="o">=</span> <span class="n">Eq</span><span class="p">(</span><span class="n">lhs</span><span class="o">=</span><span class="n">x</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">th1</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">rhs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">eq2</span> <span class="o">=</span> <span class="n">Eq</span><span class="p">(</span><span class="n">lhs</span><span class="o">=</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="n">rhs</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">eq3</span> <span class="o">=</span> <span class="n">Eq</span><span class="p">(</span><span class="n">lhs</span><span class="o">=</span><span class="n">th1</span><span class="p">,</span> <span class="n">rhs</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eq1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eq2</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">eq3</span><span class="p">)</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">solve</span><span class="p">([</span><span class="n">eq1</span><span class="p">,</span> <span class="n">eq2</span><span class="p">,</span> <span class="n">eq3</span><span class="p">],</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">th1</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+
+<span class="c1"># derviation
+</span><span class="n">fx</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+<span class="n">dfx</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dfx</span><span class="p">)</span>
+
+<span class="c1"># integral
+</span><span class="n">Fx</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">(</span><span class="n">fx</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Fx</span><span class="p">)</span>
+
+<span class="c1"># substitute
+</span><span class="n">expr</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">th1</span>
+<span class="n">display</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="n">th1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]))</span>
+
+<span class="c1">#fourier transform
+</span><span class="n">Fourier_y</span> <span class="o">=</span> <span class="n">fourier_transform</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="mf">1j</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Fourier_y</span><span class="p">)</span>
+
 </code></pre></div></div>
 
 <p><br /></p>
