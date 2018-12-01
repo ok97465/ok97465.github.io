@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 01 Dec 2018 18:32:13 +0900</pubDate>
-    <lastBuildDate>Sat, 01 Dec 2018 18:32:13 +0900</lastBuildDate>
+    <pubDate>Sat, 01 Dec 2018 23:09:30 +0900</pubDate>
+    <lastBuildDate>Sat, 01 Dec 2018 23:09:30 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -2333,22 +2333,31 @@ oShell.Run strArgs, 0, false
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;1-script-run-시-현재-console에서-실행&quot;&gt;1. Script Run 시 현재 Console에서 실행&lt;/h2&gt;
-&lt;p&gt;File –&amp;gt; Settings –&amp;gt; Build, Execution, Deployment –&amp;gt; Console&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;Always show debug console : 활성화&lt;/li&gt;
-  &lt;li&gt;User existing console for “Run with Python console” : 활성화&lt;/li&gt;
+  &lt;li&gt;File –&amp;gt; Settings –&amp;gt; Build, Execution, Deployment –&amp;gt; Console
+    &lt;ul&gt;
+      &lt;li&gt;Always show debug console : 활성화&lt;/li&gt;
+      &lt;li&gt;User existing console for “Run with Python console” : 활성화&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Script마다 Run Configration이 설정되는데 스크립트 마다 Run Configration의 Run with Python Console Check&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;2-console에-자주-쓰는-함수-자동-import&quot;&gt;2. Console에 자주 쓰는 함수 자동 import&lt;/h2&gt;
+&lt;h2 id=&quot;2-python-console-실행-시-자주-사용하는-함수-자동-import&quot;&gt;2. Python Console 실행 시 자주 사용하는 함수 자동 import&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; Build, Execution, Deployment –&amp;gt; Console –&amp;gt; Python Console –&amp;gt; Start Script에 추가&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load_ext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;autoreload&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoreload&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load_ext&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;autoreload&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;autoreload&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
 
-    &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;oklib.init&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load_func_frequently&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;load_func_frequently&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;globals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;oklib.init&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load_func_frequently&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;load_func_frequently&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;globals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/SettingPycharm/console_import.gif&quot; alt=&quot;missing&quot; width=&quot;640&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Python Console 실행 시 자주 사용하는 함수 자동 import&lt;/figcaption&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2359,10 +2368,15 @@ oShell.Run strArgs, 0, false
 Name : MPLCURSORS  &lt;br /&gt;
 Value : {“multiple”: 1}&lt;/p&gt;
 
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/SettingPycharm/mpl_cursors.gif&quot; alt=&quot;missing&quot; width=&quot;640&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Matplotlib의 Cursor Marker 기능 활성화&lt;/figcaption&gt;
+&lt;/figure&gt;
+
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;4-variable-창에서-자주-쓰는-함수-숨김&quot;&gt;4. Variable 창에서 자주 쓰는 함수 숨김&lt;/h2&gt;
-&lt;p&gt;pycharm 폴더/helpers/pydev/_pydev_bundle/pydev_ipython_console.py의 get_ipython_hidden_vars_dict에 추가&lt;/p&gt;
+&lt;p&gt;pycharm 폴더/helpers/pydev/_pydev_bundle/pydev_ipython_console.py의 get_ipython_hidden_vars_dict 함수의 user_hidden_dict.setdefault(‘___’, ‘’) 밑에 추가 (들여쓰기는 space로 동일하게 맞추어야 함)&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;n&quot;&gt;user_hidden_dict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setdefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'rad2deg'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;user_hidden_dict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;setdefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'deg2rad'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -2403,11 +2417,16 @@ Value : {“multiple”: 1}&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;6-자주쓰는-keyword-추가&quot;&gt;6. 자주쓰는 Keyword 추가&lt;/h2&gt;
+&lt;h2 id=&quot;6-matlab의-자주쓰는-keyword-추가&quot;&gt;6. Matlab의 자주쓰는 Keyword 추가&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;File –&amp;gt; Settings –&amp;gt; Editor –&amp;gt; Live Templates –&amp;gt; Python 에 아래 명령들 추가&lt;/li&gt;
   &lt;li&gt;명령 추가 시 하단의 Define을 눌러 Python Check&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/SettingPycharm/import_matlab.gif&quot; alt=&quot;missing&quot; width=&quot;640&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Matlab의 자주 쓰는 명령어 자동 완성 예시&lt;/figcaption&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2532,7 +2551,10 @@ Template text :&lt;/p&gt;
   &lt;li&gt;File –&amp;gt; Settings –&amp;gt; Editor –&amp;gt; General –&amp;gt; Auto import –&amp;gt; Python의 Show import popup check&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Python을 사용하다 보면 import 명령을 치는 것이 귀찮을 때가 있다. 이런 사람들을 위해 Pycharm은 Auto import 기능을 지원한다. 위의 popup 기능을 활성화 하고 Editor에서 import하지 않은 명령을 치면 자동 import 할 것 인가를 물어 본다.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/SettingPycharm/autoimport.gif&quot; alt=&quot;missing&quot; width=&quot;360&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Auto import&lt;/figcaption&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2546,29 +2568,29 @@ Template text :&lt;/p&gt;
 
 &lt;h2 id=&quot;9-file-생성-시-주석-추가&quot;&gt;9. File 생성 시 주석 추가&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; File and Code Templates –&amp;gt; Python script에 추가&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c1&quot;&gt;# -*- coding: utf-8 -*-
-&lt;/span&gt;    &lt;span class=&quot;s&quot;&gt;r&quot;&quot;&quot;[Title]
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# -*- coding: utf-8 -*-
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;r&quot;&quot;&quot;[Title]
 
-    [Description]
+[Description]
 
-    Example
-    -------
-    [example]
+Example
+-------
+[example]
 
-    Notes
-    -----
-    [Notes]
+Notes
+-----
+[Notes]
 
-    References
-    ----------
-    .. [] 책: 저자명. (발행년). Title of chapter. In 편집자명 (역할), title of book (쪽). 발행지 : 발행사
-    .. [] 학위 논문: 학위자명, &quot;논문제목&quot;, 대학원 이름 석사 학위논문, 1990 
-    .. [] 저널 논문: 저자. &quot;논문제목&quot;. 저널명, . pp.
+References
+----------
+.. [] 책: 저자명. (발행년). Title of chapter. In 편집자명 (역할), title of book (쪽). 발행지 : 발행사
+.. [] 학위 논문: 학위자명, &quot;논문제목&quot;, 대학원 이름 석사 학위논문, 1990 
+.. [] 저널 논문: 저자. &quot;논문제목&quot;. 저널명, . pp.
 
-    :File name: ${NAME}.py
-    :author: ok97465
-    :Date created: ${DATE} ${TIME}
-    &quot;&quot;&quot;&lt;/span&gt;
+:File name: ${NAME}.py
+:author: ok97465
+:Date created: ${DATE} ${TIME}
+&quot;&quot;&quot;&lt;/span&gt;
 
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
