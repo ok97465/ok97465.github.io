@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 21 Nov 2018 23:01:56 +0900</pubDate>
-    <lastBuildDate>Wed, 21 Nov 2018 23:01:56 +0900</lastBuildDate>
+    <pubDate>Sat, 01 Dec 2018 18:32:13 +0900</pubDate>
+    <lastBuildDate>Sat, 01 Dec 2018 18:32:13 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -2404,7 +2404,10 @@ Value : {“multiple”: 1}&lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;6-자주쓰는-keyword-추가&quot;&gt;6. 자주쓰는 Keyword 추가&lt;/h2&gt;
-&lt;p&gt;File –&amp;gt; Settings –&amp;gt; Live Templates –&amp;gt; Python 에 아래 명령들 추가&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;File –&amp;gt; Settings –&amp;gt; Editor –&amp;gt; Live Templates –&amp;gt; Python 에 아래 명령들 추가&lt;/li&gt;
+  &lt;li&gt;명령 추가 시 하단의 Define을 눌러 Python Check&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2524,7 +2527,24 @@ Template text :&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;7-file-생성-시-주석-추가&quot;&gt;7. File 생성 시 주석 추가&lt;/h2&gt;
+&lt;h2 id=&quot;7-auto-import&quot;&gt;7. Auto import&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;File –&amp;gt; Settings –&amp;gt; Editor –&amp;gt; General –&amp;gt; Auto import –&amp;gt; Python의 Show import popup check&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Python을 사용하다 보면 import 명령을 치는 것이 귀찮을 때가 있다. 이런 사람들을 위해 Pycharm은 Auto import 기능을 지원한다. 위의 popup 기능을 활성화 하고 Editor에서 import하지 않은 명령을 치면 자동 import 할 것 인가를 물어 본다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;8-현재-데이터를-유지한-상태에서-디버깅&quot;&gt;8. 현재 데이터를 유지한 상태에서 디버깅&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;현재 python 콘솔의 attach debbuger 클릭&lt;/li&gt;
+  &lt;li&gt;break point 생성 후 script Run 수행 (debug script 아님)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;9-file-생성-시-주석-추가&quot;&gt;9. File 생성 시 주석 추가&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; File and Code Templates –&amp;gt; Python script에 추가&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;c1&quot;&gt;# -*- coding: utf-8 -*-
 &lt;/span&gt;    &lt;span class=&quot;s&quot;&gt;r&quot;&quot;&quot;[Title]
@@ -2555,17 +2575,17 @@ Template text :&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;8-docstring-format-변경&quot;&gt;8. Docstring format 변경&lt;/h2&gt;
+&lt;h2 id=&quot;10-docstring-format-변경&quot;&gt;10. Docstring format 변경&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; Tools –&amp;gt; Python Integrated Tools –&amp;gt; Docstring format을 Numpy로 변경&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;9-offline-환경에서-quick-document-사용-시-버벅임-최소화&quot;&gt;9. Offline 환경에서 Quick Document 사용 시 버벅임 최소화&lt;/h2&gt;
+&lt;h2 id=&quot;11-offline-환경에서-quick-document-사용-시-버벅임-최소화&quot;&gt;11. Offline 환경에서 Quick Document 사용 시 버벅임 최소화&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; Tools –&amp;gt; Python External Documentation의 항목 전체 삭제&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;10-자주-쓰는-함수-추가&quot;&gt;10. 자주 쓰는 함수 추가&lt;/h2&gt;
+&lt;h2 id=&quot;12-자주-쓰는-함수-추가&quot;&gt;12. 자주 쓰는 함수 추가&lt;/h2&gt;
 &lt;p&gt;생성한 Python Project 폴더에 아래 파일을 압축 해제하여 oklib 폴더를 생성한다.  &lt;br /&gt;
 &lt;a href=&quot;/assets/data/oklib.zip&quot;&gt;oklib Download&lt;/a&gt;&lt;/p&gt;
 </description>
