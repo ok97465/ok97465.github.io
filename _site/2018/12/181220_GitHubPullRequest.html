@@ -11,13 +11,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>ok97465 | Jupyter NoteBook에서 신호처리를 위한 설정 </title>
-  <meta name="description" content="Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다.">
+  <title>ok97465 | Github에서 Pull Request 하는 방법 </title>
+  <meta name="description" content="Github에서 Pull Request 하는 방법">
   <meta name="theme-color" content="#222222">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Jupyter NoteBook에서 신호처리를 위한 설정">
-  <meta property="og:description" content="Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다.">
+  <meta property="og:title" content="Github에서 Pull Request 하는 방법">
+  <meta property="og:description" content="Github에서 Pull Request 하는 방법">
   <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
   <meta property="og:url" content="http://ok97465.github.io">
   <script src="/assets/js/jquery.min.js"></script>
@@ -95,114 +95,168 @@
             <div class="col-md-8">
               <div class="article">
                 <div class="well">
-                  <h1><a href="/2018/09/180909_SettingJupyterNotebook">Jupyter NoteBook에서 신호처리를 위한 설정</a></h1>
+                  <h1><a href="/2018/12/181220_GitHubPullRequest">Github에서 Pull Request 하는 방법</a></h1>
                   <div class="post-meta">
                     <div class="post-time">
                       <i class="fa fa-calendar"></i>
-                      <time>09 Sep 2018</time>
+                      <time>20 Dec 2018</time>
                     </div>
                     <ul>
                       
-                        <li><a href="/tag/python">python</a></li>
-                      
-                        <li><a href="/tag/jupyter">jupyter</a></li>
+                        <li><a href="/tag/github">github</a></li>
                       
                     </ul>
                   </div>
                   <div class="post-content">
                     <div id="toc" class="toc"></div>
-                    <h1 id="jupyter-notebook에서-신호처리를-위한-설정">Jupyter NoteBook에서 신호처리를 위한 설정</h1>
-<hr />
+                    <h1 id="github에서-pull-request-하는-방법">Github에서 Pull Request 하는 방법</h1>
+
+<h2 id="1-pull-request-순서">1. Pull Request 순서</h2>
+<ol>
+  <li>Fork</li>
+  <li>clone, remote설정</li>
+  <li>branch 생성</li>
+  <li>수정 작업 후 add, commit, push</li>
+  <li>Pull Request 생성</li>
+  <li>코드리뷰, Merge Pull Reqest</li>
+  <li>Merge 이후 branch 삭제 및 동기화</li>
+</ol>
 
 <p><br /></p>
 
-<h2 id="1-nbextension-설정">1. NBExtension 설정</h2>
+<h2 id="2-fork">2. Fork</h2>
 <ul>
-  <li>hide input 활성화</li>
-  <li>hide input all 활성화</li>
-  <li>comment/uncomment hotkey 활성화
+  <li>타겟 프로젝트의 저장소를 자신의 저장소로 Fork 한다.</li>
+</ul>
+
+<figure>
+    <img src="/assets/images/github_pull_request/01Fork.png" alt="missing" width="640" />
+    <figcaption class="figure-caption">Fork Button 위치</figcaption>
+</figure>
+
+<p><br /></p>
+
+<ul>
+  <li>Fork가 완료되면 자신의 계정에 새로운 저장소가 생긴다.</li>
+</ul>
+
+<figure>
+    <img src="/assets/images/github_pull_request/01Fork2.png" alt="missing" width="640" />
+    <figcaption class="figure-caption">Fork 확인</figcaption>
+</figure>
+
+<p><br /></p>
+
+<h2 id="3-clone-remote-설정">3. clone, remote 설정</h2>
+<ul>
+  <li>fork로 생성한 본인 계정의 저장소에서 clone or download 버튼을 누르고 표시되는 url을 복사한다.</li>
+</ul>
+<figure>
+    <img src="/assets/images/github_pull_request/02Clone.png" alt="missing" width="640" />
+    <figcaption class="figure-caption">Fork된 저장소의 주소 확인</figcaption>
+</figure>
+
+<p><br /></p>
+
+<ul>
+  <li>자신의 컴퓨터에서 작업을 하기 위해서 Fork한 저장소를 로컬에 clone 한다.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git clone https://github.com/ok97465/spyder.git
+</code></pre></div>    </div>
+    <p><br /></p>
+  </li>
+  <li>로컬 저장소에 원격 저장소를 추가한다. 위 작업과 동일하게 github 저장소에서 clone or download 메뉴를 통해서 확인한 url을 사용한다.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># 원본 프로젝트 저장소를 원격 저장소로 추가</span>
+ <span class="nv">$ </span>git remote add spyder<span class="o">(</span>별명<span class="o">)</span> https://github.com/spyder-ide/spyder.git
+
+ <span class="c"># 원격 저장소 설정 현황 확인방법</span>
+ <span class="nv">$ </span>git remote <span class="nt">-v</span>
+</code></pre></div>    </div>
     <ul>
-      <li>단축키 Ctrl+R로 변경</li>
+      <li>원본 프로젝트 저장소 (직접 추가 필요)</li>
+      <li>fork한 로컬 프로젝트 (origin이라는 별명으로 기본으로 추가되어 있다. 따로 추가할 필요 없음)</li>
     </ul>
   </li>
-  <li>spell checker 활성화</li>
-  <li>table of contents(2) 활성화</li>
-  <li>runtools 활성화
-    <ul>
-      <li>run all cells 단축키 Ctrl+F5로 변경</li>
-    </ul>
+</ul>
+
+<p><br /></p>
+
+<h2 id="4-branch-생성">4. branch 생성</h2>
+<blockquote>
+  <p>개발을 하다 보면 코드를 여러 개로 복사해야 하는 일이 자주 생긴다. 코드를 통째로 복사하고 나서 원래 코드와는 상관없이 독립적으로 개발을 진행할 수 있는데, 이렇게 독립적으로 개발하는 것이 브랜치다. - pro git book</p>
+</blockquote>
+
+<ul>
+  <li>자신의 로컬 컴퓨터에서 코드를 추가하는 작업은 branch를 만들어서 진행한다.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># develop 이라는 이름의 branch를 생성한다.</span>
+  git checkout <span class="nt">-b</span> develop
+    Switched to a new branch <span class="s1">'develop'</span>
+
+  <span class="c"># 이제 2개의 브랜치가 존재한다.</span>
+  git branch
+    <span class="k">*</span> develop
+      master
+</code></pre></div>    </div>
   </li>
-  <li>snippets 활성화
-    <ul>
-      <li><a href="/assets/data/SettingJupyterNotebook/snippets.json">snippets.json</a>을 파이선폴더/share/jupyter/nbextensions/snippets에 복사 한다.</li>
-    </ul>
+</ul>
+
+<p><br /></p>
+
+<h2 id="5-수정-작업-후-add-commit-push">5. 수정 작업 후 add, commit, push</h2>
+<ul>
+  <li>자신이 사용하는 코드 편집 툴을 활용하여 수정 작업을 진행한다.</li>
+  <li>작업이 완료되면, add, commit, push를 통해서 자신의 github repository (origin)에 수정사항을 반영한다.</li>
+  <li><code class="highlighter-rouge">주의사항</code> push 진행시에 branch 이름을 명시해주어야 한다.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git push origin develop
+</code></pre></div>    </div>
   </li>
-  <li>snippets Menu 활성화</li>
-  <li>scratchpad 활성화</li>
 </ul>
 
 <p><br /></p>
 
-<h2 id="2-theme-설정">2. Theme 설정</h2>
-<p>onedork theme 설정  <br />
-./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T</p>
+<h2 id="6-pull-request-생성">6. Pull Request 생성</h2>
+<ul>
+  <li>push 완료 후 본인 계정의 github 저장소에 들어오면 Compare &amp; pull reqeust 버튼이 활성화 되어 있다.</li>
+  <li>해당 버튼을 선택하여 메시지를 작성하고 PR을 생성한다.</li>
+</ul>
+
+<figure>
+    <img src="/assets/images/github_pull_request/05PullRequest.png" alt="missing" width="640" />
+    <figcaption class="figure-caption"></figcaption>
+</figure>
 
 <p><br /></p>
 
-<h2 id="3-qtconsole-style변경">3. qtconsole style변경</h2>
-<p>%qtconsole로 외부 console 실행 시 theme를 설정 한다.  <br />
-<a href="/assets/data/SettingJupyterNotebook/jupyter_qtconsole_config.py">jupyter_qtconsole_config.py</a>를 ~/.jupyter에 복사 한다.</p>
+<figure>
+    <img src="/assets/images/github_pull_request/05PullRequest2.png" alt="missing" width="640" />
+    <figcaption class="figure-caption"></figcaption>
+</figure>
 
 <p><br /></p>
 
-<h2 id="4-jupyter-notebook-1회만-실행">4. Jupyter Notebook 1회만 실행</h2>
-<p>jupyter notebook을 아이콘으로 만들어 실행 하려다 보면 아이콘 클릭 시 마다 새로운 jupyter server가 실행된다. 이런 문제를 해결하기 위해서 간단한 python 코드와 Script를 작성하여 script를 바로가기로 지정한다.</p>
-
+<h2 id="7-코드리뷰-merge-pull-reqest">7. 코드리뷰, Merge Pull Reqest</h2>
 <ul>
-  <li>Python Code (run_jupyter.py)</li>
+  <li>PR을 받은 원본 저장소 관리자는 코드 변경내역을 확인하고 Merge 여부를 결정한다.</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">import</span> <span class="nn">webbrowser</span>
-<span class="kn">from</span> <span class="nn">notebook</span> <span class="kn">import</span> <span class="n">notebookapp</span>
-<span class="kn">from</span> <span class="nn">notebook.notebookapp</span> <span class="kn">import</span> <span class="n">main</span>
+<p><br /></p>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">port</span> <span class="o">=</span> <span class="mi">9876</span>
-    <span class="n">jupyter_server_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">notebookapp</span><span class="o">.</span><span class="n">list_running_servers</span><span class="p">())</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">jupyter_server_list</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">server</span><span class="p">[</span><span class="s">'port'</span><span class="p">]</span> <span class="o">==</span> <span class="n">port</span><span class="p">:</span>
-                <span class="n">webbrowser</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'url'</span><span class="p">]</span><span class="o">+</span><span class="s">'tree'</span><span class="p">)</span>
-                <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">'/home/ok97465/python/BlogSrcByJupyter'</span><span class="p">)</span>  <span class="c1"># notebook을 저장할 폴더
-</span>    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">))</span>
-</code></pre></div></div>
-
+<h2 id="8-merge-이후-동기화-및-branch-삭제">8. Merge 이후 동기화 및 branch 삭제</h2>
 <ul>
-  <li>Linux용 script (run_jupyter.sh)</li>
+  <li>원본 저장소에 Merge가 완료되면 로컬 코드와 원본 저장소의 코드를 동기화 한다.</li>
+  <li>작업하던 로컬의 branch를 삭제한다.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># 코드 동기화</span>
+  git pull spyder
+  <span class="c"># 브랜치 삭제</span>
+  git branch <span class="nt">-d</span> develop
+</code></pre></div>    </div>
+  </li>
+  <li>나중에 추가로 작업할 일이 있으면 <code class="highlighter-rouge">git pull spyder</code> 명령을 통해 원본 저장소와 동기화를 진행하고 (branch 삭제~Merge)를 반복한다.</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
-<span class="nb">export </span><span class="nv">MPLCURSORS</span><span class="o">=</span><span class="s1">'{"multiple": 1}'</span>  <span class="c"># maplotlib Cusor Marker</span>
-<span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/home/ok97465/python/scientific  <span class="c"># oklib를 포함하는 폴더  </span>
-~/anaconda3/bin/python ~/python/run_jupyter.py
-</code></pre></div></div>
+<p><br /></p>
 
-<ul>
-  <li>Window용 스크립트 (run_jupyter.vbs)</li>
-</ul>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set oShell = CreateObject ("Wscript.Shell")
-Dim strArgs
-strArgs = "cmd /v:on /k (set MPLCURSORS=" + "{" + Chr(34) + "multiple" + Chr(34) + ": 1" + "}" + ")" + " &amp; (set PYTHONPATH=D:\python\scientific) &amp; C:\IntelPython3\python.exe D:\python\start_jupyter.py"
-oShell.Run strArgs, 0, false
-</code></pre></div></div>
+<h2 id="9-참고자료">9. 참고자료</h2>
+<p>[1] https://wayhome25.github.io/git/2017/07/08/git-first-pull-request-story/</p>
 
                     
 
@@ -210,7 +264,7 @@ oShell.Run strArgs, 0, false
   <ul class="share-buttons">
     
     <li class="share-facebook">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/09/180909_SettingJupyterNotebook" target="_blank" title="Share on Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/12/181220_GitHubPullRequest" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-facebook fa-stack-1x"></i>
@@ -221,7 +275,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/09/180909_SettingJupyterNotebook&text=Jupyter NoteBook에서 신호처리를 위한 설정" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/12/181220_GitHubPullRequest&text=Github에서 Pull Request 하는 방법" target="_blank" title="Tweet">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-twitter fa-stack-1x"></i>
@@ -232,7 +286,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/09/180909_SettingJupyterNotebook" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/12/181220_GitHubPullRequest" target="_blank" title="Share on Google Plus">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-google-plus fa-stack-1x"></i>
@@ -247,7 +301,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Jupyter NoteBook에서 신호처리를 위한 설정&body=Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다. http://localhost:4000/2018/09/180909_SettingJupyterNotebook" target="_blank" title="Email">
+      <a href="mailto:?&subject=Github에서 Pull Request 하는 방법&body=Github에서 Pull Request 하는 방법 http://localhost:4000/2018/12/181220_GitHubPullRequest" target="_blank" title="Email">
         <span class="fa-stack fa-lg">
           <i class="fa fa-circle-thin fa-stack-2x"></i>
           <i class="fa fa-envelope-o fa-stack-1x"></i>
@@ -352,7 +406,7 @@ oShell.Run strArgs, 0, false
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
-  var disqus_identifier = "/2018/09/180909_SettingJupyterNotebook";
+  var disqus_identifier = "/2018/12/181220_GitHubPullRequest";
 
   /* * * DON'T EDIT BELOW THIS LINE * * */
   (function() {
