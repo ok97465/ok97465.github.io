@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 21 Dec 2018 08:08:14 +0900</pubDate>
-    <lastBuildDate>Fri, 21 Dec 2018 08:08:14 +0900</lastBuildDate>
+    <pubDate>Fri, 21 Dec 2018 08:23:36 +0900</pubDate>
+    <lastBuildDate>Fri, 21 Dec 2018 08:23:36 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -62,7 +62,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;자신의 컴퓨터에서 작업을 하기 위해서 Fork한 저장소를 로컬에 clone 한다.
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  git clone https://github.com/ok97465/spyder.git
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git clone https://github.com/ok97465/spyder.git
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
     &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
   &lt;/li&gt;
@@ -90,13 +90,13 @@
 &lt;ul&gt;
   &lt;li&gt;자신의 로컬 컴퓨터에서 코드를 추가하는 작업은 branch를 만들어서 진행한다.
     &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c&quot;&gt;# develop 이라는 이름의 branch를 생성한다.&lt;/span&gt;
-  git checkout &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; develop
-    Switched to a new branch &lt;span class=&quot;s1&quot;&gt;'develop'&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; develop
+  Switched to a new branch &lt;span class=&quot;s1&quot;&gt;'develop'&lt;/span&gt;
 
   &lt;span class=&quot;c&quot;&gt;# 이제 2개의 브랜치가 존재한다.&lt;/span&gt;
-  git branch
-    &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; develop
-      master
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch
+  &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; develop
+    master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -108,7 +108,7 @@
   &lt;li&gt;자신이 사용하는 코드 편집 툴을 활용하여 수정 작업을 진행한다.&lt;/li&gt;
   &lt;li&gt;작업이 완료되면, add, commit, push를 통해서 자신의 github repository (origin)에 수정사항을 반영한다.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;주의사항&lt;/code&gt; push 진행시에 branch 이름을 명시해주어야 한다.
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  git push origin develop
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git push origin develop
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -147,9 +147,10 @@
   &lt;li&gt;원본 저장소에 Merge가 완료되면 로컬 코드와 원본 저장소의 코드를 동기화 한다.&lt;/li&gt;
   &lt;li&gt;작업하던 로컬의 branch를 삭제한다.
     &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c&quot;&gt;# 코드 동기화&lt;/span&gt;
-  git pull spyder
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git pull spyder
+    
   &lt;span class=&quot;c&quot;&gt;# 브랜치 삭제&lt;/span&gt;
-  git branch &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; develop
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; develop
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;나중에 추가로 작업할 일이 있으면 &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull spyder&lt;/code&gt; 명령을 통해 원본 저장소와 동기화를 진행하고 (branch 삭제~Merge)를 반복한다.&lt;/li&gt;

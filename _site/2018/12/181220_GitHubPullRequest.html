@@ -160,7 +160,7 @@
 
 <ul>
   <li>자신의 컴퓨터에서 작업을 하기 위해서 Fork한 저장소를 로컬에 clone 한다.
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git clone https://github.com/ok97465/spyder.git
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>git clone https://github.com/ok97465/spyder.git
 </code></pre></div>    </div>
     <p><br /></p>
   </li>
@@ -188,13 +188,13 @@
 <ul>
   <li>자신의 로컬 컴퓨터에서 코드를 추가하는 작업은 branch를 만들어서 진행한다.
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># develop 이라는 이름의 branch를 생성한다.</span>
-  git checkout <span class="nt">-b</span> develop
-    Switched to a new branch <span class="s1">'develop'</span>
+  <span class="nv">$ </span>git checkout <span class="nt">-b</span> develop
+  Switched to a new branch <span class="s1">'develop'</span>
 
   <span class="c"># 이제 2개의 브랜치가 존재한다.</span>
-  git branch
-    <span class="k">*</span> develop
-      master
+  <span class="nv">$ </span>git branch
+  <span class="k">*</span> develop
+    master
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -206,7 +206,7 @@
   <li>자신이 사용하는 코드 편집 툴을 활용하여 수정 작업을 진행한다.</li>
   <li>작업이 완료되면, add, commit, push를 통해서 자신의 github repository (origin)에 수정사항을 반영한다.</li>
   <li><code class="highlighter-rouge">주의사항</code> push 진행시에 branch 이름을 명시해주어야 한다.
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git push origin develop
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>git push origin develop
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -245,9 +245,10 @@
   <li>원본 저장소에 Merge가 완료되면 로컬 코드와 원본 저장소의 코드를 동기화 한다.</li>
   <li>작업하던 로컬의 branch를 삭제한다.
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># 코드 동기화</span>
-  git pull spyder
+  <span class="nv">$ </span>git pull spyder
+    
   <span class="c"># 브랜치 삭제</span>
-  git branch <span class="nt">-d</span> develop
+  <span class="nv">$ </span>git branch <span class="nt">-d</span> develop
 </code></pre></div>    </div>
   </li>
   <li>나중에 추가로 작업할 일이 있으면 <code class="highlighter-rouge">git pull spyder</code> 명령을 통해 원본 저장소와 동기화를 진행하고 (branch 삭제~Merge)를 반복한다.</li>

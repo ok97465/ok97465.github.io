@@ -55,7 +55,7 @@ sitemap :
   
 - 자신의 컴퓨터에서 작업을 하기 위해서 Fork한 저장소를 로컬에 clone 한다.
 ```bash
-    git clone https://github.com/ok97465/spyder.git
+    $ git clone https://github.com/ok97465/spyder.git
 ```
 <br>
 - 로컬 저장소에 원격 저장소를 추가한다. 위 작업과 동일하게 github 저장소에서 clone or download 메뉴를 통해서 확인한 url을 사용한다.
@@ -78,13 +78,13 @@ sitemap :
 - 자신의 로컬 컴퓨터에서 코드를 추가하는 작업은 branch를 만들어서 진행한다.
 ```bash
     # develop 이라는 이름의 branch를 생성한다.
-    git checkout -b develop
-      Switched to a new branch 'develop'
+    $ git checkout -b develop
+    Switched to a new branch 'develop'
 
     # 이제 2개의 브랜치가 존재한다.
-    git branch
-      * develop
-        master
+    $ git branch
+    * develop
+      master
 ```
 
 <br>
@@ -94,7 +94,7 @@ sitemap :
 - 작업이 완료되면, add, commit, push를 통해서 자신의 github repository (origin)에 수정사항을 반영한다.
 - `주의사항` push 진행시에 branch 이름을 명시해주어야 한다.
 ```bash
-    git push origin develop
+    $ git push origin develop
 ```
 
 <br>
@@ -127,9 +127,10 @@ sitemap :
 - 작업하던 로컬의 branch를 삭제한다.
 ```bash
     # 코드 동기화
-    git pull spyder
+    $ git pull spyder
+    
     # 브랜치 삭제
-    git branch -d develop
+    $ git branch -d develop
 ```
 - 나중에 추가로 작업할 일이 있으면 `git pull spyder` 명령을 통해 원본 저장소와 동기화를 진행하고 (branch 삭제~Merge)를 반복한다.
 
