@@ -61,7 +61,7 @@ sitemap :
 - 로컬 저장소에 원격 저장소를 추가한다. 위 작업과 동일하게 github 저장소에서 clone or download 메뉴를 통해서 확인한 url을 사용한다.
 ```bash
    # 원본 프로젝트 저장소를 원격 저장소로 추가
-   $ git remote add spyder(별명) https://github.com/spyder-ide/spyder.git
+   $ git remote add upstream(별명) https://github.com/spyder-ide/spyder.git
 
    # 원격 저장소 설정 현황 확인방법
    $ git remote -v
@@ -119,6 +119,18 @@ sitemap :
 
 ## 7. 코드리뷰, Merge Pull Reqest
 - PR을 받은 원본 저장소 관리자는 코드 변경내역을 확인하고 Merge 여부를 결정한다.
+- Rebase 요청이 왔을 경우 아래와 같이 rebase를 수행한다.
+```bash
+    $ git checkout master
+    
+    $ git pull upstream master
+    
+    $ git checkout develop
+    
+    $ git rebase master
+    
+    $ git push origin develop --force
+```
 
 <br>
 
@@ -127,12 +139,12 @@ sitemap :
 - 작업하던 로컬의 branch를 삭제한다.
 ```bash
     # 코드 동기화
-    $ git pull spyder
+    $ git pull upstream
     
     # 브랜치 삭제
     $ git branch -d develop
 ```
-- 나중에 추가로 작업할 일이 있으면 `git pull spyder` 명령을 통해 원본 저장소와 동기화를 진행하고 (branch 삭제~Merge)를 반복한다.
+- 나중에 추가로 작업할 일이 있으면 `git pull upstream` 명령을 통해 원본 저장소와 동기화를 진행하고 (branch 삭제~Merge)를 반복한다.
 
 <br>
 

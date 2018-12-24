@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 21 Dec 2018 08:23:36 +0900</pubDate>
-    <lastBuildDate>Fri, 21 Dec 2018 08:23:36 +0900</lastBuildDate>
+    <pubDate>Tue, 25 Dec 2018 00:27:31 +0900</pubDate>
+    <lastBuildDate>Tue, 25 Dec 2018 00:27:31 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -68,7 +68,7 @@
   &lt;/li&gt;
   &lt;li&gt;로컬 저장소에 원격 저장소를 추가한다. 위 작업과 동일하게 github 저장소에서 clone or download 메뉴를 통해서 확인한 url을 사용한다.
     &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;c&quot;&gt;# 원본 프로젝트 저장소를 원격 저장소로 추가&lt;/span&gt;
- &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote add spyder&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;별명&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; https://github.com/spyder-ide/spyder.git
+ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote add upstream&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;별명&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; https://github.com/spyder-ide/spyder.git
 
  &lt;span class=&quot;c&quot;&gt;# 원격 저장소 설정 현황 확인방법&lt;/span&gt;
  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git remote &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
@@ -138,6 +138,18 @@
 &lt;h2 id=&quot;7-코드리뷰-merge-pull-reqest&quot;&gt;7. 코드리뷰, Merge Pull Reqest&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;PR을 받은 원본 저장소 관리자는 코드 변경내역을 확인하고 Merge 여부를 결정한다.&lt;/li&gt;
+  &lt;li&gt;Rebase 요청이 왔을 경우 아래와 같이 rebase를 수행한다.
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout master
+    
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git pull upstream master
+    
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git checkout develop
+    
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git rebase master
+    
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git push origin develop &lt;span class=&quot;nt&quot;&gt;--force&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -147,13 +159,13 @@
   &lt;li&gt;원본 저장소에 Merge가 완료되면 로컬 코드와 원본 저장소의 코드를 동기화 한다.&lt;/li&gt;
   &lt;li&gt;작업하던 로컬의 branch를 삭제한다.
     &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c&quot;&gt;# 코드 동기화&lt;/span&gt;
-  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git pull spyder
+  &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git pull upstream
     
   &lt;span class=&quot;c&quot;&gt;# 브랜치 삭제&lt;/span&gt;
   &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git branch &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; develop
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;나중에 추가로 작업할 일이 있으면 &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull spyder&lt;/code&gt; 명령을 통해 원본 저장소와 동기화를 진행하고 (branch 삭제~Merge)를 반복한다.&lt;/li&gt;
+  &lt;li&gt;나중에 추가로 작업할 일이 있으면 &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull upstream&lt;/code&gt; 명령을 통해 원본 저장소와 동기화를 진행하고 (branch 삭제~Merge)를 반복한다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
