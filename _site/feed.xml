@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 03 Jan 2019 23:39:46 +0900</pubDate>
-    <lastBuildDate>Thu, 03 Jan 2019 23:39:46 +0900</lastBuildDate>
+    <pubDate>Thu, 17 Jan 2019 03:35:32 +0900</pubDate>
+    <lastBuildDate>Thu, 17 Jan 2019 03:35:32 +0900</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -2946,7 +2946,7 @@ Template text :&lt;/p&gt;
 &lt;h2 id=&quot;9-file-생성-시-주석-추가&quot;&gt;9. File 생성 시 주석 추가&lt;/h2&gt;
 &lt;p&gt;File –&amp;gt; Settings –&amp;gt; File and Code Templates –&amp;gt; Python script에 추가&lt;/p&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# -*- coding: utf-8 -*-
-&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;r&quot;&quot;&quot;[Title]
+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;r&quot;&quot;&quot;[Title].  # noqa: 501.
 
 [Description]
 
@@ -2967,6 +2967,7 @@ References
 :File name: ${NAME}.py
 :author: ok97465
 :Date created: ${DATE} ${TIME}
+
 &quot;&quot;&quot;&lt;/span&gt;
 
 
