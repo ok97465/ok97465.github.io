@@ -123,7 +123,9 @@ sitemap :
 ```bash
     $ git checkout master
     
-    $ git pull upstream master
+    $ git fetch upstream master
+    
+    $ git merge upstream/master
     
     $ git checkout develop
     

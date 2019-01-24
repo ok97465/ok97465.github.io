@@ -239,7 +239,9 @@
   <li>Rebase 요청이 왔을 경우 아래와 같이 rebase를 수행한다.
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>git checkout master
     
-  <span class="nv">$ </span>git pull upstream master
+  <span class="nv">$ </span>git fetch upstream master
+    
+  <span class="nv">$ </span>git merge upstream/master
     
   <span class="nv">$ </span>git checkout develop
     
