@@ -160,16 +160,16 @@
 
 <ul>
   <li>자신의 컴퓨터에서 작업을 하기 위해서 Fork한 저장소를 로컬에 clone 한다.
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>git clone https://github.com/ok97465/spyder.git
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git clone https://github.com/ok97465/spyder.git
 </code></pre></div>    </div>
     <p><br /></p>
   </li>
   <li>로컬 저장소에 원격 저장소를 추가한다. 위 작업과 동일하게 github 저장소에서 clone or download 메뉴를 통해서 확인한 url을 사용한다.
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># 원본 프로젝트 저장소를 원격 저장소로 추가</span>
- <span class="nv">$ </span>git remote add upstream<span class="o">(</span>별명<span class="o">)</span> https://github.com/spyder-ide/spyder.git
+ git remote add upstream<span class="o">(</span>별명<span class="o">)</span> https://github.com/spyder-ide/spyder.git
 
  <span class="c"># 원격 저장소 설정 현황 확인방법</span>
- <span class="nv">$ </span>git remote <span class="nt">-v</span>
+ git remote <span class="nt">-v</span>
 </code></pre></div>    </div>
     <ul>
       <li>원본 프로젝트 저장소 (직접 추가 필요)</li>
@@ -188,11 +188,11 @@
 <ul>
   <li>자신의 로컬 컴퓨터에서 코드를 추가하는 작업은 branch를 만들어서 진행한다.
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># develop 이라는 이름의 branch를 생성한다.</span>
-  <span class="nv">$ </span>git checkout <span class="nt">-b</span> develop
+  git checkout <span class="nt">-b</span> develop
   Switched to a new branch <span class="s1">'develop'</span>
 
   <span class="c"># 이제 2개의 브랜치가 존재한다.</span>
-  <span class="nv">$ </span>git branch
+  git branch
   <span class="k">*</span> develop
     master
 </code></pre></div>    </div>
@@ -206,7 +206,7 @@
   <li>자신이 사용하는 코드 편집 툴을 활용하여 수정 작업을 진행한다.</li>
   <li>작업이 완료되면, add, commit, push를 통해서 자신의 github repository (origin)에 수정사항을 반영한다.</li>
   <li><code class="highlighter-rouge">주의사항</code> push 진행시에 branch 이름을 명시해주어야 한다.
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>git push origin develop
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git push origin develop
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -236,18 +236,26 @@
 <h2 id="7-코드리뷰-merge-pull-reqest">7. 코드리뷰, Merge Pull Reqest</h2>
 <ul>
   <li>PR을 받은 원본 저장소 관리자는 코드 변경내역을 확인하고 Merge 여부를 결정한다.</li>
+  <li>수정사항이 생겼을 경우 변경 후 origin에 push 한다.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git add path
+    
+  git commit <span class="nt">-m</span> <span class="s2">"수정내용"</span>
+    
+  git push origin develop
+</code></pre></div>    </div>
+  </li>
   <li>Rebase 요청이 왔을 경우 아래와 같이 rebase를 수행한다.
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">$ </span>git checkout master
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  git checkout master
     
-  <span class="nv">$ </span>git fetch upstream master
+  git fetch upstream master
     
-  <span class="nv">$ </span>git merge upstream/master
+  git merge upstream/master
     
-  <span class="nv">$ </span>git checkout develop
+  git checkout develop
     
-  <span class="nv">$ </span>git rebase master
+  git rebase master
     
-  <span class="nv">$ </span>git push origin develop <span class="nt">--force</span>
+  git push origin develop <span class="nt">--force</span>
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -259,10 +267,10 @@
   <li>원본 저장소에 Merge가 완료되면 로컬 코드와 원본 저장소의 코드를 동기화 한다.</li>
   <li>작업하던 로컬의 branch를 삭제한다.
     <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c"># 코드 동기화</span>
-  <span class="nv">$ </span>git pull upstream
+  git pull upstream
     
   <span class="c"># 브랜치 삭제</span>
-  <span class="nv">$ </span>git branch <span class="nt">-d</span> develop
+  git branch <span class="nt">-d</span> develop
 </code></pre></div>    </div>
   </li>
   <li>나중에 추가로 작업할 일이 있으면 <code class="highlighter-rouge">git pull upstream</code> 명령을 통해 원본 저장소와 동기화를 진행하고 (branch 삭제~Merge)를 반복한다.</li>

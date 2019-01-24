@@ -55,16 +55,16 @@ sitemap :
   
 - 자신의 컴퓨터에서 작업을 하기 위해서 Fork한 저장소를 로컬에 clone 한다.
 ```bash
-    $ git clone https://github.com/ok97465/spyder.git
+    git clone https://github.com/ok97465/spyder.git
 ```
 <br>
 - 로컬 저장소에 원격 저장소를 추가한다. 위 작업과 동일하게 github 저장소에서 clone or download 메뉴를 통해서 확인한 url을 사용한다.
 ```bash
    # 원본 프로젝트 저장소를 원격 저장소로 추가
-   $ git remote add upstream(별명) https://github.com/spyder-ide/spyder.git
+   git remote add upstream(별명) https://github.com/spyder-ide/spyder.git
 
    # 원격 저장소 설정 현황 확인방법
-   $ git remote -v
+   git remote -v
 ```
   - 원본 프로젝트 저장소 (직접 추가 필요)
   - fork한 로컬 프로젝트 (origin이라는 별명으로 기본으로 추가되어 있다. 따로 추가할 필요 없음)
@@ -78,11 +78,11 @@ sitemap :
 - 자신의 로컬 컴퓨터에서 코드를 추가하는 작업은 branch를 만들어서 진행한다.
 ```bash
     # develop 이라는 이름의 branch를 생성한다.
-    $ git checkout -b develop
+    git checkout -b develop
     Switched to a new branch 'develop'
 
     # 이제 2개의 브랜치가 존재한다.
-    $ git branch
+    git branch
     * develop
       master
 ```
@@ -94,7 +94,7 @@ sitemap :
 - 작업이 완료되면, add, commit, push를 통해서 자신의 github repository (origin)에 수정사항을 반영한다.
 - `주의사항` push 진행시에 branch 이름을 명시해주어야 한다.
 ```bash
-    $ git push origin develop
+    git push origin develop
 ```
 
 <br>
@@ -119,19 +119,27 @@ sitemap :
 
 ## 7. 코드리뷰, Merge Pull Reqest
 - PR을 받은 원본 저장소 관리자는 코드 변경내역을 확인하고 Merge 여부를 결정한다.
+- 수정사항이 생겼을 경우 변경 후 origin에 push 한다.
+```bash
+    git add path
+    
+    git commit -m "수정내용"
+    
+    git push origin develop
+```
 - Rebase 요청이 왔을 경우 아래와 같이 rebase를 수행한다.
 ```bash
-    $ git checkout master
+    git checkout master
     
-    $ git fetch upstream master
+    git fetch upstream master
     
-    $ git merge upstream/master
+    git merge upstream/master
     
-    $ git checkout develop
+    git checkout develop
     
-    $ git rebase master
+    git rebase master
     
-    $ git push origin develop --force
+    git push origin develop --force
 ```
 
 <br>
@@ -141,10 +149,10 @@ sitemap :
 - 작업하던 로컬의 branch를 삭제한다.
 ```bash
     # 코드 동기화
-    $ git pull upstream
+    git pull upstream
     
     # 브랜치 삭제
-    $ git branch -d develop
+    git branch -d develop
 ```
 - 나중에 추가로 작업할 일이 있으면 `git pull upstream` 명령을 통해 원본 저장소와 동기화를 진행하고 (branch 삭제~Merge)를 반복한다.
 
