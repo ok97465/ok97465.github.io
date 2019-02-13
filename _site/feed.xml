@@ -5,9 +5,124 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 25 Jan 2019 08:24:14 +0900</pubDate>
-    <lastBuildDate>Fri, 25 Jan 2019 08:24:14 +0900</lastBuildDate>
+    <pubDate>Thu, 14 Feb 2019 08:30:02 +0900</pubDate>
+    <lastBuildDate>Thu, 14 Feb 2019 08:30:02 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Spyder-IDE (Python의 Matlab과 유사한 개발환경)</title>
+        <description>&lt;h1 id=&quot;spyder-ide-python의-matlab과-유사한-개발환경&quot;&gt;Spyder-IDE (Python의 Matlab과 유사한 개발환경)&lt;/h1&gt;
+&lt;p&gt;Spyder IDE는 Opensource로 개발되고 있는 IDE로써 과학 및 공학 연산에 최적화된 Python 전용 IDE이다. Spyder3의 경우 버그가 꽤 있었고 UI도 불편한 부분이 있어서 사용하기 쉽지 않았지만 Spyder4가 되면서 많은 것이 개선되었다.&lt;/p&gt;
+
+&lt;p&gt;Spyder4에서는 많은 bug가 해결되었고 Dark theme도 지원하고 있어서 Matlab에서 Python으로 전환하는 사람들에게 가장 추천할 만한 IDE이다.  &lt;br /&gt;
+아직 Debug 환경에서 불편한 점이 있지만, 개선이 진행되고 있다. 저자는 대부분 개발은 Spyder에서 수행하고 Debug 시에만 Pycharm을 이용한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;1-dark-theme&quot;&gt;1. Dark theme&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Dark_theme.png&quot; alt=&quot;Dark-theme&quot; width=&quot;720&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Dark Theme&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;눈의 피로가 빨리 쌓이는 사람들에게는 Dark theme만큼 유용한 UI도 없다. Spyder4에서는 오랫동안 개발되어 온 QDarkstyle을 이용하여 Dark-theme를 구현하였기 때문에 색상이 조화롭고 가독성도 나쁘지 않다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-자동-완성기능-auto-complete&quot;&gt;2. 자동 완성기능 (Auto complete)&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Auto_complete.gif&quot; alt=&quot;Auto complete&quot; width=&quot;240&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Auto complete&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;lint, autocomplete를 지원하는 python-language-server가 github에서 개발되면서 Spyder에서도 이것을 이용하여 자동완성 기능을 지원할 수 있게 되었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3-변수-탐색기&quot;&gt;3. 변수 탐색기&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Variable_explorer.png&quot; alt=&quot;Variable-explorer&quot; width=&quot;360&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;변수 탐색기&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Matalb과 유사한 변수탐색기를 지원한다.&lt;/p&gt;
+
+&lt;p&gt;변수탐색기는 사진, csv, spyder 자체 저장 포맷등을 불러올 수 있다. 물론 mat파일도 지원한다.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Import.gif&quot; alt=&quot;Import of Variable explorer&quot; width=&quot;480&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Import of Variable explorer&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Mat에 struct가 저장되었을 경우 python의 list로 변환되고 cell의 경우 dict로 변환된다. 행렬은 당연히 numpy로 메모리에 저장된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;4-cell-mode&quot;&gt;4. Cell Mode&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Cell.png&quot; alt=&quot;Cell&quot; width=&quot;240&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Cell 모드&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Matlab과 동일한 Cell 모드를 지원한다. 단 Spyder에서는 # %%를 이용해야 한다. Cell 실행, 단축키를 이용한 Cell 이동도 가능하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;5-outline&quot;&gt;5. Outline&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Outline.png&quot; alt=&quot;Outline&quot; width=&quot;600&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Outline&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;코드가 길어지면 특정 부분을 찾는 데 시간이 오래 걸린다. 하지만 Outline은 코드의 구조를 한눈에 보여주므로 쉽게 코드를 찾아갈 수 있게 해준다. Outline에서는 Cell뿐만 아니라 함수, 클래스, 특정 주석(#—)을 지원한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;6-plot-창&quot;&gt;6. Plot 창&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Plots.png&quot; alt=&quot;Plot&quot; width=&quot;480&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Plot&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Plot을 모아서 보여주는 기능이 추가되었다. Matlab만 쓰던 사람들은 처음에 어색하고 불편할 수도 있지만 꾸준히 사용하다 보면 이것의 유용함을 느끼게 된다. 한번에 50개 이상씩 Plot을 하거나 Debugging이 끝나고 결과만 자주 보는 경우에 매우 유용한 기능이다. Plot 창에 출력된 그림들은 클릭 한번으로 모두 저장할 수도 있다.&lt;/p&gt;
+
+&lt;p&gt;Spyder에서는 Matlab 처럼 Figure별 창으로 띄우는 것도 지원한다. 환경설정에서 Figure Popup 방식은 영구적으로 바꿀 수 있고 일시적으로 변경시에는 명령창에서 Magic command를 이용하면 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;7-help&quot;&gt;7. Help&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Help.png&quot; alt=&quot;도움말&quot; width=&quot;840&quot; /&gt;
+    &lt;figcaption class=&quot;Auto docstring&quot;&gt;도움말&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;함수에 주석(docstring)이 있는 경우 Rendering 하여 도움말을 보여준다. 여러 Docstring을 모두 지원하고 편집고 명령창에서 원하는 명령에 cursor를 위치시키고 단축키로 쉽게 도움말을 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;8-auto-docstring&quot;&gt;8. Auto Docstring&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Auto_docstring.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;360&quot; /&gt;
+    &lt;figcaption class=&quot;Auto docstring&quot;&gt;변수 탐색기&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;코딩을 오래 하다 보면 주석을 잘 정리하는 것이 얼마나 중요한지 깨닫게 된다. Spyder에 numpy, google 주석 형태를 자동으로 만들어주는 기능이 추가되어 코드 관리가 더욱 쉬워졌다.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 27 Jan 2019 23:06:00 +0900</pubDate>
+        <link>http://localhost:4000/2019/01/190127_SpyderIde</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/01/190127_SpyderIde</guid>
+        
+        <category>python</category>
+        
+        
+      </item>
     
       <item>
         <title>Github에서 Pull Request 하는 방법</title>
