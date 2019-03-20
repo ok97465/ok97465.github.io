@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 24 Feb 2019 21:05:08 +0900</pubDate>
-    <lastBuildDate>Sun, 24 Feb 2019 21:05:08 +0900</lastBuildDate>
+    <pubDate>Wed, 20 Mar 2019 07:59:44 +0100</pubDate>
+    <lastBuildDate>Wed, 20 Mar 2019 07:59:44 +0100</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -115,8 +115,48 @@
 &lt;/figure&gt;
 
 &lt;p&gt;코딩을 오래 하다 보면 주석을 잘 정리하는 것이 얼마나 중요한지 깨닫게 된다. Numpy, Google 형태의 주석을 자동으로 만들어주는 기능이 추가되어 코드 관리가 더욱 쉬워졌다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;9-python-opensource&quot;&gt;9. Python Opensource&lt;/h2&gt;
+&lt;p&gt;Spyder IDE는 가독성이 좋은 Python으로 작성된 Opensource이고 Maintainer가 지속해서 Source를 관리하고 있기 때문에 코드만으로도 Spyder IDE의 Source 구조를 쉽게 파악할 수 있다. 쉽게 이해할 수 있기 때문에 내가 원하는 기능을 Spyder에 추가해서 사용하는 것도 어렵지 않다. 나는 아래 2가지 기능을 코딩하여 사용하고 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;91-auto-import&quot;&gt;9.1. Auto Import&lt;/h3&gt;
+&lt;p&gt;Spyder 개발팀에서 개발 계획을 가지고 있지만 현재 다른 개발에 바빠 auto import가 언제 개발될 지 모르는 상황이다. 그래서 내가 개발하여 사용하고 있다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;undefined name을 모두 Auto import&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/auto_import1.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;360&quot; /&gt;
+    &lt;figcaption class=&quot;Auto Import&quot;&gt;Auto Import 1&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Code Completion에 import 명령 추가&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/auto_import2.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;360&quot; /&gt;
+    &lt;figcaption class=&quot;Auto Import&quot;&gt;Auto Import 2&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/data/Spyder-ide/import.json&quot;&gt;import.json&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;92-auto-snippet&quot;&gt;9.2. Auto Snippet&lt;/h3&gt;
+&lt;p&gt;이것도 Spyder 개발팀에서 개발 중이지만 빨리 쓰고 싶어서 Hardcoding하여 사용중이다.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/snippet.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;360&quot; /&gt;
+    &lt;figcaption class=&quot;Snippet&quot;&gt;snippet&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/data/Spyder-ide/snippet.json&quot;&gt;snippet.json&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sun, 27 Jan 2019 23:06:00 +0900</pubDate>
+        <pubDate>Sun, 27 Jan 2019 15:06:00 +0100</pubDate>
         <link>http://localhost:4000/2019/01/190127_SpyderIde</link>
         <guid isPermaLink="true">http://localhost:4000/2019/01/190127_SpyderIde</guid>
         
@@ -299,7 +339,7 @@
 &lt;h2 id=&quot;9-참고자료&quot;&gt;9. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] https://wayhome25.github.io/git/2017/07/08/git-first-pull-request-story/&lt;/p&gt;
 </description>
-        <pubDate>Thu, 20 Dec 2018 20:53:00 +0900</pubDate>
+        <pubDate>Thu, 20 Dec 2018 12:53:00 +0100</pubDate>
         <link>http://localhost:4000/2018/12/181220_GitHubPullRequest</link>
         <guid isPermaLink="true">http://localhost:4000/2018/12/181220_GitHubPullRequest</guid>
         
@@ -496,7 +536,7 @@
 &lt;p&gt;[1] Mary L. Boas. (2005). 9. Calculus of Variations. Mathematical Methods in the physical sciences (474)  &lt;br /&gt;
 [2] http://pgautam.com.np/blog/2017/12/23/brachistochrone-problem/&lt;/p&gt;
 </description>
-        <pubDate>Thu, 22 Nov 2018 04:33:00 +0900</pubDate>
+        <pubDate>Wed, 21 Nov 2018 20:33:00 +0100</pubDate>
         <link>http://localhost:4000/2018/11/181122_EulerLagrangeEquation</link>
         <guid isPermaLink="true">http://localhost:4000/2018/11/181122_EulerLagrangeEquation</guid>
         
@@ -669,7 +709,7 @@ simplify 이용하여 다시 결과를 뽑아보면 다음과 같다.&lt;/p&gt;
 &lt;h2 id=&quot;3-참고자료&quot;&gt;3. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] https://ko.wikipedia.org/wiki/%ED%8E%98%EB%A5%B4%EB%A7%88%EC%9D%98_%EC%9B%90%EB%A6%AC&lt;/p&gt;
 </description>
-        <pubDate>Mon, 05 Nov 2018 20:00:00 +0900</pubDate>
+        <pubDate>Mon, 05 Nov 2018 12:00:00 +0100</pubDate>
         <link>http://localhost:4000/2018/11/181105_Reflection_Refraction</link>
         <guid isPermaLink="true">http://localhost:4000/2018/11/181105_Reflection_Refraction</guid>
         
@@ -773,7 +813,7 @@ python setup.py &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;eng&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
-        <pubDate>Wed, 10 Oct 2018 10:08:00 +0900</pubDate>
+        <pubDate>Wed, 10 Oct 2018 03:08:00 +0200</pubDate>
         <link>http://localhost:4000/2018/10/181030_MatlabApiInPython</link>
         <guid isPermaLink="true">http://localhost:4000/2018/10/181030_MatlabApiInPython</guid>
         
@@ -850,7 +890,7 @@ python setup.py &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
 &lt;h2 id=&quot;5-참고자료&quot;&gt;5. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] 이종필. (2017). 18. 고전역학 강의, 이종필의 아주 특별한 상대성이론 강의 (쪽). 동아시아&lt;/p&gt;
 </description>
-        <pubDate>Sun, 23 Sep 2018 10:32:00 +0900</pubDate>
+        <pubDate>Sun, 23 Sep 2018 03:32:00 +0200</pubDate>
         <link>http://localhost:4000/2018/09/180922_CentripetalForce</link>
         <guid isPermaLink="true">http://localhost:4000/2018/09/180922_CentripetalForce</guid>
         
@@ -972,7 +1012,7 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
 &lt;h2 id=&quot;4-참고자료&quot;&gt;4. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] https://www.youtube.com/watch?v=i4VqXRRXi68&amp;amp;t=275s&lt;/p&gt;
 </description>
-        <pubDate>Tue, 11 Sep 2018 23:50:00 +0900</pubDate>
+        <pubDate>Tue, 11 Sep 2018 16:50:00 +0200</pubDate>
         <link>http://localhost:4000/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate</link>
         <guid isPermaLink="true">http://localhost:4000/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate</guid>
         
@@ -2710,7 +2750,7 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjEyLjEwMA==
 [2] 스테판 판데르발트. (2018). 이미지 지역망: ndimage, 우아한 사이파이 (쪽). 한빛미디어  &lt;br /&gt;
 [3] https://jakevdp.github.io/blog/2013/08/07/conways-game-of-life/&lt;/p&gt;
 </description>
-        <pubDate>Sun, 09 Sep 2018 22:51:00 +0900</pubDate>
+        <pubDate>Sun, 09 Sep 2018 15:51:00 +0200</pubDate>
         <link>http://localhost:4000/2018/09/180909_ConwayGame</link>
         <guid isPermaLink="true">http://localhost:4000/2018/09/180909_ConwayGame</guid>
         
@@ -2816,7 +2856,7 @@ strArgs = &quot;cmd /v:on /k (set MPLCURSORS=&quot; + &quot;{&quot; + Chr(34) + 
 oShell.Run strArgs, 0, false
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
-        <pubDate>Sun, 09 Sep 2018 10:08:00 +0900</pubDate>
+        <pubDate>Sun, 09 Sep 2018 03:08:00 +0200</pubDate>
         <link>http://localhost:4000/2018/09/180909_SettingJupyterNotebook</link>
         <guid isPermaLink="true">http://localhost:4000/2018/09/180909_SettingJupyterNotebook</guid>
         
@@ -3115,7 +3155,7 @@ References
 &lt;p&gt;생성한 Python Project 폴더에 아래 파일을 압축 해제하여 oklib 폴더를 생성한다.  &lt;br /&gt;
 &lt;a href=&quot;/assets/data/oklib.zip&quot;&gt;oklib Download&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Wed, 05 Sep 2018 08:15:00 +0900</pubDate>
+        <pubDate>Wed, 05 Sep 2018 01:15:00 +0200</pubDate>
         <link>http://localhost:4000/2018/09/180904_SettingPycharm</link>
         <guid isPermaLink="true">http://localhost:4000/2018/09/180904_SettingPycharm</guid>
         
@@ -3219,7 +3259,7 @@ series를 이용하면 설정한 n 이상의 차수는 O로 표현되는데 O를
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;x^{2} y - x y - \frac{y^{3}}{3} + y&lt;/script&gt;
 </description>
-        <pubDate>Mon, 28 May 2018 17:49:00 +0900</pubDate>
+        <pubDate>Mon, 28 May 2018 10:49:00 +0200</pubDate>
         <link>http://localhost:4000/2018/05/180528_TaylorSeriesBySympy</link>
         <guid isPermaLink="true">http://localhost:4000/2018/05/180528_TaylorSeriesBySympy</guid>
         
@@ -3402,7 +3442,7 @@ $\pi u^2 \equiv \frac { 1} { 2} f \mu ^ { \prime \prime } ( t _ { 0} ) ( t - t _
   &lt;li&gt;https://www.cis.rit.edu/class/simg738/Handouts/stationary_phase.pdf&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Fri, 11 May 2018 17:27:00 +0900</pubDate>
+        <pubDate>Fri, 11 May 2018 10:27:00 +0200</pubDate>
         <link>http://localhost:4000/2018/05/180511_PrincipleOfStationaryPhase</link>
         <guid isPermaLink="true">http://localhost:4000/2018/05/180511_PrincipleOfStationaryPhase</guid>
         
