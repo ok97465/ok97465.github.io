@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 20 Mar 2019 07:59:44 +0100</pubDate>
-    <lastBuildDate>Wed, 20 Mar 2019 07:59:44 +0100</lastBuildDate>
+    <pubDate>Wed, 20 Mar 2019 08:03:55 +0100</pubDate>
+    <lastBuildDate>Wed, 20 Mar 2019 08:03:55 +0100</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
     
       <item>
@@ -110,7 +110,7 @@
 &lt;h2 id=&quot;8-auto-docstring&quot;&gt;8. Auto Docstring&lt;/h2&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/Auto_docstring.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;360&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Auto_docstring.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;420&quot; /&gt;
     &lt;figcaption class=&quot;Auto docstring&quot;&gt;변수 탐색기&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -130,7 +130,7 @@
   &lt;li&gt;undefined name을 모두 Auto import&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/auto_import1.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;360&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/auto_import1.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;480&quot; /&gt;
     &lt;figcaption class=&quot;Auto Import&quot;&gt;Auto Import 1&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -138,7 +138,7 @@
   &lt;li&gt;Code Completion에 import 명령 추가&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/auto_import2.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;360&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/auto_import2.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;480&quot; /&gt;
     &lt;figcaption class=&quot;Auto Import&quot;&gt;Auto Import 2&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -150,7 +150,7 @@
 &lt;p&gt;이것도 Spyder 개발팀에서 개발 중이지만 빨리 쓰고 싶어서 Hardcoding하여 사용중이다.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/snippet.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;360&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/snippet.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;480&quot; /&gt;
     &lt;figcaption class=&quot;Snippet&quot;&gt;snippet&lt;/figcaption&gt;
 &lt;/figure&gt;
 
