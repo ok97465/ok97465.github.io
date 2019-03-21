@@ -55,8 +55,12 @@
         "qtpy.QtWidgets": ["QMessageBox"],
         "pymap3d": ["geodetic2ecef", "ecef2geodetic", "enu2ecef", "ecef2enu", "ned2ecef", "ned2geodetic", "geodetic2ned",
                     "ecef2ned", "enu2geodetic", "geodetic2enu", "vdist", "vreckon"],
+        "jupyterthemes": ["jtplot"],
+        "pprint": ["pprint"],
         "oklib.signal": ["sind", "cosd", "tand", "arcsind", "arccosd", "arctand", "db2", "calc_radix", "nextpow2"],
         "oklib.plot_ok": ["imagesc"],
-        "jupyterthemes": ["jtplot"]
+        "oklib.plot_pg": ["imagesc_pg"],
+        "oklib.timer": ["measure_func_time", "Timer"],
+        "oklib.file": ["save_vars", "load_vars"]
     }
 }
