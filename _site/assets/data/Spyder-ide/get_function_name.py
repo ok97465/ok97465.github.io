@@ -11,10 +11,6 @@ import json
 import re
 from pathlib import Path
 
-# Third party imports
-from numpy import linspace
-from numpy.lib.function_base import sinc
-
 
 def get_name(statmt, text):
     names = re.findall(r'\n{} ([a-zA-Z0-9_]*)[\ ]*[\(|\:]'.format(statmt),
