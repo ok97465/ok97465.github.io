@@ -6,9 +6,14 @@
 :Date created: 2019.03.12
 
 """
-import re
+# Standard library imports
 import json
+import re
 from pathlib import Path
+
+# Third party imports
+from numpy import linspace
+from numpy.lib.function_base import sinc
 
 
 def get_name(statmt, text):
@@ -55,5 +60,5 @@ for path in path_list:
         if len(names) > 0:
             import_info[module_name] = names
 
-with open('project_import.json', 'w') as fp:
-    json.dump(import_info, fp, indent=4)
+with open('import_project.json', 'w') as fp:
+    json.dump({'module': import_info}, fp, indent=4)
