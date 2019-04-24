@@ -5,9 +5,179 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 21 Apr 2019 10:45:38 +0900</pubDate>
-    <lastBuildDate>Sun, 21 Apr 2019 10:45:38 +0900</lastBuildDate>
+    <pubDate>Wed, 24 Apr 2019 23:05:47 +0900</pubDate>
+    <lastBuildDate>Wed, 24 Apr 2019 23:05:47 +0900</lastBuildDate>
     <generator>Jekyll v3.8.5</generator>
+    
+      <item>
+        <title>Lights Out 퍼즐 풀기</title>
+        <description>&lt;h1 id=&quot;lights-out-퍼즐-풀기&quot;&gt;Lights Out 퍼즐 풀기&lt;/h1&gt;
+
+&lt;h2 id=&quot;1-lights-out-퍼즐-설명&quot;&gt;1. Lights Out 퍼즐 설명&lt;/h2&gt;
+&lt;p&gt;아래 그림과 같이 일부 버튼은 불이 켜져 있고 다른 일부는 꺼져 있다. 버튼을 누르면 그 버튼의 현재 상태가 반대로 바뀌고 동시에 눌러진 버튼 주변 4개 버튼의 상태도 반대로 바뀐다. 이 퍼즐의 목적은 버튼을 눌러서 모든 버튼의 불을 꺼지게 하는 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2019-04-21-190421_LightsOutPuzzle/output_4_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2019-04-21-190421_LightsOutPuzzle/output_5_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-수학적-접근&quot;&gt;2. 수학적 접근&lt;/h2&gt;
+
+&lt;h3 id=&quot;21-galois-filed-2&quot;&gt;2.1. Galois Filed 2&lt;/h3&gt;
+&lt;p&gt;GF(2)는 갈루아 필드(Galois Filed 2)를 간략하게 표현한 것이다.&lt;br /&gt;
+갈루아 필드의 +, x는 아래와 같이 정의 된다.&lt;/p&gt;
+
+&lt;table&gt;&lt;td&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&quot;text-align: right;&quot;&gt;
+      &lt;th&gt;x&lt;/th&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;th&gt;1&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;&lt;/td&gt;&lt;td&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr style=&quot;text-align: right;&quot;&gt;
+      &lt;th&gt;+&lt;/th&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;th&gt;1&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;&lt;/td&gt;&lt;/table&gt;
+
+&lt;p&gt;갈루아 필드의 특성은 다음과 같다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;덧셈은 modulo 2 이며, 이것은 배타적 논리합과 같다.&lt;/li&gt;
+  &lt;li&gt;뺄셈은 덧셈과 동일하다. 1의 음수는 1이고, 0의 음수는 0이다.&lt;/li&gt;
+  &lt;li&gt;곱셈은 일반적인 0, 1의 곱셈과 같다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;22-lights-out-퍼즐을-갈루아-필드로-표현&quot;&gt;2.2. Lights Out 퍼즐을 갈루아 필드로 표현&lt;/h3&gt;
+
+&lt;p&gt;Lights Out 의 불이 켜진 상태를 1, 꺼진 상태를 0으로 놓는다. 그리고 버튼이 눌려서 상태가 변하는 것을 갈루아 필드의 +1로 생각해 보자.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;켜진 상태(1) + 1 = 꺼진 상태(0)
+꺼진 상태(0) + 1 = 켜진 상태(1)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;위의 수식은 버튼이 눌렸을 때의 변화를 GF(2)의 덧셈으로 표현 가능함을 보여준다.&lt;/p&gt;
+
+&lt;p&gt;Light Out 문제는 GF(2)에 포함된 벡터의 덧셈 문제로 변환 될 수 있다.&lt;br /&gt;
+문제를 간단하게 하기 위해 버튼을 2x2로 제한하면 상태 변화 벡터($v_i$)는 아래와 같이 정의 된다.&lt;/p&gt;
+
+&lt;table&gt;&lt;td&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
+  &lt;caption&gt;v&lt;sub&gt;1&lt;/sub&gt;&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr style=&quot;text-align: right;&quot;&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;th&gt;1&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;&lt;/td&gt;&lt;td&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
+ &lt;caption&gt;v&lt;sub&gt;2&lt;/sub&gt;&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr style=&quot;text-align: right;&quot;&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;th&gt;0&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;&lt;/td&gt;&lt;td&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
+ &lt;caption&gt;v&lt;sub&gt;3&lt;/sub&gt;&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr style=&quot;text-align: right;&quot;&gt;
+      &lt;th&gt;1&lt;/th&gt;
+      &lt;th&gt;1&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;&lt;/td&gt;&lt;td&gt;&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
+ &lt;caption&gt;v&lt;sub&gt;4&lt;/sub&gt;&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr style=&quot;text-align: right;&quot;&gt;
+      &lt;th&gt;0&lt;/th&gt;
+      &lt;th&gt;1&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;&lt;/td&gt;&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;  &lt;br /&gt;
+초기 상태를 $s$로 놓고 $s$를 0으로 만드는 버튼은 다음과 같이 표현 할 수 있다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;s + v_i + v_j + v_k \cdots = 0,\quad \quad \quad i\neq j\neq k\quad(v_1 + v_1 = 0\text{이므로})&lt;/script&gt;
+
+&lt;p&gt;즉 Lights Out 문제는 GF(2)에서 $s$가 $v_i$의 벡터의 부분 집합으로 표현 할수 있는가의 문제가 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3-해법을-찾는-효과적인-방안&quot;&gt;3. 해법을 찾는 효과적인 방안&lt;/h2&gt;
+
+&lt;p&gt;작성중&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;4-참고자료&quot;&gt;4. 참고자료&lt;/h2&gt;
+&lt;p&gt;[1] 필립 클라인. (2019). 3. 벡터. Coding The Matrix (90)&lt;/p&gt;
+</description>
+        <pubDate>Sun, 21 Apr 2019 23:13:00 +0900</pubDate>
+        <link>http://localhost:4000/2019/04/190421_LightsOutPuzzle</link>
+        <guid isPermaLink="true">http://localhost:4000/2019/04/190421_LightsOutPuzzle</guid>
+        
+        <category>python</category>
+        
+        <category>math</category>
+        
+        
+      </item>
     
       <item>
         <title>Spyder-IDE (Python의 Matlab과 유사한 개발환경)</title>
@@ -2798,18 +2968,38 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjEyLjEwMA==
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;2-theme-설정&quot;&gt;2. Theme 설정&lt;/h2&gt;
-&lt;p&gt;onedork theme 설정  &lt;br /&gt;
-./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;onedork theme 설정  &lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;scratchpad의 배경색 변경&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;파이선폴더/share/jupyter/nbextensions/scratchpad/scratchpad.css를 아래와 같이 변경한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;br&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
 
-&lt;h2 id=&quot;3-qtconsole-style변경&quot;&gt;3. qtconsole style변경&lt;/h2&gt;
+&lt;span class=&quot;nf&quot;&gt;#nbextension-scratchpad&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;right&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#1D1E23&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;border-left&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#292B38&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;border-top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;solid&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;#292B38&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nl&quot;&gt;z-index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;105&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;qtconsole-style변경&quot;&gt;qtconsole style변경&lt;/h2&gt;
 &lt;p&gt;%qtconsole로 외부 console 실행 시 theme를 설정 한다.  &lt;br /&gt;
 &lt;a href=&quot;/assets/data/SettingJupyterNotebook/jupyter_qtconsole_config.py&quot;&gt;jupyter_qtconsole_config.py&lt;/a&gt;를 ~/.jupyter에 복사 한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;4-jupyter-notebook-1회만-실행&quot;&gt;4. Jupyter Notebook 1회만 실행&lt;/h2&gt;
+&lt;h2 id=&quot;jupyter-notebook-1회만-실행&quot;&gt;Jupyter Notebook 1회만 실행&lt;/h2&gt;
 &lt;p&gt;jupyter notebook을 아이콘으로 만들어 실행 하려다 보면 아이콘 클릭 시 마다 새로운 jupyter server가 실행된다. 이런 문제를 해결하기 위해서 간단한 python 코드와 Script를 작성하여 script를 바로가기로 지정한다.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -2842,7 +3032,9 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4LjEyLjEwMA==
   &lt;li&gt;Linux용 script (run_jupyter.sh)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;br&amp;gt;
+
+&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;MPLCURSORS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'{&quot;multiple&quot;: 1}'&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# maplotlib Cusor Marker&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PYTHONPATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/ok97465/python/scientific  &lt;span class=&quot;c&quot;&gt;# oklib를 포함하는 폴더  &lt;/span&gt;
 ~/anaconda3/bin/python ~/python/run_jupyter.py

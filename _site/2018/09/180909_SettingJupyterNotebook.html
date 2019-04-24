@@ -144,18 +144,38 @@
 <p><br /></p>
 
 <h2 id="2-theme-설정">2. Theme 설정</h2>
-<p>onedork theme 설정  <br />
-./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T</p>
+<ul>
+  <li>
+    <p>onedork theme 설정  <br />
+<code class="highlighter-rouge">./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T</code></p>
+  </li>
+  <li>
+    <p>scratchpad의 배경색 변경</p>
+    <ul>
+      <li>파이선폴더/share/jupyter/nbextensions/scratchpad/scratchpad.css를 아래와 같이 변경한다.</li>
+    </ul>
+  </li>
+</ul>
 
-<p><br /></p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nt">br</span><span class="o">&gt;</span>
 
-<h2 id="3-qtconsole-style변경">3. qtconsole style변경</h2>
+<span class="nf">#nbextension-scratchpad</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">bottom</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">50%</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="m">#1D1E23</span><span class="p">;</span>
+  <span class="nl">border-left</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#292B38</span><span class="p">;</span>
+  <span class="nl">border-top</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#292B38</span><span class="p">;</span>
+  <span class="nl">z-index</span><span class="p">:</span> <span class="m">105</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="qtconsole-style변경">qtconsole style변경</h2>
 <p>%qtconsole로 외부 console 실행 시 theme를 설정 한다.  <br />
 <a href="/assets/data/SettingJupyterNotebook/jupyter_qtconsole_config.py">jupyter_qtconsole_config.py</a>를 ~/.jupyter에 복사 한다.</p>
 
-<p><br /></p>
-
-<h2 id="4-jupyter-notebook-1회만-실행">4. Jupyter Notebook 1회만 실행</h2>
+<h2 id="jupyter-notebook-1회만-실행">Jupyter Notebook 1회만 실행</h2>
 <p>jupyter notebook을 아이콘으로 만들어 실행 하려다 보면 아이콘 클릭 시 마다 새로운 jupyter server가 실행된다. 이런 문제를 해결하기 위해서 간단한 python 코드와 Script를 작성하여 script를 바로가기로 지정한다.</p>
 
 <ul>
@@ -188,7 +208,9 @@
   <li>Linux용 script (run_jupyter.sh)</li>
 </ul>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;br&gt;
+
+<span class="c">#!/bin/sh</span>
 <span class="nb">export </span><span class="nv">MPLCURSORS</span><span class="o">=</span><span class="s1">'{"multiple": 1}'</span>  <span class="c"># maplotlib Cusor Marker</span>
 <span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/home/ok97465/python/scientific  <span class="c"># oklib를 포함하는 폴더  </span>
 ~/anaconda3/bin/python ~/python/run_jupyter.py
@@ -286,6 +308,8 @@ oShell.Run strArgs, 0, false
   <h2>Recent Posts</h2>
   <ul>
     
+    <li><a href="/2019/04/190421_LightsOutPuzzle">Lights Out 퍼즐 풀기</a></li>
+    
     <li><a href="/2019/01/190127_SpyderIde">Spyder-IDE (Python의 Matlab과 유사한 개발환경)</a></li>
     
     <li><a href="/2018/12/181220_GitHubPullRequest">Github에서 Pull Request 하는 방법</a></li>
@@ -293,8 +317,6 @@ oShell.Run strArgs, 0, false
     <li><a href="/2018/11/181122_EulerLagrangeEquation">Euler-Lagrange 방정식</a></li>
     
     <li><a href="/2018/11/181105_Reflection_Refraction">빛의 반사 및 굴절의 특성 유도</a></li>
-    
-    <li><a href="/2018/10/181030_MatlabApiInPython">Python에서 Matlab 사용하기</a></li>
     
   </ul>
 </div>
@@ -313,7 +335,7 @@ oShell.Run strArgs, 0, false
         <span>jupyter</span></a></li>
     
     <li>
-      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="5">
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="6">
         <span>math</span></a></li>
     
     <li>
@@ -329,7 +351,7 @@ oShell.Run strArgs, 0, false
         <span>pycharm</span></a></li>
     
     <li>
-      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="9">
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="10">
         <span>python</span></a></li>
     
     <li>

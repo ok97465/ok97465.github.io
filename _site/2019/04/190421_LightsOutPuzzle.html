@@ -11,13 +11,13 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>ok97465 | Spyder-IDE (Python의 Matlab과 유사한 개발환경) </title>
-  <meta name="description" content="Python에서 Matlab과 유사한 IDE를 사용할 수 있도록 하는 Spyder-IDE를 소개한다.">
+  <title>ok97465 | Lights Out 퍼즐 풀기 </title>
+  <meta name="description" content="주어진 초기 상태에서, 모든 버튼의 불을 꺼지도록 하기 위해 눌러야 하는 버튼의 시퀀스를 찾아본다.">
   <meta name="theme-color" content="#222222">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Spyder-IDE (Python의 Matlab과 유사한 개발환경)">
-  <meta property="og:description" content="Python에서 Matlab과 유사한 IDE를 사용할 수 있도록 하는 Spyder-IDE를 소개한다.">
+  <meta property="og:title" content="Lights Out 퍼즐 풀기">
+  <meta property="og:description" content="주어진 초기 상태에서, 모든 버튼의 불을 꺼지도록 하기 위해 눌러야 하는 버튼의 시퀀스를 찾아본다.">
   <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
   <meta property="og:url" content="http://ok97465.github.io">
   <script src="/assets/js/jquery.min.js"></script>
@@ -95,166 +95,178 @@
             <div class="col-md-8">
               <div class="article">
                 <div class="well">
-                  <h1><a href="/2019/01/190127_SpyderIde">Spyder-IDE (Python의 Matlab과 유사한 개발환경)</a></h1>
+                  <h1><a href="/2019/04/190421_LightsOutPuzzle">Lights Out 퍼즐 풀기</a></h1>
                   <div class="post-meta">
                     <div class="post-time">
                       <i class="fa fa-calendar"></i>
-                      <time>27 Jan 2019</time>
+                      <time>21 Apr 2019</time>
                     </div>
                     <ul>
                       
                         <li><a href="/tag/python">python</a></li>
                       
+                        <li><a href="/tag/math">math</a></li>
+                      
                     </ul>
                   </div>
                   <div class="post-content">
                     <div id="toc" class="toc"></div>
-                    <h1 id="spyder-ide-python의-matlab과-유사한-개발환경">Spyder-IDE (Python의 Matlab과 유사한 개발환경)</h1>
-<p>Spyder IDE는 Open-source로 개발되고 있는 IDE로써 과학 및 공학 연산에 최적화된 Python 전용 IDE이다. Spyder3의 경우 버그가 꽤 있었고 UI도 불편한 부분이 있어서 사용하기 쉽지 않았지만 Spyder4가 되면서 많은 것이 개선되었다.</p>
+                    <h1 id="lights-out-퍼즐-풀기">Lights Out 퍼즐 풀기</h1>
 
-<p>Spyder4에서는 많은 bug가 해결되었고 Dark theme도 지원하고 있어서 Matlab에서 Python으로 전환하는 사람들에게 가장 추천할 만한 IDE이다.</p>
+<h2 id="1-lights-out-퍼즐-설명">1. Lights Out 퍼즐 설명</h2>
+<p>아래 그림과 같이 일부 버튼은 불이 켜져 있고 다른 일부는 꺼져 있다. 버튼을 누르면 그 버튼의 현재 상태가 반대로 바뀌고 동시에 눌러진 버튼 주변 4개 버튼의 상태도 반대로 바뀐다. 이 퍼즐의 목적은 버튼을 눌러서 모든 버튼의 불을 꺼지게 하는 것이다.</p>
 
-<p>아직 Debug 환경에서 불편한 점이 있지만, 개선이 진행되고 있다. 나는 Spyder를 주로 이용하고 Debug 시에만 Pycharm을 사용한다.</p>
+<p><img src="/assets/images/2019-04-21-190421_LightsOutPuzzle/output_4_0.png" alt="img" class="center-image" /></p>
 
-<p><br /></p>
-
-<h2 id="1-dark-theme">1. Dark theme</h2>
-
-<figure>
-    <img src="/assets/images/spyder-ide/Dark_theme.png" alt="Dark-theme" width="720" />
-    <figcaption class="figure-caption">Dark Theme</figcaption>
-</figure>
-
-<p>눈의 피로가 빨리 쌓이는 사람들에게는 Dark theme만큼 유용한 UI도 없다. Spyder4에서는 오랫동안 개발되어 온 QDarkstyle을 이용하여 Dark-theme를 구현하였기 때문에 색상이 조화롭고 가독성도 나쁘지 않다.</p>
+<p><img src="/assets/images/2019-04-21-190421_LightsOutPuzzle/output_5_0.png" alt="img" class="center-image" /></p>
 
 <p><br /></p>
 
-<h2 id="2-자동-완성기능-auto-complete">2. 자동 완성기능 (Auto complete)</h2>
+<h2 id="2-수학적-접근">2. 수학적 접근</h2>
 
-<figure>
-    <img src="/assets/images/spyder-ide/Auto_complete.gif" alt="Auto complete" width="240" />
-    <figcaption class="figure-caption">Auto complete</figcaption>
-</figure>
+<h3 id="21-galois-filed-2">2.1. Galois Filed 2</h3>
+<p>GF(2)는 갈루아 필드(Galois Filed 2)를 간략하게 표현한 것이다.<br />
+갈루아 필드의 +, x는 아래와 같이 정의 된다.</p>
 
-<p>lint, autocomplete를 지원하는 python-language-server가 github에서 개발되면서 Spyder에서도 이것을 이용하여 자동완성 기능을 지원할 수 있게 되었다.</p>
+<table><td><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>x</th>
+      <th>0</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table></td><td><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>+</th>
+      <th>0</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table></td></table>
 
-<p><br /></p>
-
-<h2 id="3-변수-탐색기">3. 변수 탐색기</h2>
-
-<figure>
-    <img src="/assets/images/spyder-ide/Variable_explorer.png" alt="Variable-explorer" width="360" />
-    <figcaption class="figure-caption">변수 탐색기</figcaption>
-</figure>
-
-<p>Matalb과 유사한 변수탐색기를 지원한다.</p>
-
-<p>변수탐색기에서는 사진, csv, spyder 자체 저장 포맷등을 불러올 수 있다. 물론 mat파일도 지원한다.</p>
-
-<figure>
-    <img src="/assets/images/spyder-ide/Import.gif" alt="Import of Variable explorer" width="480" />
-    <figcaption class="figure-caption">Import of Variable explorer</figcaption>
-</figure>
-<p>Mat에 struct가 저장되었을 경우 python의 list로 변환되고 cell의 경우 dict로 변환된다. 행렬은 당연히 numpy로 메모리에 저장된다.</p>
-
-<p><br /></p>
-
-<h2 id="4-cell-mode">4. Cell Mode</h2>
-
-<figure>
-    <img src="/assets/images/spyder-ide/Cell.png" alt="Cell" width="240" />
-    <figcaption class="figure-caption">Cell 모드</figcaption>
-</figure>
-
-<p>Matlab과 동일한 Cell 모드를 지원하고 Cell 실행, 단축키를 이용한 Cell 이동도 가능하다. 단 Spyder에서는 # %%를 이용해야 한다.</p>
-
-<p><br /></p>
-
-<h2 id="5-outline">5. Outline</h2>
-
-<figure>
-    <img src="/assets/images/spyder-ide/Outline.png" alt="Outline" width="600" />
-    <figcaption class="figure-caption">Outline</figcaption>
-</figure>
-
-<p>코드가 길어지면 특정 부분을 찾는 데 시간이 오래 걸린다. 하지만 Outline은 코드의 구조를 한눈에 보여주므로 쉽게 코드를 찾아갈 수 있게 해준다. Outline에서는 Cell뿐만 아니라 함수, 클래스, 특정 주석(#—)을 지원한다.</p>
-
-<p><br /></p>
-
-<h2 id="6-plot-창">6. Plot 창</h2>
-
-<figure>
-    <img src="/assets/images/spyder-ide/Plots.png" alt="Plot" width="480" />
-    <figcaption class="figure-caption">Plot</figcaption>
-</figure>
-
-<p>Plot을 모아서 보여주는 기능이 추가되었다. Matlab만 쓰던 사람들은 처음에 어색하고 불편할 수도 있지만 꾸준히 사용하다 보면 이것의 유용함을 느끼게 된다. 한번에 50개 이상씩 Plot을 하거나 Debugging이 끝나고 결과만 자주 보는 경우에 매우 유용한 기능이다. 클릭 한번으로 Plot 창에 출력된 그림들을 모두 저장할 수도 있다.</p>
-
-<p>Spyder에서는 Matlab 처럼 Figure별 창으로 띄우는 것도 지원한다. 환경설정에서 Figure Popup 방식은 영구적으로 바꿀 수 있고 일시적으로 변경시에는 명령창에서 Magic command를 이용하면 된다.</p>
-
-<p><br /></p>
-
-<h2 id="7-help">7. Help</h2>
-
-<figure>
-    <img src="/assets/images/spyder-ide/Help.png" alt="도움말" width="840" />
-    <figcaption class="Auto docstring">도움말</figcaption>
-</figure>
-
-<p>함수에 주석(docstring)이 있는 경우 Rendering 하여 도움말을 보여준다. 편집기 또는 명령창에서 원하는 명령에 cursor를 위치시킨 후 단축키를 입력하면 쉽게 도움말을 볼 수 있다.</p>
-
-<p><br /></p>
-
-<h2 id="8-auto-docstring">8. Auto Docstring</h2>
-
-<figure>
-    <img src="/assets/images/spyder-ide/Auto_docstring.gif" alt="Auto docstring" width="420" />
-    <figcaption class="Auto docstring">변수 탐색기</figcaption>
-</figure>
-
-<p>코딩을 오래 하다 보면 주석을 잘 정리하는 것이 얼마나 중요한지 깨닫게 된다. Numpy, Google 형태의 주석을 자동으로 만들어주는 기능이 추가되어 코드 관리가 더욱 쉬워졌다.</p>
-
-<p><br /></p>
-
-<h2 id="9-python-opensource">9. Python Opensource</h2>
-<p>Spyder IDE는 가독성이 좋은 Python으로 작성된 Opensource이고 Maintainer가 지속해서 Source를 관리하고 있기 때문에 코드만으로도 Spyder IDE의 Source 구조를 쉽게 파악할 수 있다. 쉽게 이해할 수 있기 때문에 내가 원하는 기능을 Spyder에 추가해서 사용하는 것도 어렵지 않다. 나는 아래 2가지 기능을 코딩하여 사용하고 있다.</p>
-
-<p><br /></p>
-
-<h3 id="91-auto-import">9.1. Auto Import</h3>
-<p>Spyder 개발팀에서 개발 계획을 가지고 있지만 현재 다른 개발에 바빠 auto import가 언제 개발될 지 모르는 상황이다. 그래서 내가 개발하여 사용하고 있다.</p>
+<p>갈루아 필드의 특성은 다음과 같다.</p>
 
 <ul>
-  <li>undefined name을 모두 Auto import</li>
+  <li>덧셈은 modulo 2 이며, 이것은 배타적 논리합과 같다.</li>
+  <li>뺄셈은 덧셈과 동일하다. 1의 음수는 1이고, 0의 음수는 0이다.</li>
+  <li>곱셈은 일반적인 0, 1의 곱셈과 같다.</li>
 </ul>
-<figure>
-    <img src="/assets/images/spyder-ide/auto_import1.gif" alt="Auto docstring" width="480" />
-    <figcaption class="Auto Import">Auto Import 1</figcaption>
-</figure>
-
-<ul>
-  <li>Code Completion에 import 명령 추가</li>
-</ul>
-<figure>
-    <img src="/assets/images/spyder-ide/auto_import2.gif" alt="Auto docstring" width="480" />
-    <figcaption class="Auto Import">Auto Import 2</figcaption>
-</figure>
-
-<p><a href="/assets/data/Spyder-ide/import_python.json">import_python.json</a></p>
-
-<p><a href="/assets/data/Spyder-ide/get_function_name.py">get_function_name.py</a></p>
 
 <p><br /></p>
 
-<h3 id="92-auto-snippet">9.2. Auto Snippet</h3>
-<p>이것도 Spyder 개발팀에서 개발 중이지만 빨리 쓰고 싶어서 Hardcoding하여 사용중이다.</p>
+<h3 id="22-lights-out-퍼즐을-갈루아-필드로-표현">2.2. Lights Out 퍼즐을 갈루아 필드로 표현</h3>
 
-<figure>
-    <img src="/assets/images/spyder-ide/snippet.gif" alt="Auto docstring" width="480" />
-    <figcaption class="Snippet">snippet</figcaption>
-</figure>
+<p>Lights Out 의 불이 켜진 상태를 1, 꺼진 상태를 0으로 놓는다. 그리고 버튼이 눌려서 상태가 변하는 것을 갈루아 필드의 +1로 생각해 보자.</p>
 
-<p><a href="/assets/data/Spyder-ide/snippet.json">snippet.json</a></p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>켜진 상태(1) + 1 = 꺼진 상태(0)
+꺼진 상태(0) + 1 = 켜진 상태(1)
+</code></pre></div></div>
+<p>위의 수식은 버튼이 눌렸을 때의 변화를 GF(2)의 덧셈으로 표현 가능함을 보여준다.</p>
+
+<p>Light Out 문제는 GF(2)에 포함된 벡터의 덧셈 문제로 변환 될 수 있다.<br />
+문제를 간단하게 하기 위해 버튼을 2x2로 제한하면 상태 변화 벡터($v_i$)는 아래와 같이 정의 된다.</p>
+
+<table><td><table border="1" class="dataframe">
+  <caption>v<sub>1</sub></caption>
+  <thead>
+    <tr style="text-align: right;">
+      <th>1</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table></td><td><table border="1" class="dataframe">
+ <caption>v<sub>2</sub></caption>
+  <thead>
+    <tr style="text-align: right;">
+      <th>1</th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table></td><td><table border="1" class="dataframe">
+ <caption>v<sub>3</sub></caption>
+  <thead>
+    <tr style="text-align: right;">
+      <th>1</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table></td><td><table border="1" class="dataframe">
+ <caption>v<sub>4</sub></caption>
+  <thead>
+    <tr style="text-align: right;">
+      <th>0</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table></td></table>
+
+<p><br />  <br />
+초기 상태를 $s$로 놓고 $s$를 0으로 만드는 버튼은 다음과 같이 표현 할 수 있다.</p>
+
+<script type="math/tex; mode=display">s + v_i + v_j + v_k \cdots = 0,\quad \quad \quad i\neq j\neq k\quad(v_1 + v_1 = 0\text{이므로})</script>
+
+<p>즉 Lights Out 문제는 GF(2)에서 $s$가 $v_i$의 벡터의 부분 집합으로 표현 할수 있는가의 문제가 된다.</p>
+
+<p><br /></p>
+
+<h2 id="3-해법을-찾는-효과적인-방안">3. 해법을 찾는 효과적인 방안</h2>
+
+<p>작성중</p>
+
+<p><br /></p>
+
+<h2 id="4-참고자료">4. 참고자료</h2>
+<p>[1] 필립 클라인. (2019). 3. 벡터. Coding The Matrix (90)</p>
 
                     
 
@@ -262,7 +274,7 @@
   <ul class="share-buttons">
     
     <li class="share-facebook">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2019/01/190127_SpyderIde" target="_blank" title="Share on Facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2019/04/190421_LightsOutPuzzle" target="_blank" title="Share on Facebook">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-facebook fa-stack-1x"></i>
@@ -273,7 +285,7 @@
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2019/01/190127_SpyderIde&text=Spyder-IDE (Python의 Matlab과 유사한 개발환경)" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2019/04/190421_LightsOutPuzzle&text=Lights Out 퍼즐 풀기" target="_blank" title="Tweet">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-twitter fa-stack-1x"></i>
@@ -284,7 +296,7 @@
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/2019/01/190127_SpyderIde" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/2019/04/190421_LightsOutPuzzle" target="_blank" title="Share on Google Plus">
         <span class="fa-stack fa-lg">
           <i class="fa fa-square-o fa-stack-2x"></i>
           <i class="fa fa-google-plus fa-stack-1x"></i>
@@ -299,7 +311,7 @@
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Spyder-IDE (Python의 Matlab과 유사한 개발환경)&body=Python에서 Matlab과 유사한 IDE를 사용할 수 있도록 하는 Spyder-IDE를 소개한다. http://localhost:4000/2019/01/190127_SpyderIde" target="_blank" title="Email">
+      <a href="mailto:?&subject=Lights Out 퍼즐 풀기&body=주어진 초기 상태에서, 모든 버튼의 불을 꺼지도록 하기 위해 눌러야 하는 버튼의 시퀀스를 찾아본다. http://localhost:4000/2019/04/190421_LightsOutPuzzle" target="_blank" title="Email">
         <span class="fa-stack fa-lg">
           <i class="fa fa-circle-thin fa-stack-2x"></i>
           <i class="fa fa-envelope-o fa-stack-1x"></i>
@@ -404,7 +416,7 @@
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
-  var disqus_identifier = "/2019/01/190127_SpyderIde";
+  var disqus_identifier = "/2019/04/190421_LightsOutPuzzle";
 
   /* * * DON'T EDIT BELOW THIS LINE * * */
   (function() {

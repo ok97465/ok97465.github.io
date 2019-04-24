@@ -33,18 +33,34 @@ sitemap :
 <br>
 
 ## 2. Theme 설정
-onedork theme 설정  
-./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T
+- onedork theme 설정  
+```./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T```
 
+  
+
+- scratchpad의 배경색 변경
+  - 파이선폴더/share/jupyter/nbextensions/scratchpad/scratchpad.css를 아래와 같이 변경한다.
+
+```css
 <br>
 
-## 3. qtconsole style변경
+#nbextension-scratchpad {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  background-color: #1D1E23;
+  border-left: 1px solid #292B38;
+  border-top: 1px solid #292B38;
+  z-index: 105;
+}
+```
+
+## qtconsole style변경
 %qtconsole로 외부 console 실행 시 theme를 설정 한다.  
 [jupyter_qtconsole_config.py](/assets/data/SettingJupyterNotebook/jupyter_qtconsole_config.py)를 ~/.jupyter에 복사 한다.
 
-<br>
-
-## 4. Jupyter Notebook 1회만 실행
+## Jupyter Notebook 1회만 실행
 jupyter notebook을 아이콘으로 만들어 실행 하려다 보면 아이콘 클릭 시 마다 새로운 jupyter server가 실행된다. 이런 문제를 해결하기 위해서 간단한 python 코드와 Script를 작성하여 script를 바로가기로 지정한다.
   
   * Python Code (run\_jupyter.py)
@@ -75,6 +91,8 @@ if __name__ == '__main__':
   * Linux용 script (run\_jupyter.sh)
   
 ```bash
+<br>
+
 #!/bin/sh
 export MPLCURSORS='{"multiple": 1}'  # maplotlib Cusor Marker
 export PYTHONPATH=/home/ok97465/python/scientific  # oklib를 포함하는 폴더  
