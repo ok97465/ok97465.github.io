@@ -1,0 +1,614 @@
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ok97465 | Numba를 이용한 Cuda 프로그램 예제 </title>
+  <meta name="description" content="Python에서 Numba를 이용한 Cuda 프로그래밍 예제를 소개한다.">
+  <meta name="theme-color" content="#222222">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Numba를 이용한 Cuda 프로그램 예제">
+  <meta property="og:description" content="Python에서 Numba를 이용한 Cuda 프로그래밍 예제를 소개한다.">
+  <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
+  <meta property="og:url" content="http://ok97465.github.io">
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/header.js"></script>
+  <script src="/assets/js/toc.js"></script>
+  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/css/theme.css" rel="stylesheet">
+  <link href="/assets/css/syntax.css" rel="stylesheet">
+  <link href="/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-125307858-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+  
+
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: {
+        families: ['Ubuntu::latin']
+      }
+    };
+    (function () {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">ok97465</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/">/home</a></li>
+          <li><a href="/archive.html">/archive</a></li>
+          <li><a href="/tags.html">/tags</a></li>
+          <li><a href="/about.html">/about</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div class="wrapper">
+      <div class="content">
+        <div class="container container-center">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="article">
+                <div class="well">
+                  <h1><a href="/2019/07/190707_Numba_Cuda">Numba를 이용한 Cuda 프로그램 예제</a></h1>
+                  <div class="post-meta">
+                    <div class="post-time">
+                      <i class="fa fa-calendar"></i>
+                      <time>07 Jul 2019</time>
+                    </div>
+                    <ul>
+                      
+                        <li><a href="/tag/python">python</a></li>
+                      
+                        <li><a href="/tag/cuda">cuda</a></li>
+                      
+                    </ul>
+                  </div>
+                  <div class="post-content">
+                    <div id="toc" class="toc"></div>
+                    <h1 id="numba를-이용한-cuda-프로그램-예제">Numba를 이용한 Cuda 프로그램 예제</h1>
+
+<h2 id="1-시간-측정-함수">1. 시간 측정 함수</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Timer</span><span class="p">:</span>
+    <span class="s">"""클래스 생성 시점부터 소멸 시점까지의 시간을 출력한다."""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func_name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s">'this func'</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">func_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">sys</span>
+        <span class="kn">import</span> <span class="nn">time</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'{} ==&gt;'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s">' '</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">process_time</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">time</span>
+        <span class="n">time_end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">process_time</span><span class="p">()</span>
+        <span class="n">interval</span> <span class="o">=</span> <span class="n">time_end</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_start</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Elapsed time: {:.8f} sec'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">interval</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-device-info-1">2. Device Info [1]</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pycuda.driver</span> <span class="k">as</span> <span class="n">drv</span>
+<span class="n">drv</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'Detected {} CUDA Capable device(s) </span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+
+    <span class="n">dev</span> <span class="o">=</span> <span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'Device {i}: {dev.name()}'</span><span class="p">)</span>
+    <span class="n">compute_capability</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">d.</span><span class="si">%</span><span class="s">d'</span> <span class="o">%</span> <span class="n">dev</span><span class="o">.</span><span class="n">compute_capability</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  Compute Capability: {compute_capability}'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  Total Memory: {dev.total_memory() // (1024**2)} MB'</span><span class="p">)</span>
+
+    <span class="n">dev_attr_tuples</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">get_attributes</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="n">dev_attributes</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dev_attr_tuples</span><span class="p">:</span>
+        <span class="n">dev_attributes</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="n">v</span>
+
+    <span class="n">num_mp</span> <span class="o">=</span> <span class="n">dev_attributes</span><span class="p">[</span><span class="s">'MULTIPROCESSOR_COUNT'</span><span class="p">]</span>
+
+    <span class="n">cuda_cores_per_mp</span> <span class="o">=</span> <span class="p">{</span><span class="mf">5.0</span> <span class="p">:</span> <span class="mi">128</span><span class="p">,</span>
+                         <span class="mf">5.1</span> <span class="p">:</span> <span class="mi">128</span><span class="p">,</span>
+                         <span class="mf">5.2</span> <span class="p">:</span> <span class="mi">128</span><span class="p">,</span>
+                         <span class="mf">6.0</span> <span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+                         <span class="mf">6.1</span> <span class="p">:</span> <span class="mi">128</span><span class="p">,</span>
+                         <span class="mf">6.2</span> <span class="p">:</span> <span class="mi">128</span><span class="p">}[</span><span class="n">compute_capability</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  Multiprocessors: {num_mp}'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  CUDA Cores Per Multiprocessor: {cuda_cores_per_mp}'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  Total CUDA Cores: {num_mp * cuda_cores_per_mp}'</span><span class="p">)</span>
+
+    <span class="n">dev_attributes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">'MULTIPROCESSOR_COUNT'</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dev_attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  {k}: {dev_attributes[k]}'</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Detected 1 CUDA Capable device(s) 
+
+Device 0: GeForce GTX 850M
+  Compute Capability: 5.0
+  Total Memory: 2004 MB
+  Multiprocessors: 5
+  CUDA Cores Per Multiprocessor: 128
+  Total CUDA Cores: 640
+  ASYNC_ENGINE_COUNT: 1
+  CAN_MAP_HOST_MEMORY: 1
+  CLOCK_RATE: 901500
+  COMPUTE_CAPABILITY_MAJOR: 5
+  COMPUTE_CAPABILITY_MINOR: 0
+  COMPUTE_MODE: DEFAULT
+  CONCURRENT_KERNELS: 1
+  ECC_ENABLED: 0
+  GLOBAL_L1_CACHE_SUPPORTED: 0
+  GLOBAL_MEMORY_BUS_WIDTH: 128
+  GPU_OVERLAP: 1
+  INTEGRATED: 0
+  KERNEL_EXEC_TIMEOUT: 1
+  L2_CACHE_SIZE: 2097152
+  LOCAL_L1_CACHE_SUPPORTED: 1
+  MANAGED_MEMORY: 1
+  MAXIMUM_SURFACE1D_LAYERED_LAYERS: 2048
+  MAXIMUM_SURFACE1D_LAYERED_WIDTH: 16384
+  MAXIMUM_SURFACE1D_WIDTH: 16384
+  MAXIMUM_SURFACE2D_HEIGHT: 65536
+  MAXIMUM_SURFACE2D_LAYERED_HEIGHT: 16384
+  MAXIMUM_SURFACE2D_LAYERED_LAYERS: 2048
+  MAXIMUM_SURFACE2D_LAYERED_WIDTH: 16384
+  MAXIMUM_SURFACE2D_WIDTH: 65536
+  MAXIMUM_SURFACE3D_DEPTH: 4096
+  MAXIMUM_SURFACE3D_HEIGHT: 4096
+  MAXIMUM_SURFACE3D_WIDTH: 4096
+  MAXIMUM_SURFACECUBEMAP_LAYERED_LAYERS: 2046
+  MAXIMUM_SURFACECUBEMAP_LAYERED_WIDTH: 16384
+  MAXIMUM_SURFACECUBEMAP_WIDTH: 16384
+  MAXIMUM_TEXTURE1D_LAYERED_LAYERS: 2048
+  MAXIMUM_TEXTURE1D_LAYERED_WIDTH: 16384
+  MAXIMUM_TEXTURE1D_LINEAR_WIDTH: 134217728
+  MAXIMUM_TEXTURE1D_MIPMAPPED_WIDTH: 16384
+  MAXIMUM_TEXTURE1D_WIDTH: 65536
+  MAXIMUM_TEXTURE2D_ARRAY_HEIGHT: 16384
+  MAXIMUM_TEXTURE2D_ARRAY_NUMSLICES: 2048
+  MAXIMUM_TEXTURE2D_ARRAY_WIDTH: 16384
+  MAXIMUM_TEXTURE2D_GATHER_HEIGHT: 16384
+  MAXIMUM_TEXTURE2D_GATHER_WIDTH: 16384
+  MAXIMUM_TEXTURE2D_HEIGHT: 65536
+  MAXIMUM_TEXTURE2D_LINEAR_HEIGHT: 65536
+  MAXIMUM_TEXTURE2D_LINEAR_PITCH: 1048544
+  MAXIMUM_TEXTURE2D_LINEAR_WIDTH: 65536
+  MAXIMUM_TEXTURE2D_MIPMAPPED_HEIGHT: 16384
+  MAXIMUM_TEXTURE2D_MIPMAPPED_WIDTH: 16384
+  MAXIMUM_TEXTURE2D_WIDTH: 65536
+  MAXIMUM_TEXTURE3D_DEPTH: 4096
+  MAXIMUM_TEXTURE3D_DEPTH_ALTERNATE: 16384
+  MAXIMUM_TEXTURE3D_HEIGHT: 4096
+  MAXIMUM_TEXTURE3D_HEIGHT_ALTERNATE: 2048
+  MAXIMUM_TEXTURE3D_WIDTH: 4096
+  MAXIMUM_TEXTURE3D_WIDTH_ALTERNATE: 2048
+  MAXIMUM_TEXTURECUBEMAP_LAYERED_LAYERS: 2046
+  MAXIMUM_TEXTURECUBEMAP_LAYERED_WIDTH: 16384
+  MAXIMUM_TEXTURECUBEMAP_WIDTH: 16384
+  MAX_BLOCK_DIM_X: 1024
+  MAX_BLOCK_DIM_Y: 1024
+  MAX_BLOCK_DIM_Z: 64
+  MAX_GRID_DIM_X: 2147483647
+  MAX_GRID_DIM_Y: 65535
+  MAX_GRID_DIM_Z: 65535
+  MAX_PITCH: 2147483647
+  MAX_REGISTERS_PER_BLOCK: 65536
+  MAX_REGISTERS_PER_MULTIPROCESSOR: 65536
+  MAX_SHARED_MEMORY_PER_BLOCK: 49152
+  MAX_SHARED_MEMORY_PER_MULTIPROCESSOR: 65536
+  MAX_THREADS_PER_BLOCK: 1024
+  MAX_THREADS_PER_MULTIPROCESSOR: 2048
+  MEMORY_CLOCK_RATE: 1001000
+  MULTI_GPU_BOARD: 0
+  MULTI_GPU_BOARD_GROUP_ID: 0
+  PCI_BUS_ID: 1
+  PCI_DEVICE_ID: 0
+  PCI_DOMAIN_ID: 0
+  STREAM_PRIORITIES_SUPPORTED: 1
+  SURFACE_ALIGNMENT: 512
+  TCC_DRIVER: 0
+  TEXTURE_ALIGNMENT: 512
+  TEXTURE_PITCH_ALIGNMENT: 32
+  TOTAL_CONSTANT_MEMORY: 65536
+  UNIFIED_ADDRESSING: 1
+  WARP_SIZE: 32
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3-sum">3. Sum</h2>
+
+<p>GPU는 Code 최적화에 따라서 연산 시간에 많은 차이를 보인다. 간단한 SUM Code 조차도 CUDA에서 최적화 하는 것이 쉽지 않은 일이다(<a href="/assets/data/Numba_Cuda/gpu_sum_reduction.pdf">GPU_SUM.pdf</a>). 하지만 Numba의 reduce를 이용하면 SUM을 CUDA로 쉽게 Coding 할 수 있다.</p>
+
+<p><br /></p>
+
+<h3 id="31-sum-kernel-code-using-reduce-of-numba">3.1. Sum Kernel Code using reduce of numba</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
+<span class="kn">from</span> <span class="nn">numba.cuda</span> <span class="kn">import</span> <span class="n">to_device</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="o">@</span><span class="n">cuda</span><span class="o">.</span><span class="nb">reduce</span>
+<span class="k">def</span> <span class="nf">sum_reduce</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="32-sum-host-code-using-reduce-of-numba">3.2. Sum Host Code using reduce of numba</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">float32</span>
+<span class="kn">from</span> <span class="nn">numpy.random_intel</span> <span class="kn">import</span> <span class="n">standard_normal</span>
+
+<span class="n">n_sample</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">27</span> <span class="o">-</span> <span class="mi">157</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">float32</span><span class="p">(</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n_sample</span><span class="p">))</span>
+<span class="n">d_data</span> <span class="o">=</span> <span class="n">to_device</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+
+<span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s">'Sum By CPU'</span><span class="p">):</span>
+    <span class="n">sum_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">sum_reduce</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    
+<span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s">'Sum By GPU'</span><span class="p">):</span>
+    <span class="n">sum_gpu</span> <span class="o">=</span> <span class="n">sum_reduce</span><span class="p">(</span><span class="n">d_data</span><span class="p">)</span>
+    
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'CPU Result: {sum_cpu}'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'GPU Result: {sum_gpu}'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum By CPU ==&gt; Elapsed time: 0.21539920 sec
+Sum By GPU ==&gt; Elapsed time: 0.02144496 sec
+CPU Result: 2670.03662109375
+GPU Result: 2670.000244140625
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="33-sum-code-using-reduction">3.3. Sum Code using reduction</h3>
+
+<p><a href="/assets/data/Numba_Cuda/gpu_sum_reduction.pdf">GPU_SUM.pdf</a>의 예제를 Numba에서도 구현 해 볼 수 있다. 아래 Sum_kernel을 한번만 호출하고 남은 연산을 CPU에서 처리 하여도 GPU를 활용하는 것이 더 효율적임을 볼 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Kernel Code
+</span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
+<span class="kn">from</span> <span class="nn">numba.cuda</span> <span class="kn">import</span> <span class="n">to_device</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="o">@</span><span class="n">cuda</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="s">"void(float32[:], float32[:], int64)"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">sum_kernel</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">tid</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">idx_block_start</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">blockIdx</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">cuda</span><span class="o">.</span><span class="n">blockDim</span><span class="o">.</span><span class="n">x</span>
+
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="n">stride</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">blockDim</span><span class="o">.</span><span class="n">x</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="k">while</span> <span class="n">stride</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">tid</span> <span class="o">&lt;</span> <span class="n">stride</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx_block_start</span> <span class="o">+</span> <span class="n">tid</span> <span class="o">+</span> <span class="n">stride</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">idx_block_start</span> <span class="o">+</span> <span class="n">tid</span><span class="p">]</span> <span class="o">+=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_block_start</span> <span class="o">+</span> <span class="n">tid</span> <span class="o">+</span> <span class="n">stride</span><span class="p">]</span>
+        <span class="n">cuda</span><span class="o">.</span><span class="n">syncthreads</span><span class="p">()</span>
+        <span class="n">stride</span> <span class="o">//=</span> <span class="mi">2</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">tid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">cuda</span><span class="o">.</span><span class="n">blockIdx</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_block_start</span><span class="p">]</span>
+
+<span class="c1"># Host Code
+</span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">float32</span>
+<span class="kn">from</span> <span class="nn">numpy.random_intel</span> <span class="kn">import</span> <span class="n">standard_normal</span>
+
+<span class="n">n_sample</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">27</span> <span class="o">-</span> <span class="mi">157</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">float32</span><span class="p">(</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n_sample</span><span class="p">))</span>
+<span class="n">d_data</span> <span class="o">=</span> <span class="n">to_device</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+
+<span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s">'Sum By CPU'</span><span class="p">):</span>
+    <span class="n">sum_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">threadsperblock</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">blockspergrid</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n_sample</span> <span class="o">/</span> <span class="n">threadsperblock</span><span class="p">)</span>
+<span class="n">out_of_gpu</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">device_array</span><span class="p">(</span><span class="n">blockspergrid</span><span class="p">,</span> <span class="n">float32</span><span class="p">)</span>
+
+<span class="n">sum_kernel</span><span class="p">[</span><span class="n">blockspergrid</span><span class="p">,</span> <span class="n">threadsperblock</span><span class="p">](</span><span class="n">out_of_gpu</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">n_sample</span><span class="p">)</span> <span class="c1"># For Compile
+</span>
+<span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s">'Sum By GPU'</span><span class="p">):</span>
+    <span class="n">sum_kernel</span><span class="p">[</span><span class="n">blockspergrid</span><span class="p">,</span> <span class="n">threadsperblock</span><span class="p">](</span><span class="n">out_of_gpu</span><span class="p">,</span> <span class="n">d_data</span><span class="p">,</span> <span class="n">n_sample</span><span class="p">)</span>
+    <span class="n">out_from_gpu</span> <span class="o">=</span> <span class="n">out_of_gpu</span><span class="o">.</span><span class="n">copy_to_host</span><span class="p">()</span>
+    <span class="n">sum_gpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">out_from_gpu</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'CPU Result: {sum_cpu}'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'GPU Result: {sum_gpu}'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum By CPU ==&gt; Elapsed time: 0.21521380 sec
+Sum By GPU ==&gt; Elapsed time: 0.08513450 sec
+CPU Result: -6470.31591796875
+GPU Result: -6470.2724609375
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="4-참고자료">4. 참고자료</h2>
+<p>[1] Dr. Brian Tuomanen. (2018). Chapter3, Hands-On GPU Programming with Python and CUDA (39).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+                    
+
+<div class="share-bar">
+  <ul class="share-buttons">
+    
+    <li class="share-facebook">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2019/07/190707_Numba_Cuda" target="_blank" title="Share on Facebook">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-facebook fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-twitter">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2019/07/190707_Numba_Cuda&text=Numba를 이용한 Cuda 프로그램 예제" target="_blank" title="Tweet">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-twitter fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-google-plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/2019/07/190707_Numba_Cuda" target="_blank" title="Share on Google Plus">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-google-plus fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="share-envelope">
+      <a href="mailto:?&subject=Numba를 이용한 Cuda 프로그램 예제&body=Python에서 Numba를 이용한 Cuda 프로그래밍 예제를 소개한다. http://localhost:4000/2019/07/190707_Numba_Cuda" target="_blank" title="Email">
+        <span class="fa-stack fa-lg">
+          <i class="fa fa-circle-thin fa-stack-2x"></i>
+          <i class="fa fa-envelope-o fa-stack-1x"></i>
+        </span>
+      </a>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+                  </div>
+                  
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                  </div>
+                  
+                </div>
+				<script type="text/x-mathjax-config">
+                  MathJax.Hub.Config({
+                    tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    processEscapes: true
+                    }
+                  });
+                </script>
+				<script type="text/javascript" async
+                  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+                </script>
+              </div>
+            </div>
+            <div class="col-md-4 hidden-xs">
+              <div class="sidebar ">
+  <h2>Recent Posts</h2>
+  <ul>
+    
+    <li><a href="/2019/07/190707_Numba_Cuda">Numba를 이용한 Cuda 프로그램 예제</a></li>
+    
+    <li><a href="/2019/04/190421_LightsOutPuzzle">Lights Out 퍼즐 풀기</a></li>
+    
+    <li><a href="/2019/01/190127_SpyderIde">Spyder IDE (Python의 Matlab과 유사한 개발환경)</a></li>
+    
+    <li><a href="/2018/12/181220_GitHubPullRequest">Github에서 Pull Request 하는 방법</a></li>
+    
+    <li><a href="/2018/11/181122_EulerLagrangeEquation">Euler-Lagrange 방정식</a></li>
+    
+  </ul>
+</div>
+
+<div class="sidebar">
+  <h2>Tags</h2>
+  <ul class="sideBarTags">
+    
+    
+    <li>
+      <a href="/tag/cuda" data-toggle="tooltip" data-placement="right" title="2">
+        <span>cuda</span></a></li>
+    
+    <li>
+      <a href="/tag/github" data-toggle="tooltip" data-placement="right" title="1">
+        <span>github</span></a></li>
+    
+    <li>
+      <a href="/tag/jupyter" data-toggle="tooltip" data-placement="right" title="1">
+        <span>jupyter</span></a></li>
+    
+    <li>
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="6">
+        <span>math</span></a></li>
+    
+    <li>
+      <a href="/tag/matlab" data-toggle="tooltip" data-placement="right" title="2">
+        <span>matlab</span></a></li>
+    
+    <li>
+      <a href="/tag/physics" data-toggle="tooltip" data-placement="right" title="3">
+        <span>physics</span></a></li>
+    
+    <li>
+      <a href="/tag/pycharm" data-toggle="tooltip" data-placement="right" title="1">
+        <span>pycharm</span></a></li>
+    
+    <li>
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="11">
+        <span>python</span></a></li>
+    
+    <li>
+      <a href="/tag/signal_system" data-toggle="tooltip" data-placement="right" title="1">
+        <span>signal_system</span></a></li>
+    
+    <li>
+      <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="4">
+        <span>sympy</span></a></li>
+    
+  </ul>
+</div>
+
+            </div>
+          </div>
+        </div>
+        
+<!-- Add Disqus comments. -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
+  var disqus_identifier = "/2019/07/190707_Numba_Cuda";
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </div>
+          <footer class="footer-distributed">
+      <div class="container">
+        <div class="footer">
+          <p>ok97465 &copy; 2018-</p>
+          <h6>Follow me</h6>
+
+<ul class="social-media">
+
+  
+    <li>
+      <a title="ok97465 on Github" href="https://github.com/ok97465" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="9015220/lowqualitydelivery on StackOverflow" href="https://stackoverflow.com/users/9015220/lowqualitydelivery" target="_blank"><i class="fa fa-stack-overflow fa-2x"></i></a>
+    </li>
+  
+
+  
+
+  
+    <li>
+      <a title=" on Instagram" href="https://instagram.com/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title=" on Last.fm" href="https://www.lastfm.com/user/" target="_blank"><i class="fa fa-lastfm fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="feed.xml RSS" href="/feed.xml" target="_blank"><i class="fa fa-rss fa-2x"></i></a>
+    </li>
+  
+
+</ul>
+
+        </div>
+      </div>
+    </footer>
+
+    </div>
+  </body>
+</html>
