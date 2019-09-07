@@ -185,5 +185,109 @@ $$s + v_i + v_j + v_k \cdots = 0,\quad \quad \quad i\neq j\neq k\quad(v_1 + v_1 
 
 <br>
 
-## 4. 참고자료
-[1] 필립 클라인. (2019). 3. 벡터. Coding The Matrix (90)
+## 4. Python 예제 코드
+
+### 4.1. Galois Field [2]
+Python에서 Galois Field를 표현하기 위해서 Class를 선언한다.
+
+
+```python
+class GF2(object):
+    """Galois field GF(2)."""
+    
+    def __init__(self, a=0):
+        self.value = int(a) & 1
+    
+    def __add__(self, rhs):
+        return GF2(self.value + GF2(rhs).value)
+    
+    def __mul__(self, rhs):
+        return GF2(self.value * GF2(rhs).value)
+    
+    def __sub__(self, rhs):
+        return GF2(self.value - GF2(rhs).value)
+    
+    def __truediv__(self, rhs):
+        return GF2(self.value / GF2(rhs).value)
+    
+    def __repr__(self):
+        return str(self.value)
+    
+    def __eq__(self, rhs):
+        if isinstance(rhs, GF2):
+            return self.value == rhs.value
+        return self.value == rhs
+    
+    def __le__(self, rhs):
+        if isinstance(rhs, GF2):
+            return self.value <= rhs.value
+        return self.value <= rhs
+    
+    def __lt__(self, rhs):
+        if isinstance(rhs, GF2):
+            return self.value < rhs.value
+        return self.value < rhs
+    
+    def __int__(self):
+        return self.value
+    
+    def __long__(self):
+        return self.value
+```
+
+<br>
+
+### 4.2. 상태 천이 행렬 생성
+상태 천이 벡터($v_i$)가 하나의 열로 구성된 상태 천이 행렬을 생성한다.
+
+
+
+
+```python
+from numpy import zeros
+from matplotlib.pyplot import subplots
+def state_transition_matrix_lightsout(n):
+    """Calculate state trasition matrix of light out."""
+    matrix = zeros((n * n, n * n))
+
+    fig, ax = subplots(n, n, figsize=(5, 5))
+
+    for idx_row in range(1, n + 1):
+        for idx_col in range(1, n + 1):
+            vector = zeros((n + 2, n + 2))
+            vector[idx_row - 1, idx_col + 0] = 1
+            vector[idx_row + 1, idx_col + 0] = 1
+            vector[idx_row + 0, idx_col + 0] = 1
+            vector[idx_row + 0, idx_col + 1] = 1
+            vector[idx_row + 0, idx_col - 1] = 1
+            vector = vector[1:n + 1, 1:n + 1]
+
+            draw_state_trasition(vector, ax[(idx_row - 1), (idx_col - 1)],
+                                 grid_width=1)
+
+            matrix[(idx_row - 1) * n + (idx_col - 1) , :] = vector.ravel()
+
+    fig.suptitle("State-Trasition Vectors")
+
+    return matrix
+
+mat = state_transition_matrix_lightsout(3)
+
+fig, ax = subplots(figsize=(5, 5))
+draw_state_trasition(mat, ax)
+_ = ax.set_title("State-Trasition Matrix")
+```
+
+
+![img]({{ '/assets/images/2019-04-21-190421_LightsOutPuzzle/output_19_0.png' | relative_url }}){: .center-image }
+
+
+
+![img]({{ '/assets/images/2019-04-21-190421_LightsOutPuzzle/output_19_1.png' | relative_url }}){: .center-image }
+
+
+<br>
+
+## 5. 참고자료
+[1] 필립 클라인. (2019). 3. 벡터. Coding The Matrix (90) 
+[2] https://github.com/pmneila/Lights-Out

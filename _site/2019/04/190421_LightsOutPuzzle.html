@@ -265,8 +265,102 @@
 
 <p><br /></p>
 
-<h2 id="4-참고자료">4. 참고자료</h2>
-<p>[1] 필립 클라인. (2019). 3. 벡터. Coding The Matrix (90)</p>
+<h2 id="4-python-예제-코드">4. Python 예제 코드</h2>
+
+<h3 id="41-galois-field-2">4.1. Galois Field [2]</h3>
+<p>Python에서 Galois Field를 표현하기 위해서 Class를 선언한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">GF2</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="s">"""Galois field GF(2)."""</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span>
+    
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">GF2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">rhs</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">rhs</span>
+    
+    <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">GF2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="n">rhs</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="n">rhs</span>
+    
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">GF2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">rhs</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">rhs</span>
+    
+    <span class="k">def</span> <span class="nf">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+    
+    <span class="k">def</span> <span class="nf">__long__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="42-상태-천이-행렬-생성">4.2. 상태 천이 행렬 생성</h3>
+<p>상태 천이 벡터($v_i$)가 하나의 열로 구성된 상태 천이 행렬을 생성한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">zeros</span>
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">subplots</span>
+<span class="k">def</span> <span class="nf">state_transition_matrix_lightsout</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="s">"""Calculate state trasition matrix of light out."""</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n</span> <span class="o">*</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span> <span class="o">*</span> <span class="n">n</span><span class="p">))</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">idx_row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">idx_col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">vector</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="n">vector</span><span class="p">[</span><span class="n">idx_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">idx_col</span> <span class="o">+</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">vector</span><span class="p">[</span><span class="n">idx_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">idx_col</span> <span class="o">+</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">vector</span><span class="p">[</span><span class="n">idx_row</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="n">idx_col</span> <span class="o">+</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">vector</span><span class="p">[</span><span class="n">idx_row</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="n">idx_col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">vector</span><span class="p">[</span><span class="n">idx_row</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="n">idx_col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">vector</span> <span class="o">=</span> <span class="n">vector</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">draw_state_trasition</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">ax</span><span class="p">[(</span><span class="n">idx_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="n">idx_col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)],</span>
+                                 <span class="n">grid_width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">matrix</span><span class="p">[(</span><span class="n">idx_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="p">(</span><span class="n">idx_col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">vector</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">"State-Trasition Vectors"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">matrix</span>
+
+<span class="n">mat</span> <span class="o">=</span> <span class="n">state_transition_matrix_lightsout</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">draw_state_trasition</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">"State-Trasition Matrix"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/2019-04-21-190421_LightsOutPuzzle/output_19_0.png" alt="img" class="center-image" /></p>
+
+<p><img src="/assets/images/2019-04-21-190421_LightsOutPuzzle/output_19_1.png" alt="img" class="center-image" /></p>
+
+<p><br /></p>
+
+<h2 id="5-참고자료">5. 참고자료</h2>
+<p>[1] 필립 클라인. (2019). 3. 벡터. Coding The Matrix (90) <br />
+[2] https://github.com/pmneila/Lights-Out</p>
 
                     
 
