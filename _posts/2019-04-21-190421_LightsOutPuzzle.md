@@ -245,12 +245,12 @@ class GF2(object):
 
 ```python
 from numpy import zeros
-from matplotlib.pyplot import subplots
-def state_transition_matrix_lightsout(n):
+from matplotlib.pyplot import figure, subplot
+from matplotlib.gridspec import GridSpec
+
+def state_transition_matrix_lightsout(n, grid_spec):
     """Calculate state trasition matrix of light out."""
     matrix = zeros((n * n, n * n))
-
-    fig, ax = subplots(n, n, figsize=(5, 5))
 
     for idx_row in range(1, n + 1):
         for idx_col in range(1, n + 1):
@@ -262,28 +262,34 @@ def state_transition_matrix_lightsout(n):
             vector[idx_row + 0, idx_col - 1] = 1
             vector = vector[1:n + 1, 1:n + 1]
 
-            draw_state_trasition(vector, ax[(idx_row - 1), (idx_col - 1)],
-                                 grid_width=1)
+            ax = subplot(grid_spec[idx_row - 1, idx_col - 1])
+            draw_state_trasition(vector, ax)
 
             matrix[(idx_row - 1) * n + (idx_col - 1) , :] = vector.ravel()
 
-    fig.suptitle("State-Trasition Vectors")
-
     return matrix
 
-mat = state_transition_matrix_lightsout(3)
 
-fig, ax = subplots(figsize=(5, 5))
+n_lightsout = 3
+
+fig = figure(figsize=(8, 4.5))
+
+fig.suptitle("   Trasition Vectors                                           Trasition Matrix",
+             fontsize=15)
+gs1 = GridSpec(n_lightsout, n_lightsout, figure=fig)
+gs1.update(left=0.05, right=0.48, wspace=0.05)
+
+gs2 = GridSpec(n_lightsout, n_lightsout, figure=fig)
+gs2.update(left=0.55, right=0.98)
+
+mat = state_transition_matrix_lightsout(n_lightsout, gs1)
+
+ax = subplot(gs2[:, :])
 draw_state_trasition(mat, ax)
-_ = ax.set_title("State-Trasition Matrix")
 ```
 
 
 ![img]({{ '/assets/images/2019-04-21-190421_LightsOutPuzzle/output_19_0.png' | relative_url }}){: .center-image }
-
-
-
-![img]({{ '/assets/images/2019-04-21-190421_LightsOutPuzzle/output_19_1.png' | relative_url }}){: .center-image }
 
 
 <br>
