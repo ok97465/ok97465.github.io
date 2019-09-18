@@ -108,7 +108,7 @@ Lights Out 의 불이 켜진 상태를 1, 꺼진 상태를 0으로 놓는다. �
 위의 수식은 버튼이 눌렸을 때의 변화를 GF(2)의 덧셈으로 표현 가능함을 보여준다.
 
 Light Out 문제는 GF(2)에 포함된 벡터의 덧셈 문제로 변환 될 수 있다.
-문제를 간단하게 하기 위해 버튼을 2x2로 제한하면 상태 변화 벡터($v_i$)는 아래와 같이 정의 된다.
+문제를 간단하게 하기 위해 버튼을 2x2로 제한하면 상태 천이 벡터($v_i$)는 아래와 같이 정의 된다.
 
 <table><td><table border="1" class="dataframe">
   <caption>v<sub>1</sub></caption>
@@ -179,65 +179,87 @@ $$s + v_i + v_j + v_k \cdots = 0,\quad \quad \quad i\neq j\neq k\quad(v_1 + v_1 
 
 <br>
 
-## 3. 해법을 찾는 효과적인 방안
+### 2.3. 해법을 찾는 방안
 
-작성중
+상태 천이 벡터($v_i$)로 이루어진 상태 천이 행렬($M$)을 정의한다.
+
+$$M=\left[ \begin{matrix} { v }_{ 1 } & { v }_{ 2 } & \cdots  & { v }_{ n-1 } & { v }_{ n } \end{matrix} \right]$$
+
+Lights Out 문제는 GF2에서 아래의 수식의 $x$를 찾는 방정식 문제로 정리된다.
+
+$$x={M}^{-1}s$$
+
+벡터들이 실수에서 정의 되어 있다면 ${M}^{-1}$를 쉽게 구할 수 있지만 GF2의 경우 ${M}^{-1}$를 직접 계산하여야 한다. GF2의 ${M}^{-1}$는 Gauss Elimination을 이용하여 구한다.
+
+Lights Out의 개수에 따라서 M의 full rank가 아닌 경우가 발생한다. M full rank가 아닌 경우 M의 null space를 구하여 Lights Out 문제의 정답이 존재 여부를 확인하고 $x$를 구하여야 한다.
 
 <br>
 
-## 4. Python 예제 코드
+## 3. Python 코드
 
-### 4.1. Galois Field [2]
+### 3.1. Galois Field [2]
 Python에서 Galois Field를 표현하기 위해서 Class를 선언한다.
 
 
 ```python
 class GF2(object):
     """Galois field GF(2)."""
-    
+
     def __init__(self, a=0):
-        self.value = int(a) & 1
-    
+        self.value = int(a) % 2
+
     def __add__(self, rhs):
+        """."""
         return GF2(self.value + GF2(rhs).value)
-    
+
     def __mul__(self, rhs):
+        """."""
         return GF2(self.value * GF2(rhs).value)
-    
+
     def __sub__(self, rhs):
+        """."""
         return GF2(self.value - GF2(rhs).value)
-    
+
     def __truediv__(self, rhs):
+        """."""
         return GF2(self.value / GF2(rhs).value)
-    
+
     def __repr__(self):
+        """."""
         return str(self.value)
-    
+
     def __eq__(self, rhs):
+        """."""
         if isinstance(rhs, GF2):
             return self.value == rhs.value
         return self.value == rhs
-    
+
     def __le__(self, rhs):
+        """."""
         if isinstance(rhs, GF2):
             return self.value <= rhs.value
         return self.value <= rhs
-    
+
     def __lt__(self, rhs):
+        """."""
         if isinstance(rhs, GF2):
             return self.value < rhs.value
         return self.value < rhs
-    
+
     def __int__(self):
+        """."""
+        return self.value
+
+    def __long__(self):
+        """."""
         return self.value
     
-    def __long__(self):
-        return self.value
+GF2array = vectorize(GF2)
 ```
 
 <br>
 
-### 4.2. 상태 천이 행렬 생성
+### 3.2. 상태 천이 행렬 생성
 상태 천이 벡터($v_i$)가 하나의 열로 구성된 상태 천이 행렬을 생성한다.
 
 
@@ -270,7 +292,7 @@ def state_transition_matrix_lightsout(n, grid_spec):
     return matrix
 
 
-n_lightsout = 3
+n_lightsout = 4
 
 fig = figure(figsize=(8, 4.5))
 
@@ -282,10 +304,10 @@ gs1.update(left=0.05, right=0.48, wspace=0.05)
 gs2 = GridSpec(n_lightsout, n_lightsout, figure=fig)
 gs2.update(left=0.55, right=0.98)
 
-mat = state_transition_matrix_lightsout(n_lightsout, gs1)
+state_mat = state_transition_matrix_lightsout(n_lightsout, gs1)
 
 ax = subplot(gs2[:, :])
-draw_state_trasition(mat, ax)
+draw_state_trasition(state_mat, ax)
 ```
 
 
@@ -294,6 +316,175 @@ draw_state_trasition(mat, ax)
 
 <br>
 
-## 5. 참고자료
-[1] 필립 클라인. (2019). 3. 벡터. Coding The Matrix (90) 
+### 3.3. 역행렬 및 Null Space 계산
+Gauss Elimination을 이용하여 역행렬과 Null Space를 계산한다.
+
+
+```python
+import numpy as np
+from numpy import hstack, eye, where, vstack, int32
+
+def inv_by_gauss_elimination(mat):
+    """Caculate inverse matrix by gauss elimination.
+
+    Parameters
+    ----------
+    mat : ndarray
+        matrix.
+
+    Returns
+    -------
+    mat_inv : ndarray
+        inverse matrix.
+    mat_null : ndarray
+        null space matrix.
+
+    """
+    n_row, n_col = mat.shape
+
+    if n_row != n_col:
+        raise ValueError("n_row and n_col are diffrents.")
+
+    data = GF2array(hstack([mat, eye(n_row)]))
+
+    n_null_dim = 0
+    mat_null = array([])
+
+    # Row echelon form
+    for idx_row_src in range(n_row - 1):
+        idx_pivot_candidate = where(data[idx_row_src:, idx_row_src] == 1)[0]
+
+        if len(idx_pivot_candidate) > 0:
+            idx_pivot = idx_pivot_candidate[0] + idx_row_src
+        else:
+            n_null_dim += 1
+            continue
+
+        if idx_pivot != idx_row_src:
+            tmp = data[idx_row_src, :].copy()
+            data[idx_row_src, :] = data[idx_pivot, :]
+            data[idx_pivot, :] = tmp
+
+        for idx_row_dst in range(idx_row_src + 1, n_row):
+            data[idx_row_dst, :] += (data[idx_row_src, :]
+                                     * data[idx_row_dst, idx_row_src])
+
+    if np.sum(data[-1, :n_col]) == 0:
+        n_null_dim += 1
+
+    # inverse matrix
+    for idx_row_src in range(n_row - 1, 0, -1):
+        for idx_row_dst in range(idx_row_src - 1, -1, -1):
+            data[idx_row_dst, :] += (data[idx_row_src, :]
+                                     * data[idx_row_dst, idx_row_src])
+
+    # Find Null space
+    if n_null_dim > 0:
+        mat_diag = data[:, :n_col]
+        mat_null = vstack(
+            [mat_diag[:n_row - n_null_dim, -n_null_dim:],
+             GF2array(eye(n_null_dim))])
+
+    mat_inv = data[-n_row:, -n_col:]
+
+    return mat_inv, mat_null
+```
+
+<br>
+
+### 3.4. 풀 수 있는 문제인지 확인
+켜져 있는 Light와 Null Space를 내적하여 0이면 풀수 있는 문제
+
+
+```python
+def check_solvable(lights_mat, mat_null):
+    """Check if the problem is solved.
+
+    Parameters
+    ----------
+    lights_mat : ndarray
+        matrix of lightout problem.
+    mat_null : ndarray
+        null space matrix.
+
+    Returns
+    -------
+    is_solvable: bool
+        return True if lights_mat is solvable.
+
+    """
+    is_solvable = True
+
+    if len(mat_null) > 0:
+        ret = np.sum((int32(lights_mat.ravel()) @ int32(mat_null)) % 2)
+        if ret != 0:
+            is_solvable = False
+
+    return is_solvable
+```
+
+<br>
+
+### 3.5. 결과 확인
+
+#### 3.5.1. 역행렬 계산
+
+
+```python
+state_mat_inv, state_mat_null = inv_by_gauss_elimination(state_mat)
+```
+
+<br>
+
+#### 3.5.2. Null Space가 잘 계산되어 있는지 확인
+
+
+```python
+if len(state_mat_null) > 0:
+    print(f"No. vectors of null space is {state_mat_null.shape[1]}.")
+    ret = (int32(state_mat) @ int32(state_mat_null)) % 2
+    has_value = np.any(ret)
+    if has_value:
+        print("====> Null Space is wrong. <====")
+    else:
+        print("Null Space is correct.")
+else:
+    print("No. vectors of null space is 0.")
+```
+
+    No. vectors of null space is 4.
+    Null Space is correct.
+
+
+<br>
+
+#### 3.5.3. 문제 풀이
+
+
+```python
+lights_mat = array([[1, 0, 0, 1],
+                    [1, 1, 1, 1],
+                    [1, 0, 0, 1],
+                    [0, 0, 0, 0]])
+
+is_solvable = check_solvable(lights_mat, state_mat_null)
+print(f'Solvable {is_solvable}')
+
+solution = (int32(state_mat_inv) @ int32(lights_mat.ravel())) % 2
+solution = solution.reshape(n_lightsout, n_lightsout)
+```
+
+    Solvable True
+
+
+
+
+
+![img]({{ '/assets/images/2019-04-21-190421_LightsOutPuzzle/output_31_0.png' | relative_url }}){: .center-image }
+
+
+<br>
+
+## 4. 참고자료
+[1] 필립 클라인. (2019). 3. 벡터. Coding The Matrix (90)  
 [2] https://github.com/pmneila/Lights-Out
