@@ -191,7 +191,7 @@ $$x={M}^{-1}s$$
 
 벡터들이 실수에서 정의 되어 있다면 ${M}^{-1}$를 쉽게 구할 수 있지만 GF2의 경우 ${M}^{-1}$를 직접 계산하여야 한다. GF2의 ${M}^{-1}$는 Gauss Elimination을 이용하여 구한다.
 
-Lights Out의 개수에 따라서 M의 full rank가 아닌 경우가 발생한다. M full rank가 아닌 경우 M의 null space를 구하여 Lights Out 문제의 정답이 존재 여부를 확인하고 $x$를 구하여야 한다.
+Lights Out의 개수에 따라서 M이 singular 행렬이 될 수도 있다. M이 full rank가 아닌 경우 M의 null space를 구하여 Lights Out 문제의 정답이 존재 여부를 확인하고 $x$를 구하여야 한다.
 
 <br>
 
@@ -263,6 +263,17 @@ GF2array = vectorize(GF2)
 상태 천이 벡터($v_i$)가 하나의 열로 구성된 상태 천이 행렬을 생성한다.
 
 
+```python
+def draw_state_trasition(state, ax, grid_width=3):
+    """Plot State-Transition Matrix"""
+    from numpy import arange
+    cmap = ListedColormap(['k', 'g'])
+    ax.pcolor(flipud(state), cmap=cmap)
+    ax.set_xticks(arange(state.shape[1]))
+    ax.set_yticks(arange(state.shape[0]))
+    ax.grid(True, color='grey', linewidth=grid_width)
+    ax.tick_params(labelleft=False,labelbottom= False)
+```
 
 
 ```python
