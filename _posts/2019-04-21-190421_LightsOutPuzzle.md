@@ -13,8 +13,9 @@ sitemap :
 
 # Lights Out 퍼즐 풀기
 
-## 1. Lights Out 퍼즐 설명
-아래 그림과 같이 일부 버튼은 불이 켜져 있고 다른 일부는 꺼져 있다. 버튼을 누르면 그 버튼의 현재 상태가 반대로 바뀌고 동시에 눌러진 버튼 주변 4개 버튼의 상태도 반대로 바뀐다. 이 퍼즐의 목적은 버튼을 눌러서 모든 버튼의 불을 꺼지게 하는 것이다.
+## 1. Lights Out 퍼즐이란
+아래 그림과 같이 일부만 켜져 있는 전구 판이 있을 때, 일정한 규칙에 따라 전구 판을 모두 끄는 퍼즐이다.  
+퍼즐의 규칙은 간단하다. 한 버튼을 누르면 그 버튼과 버튼을 둘러싼 4개의 버튼 상태가 반대로 바뀐다.
 
 
 
@@ -34,7 +35,21 @@ sitemap :
 
 ## 2. 수학적 접근
 
-### 2.1. Galois Filed 2
+퍼즐을 대해 아래와 같은 질문을 할 수 있다.
+
+- 풀 수 있는 퍼즐인가?
+- 풀 수 있는 방법은 한가지 인가?
+- 풀 수 있는 방법이 여러가지 일 경우 최소한의 노력으로 풀 수 있는 방법은 무엇인가?
+
+위의 질문에 답을 하려면 수학적 접근이 필요하다.   
+
+우선 퍼즐 문제를 수학 문제로 변환하기 위해서 버튼의 상태변화를 사칙연산으로 정의하고 퍼즐의 상태 변화를 행렬로 정의한다.
+
+퍼즐의 상태 변화가 행렬로 정의 되면 Lights out 퍼즐은 간단한 선형대수학 문제로 바뀌게 되어 질문의 답을 쉽게 얻을 수 있다.
+
+<br>
+
+### 2.1. Galois Field 2
 GF(2)는 갈루아 필드(Galois Filed 2)를 간략하게 표현한 것이다.
 갈루아 필드의 +, x는 아래와 같이 정의 된다.
 
@@ -175,7 +190,7 @@ Light Out 문제는 GF(2)에 포함된 벡터의 덧셈 문제로 변환 될 수
 
 $$s + v_i + v_j + v_k \cdots = 0,\quad \quad \quad i\neq j\neq k\quad(v_1 + v_1 = 0\text{이므로})$$
 
-즉 Lights Out 문제는 GF(2)에서 $s$가 $v_i$의 벡터의 부분 집합으로 표현 할수 있는가의 문제가 된다.
+즉 Lights Out 문제는 GF(2)에서 $s$가 $v_i$의 벡터의 합으로 표현 할수 있는가의 문제가 된다.
 
 <br>
 
@@ -187,11 +202,15 @@ $$M=\left[ \begin{matrix} { v }_{ 1 } & { v }_{ 2 } & \cdots  & { v }_{ n-1 } & 
 
 Lights Out 문제는 GF2에서 아래의 수식의 $x$를 찾는 방정식 문제로 정리된다.
 
-$$x={M}^{-1}s$$
+$$Mx=s$$
 
-벡터들이 실수에서 정의 되어 있다면 ${M}^{-1}$를 쉽게 구할 수 있지만 GF2의 경우 ${M}^{-1}$를 직접 계산하여야 한다. GF2의 ${M}^{-1}$는 Gauss Elimination을 이용하여 구한다.
+벡터들이 실수에서 정의 되어 있다면 이미 구현된 라이브러리들을 이용하여 ${M}^{-1}$를 쉽게 구할 수 있지만 GF2의 경우 ${M}^{-1}$를 직접 계산하여야 한다. GF2의 ${M}^{-1}$는 Gauss Elimination을 이용하여 구할 수 있다.
 
-Lights Out의 개수에 따라서 M이 singular 행렬이 될 수도 있다. M이 full rank가 아닌 경우 M의 null space를 구하여 Lights Out 문제의 정답이 존재 여부를 확인하고 $x$를 구하여야 한다.
+$M$은 퍼즐의 크기에 따라서 Full Rank일 경우도 있고 그렇지 않은 경우도 있다.
+
+만약 Full Rank일 경우에는 퍼즐의 모든 초기 상태에 대해서 유일한 해답을 가진다.
+
+만약 Full Rank가 아닐 경우에는 퍼즐의 초기 상태에 따라서 풀이법이 없거나 여러가지 풀이법을 가질 수 있다. 초기 상태가 M의 Null Space와 내적하여 값을 가질 경우에는 퍼즐의 답을 찾을 수 없다. 퍼즐이 Null space를 포함하지 않을 경우 해법은 $x$와 null space의 조합으로 여러개가 존재한다.
 
 <br>
 
@@ -496,6 +515,18 @@ solution = solution.reshape(n_lightsout, n_lightsout)
 
 <br>
 
-## 4. 참고자료
+## 4. 게임
+
+위에서 설명된 수식을 이용하여 간단한 게임을 만들 수 있다.[3]
+
+<figure>
+    <img src='/assets/images/LightsOut/DemoLightsOut.gif' alt='Game Demo' width="240" />
+    <figcaption class="figure-caption">Game Demo</figcaption>
+</figure>
+
+<br>
+
+## 5. 참고자료
 [1] 필립 클라인. (2019). 3. 벡터. Coding The Matrix (90)  
 [2] https://github.com/pmneila/Lights-Out
+[3] https://github.com/ok97465/GameLightsOut
