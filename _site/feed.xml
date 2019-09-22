@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 22 Sep 2019 23:34:06 +0900</pubDate>
-    <lastBuildDate>Sun, 22 Sep 2019 23:34:06 +0900</lastBuildDate>
+    <pubDate>Mon, 23 Sep 2019 00:18:25 +0900</pubDate>
+    <lastBuildDate>Mon, 23 Sep 2019 00:18:25 +0900</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
@@ -827,7 +827,7 @@ Null Space is correct.
 &lt;h2 id=&quot;2-자동-완성기능-auto-complete&quot;&gt;2. 자동 완성기능 (Auto complete)&lt;/h2&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/Auto_complete.gif&quot; alt=&quot;Auto complete&quot; width=&quot;790&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Auto_complete.gif&quot; alt=&quot;Auto complete&quot; width=&quot;480&quot; /&gt;
     &lt;figcaption class=&quot;figure-caption&quot;&gt;Auto complete&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -903,7 +903,7 @@ Null Space is correct.
 &lt;h2 id=&quot;8-auto-docstring&quot;&gt;8. Auto Docstring&lt;/h2&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/Auto_docstring.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;420&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Auto_docstring.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;480&quot; /&gt;
     &lt;figcaption class=&quot;Auto docstring&quot;&gt;변수 탐색기&lt;/figcaption&gt;
 &lt;/figure&gt;
 
