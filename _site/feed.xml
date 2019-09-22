@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 23 Sep 2019 00:18:25 +0900</pubDate>
-    <lastBuildDate>Mon, 23 Sep 2019 00:18:25 +0900</lastBuildDate>
+    <pubDate>Mon, 23 Sep 2019 00:36:05 +0900</pubDate>
+    <lastBuildDate>Mon, 23 Sep 2019 00:36:05 +0900</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
@@ -931,7 +931,7 @@ Null Space is correct.
   &lt;li&gt;Code Completion에 import 명령 추가&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/auto_import2.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;480&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/auto_import2.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;240&quot; /&gt;
     &lt;figcaption class=&quot;Auto Import&quot;&gt;Auto Import 2&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -945,11 +945,14 @@ Null Space is correct.
 &lt;p&gt;이것도 Spyder 개발팀에서 개발 중이지만 빨리 쓰고 싶어서 Hardcoding하여 사용중이다.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/snippet.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;480&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/snippets.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;240&quot; /&gt;
     &lt;figcaption class=&quot;Snippet&quot;&gt;snippet&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/data/Spyder-ide/snippet.json&quot;&gt;snippet.json&lt;/a&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sun, 27 Jan 2019 23:06:00 +0900</pubDate>
         <link>http://localhost:4000/2019/01/190127_SpyderIde</link>
