@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 23 Sep 2019 00:36:05 +0900</pubDate>
-    <lastBuildDate>Mon, 23 Sep 2019 00:36:05 +0900</lastBuildDate>
+    <pubDate>Mon, 23 Sep 2019 13:01:58 +0900</pubDate>
+    <lastBuildDate>Mon, 23 Sep 2019 13:01:58 +0900</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
@@ -831,14 +831,20 @@ Null Space is correct.
     &lt;figcaption class=&quot;figure-caption&quot;&gt;Auto complete&lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;lint, autocomplete를 지원하는 python-language-server, kite가 개발되면서 Spyder에서도 자동완성 기능을 지원할 수 있게 되었다.&lt;/p&gt;
+&lt;p&gt;lint, autocomplete를 지원하는 python-language-server, &lt;a href=&quot;https://kite.com/&quot;&gt;Kite&lt;/a&gt; 가 개발되면서 Spyder에서도 자동완성 기능을 지원할 수 있게 되었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Docstring에 입력, 출력 변수 Type&lt;/code&gt;을 정하면 함수 내부 변수와 함수 출력 변수에 대한 자동 완성 기능을 지원한다.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Auto_complete2.gif&quot; alt=&quot;Auto complete of function&quot; width=&quot;480&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Auto complete&lt;/figcaption&gt;
+&lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;3-변수-탐색기&quot;&gt;3. 변수 탐색기&lt;/h2&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/Variable_explorer.png&quot; alt=&quot;Variable-explorer&quot; width=&quot;360&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/Variable_explorer.png&quot; alt=&quot;Variable-explorer&quot; width=&quot;380&quot; /&gt;
     &lt;figcaption class=&quot;figure-caption&quot;&gt;변수 탐색기&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -861,7 +867,7 @@ Null Space is correct.
     &lt;figcaption class=&quot;figure-caption&quot;&gt;Cell 모드&lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;Matlab과 동일한 Cell 모드를 지원하고 Cell 실행, 단축키를 이용한 Cell 이동, Cell Debug도 가능하다. 단 Spyder에서는 # %%를 이용해야 한다.&lt;/p&gt;
+&lt;p&gt;Matlab과 동일한 Cell 모드를 지원하고 Cell 실행, 단축키를 이용한 Cell 이동, &lt;code class=&quot;highlighter-rouge&quot;&gt;Cell Debug&lt;/code&gt;도 가능하다. 단 Spyder에서는 # %%를 이용해야 한다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -883,7 +889,7 @@ Null Space is correct.
     &lt;figcaption class=&quot;figure-caption&quot;&gt;Plot&lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;Plot을 모아서 보여주는 기능이 추가되었다. Matlab만 쓰던 사람들은 처음에 어색하고 불편할 수도 있지만 꾸준히 사용하다 보면 이것의 유용함을 느끼게 된다. 한번에 50개 이상씩 Plot을 하거나 Debugging이 끝나고 결과만 자주 보는 경우에 매우 유용한 기능이다. 클릭 한번으로 Plot 창에 출력된 그림들을 모두 저장할 수도 있다.&lt;/p&gt;
+&lt;p&gt;Plot을 모아서 보여주는 기능이 추가되었다. Matlab만 쓰던 사람들은 처음에 어색하고 불편할 수도 있지만 꾸준히 사용하다 보면 이것의 유용함을 느끼게 된다. 한번에 50개 이상씩 Plot을 하거나 Debugging이 끝나고 결과만 자주 보는 Script의 경우에 매우 유용한 기능이다. 클릭 한번으로 Plot 창에 출력된 그림들을 모두 저장할 수도 있다.&lt;/p&gt;
 
 &lt;p&gt;Spyder에서는 Matlab 처럼 Figure별 창으로 띄우는 것도 지원한다. 환경설정에서 Figure Popup 방식은 영구적으로 바꿀 수 있고 일시적으로 변경시에는 명령창에서 Magic command를 이용하면 된다.&lt;/p&gt;
 
@@ -909,6 +915,8 @@ Null Space is correct.
 
 &lt;p&gt;코딩을 오래 하다 보면 주석을 잘 정리하는 것이 얼마나 중요한지 깨닫게 된다. Numpy, Google 형태의 주석을 자동으로 만들어주는 기능이 추가되어 코드 관리가 더욱 쉬워졌다.&lt;/p&gt;
 
+&lt;p&gt;위에서 언급하였듯이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Docstring에 Type&lt;/code&gt;을 지정하면 함수 내에서도 자동완성기능 사용이 가능하다. 또한 Docstring에 Type을 정의하고 MyPy를 적용하면 Coding중에 Type Mismatch도 확인 할 수 있다. Python에서 Docstring은 선택이 아닌 필수사항으로 생각하는게 좋다.&lt;/p&gt;
+
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;9-python-opensource&quot;&gt;9. Python Opensource&lt;/h2&gt;
@@ -931,7 +939,7 @@ Null Space is correct.
   &lt;li&gt;Code Completion에 import 명령 추가&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/auto_import2.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;240&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/auto_import2.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;320&quot; /&gt;
     &lt;figcaption class=&quot;Auto Import&quot;&gt;Auto Import 2&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -945,14 +953,11 @@ Null Space is correct.
 &lt;p&gt;이것도 Spyder 개발팀에서 개발 중이지만 빨리 쓰고 싶어서 Hardcoding하여 사용중이다.&lt;/p&gt;
 
 &lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/snippets.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;240&quot; /&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/snippets.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;320&quot; /&gt;
     &lt;figcaption class=&quot;Snippet&quot;&gt;snippet&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/data/Spyder-ide/snippet.json&quot;&gt;snippet.json&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sun, 27 Jan 2019 23:06:00 +0900</pubDate>
         <link>http://localhost:4000/2019/01/190127_SpyderIde</link>
