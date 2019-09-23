@@ -5,8 +5,8 @@
     <description>방관자</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 23 Sep 2019 13:01:58 +0900</pubDate>
-    <lastBuildDate>Mon, 23 Sep 2019 13:01:58 +0900</lastBuildDate>
+    <pubDate>Mon, 23 Sep 2019 13:06:12 +0900</pubDate>
+    <lastBuildDate>Mon, 23 Sep 2019 13:06:12 +0900</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
@@ -836,7 +836,7 @@ Null Space is correct.
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Docstring에 입력, 출력 변수 Type&lt;/code&gt;을 정하면 함수 내부 변수와 함수 출력 변수에 대한 자동 완성 기능을 지원한다.&lt;/p&gt;
 &lt;figure&gt;
     &lt;img src=&quot;/assets/images/spyder-ide/Auto_complete2.gif&quot; alt=&quot;Auto complete of function&quot; width=&quot;480&quot; /&gt;
-    &lt;figcaption class=&quot;figure-caption&quot;&gt;Auto complete&lt;/figcaption&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Auto complete of function&lt;/figcaption&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -848,7 +848,7 @@ Null Space is correct.
     &lt;figcaption class=&quot;figure-caption&quot;&gt;변수 탐색기&lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;Matalb과 유사한 변수탐색기를 지원한다.&lt;/p&gt;
+&lt;p&gt;Matlab과 유사한 변수탐색기를 지원한다.&lt;/p&gt;
 
 &lt;p&gt;변수탐색기에서는 사진, csv, spyder 자체 저장 포맷등을 불러올 수 있다. 물론 mat파일도 지원한다.&lt;/p&gt;
 
