@@ -115,16 +115,27 @@
                   <div class="post-content">
                     
                       <ul class="toc">
-  <li><a href="#principle-of-stationary-phaseposp">Principle of Stationary Phase(POSP)</a>
-    <ul>
-      <li><a href="#1-principle-of-stationary-phase를-이용한-fourier-transform-근사">1. Principle of Stationary Phase를 이용한 Fourier Transform 근사</a></li>
-      <li><a href="#2-linear-frequency-modulation-신호에-posp-적용">2. Linear Frequency Modulation 신호에 POSP 적용</a></li>
-      <li><a href="#3-sympy를-이용한-chirp의-fourier-transform">3. Sympy를 이용한 Chirp의 Fourier Transform</a></li>
-      <li><a href="#4-discrete-time-fourier-seriesdtfs와-posp-결과-비교">4. Discrete Time Fourier Series(DTFS)와 POSP 결과 비교</a></li>
-    </ul>
-  </li>
-  <li><a href="#참고자료">참고자료</a></li>
+  <li><a href="#principle-of-stationary-phaseposp">Principle of Stationary Phase(POSP)</a></li>
+  <li>[</li>
 </ul>
+<p>넓은 주파수 대역을 가지는 1-D 함수의 Fourier Transform 근사 방법이다. Super Chirp($e^{\pm i \pi t^n}$) 형태의 Close form이 없는 함수의 주파수 특성을 유도하기에 매우 유용하다.</p>
+
+<script type="math/tex; mode=display">I ( f ) = \int _ { - \infty } ^ { + \infty } r ( t ) e ^ { i f \cdot \mu ( t ) } d t</script>
+
+<script type="math/tex; mode=display">r ( t ), \mu ( t ) \text{= real-valued function}</script>
+
+<p>&lt;b&lt;b&lt;b
+위의 적분식에서 지수 함수 $e ^ { i f \cdot \mu ( t ) }$의 진동의 속도는 $f$와 $\mu ( t )$에 비례할 것이다. 만약 f가 크다면, ${\mu} ^{\prime} ( t ) = 0$을 제외한 영역에서  $e ^ { i f \cdot \mu ( t ) }$는 -1과 1 매우 빠르게 진동할 것이고 $r ( t )$보다 빠르게 진동한다면 지수 함수의 큰 진동 때문에 값들이 상쇄되어 적분 결과는 매우 작을 것이다.  &lt;b
+${\mu}^{\prime} ( t_0 ) = 0$인 영역의 $t_0$을 Stationary point라고 부르고 $t_0$의 영역을 적분 값으로 근사화하는 것을 Principle of Stationary Phase라고 한다.</p>
+
+<p>&lt;b</p>
+
+<p>](#)<br />
+        - {:.} <a href="#1-principle-of-stationary-phase를-이용한-fourier-transform-근사">1. Principle of Stationary Phase를 이용한 Fourier Transform 근사</a><br />
+        - {:.} <a href="#2-linear-frequency-modulation-신호에-posp-적용">2. Linear Frequency Modulation 신호에 POSP 적용</a><br />
+        - {:.} <a href="#3-sympy를-이용한-chirp의-fourier-transform">3. Sympy를 이용한 Chirp의 Fourier Transform</a><br />
+        - {:.} <a href="#4-discrete-time-fourier-seriesdtfs와-posp-결과-비교">4. Discrete Time Fourier Series(DTFS)와 POSP 결과 비교</a><br />
+    - {:.} <a href="#참고자료">참고자료</a></p>
                     
                     <h1 id="principle-of-stationary-phaseposp">Principle of Stationary Phase(POSP)</h1>
 <hr />
