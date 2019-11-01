@@ -34,11 +34,7 @@
     {% capture listModifier %}{% if orderedList %}1.{% else %}-{% endif %}{% endcapture %}
 
     {% for node in nodes %}
-        {% if firstHeader %}
-            {% assign firstHeader = false %}
-            {% assign minHeader = headerLevel %}
-            {% continue %}
-        {% endif %}
+
         {% if node == "" %}
             {% continue %}
         {% endif %}
