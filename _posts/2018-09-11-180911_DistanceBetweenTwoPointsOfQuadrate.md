@@ -109,7 +109,7 @@ $$=0.5214054331647207$$
 
 <br>
 
-### 3.1.  a-b 의 PDF (Probability Density Function)  
+### 3.1. |a-b| 의 PDF (Probability Density Function)  
   
 두 random variable의 합의 PDF는 각각의 PDF의 Convolution이다  
 
