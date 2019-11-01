@@ -1,0 +1,603 @@
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ok97465</title>
+    <meta name="description" content="">
+    <meta name="theme-color" content="#222222"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
+    <meta property="og:url" content="http://ok97465.github.io">
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap4.min.js"></script>
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/css/svg-with-js/js/fontawesome-all.js"></script>
+    <link href="/assets/css/bootstrap4.min.css" rel="stylesheet">
+    <link href="/assets/css/theme.css" rel="stylesheet">
+    <link href="/assets/css/syntax.css" rel="stylesheet">
+ </head>
+
+<body>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-125307858-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+    WebFontConfig = {
+        google: {
+            families: ['Ubuntu::latin']
+        }
+    };
+    (function () {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+</script>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">ok97465</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/">/home</a>
+                <a class="nav-item nav-link" href="/archive.html">/archive</a>
+                <a class="nav-item nav-link" href="/tags.html">/tags</a>
+                <a class="nav-item nav-link" href="/about.html">/about</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+    <div class="wrapper">
+      <div class="content">
+        <div class="container container-center">
+          <div class="row">
+            <div class="col-md-8 offset-md-1">
+              <div class="card">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
+
+<h1>Blog statistics</h1>
+
+<div id="total-posts">Total number of posts:</div>
+<div id="total-words">Total number of words:</div>
+<div id="words-per-post">Number of words per post:</div>
+
+<h1>Number of posts per month</h1>
+<canvas id="postsPerMonth" width="400" height="300"></canvas>
+
+<h1>Number of words per month</h1>
+<canvas id="wordsPerMonth" width="400" height="300"></canvas>
+
+<h1>Number of posts per year</h1>
+<canvas id="postsPerYear" width="400" height="300"></canvas>
+
+<h1>Tags distribution</h1>
+<canvas id="tagsDistr" width="400" height="300"></canvas>
+
+<script>
+
+    var accentColor = "#3CA2A2";
+
+    var datePostsWords = [
+        
+            {
+                "t":"2019-10",
+                "year":"2019",
+                "x":1,
+                "y":11
+            },
+        
+            {
+                "t":"2019-7",
+                "year":"2019",
+                "x":1,
+                "y":1413
+            },
+        
+            {
+                "t":"2019-4",
+                "year":"2019",
+                "x":1,
+                "y":2535
+            },
+        
+            {
+                "t":"2019-1",
+                "year":"2019",
+                "x":1,
+                "y":668
+            },
+        
+            {
+                "t":"2018-12",
+                "year":"2018",
+                "x":1,
+                "y":575
+            },
+        
+            {
+                "t":"2018-11",
+                "year":"2018",
+                "x":1,
+                "y":2001
+            },
+        
+            {
+                "t":"2018-11",
+                "year":"2018",
+                "x":1,
+                "y":984
+            },
+        
+            {
+                "t":"2018-10",
+                "year":"2018",
+                "x":1,
+                "y":417
+            },
+        
+            {
+                "t":"2018-9",
+                "year":"2018",
+                "x":1,
+                "y":716
+            },
+        
+            {
+                "t":"2018-9",
+                "year":"2018",
+                "x":1,
+                "y":865
+            },
+        
+            {
+                "t":"2018-9",
+                "year":"2018",
+                "x":1,
+                "y":4003
+            },
+        
+            {
+                "t":"2018-9",
+                "year":"2018",
+                "x":1,
+                "y":465
+            },
+        
+            {
+                "t":"2018-9",
+                "year":"2018",
+                "x":1,
+                "y":1594
+            },
+        
+            {
+                "t":"2018-5",
+                "year":"2018",
+                "x":1,
+                "y":759
+            },
+        
+            {
+                "t":"2018-5",
+                "year":"2018",
+                "x":1,
+                "y":2055
+            },
+        
+    ];
+
+    var sy = "2018",
+        ey = "2019";
+
+    var datePostsWordsZeros = [];
+    for (var i = parseInt(sy); i <= parseInt(ey); i++) {
+        for (var j = 1; j < 13; j++) {
+            datePostsWordsZeros.push({"t": '' + i + "-" + j, "x": 0, "y": 0});
+        }
+    }
+
+    var datePostsWords = datePostsWordsZeros.concat(datePostsWords);
+
+    var postsPerMonth = datePostsWords.reduce((p, c) => {
+        var name = c.t;
+        if (!p.hasOwnProperty(name)) {
+            p[name] = 0;
+        }
+        p[name] = p[name] + c.x;
+        return p;
+    }, {});
+
+    var postsPerYear = datePostsWords.reduce((p, c) => {
+        var name = c.year;
+        if (!p.hasOwnProperty(name)) {
+            p[name] = 0;
+        }
+        p[name] = p[name] + c.x;
+        return p;
+    }, {});
+
+    var wordsPerMonth = datePostsWords.reduce((p, c) => {
+        var name = c.t;
+        if (!p.hasOwnProperty(name)) {
+            p[name] = 0;
+        }
+        p[name] = p[name] + c.y;
+        return p;
+    }, {});
+
+
+    var postsPerMonthCtx = document.getElementById("postsPerMonth").getContext('2d');
+    var postsPerMonthChart = new Chart(postsPerMonthCtx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(postsPerMonth),
+            datasets: [{
+                label: 'Post(s)',
+                data: Object.values(postsPerMonth),
+                backgroundColor: accentColor,
+                borderWidth: 1
+            }],
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    categoryPercentage: 1.0,
+                    barPercentage: 1.0
+                }]
+            }
+        }
+    });
+
+    var wordsPerMonthCtx = document.getElementById("wordsPerMonth").getContext('2d');
+    var wordsPerMonthChart = new Chart(wordsPerMonthCtx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(wordsPerMonth),
+            datasets: [{
+                label: 'Number of words',
+                data: Object.values(wordsPerMonth),
+                backgroundColor: accentColor,
+                borderWidth: 1
+            }],
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    categoryPercentage: 1.0,
+                    barPercentage: 1.0
+                }]
+            }
+        }
+    });
+
+
+    var postsPerYearCtx = document.getElementById("postsPerYear").getContext('2d');
+    var postsPerYearChart = new Chart(postsPerYearCtx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(postsPerYear),
+            datasets: [{
+                label: 'Number of words',
+                data: Object.values(postsPerYear),
+                backgroundColor: accentColor,
+                borderWidth: 1
+            }],
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    categoryPercentage: 1.0,
+                    barPercentage: 1.0
+                }]
+            }
+        }
+    });
+
+    
+    
+
+    var pieLabels = [
+        
+            
+             "python", 
+        
+            
+             "math", 
+        
+            
+             "sympy", 
+        
+            
+             "physics", 
+        
+            
+             "matlab", 
+        
+            
+             "cuda", 
+        
+            
+             "signal_system", 
+        
+            
+             "pycharm", 
+        
+            
+             "jupyter", 
+        
+            
+             "github", 
+        
+            
+             "", 
+        
+    ];
+
+    var pieData = [
+        
+            
+             12, 
+        
+            
+             7, 
+        
+            
+             4, 
+        
+            
+             3, 
+        
+            
+             2, 
+        
+            
+             2, 
+        
+            
+             1, 
+        
+            
+             1, 
+        
+            
+             1, 
+        
+            
+             1, 
+        
+            
+             , 
+        
+    ];
+
+    var tagsDistrCtx = document.getElementById("tagsDistr").getContext('2d');
+    var tagsDistrChart = new Chart(tagsDistrCtx,{
+        type: 'pie',
+        data: {
+            labels: pieLabels,
+            datasets: [{
+                label: "tag",
+                data: pieData,
+                borderColor: "#aaa",
+                backgroundColor: randomColor({
+                    count: pieData.length,
+                    hue: accentColor,
+                    luminosity: 'dark',
+                })
+            }],
+        },
+        options: {
+            responsive: true,
+        }
+    });
+</script>
+
+<script>
+    var totalWords = [
+        
+            11,
+        
+            1413,
+        
+            2535,
+        
+            668,
+        
+            575,
+        
+            2001,
+        
+            984,
+        
+            417,
+        
+            716,
+        
+            865,
+        
+            4003,
+        
+            465,
+        
+            1594,
+        
+            759,
+        
+            2055,
+        
+    ].reduce((a, b) => a + b, 0);
+    var totalPosts = 15;
+
+    function concatBoldTextToELement(id, text) {
+        var abvgd = document.createElement('b');
+        abvgd.innerText = ' ' + text;
+        document.getElementById(id).appendChild(abvgd);
+    }
+
+    concatBoldTextToELement('total-words', totalWords);
+    concatBoldTextToELement('total-posts', totalPosts);
+    concatBoldTextToELement('words-per-post', totalWords / totalPosts);
+
+</script>
+
+              </div>
+            </div>
+            <div class="col-md-3 hidden-xs">
+              <div class="sidebar ">
+  <h5>Recent Posts</h5>
+  <ul>
+    
+    <li><h6><a href="/2019/10/191019_PrincipleOfCT">Computed Tomography (CT) 촬영의 원리</a></h6></li>
+    
+    <li><h6><a href="/2019/07/190707_Numba_Cuda">Numba를 이용한 Cuda 프로그램 예제</a></h6></li>
+    
+    <li><h6><a href="/2019/04/190421_LightsOutPuzzle">Lights Out 퍼즐 풀기</a></h6></li>
+    
+    <li><h6><a href="/2019/01/190127_SpyderIde">Spyder IDE (Python의 Matlab과 유사한 개발환경)</a></h6></li>
+    
+  </ul>
+</div>
+
+<div class="sidebar">
+  <h5>Tags</h5>
+  <ul class="sideBarTags">
+    
+    
+    <li><h6>
+      <a href="/tag/cuda" data-toggle="tooltip" data-placement="right" title="2">
+        <span>cuda(2)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/github" data-toggle="tooltip" data-placement="right" title="1">
+        <span>github(1)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/jupyter" data-toggle="tooltip" data-placement="right" title="1">
+        <span>jupyter(1)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="7">
+        <span>math(7)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/matlab" data-toggle="tooltip" data-placement="right" title="2">
+        <span>matlab(2)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/physics" data-toggle="tooltip" data-placement="right" title="3">
+        <span>physics(3)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/pycharm" data-toggle="tooltip" data-placement="right" title="1">
+        <span>pycharm(1)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="12">
+        <span>python(12)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/signal_system" data-toggle="tooltip" data-placement="right" title="1">
+        <span>signal_system(1)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="4">
+        <span>sympy(4)</span></a></h6></li>
+    
+  </ul>
+</div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+          <footer class="footer-distributed">
+      <div class="container">
+        <div class="footer">
+          <p>ok97465 &copy; 2018-</p>
+          <h6>Follow me</h6>
+
+<ul class="social-media">
+
+  
+    <li>
+      <a title="ok97465 on Github" href="https://github.com/ok97465" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="9015220/lowqualitydelivery on StackOverflow" href="https://stackoverflow.com/users/9015220/lowqualitydelivery" target="_blank"><i class="fab fa-stack-overflow fa-2x"></i></a>
+    </li>
+  
+
+  
+
+  
+    <li>
+      <a title=" on Instagram" href="https://instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title=" on Last.fm" href="https://www.lastfm.com/user/" target="_blank"><i class="fab fa-lastfm fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="feed.xml RSS" href="/feed.xml" target="_blank"><i class="fas fa-rss fa-2x"></i></a>
+    </li>
+  
+
+</ul>
+
+        </div>
+      </div>
+    </footer>
+
+    </div>
+  </body>
+</html>

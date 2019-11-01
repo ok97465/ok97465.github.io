@@ -10,29 +10,29 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>ok97465 | Github에서 Pull Request 하는 방법 </title>
-  <meta name="description" content="Github에서 Pull Request 하는 방법">
-  <meta name="theme-color" content="#222222">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Github에서 Pull Request 하는 방법">
-  <meta property="og:description" content="Github에서 Pull Request 하는 방법">
-  <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
-  <meta property="og:url" content="http://ok97465.github.io">
-  <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/js/bootstrap.min.js"></script>
-  <script src="/assets/js/header.js"></script>
-  <script src="/assets/js/toc.js"></script>
-  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/css/theme.css" rel="stylesheet">
-  <link href="/assets/css/syntax.css" rel="stylesheet">
-  <link href="/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-</head>
+    <meta charset="UTF-8">
+    <title>ok97465 | Github에서 Pull Request 하는 방법 </title>
+    <meta name="description" content="Github에서 Pull Request 하는 방법">
+    <meta name="theme-color" content="#222222"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Github에서 Pull Request 하는 방법">
+    <meta property="og:description" content="Github에서 Pull Request 하는 방법">
+    <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
+    <meta property="og:url" content="http://ok97465.github.io">
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap4.min.js"></script>
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/css/svg-with-js/js/fontawesome-all.js"></script>
+    <link href="/assets/css/bootstrap4.min.css" rel="stylesheet">
+    <link href="/assets/css/theme.css" rel="stylesheet">
+    <link href="/assets/css/syntax.css" rel="stylesheet">
+ </head>
 
 <body>
 
-  
+
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -48,57 +48,56 @@
 </script>
 
 
-  
 
 
-  <script type="text/javascript">
+
+<script type="text/javascript">
     WebFontConfig = {
-      google: {
-        families: ['Ubuntu::latin']
-      }
+        google: {
+            families: ['Ubuntu::latin']
+        }
     };
     (function () {
-      var wf = document.createElement('script');
-      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-      wf.type = 'text/javascript';
-      wf.async = 'true';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(wf, s);
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
     })();
-  </script>
+</script>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
         <a class="navbar-brand" href="/">ok97465</a>
-      </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="/">/home</a></li>
-          <li><a href="/archive.html">/archive</a></li>
-          <li><a href="/tags.html">/tags</a></li>
-          <li><a href="/about.html">/about</a></li>
-        </ul>
-      </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/">/home</a>
+                <a class="nav-item nav-link" href="/archive.html">/archive</a>
+                <a class="nav-item nav-link" href="/tags.html">/tags</a>
+                <a class="nav-item nav-link" href="/about.html">/about</a>
+            </div>
+        </div>
     </div>
-  </nav>
+</nav>
+
     <div class="wrapper">
       <div class="content">
         <div class="container container-center">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 offset-md-1">
               <div class="article">
-                <div class="well">
+                <div class="card">
                   <h1><a href="/2018/12/181220_GitHubPullRequest">Github에서 Pull Request 하는 방법</a></h1>
                   <div class="post-meta">
                     <div class="post-time">
-                      <i class="fa fa-calendar"></i>
+                      <i class="fa fa-calendar-alt"></i>
                       <time>20 Dec 2018</time>
                     </div>
                     <ul>
@@ -108,7 +107,23 @@
                     </ul>
                   </div>
                   <div class="post-content">
-                    <div id="toc" class="toc"></div>
+                    
+                      <ul class="toc">
+  <li><a href="#github에서-pull-request-하는-방법">Github에서 Pull Request 하는 방법</a>
+    <ul>
+      <li><a href="#1-pull-request-순서">1. Pull Request 순서</a></li>
+      <li><a href="#2-fork">2. Fork</a></li>
+      <li><a href="#3-clone-remote-설정">3. clone, remote 설정</a></li>
+      <li><a href="#4-branch-생성">4. branch 생성</a></li>
+      <li><a href="#5-수정-작업-후-add-commit-push">5. 수정 작업 후 add, commit, push</a></li>
+      <li><a href="#6-pull-request-생성">6. Pull Request 생성</a></li>
+      <li><a href="#7-코드리뷰-merge-pull-reqest">7. 코드리뷰, Merge Pull Reqest</a></li>
+      <li><a href="#8-merge-이후-동기화-및-branch-삭제">8. Merge 이후 동기화 및 branch 삭제</a></li>
+      <li><a href="#9-참고자료">9. 참고자료</a></li>
+    </ul>
+  </li>
+</ul>
+                    
                     <h1 id="github에서-pull-request-하는-방법">Github에서 Pull Request 하는 방법</h1>
 
 <h2 id="1-pull-request-순서">1. Pull Request 순서</h2>
@@ -286,22 +301,23 @@
 <div class="share-bar">
   <ul class="share-buttons">
     
-    <li class="share-facebook">
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/12/181220_GitHubPullRequest" target="_blank" title="Share on Facebook">
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-square-o fa-stack-2x"></i>
-          <i class="fa fa-facebook fa-stack-1x"></i>
-        </span>
-      </a>
-    </li>
+      <li class="share-facebook">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/12/181220_GitHubPullRequest"
+             target="_blank" title="Share on Facebook">
+            <span class="fa-layers fa-fw fa-2x">
+                <i class="far fa-square"></i>
+                <i class="fab fa-facebook-f" data-fa-transform="shrink-8"></i>
+            </span>
+          </a>
+      </li>
     
 
     
     <li class="share-twitter">
       <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/12/181220_GitHubPullRequest&text=Github에서 Pull Request 하는 방법" target="_blank" title="Tweet">
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-square-o fa-stack-2x"></i>
-          <i class="fa fa-twitter fa-stack-1x"></i>
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
         </span>
       </a>
     </li>
@@ -310,9 +326,9 @@
     
     <li class="share-google-plus">
       <a href="https://plus.google.com/share?url=http://localhost:4000/2018/12/181220_GitHubPullRequest" target="_blank" title="Share on Google Plus">
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-square-o fa-stack-2x"></i>
-          <i class="fa fa-google-plus fa-stack-1x"></i>
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
         </span>
       </a>
     </li>
@@ -325,9 +341,9 @@
     
     <li class="share-envelope">
       <a href="mailto:?&subject=Github에서 Pull Request 하는 방법&body=Github에서 Pull Request 하는 방법 http://localhost:4000/2018/12/181220_GitHubPullRequest" target="_blank" title="Email">
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-circle-thin fa-stack-2x"></i>
-          <i class="fa fa-envelope-o fa-stack-1x"></i>
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="far fa-envelope" data-fa-transform="shrink-8"></i>
         </span>
       </a>
     </li>
@@ -358,68 +374,66 @@
                 </script>
               </div>
             </div>
-            <div class="col-md-4 hidden-xs">
+            <div class="col-md-3 hidden-xs">
               <div class="sidebar ">
-  <h2>Recent Posts</h2>
+  <h5>Recent Posts</h5>
   <ul>
     
-    <li><a href="/2019/07/190707_Numba_Cuda">Numba를 이용한 Cuda 프로그램 예제</a></li>
+    <li><h6><a href="/2019/10/191019_PrincipleOfCT">Computed Tomography (CT) 촬영의 원리</a></h6></li>
     
-    <li><a href="/2019/04/190421_LightsOutPuzzle">Lights Out 퍼즐 풀기</a></li>
+    <li><h6><a href="/2019/07/190707_Numba_Cuda">Numba를 이용한 Cuda 프로그램 예제</a></h6></li>
     
-    <li><a href="/2019/01/190127_SpyderIde">Spyder IDE (Python의 Matlab과 유사한 개발환경)</a></li>
+    <li><h6><a href="/2019/04/190421_LightsOutPuzzle">Lights Out 퍼즐 풀기</a></h6></li>
     
-    <li><a href="/2018/12/181220_GitHubPullRequest">Github에서 Pull Request 하는 방법</a></li>
-    
-    <li><a href="/2018/11/181122_EulerLagrangeEquation">Euler-Lagrange 방정식</a></li>
+    <li><h6><a href="/2019/01/190127_SpyderIde">Spyder IDE (Python의 Matlab과 유사한 개발환경)</a></h6></li>
     
   </ul>
 </div>
 
 <div class="sidebar">
-  <h2>Tags</h2>
+  <h5>Tags</h5>
   <ul class="sideBarTags">
     
     
-    <li>
+    <li><h6>
       <a href="/tag/cuda" data-toggle="tooltip" data-placement="right" title="2">
-        <span>cuda</span></a></li>
+        <span>cuda(2)</span></a></h6></li>
     
-    <li>
+    <li><h6>
       <a href="/tag/github" data-toggle="tooltip" data-placement="right" title="1">
-        <span>github</span></a></li>
+        <span>github(1)</span></a></h6></li>
     
-    <li>
+    <li><h6>
       <a href="/tag/jupyter" data-toggle="tooltip" data-placement="right" title="1">
-        <span>jupyter</span></a></li>
+        <span>jupyter(1)</span></a></h6></li>
     
-    <li>
-      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="6">
-        <span>math</span></a></li>
+    <li><h6>
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="7">
+        <span>math(7)</span></a></h6></li>
     
-    <li>
+    <li><h6>
       <a href="/tag/matlab" data-toggle="tooltip" data-placement="right" title="2">
-        <span>matlab</span></a></li>
+        <span>matlab(2)</span></a></h6></li>
     
-    <li>
+    <li><h6>
       <a href="/tag/physics" data-toggle="tooltip" data-placement="right" title="3">
-        <span>physics</span></a></li>
+        <span>physics(3)</span></a></h6></li>
     
-    <li>
+    <li><h6>
       <a href="/tag/pycharm" data-toggle="tooltip" data-placement="right" title="1">
-        <span>pycharm</span></a></li>
+        <span>pycharm(1)</span></a></h6></li>
     
-    <li>
-      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="11">
-        <span>python</span></a></li>
+    <li><h6>
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="12">
+        <span>python(12)</span></a></h6></li>
     
-    <li>
+    <li><h6>
       <a href="/tag/signal_system" data-toggle="tooltip" data-placement="right" title="1">
-        <span>signal_system</span></a></li>
+        <span>signal_system(1)</span></a></h6></li>
     
-    <li>
+    <li><h6>
       <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="4">
-        <span>sympy</span></a></li>
+        <span>sympy(4)</span></a></h6></li>
     
   </ul>
 </div>
@@ -457,13 +471,13 @@
 
   
     <li>
-      <a title="ok97465 on Github" href="https://github.com/ok97465" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+      <a title="ok97465 on Github" href="https://github.com/ok97465" target="_blank"><i class="fab fa-github fa-2x"></i></a>
     </li>
   
 
   
     <li>
-      <a title="9015220/lowqualitydelivery on StackOverflow" href="https://stackoverflow.com/users/9015220/lowqualitydelivery" target="_blank"><i class="fa fa-stack-overflow fa-2x"></i></a>
+      <a title="9015220/lowqualitydelivery on StackOverflow" href="https://stackoverflow.com/users/9015220/lowqualitydelivery" target="_blank"><i class="fab fa-stack-overflow fa-2x"></i></a>
     </li>
   
 
@@ -471,19 +485,19 @@
 
   
     <li>
-      <a title=" on Instagram" href="https://instagram.com/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+      <a title=" on Instagram" href="https://instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
     </li>
   
 
   
     <li>
-      <a title=" on Last.fm" href="https://www.lastfm.com/user/" target="_blank"><i class="fa fa-lastfm fa-2x"></i></a>
+      <a title=" on Last.fm" href="https://www.lastfm.com/user/" target="_blank"><i class="fab fa-lastfm fa-2x"></i></a>
     </li>
   
 
   
     <li>
-      <a title="feed.xml RSS" href="/feed.xml" target="_blank"><i class="fa fa-rss fa-2x"></i></a>
+      <a title="feed.xml RSS" href="/feed.xml" target="_blank"><i class="fas fa-rss fa-2x"></i></a>
     </li>
   
 

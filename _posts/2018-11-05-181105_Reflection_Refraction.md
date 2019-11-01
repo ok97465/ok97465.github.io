@@ -6,6 +6,7 @@ share: true
 date: 2018-11-05 11:00:00
 description: 빛이 반사(reflection) 또는 굴절(Snells's law of refraction) 될 때 특성을 sympy를 이용하여 유도한다.
 tags: physics python sympy
+toc: true
 sitemap :
     changefreq : daily
     priority : 1.0

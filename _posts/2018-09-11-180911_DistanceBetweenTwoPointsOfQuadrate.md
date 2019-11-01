@@ -6,6 +6,7 @@ share: true
 date: 2018-09-11 14:50:00
 description: 정사각형 내 임의의 두 점을 선정 했을 때의 두점 사이의 거리의 기대 값을 수식과 Simulation으로 계산한다.
 tags: math
+toc: false
 sitemap :
     changefreq : daily
     priority : 1.0
@@ -108,8 +109,10 @@ $$=0.5214054331647207$$
 
 <br>
 
-### 3.1. |a-b|의 PDF(Probability Density Function)
-두 random variable의 합의 PDF는 각각의 PDF의 Convolution이다
+### 3.1.  a-b 의 PDF (Probability Density Function)  
+  
+두 random variable의 합의 PDF는 각각의 PDF의 Convolution이다  
+
 <p align="center"> 
   <img src="/assets/images/DistanceBetweenTwoPointsOfQuadrate/ab_convolution_onedork.png" alt="a plus b pdf" width="720">
 </p>

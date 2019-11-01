@@ -6,6 +6,7 @@ share: true
 date: 2019-04-21 14:13:00
 description: 주어진 초기 상태에서, 모든 버튼의 불을 끄는 버튼 순서를 찾아본다.
 tags: python math
+toc: true
 sitemap :
     changefreq : daily
     priority : 1.0

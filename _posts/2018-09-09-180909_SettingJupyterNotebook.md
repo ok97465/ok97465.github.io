@@ -6,6 +6,7 @@ share: true
 date: 2018-09-09 01:08:00
 description: Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다.
 tags: python jupyter
+toc: true
 sitemap :
   changefreq : daily
   priority : 1.0

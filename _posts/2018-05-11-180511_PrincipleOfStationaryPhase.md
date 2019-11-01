@@ -6,6 +6,7 @@ share: true
 date: 2018-05-11 08:27:00
 description: Principle of Stationary Phase에 대해 기술하고 sympy를 이용하여 확인한다.
 tags: sympy python math signal_system
+toc: true
 sitemap :
   changefreq : daily
   priority : 1.0

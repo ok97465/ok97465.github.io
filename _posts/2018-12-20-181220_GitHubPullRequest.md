@@ -6,6 +6,7 @@ share: true
 date: 2018-12-20 11:53:00
 description: Github에서 Pull Request 하는 방법
 tags: github
+toc: true
 sitemap :
   changefreq : daily
   priority : 1.0

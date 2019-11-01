@@ -6,6 +6,7 @@ share: true
 date: 2018-09-23 01:32:00
 description: 등속으로 회전하는 물체의 가속도를 유도한다.
 tags: physics
+toc: true
 sitemap :
     changefreq : daily
     priority : 1.0

@@ -6,6 +6,7 @@ share: true
 date: 2018-11-21 19:33:00
 description: Euler-Lagrange 방정식을 유도하고 sympy로 계산한다.
 tags: sympy python math physics
+toc: true
 sitemap :
     changefreq : daily
     priority : 1.0

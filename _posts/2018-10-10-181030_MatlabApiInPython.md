@@ -6,6 +6,7 @@ share: true
 date: 2018-10-10 01:08:00
 description: Python에서 Matlab을 실행하고 데이터를 주고 받는다.
 tags: python matlab
+toc: true
 sitemap :
   changefreq : daily
   priority : 1.0
