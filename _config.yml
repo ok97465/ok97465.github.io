@@ -21,6 +21,10 @@ share:
   pinterest: false
   email: true
 
+collections:
+  quicknotes:
+    output: true
+
 social:
   github: ok97465
   stackoverflow: '9015220/lowqualitydelivery'
