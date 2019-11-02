@@ -1,0 +1,437 @@
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ok97465 | 역행렬 snippets </title>
+    <meta name="description" content="역행렬 코드.">
+    <meta name="theme-color" content="#222222"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="역행렬 snippets">
+    <meta property="og:description" content="역행렬 코드.">
+    <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
+    <meta property="og:url" content="http://ok97465.github.io">
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap4.min.js"></script>
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/css/svg-with-js/js/fontawesome-all.js"></script>
+    <link href="/assets/css/bootstrap4.min.css" rel="stylesheet">
+    <link href="/assets/css/theme.css" rel="stylesheet">
+    <link href="/assets/css/syntax.css" rel="stylesheet">
+ </head>
+
+<body>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-125307858-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+    WebFontConfig = {
+        google: {
+            families: ['Ubuntu::latin']
+        }
+    };
+    (function () {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+</script>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">ok97465</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/">/home</a>
+                <a class="nav-item nav-link" href="/archive.html">/archive</a>
+                <a class="nav-item nav-link" href="/tags.html">/tags</a>
+                <a class="nav-item nav-link" href="/notes.html">/notes</a>
+                <a class="nav-item nav-link" href="/about.html">/about</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <div class="wrapper">
+      <div class="content">
+        <div class="container container-center">
+          <div class="row">
+            <div class="col-md-8 offset-md-1">
+              <div class="article">
+                <div class="card">
+                  <h1><a href="/quicknotes/2018-09-30-180930_InverseMatrix">역행렬 snippets</a></h1>
+                  <div class="post-meta">
+                    <div class="post-time">
+                      <i class="fa fa-calendar-alt"></i>
+                      <time>01 Oct 2018</time>
+                    </div>
+                    <ul>
+                      
+                        <li><a href="/tag/note">note</a></li>
+                      
+                    </ul>
+                  </div>
+                  <div class="post-content">
+                    
+                      <ul class="toc">
+  <li><a href="#역행렬-snippets">역행렬 Snippets</a>
+    <ul>
+      <li><a href="#1-gauss-elimination-이용">1. Gauss Elimination 이용</a>
+        <ul>
+          <li><a href="#11-python-code">1.1. Python Code</a></li>
+          <li><a href="#12-python-test-code">1.2. Python Test Code</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+                    
+                    <h1 id="역행렬-snippets">역행렬 Snippets</h1>
+
+<h2 id="1-gauss-elimination-이용">1. Gauss Elimination 이용</h2>
+
+<h3 id="11-python-code">1.1. Python Code</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">hstack</span><span class="p">,</span> <span class="n">eye</span><span class="p">,</span> <span class="n">ndarray</span><span class="p">,</span> <span class="n">where</span><span class="p">,</span> <span class="n">allclose</span>
+<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">LinAlgError</span><span class="p">,</span> <span class="n">matrix_rank</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">standard_normal</span><span class="p">,</span> <span class="n">randint</span>
+
+
+<span class="k">def</span> <span class="nf">inv_by_gauss_elimination</span><span class="p">(</span><span class="n">mat</span><span class="p">):</span>
+    <span class="s">"""Calculate inverse matrix by gauss elimination
+
+    Parameters
+    ----------
+    mat : ndarray
+        matrix
+
+    Returns
+    -------
+    mat_inv : ndarray
+        inverse matrix
+    null_dim : int
+        dimension of null space
+
+    """</span>
+    <span class="n">n_row</span><span class="p">,</span> <span class="n">n_col</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="k">if</span> <span class="n">n_row</span> <span class="o">!=</span> <span class="n">n_col</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nb">IndexError</span><span class="p">(</span><span class="s">"The rows and columns are different sizes."</span><span class="p">)</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">hstack</span><span class="p">([</span><span class="n">mat</span><span class="p">,</span> <span class="n">eye</span><span class="p">(</span><span class="n">n_row</span><span class="p">)])</span>
+
+    <span class="n">null_dim</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># calculate row echelon form
+</span>    <span class="k">for</span> <span class="n">idx_row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span><span class="p">):</span>
+        <span class="n">idx_pivot_candidate</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">:,</span> <span class="n">idx_row</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">idx_pivot_candidate</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">idx_pivot</span> <span class="o">=</span> <span class="n">idx_pivot_candidate</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">idx_row</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">null_dim</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">idx_pivot</span> <span class="o">!=</span> <span class="n">idx_row</span><span class="p">:</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_pivot</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">idx_pivot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">tmp</span>
+
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="n">idx_row</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="n">idx_row</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">idx_row_dst</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">idx_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_row</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">idx_row_dst</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span>
+                                     <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row_dst</span><span class="p">,</span> <span class="n">idx_row</span><span class="p">])</span>
+
+    <span class="c1"># calculate inverse matrix
+</span>    <span class="k">for</span> <span class="n">idx_row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">idx_row_dst</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">idx_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">idx_row_dst</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span>
+                                     <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row_dst</span><span class="p">,</span> <span class="n">idx_row</span><span class="p">])</span>
+
+    <span class="n">mat_inv</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="n">n_row</span><span class="p">:,</span> <span class="o">-</span><span class="n">n_col</span><span class="p">:]</span>
+
+    <span class="k">return</span> <span class="n">mat_inv</span><span class="p">,</span> <span class="n">null_dim</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="12-python-test-code">1.2. Python Test Code</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n_row</span> <span class="o">=</span> <span class="mi">128</span>
+
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">mat</span> <span class="o">=</span> <span class="n">standard_normal</span><span class="p">((</span><span class="n">n_row</span><span class="p">,</span> <span class="n">n_row</span><span class="p">))</span>
+
+    <span class="c1"># Test Inverse
+</span>    <span class="k">try</span><span class="p">:</span>
+        <span class="n">mat_inv_exact</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+        <span class="n">mat_inv</span><span class="p">,</span> <span class="n">null_dim</span> <span class="o">=</span> <span class="n">inv_by_gauss_elimination</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+        <span class="n">is_same</span> <span class="o">=</span> <span class="n">allclose</span><span class="p">(</span><span class="n">mat_inv_exact</span><span class="p">,</span> <span class="n">mat_inv</span><span class="p">)</span>
+    
+        <span class="k">if</span> <span class="n">is_same</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"same"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"=====Error====="</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">except</span> <span class="n">LinAlgError</span><span class="p">:</span>
+        <span class="n">null_dim_exact</span> <span class="o">=</span> <span class="n">n_row</span> <span class="o">-</span> <span class="n">matrix_rank</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+        <span class="n">mat_inv</span><span class="p">,</span> <span class="n">null_dim</span> <span class="o">=</span> <span class="n">inv_by_gauss_elimination</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">null_dim_exact</span> <span class="o">==</span> <span class="n">null_dim</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"null dim same"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"=====null dim Error====="</span><span class="p">)</span>
+            <span class="k">break</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>same
+</code></pre></div></div>
+
+                    
+
+<div class="share-bar">
+  <ul class="share-buttons">
+    
+      <li class="share-facebook">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/quicknotes/2018-09-30-180930_InverseMatrix"
+             target="_blank" title="Share on Facebook">
+            <span class="fa-layers fa-fw fa-2x">
+                <i class="far fa-square"></i>
+                <i class="fab fa-facebook-f" data-fa-transform="shrink-8"></i>
+            </span>
+          </a>
+      </li>
+    
+
+    
+    <li class="share-twitter">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/quicknotes/2018-09-30-180930_InverseMatrix&text=역행렬 snippets" target="_blank" title="Tweet">
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-google-plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/quicknotes/2018-09-30-180930_InverseMatrix" target="_blank" title="Share on Google Plus">
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="share-envelope">
+      <a href="mailto:?&subject=역행렬 snippets&body=역행렬 코드. http://localhost:4000/quicknotes/2018-09-30-180930_InverseMatrix" target="_blank" title="Email">
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="far fa-envelope" data-fa-transform="shrink-8"></i>
+        </span>
+      </a>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+                  </div>
+                  
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                  </div>
+                  
+                </div>
+				<script type="text/x-mathjax-config">
+                  MathJax.Hub.Config({
+                    tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    processEscapes: true
+                    }
+                  });
+                </script>
+				<script type="text/javascript" async
+                  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+                </script>
+              </div>
+            </div>
+            <div class="col-md-3 hidden-xs">
+              <div class="sidebar ">
+  <h5>Recent Posts</h5>
+  <ul>
+    
+    <li><h6><a href="/2019/10/191019_PrincipleOfCT">Computed Tomography (CT) 촬영의 원리</a></h6></li>
+    
+    <li><h6><a href="/2019/07/190707_Numba_Cuda">Numba를 이용한 Cuda 프로그램 예제</a></h6></li>
+    
+    <li><h6><a href="/2019/04/190421_LightsOutPuzzle">Lights Out 퍼즐 풀기</a></h6></li>
+    
+    <li><h6><a href="/2019/01/190127_SpyderIde">Spyder IDE (Python의 Matlab과 유사한 개발환경)</a></h6></li>
+    
+  </ul>
+</div>
+
+<div class="sidebar">
+  <h5>Tags</h5>
+  <ul class="sideBarTags">
+    
+    
+    <li><h6>
+      <a href="/tag/cuda" data-toggle="tooltip" data-placement="right" title="2">
+        <span>cuda(2)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/github" data-toggle="tooltip" data-placement="right" title="1">
+        <span>github(1)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/jupyter" data-toggle="tooltip" data-placement="right" title="1">
+        <span>jupyter(1)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="7">
+        <span>math(7)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/matlab" data-toggle="tooltip" data-placement="right" title="2">
+        <span>matlab(2)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/physics" data-toggle="tooltip" data-placement="right" title="3">
+        <span>physics(3)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/pycharm" data-toggle="tooltip" data-placement="right" title="1">
+        <span>pycharm(1)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="12">
+        <span>python(12)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/signal_system" data-toggle="tooltip" data-placement="right" title="1">
+        <span>signal_system(1)</span></a></h6></li>
+    
+    <li><h6>
+      <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="4">
+        <span>sympy(4)</span></a></h6></li>
+    
+  </ul>
+</div>
+
+            </div>
+          </div>
+        </div>
+        
+<!-- Add Disqus comments. -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
+  var disqus_identifier = "/quicknotes/2018-09-30-180930_InverseMatrix";
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </div>
+          <footer class="footer-distributed">
+      <div class="container">
+        <div class="footer">
+          <p>ok97465 &copy; 2018-</p>
+          <h6>Follow me</h6>
+
+<ul class="social-media">
+
+  
+    <li>
+      <a title="ok97465 on Github" href="https://github.com/ok97465" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="9015220/lowqualitydelivery on StackOverflow" href="https://stackoverflow.com/users/9015220/lowqualitydelivery" target="_blank"><i class="fab fa-stack-overflow fa-2x"></i></a>
+    </li>
+  
+
+  
+
+  
+    <li>
+      <a title=" on Instagram" href="https://instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title=" on Last.fm" href="https://www.lastfm.com/user/" target="_blank"><i class="fab fa-lastfm fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="feed.xml RSS" href="/feed.xml" target="_blank"><i class="fas fa-rss fa-2x"></i></a>
+    </li>
+  
+
+</ul>
+
+        </div>
+      </div>
+    </footer>
+
+    </div>
+  </body>
+</html>
