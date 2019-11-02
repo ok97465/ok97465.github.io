@@ -8,13 +8,13 @@
 </div>
 
 <div class="sidebar">
-  <h2>Tags</h2>
+  <h5>Tags</h5>
   <ul class="sideBarTags">
     {% assign tags = (site.tags | sort:0) %}
     {% for tag in tags %}
-    <li>
+    <li><h6>
       <a href="{{ '/tag/' | append: tag[0] | relative_url }}" data-toggle="tooltip" data-placement="right" title="{{ tag[1].size }}">
-        <span>{{tag[0]}}({{tag[1].size}})</span></a></li>
+        <span>&nbsp&nbsp{{tag[0]}}({{tag[1].size}})</span></a></h6></li>
     {% endfor %}
   </ul>
 </div>
