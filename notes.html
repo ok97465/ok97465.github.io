@@ -10,8 +10,8 @@ title: Notes
             {% for note in site.quicknotes reversed %}
             <li>
                 <div class="post-time">
-                    <i class="fa fa-calendar"></i>
-                    <time>{{ note.date | date: "%d-%m-%Y" }}</time>
+                    <i class="fa fa-calendar-alt"></i>
+                    <time>{{ note.date | date: "%Y-%m-%d" }}</time>
                     <a href="{{ note.url | prepend: site.url }}">{{ note.title }}</a>
                 </div>
             </li>
