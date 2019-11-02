@@ -12,9 +12,9 @@
   <ul class="sideBarTags">
     {% assign tags = (site.tags | sort:0) %}
     {% for tag in tags %}
-    <li><h6>
+    <li><h6><i class="fas fa-tag"></i>
       <a href="{{ '/tag/' | append: tag[0] | relative_url }}" data-toggle="tooltip" data-placement="right" title="{{ tag[1].size }}">
-        <span>&nbsp&nbsp{{tag[0]}}({{tag[1].size}})</span></a></h6></li>
+        <span>&nbsp&nbsp{{tag[0]}}</span></a><span>&nbsp({{tag[1].size}})</span></h6></li>
     {% endfor %}
   </ul>
 </div>
