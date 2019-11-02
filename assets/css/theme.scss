@@ -166,6 +166,12 @@ ul.share-buttons {
 }
 ul.sideBarTags {
   list-style: none;
+  li:before {
+    content: '\f02b';
+    font-family: 'Font Awesome 5 Free';
+    float: left;
+    margin-left: -1.5em;
+  }
 }
 
 //********************************************************
