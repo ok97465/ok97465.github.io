@@ -826,7 +826,7 @@ Null Space is correct.
     &lt;figcaption class=&quot;figure-caption&quot;&gt;Auto complete&lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;lint, autocomplete를 지원하는 python-language-server, &lt;a href=&quot;https://kite.com/&quot;&gt;Kite&lt;/a&gt; 가 개발되면서 Spyder에서도 자동완성 기능을 지원할 수 있게 되었다.&lt;/p&gt;
+&lt;p&gt;lint, autocomplete를 지원하는 python-language-server, &lt;a href=&quot;https://kite.com/integrations/spyder&quot;&gt;Kite&lt;/a&gt; 가 개발되면서 Spyder에서도 자동완성 기능을 지원할 수 있게 되었다.&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Docstring에 입력, 출력 변수 Type&lt;/code&gt;을 정하면 함수 내부 변수와 함수 출력 변수에 대한 자동 완성 기능을 지원한다.&lt;/p&gt;
 &lt;figure&gt;
