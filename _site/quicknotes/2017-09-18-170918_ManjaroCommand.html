@@ -121,6 +121,63 @@
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yaourt <span class="nt">-Syyua</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
+<h2 id="2-partition">2. Partition</h2>
+
+<p><a href="https://forum.manjaro.org/t/howto-dual-boot-manjaro-windows-10-step-by-step/52668">Reference</a></p>
+
+<ul>
+  <li>EFI PARTITION
+    <ul>
+      <li>Select the unpartitioned space → Create
+        <ol>
+          <li>Size → input 512</li>
+          <li>Filesystem → select FAT32</li>
+          <li>Mountpoint → select /boot/efi</li>
+          <li>Flags → check boot and esp → OK</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>SWAP PARTITION
+    <ul>
+      <li>Select the unpartitioned space → Create
+        <ol>
+          <li>Size → input 2048</li>
+          <li>Filesystem → select linuxswap</li>
+          <li>Flags → check swap → OK</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>ROOT PARTITION
+    <ul>
+      <li>Select the unpartitioned space → Create
+        <ol>
+          <li>Size → input 2048000 (min. recommended size)</li>
+          <li>Filesystem → select ext4</li>
+          <li>Mountpoint → select / (root) → OK</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+  <li>HOME PARTITION
+    <ul>
+      <li>Select the unpartitioned space → Create
+        <ol>
+          <li>Size → Use remaining</li>
+          <li>Filesystem → select ext4</li>
+          <li>Mountpoint → select /home → OK</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
                     
 
 <div class="share-bar">
