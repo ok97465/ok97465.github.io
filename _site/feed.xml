@@ -12,7 +12,7 @@
 
 &lt;h2 id=&quot;1-computed-tomography란&quot;&gt;1. Computed Tomography란?&lt;/h2&gt;
 
-&lt;p&gt;CT는 아래 그림과 같이 내부 상태를 알고자 하는 부위에 X-Ray를 찍고 X-Ray 장비를 회전 시키며 다양한 각도에서 X-Ray를 찍은 후 X-Ray 정보를 합성하여 내부의 상태를 알아내는 것이다.&lt;/p&gt;
+&lt;p&gt;CT는 아래 그림과 같이 내부 상태를 알고자 하는 부위에 X-Ray를 찍고 X-Ray 장비를 회전시키며 다양한 각도에서 X-Ray를 찍은 후 X-Ray 정보를 합성하여 내부의 상태를 알아내는 것이다.&lt;/p&gt;
 
 &lt;figure&gt;
     &lt;img src=&quot;/assets/images/PrincipleOfCT/CT_Figure_dark.jpg&quot; alt=&quot;CT&quot; width=&quot;633&quot; /&gt;
@@ -22,7 +22,7 @@
 &lt;p&gt;X-Ray를 회전하면서 촬영하면 왜 내부의 정보를 정확하게 알 수 있는 것일까?&lt;/p&gt;
 
 &lt;p&gt;X-Ray 촬영은 Figure 1과 같이 X-Ray가 투과하면서 감쇄되는 값을 측정하는 것이다. (네모 안의 값이 감쇄 값)  &lt;br /&gt;
-하나의 방향에서만 X-Ray를 촬영하면 투과한 모든 물질의 감쇄값 합을 알 수 있을뿐 물질의 위치나 물질 각각의 감쇄값을 알지 못한다.  &lt;br /&gt;
+하나의 방향에서만 X-Ray 촬영을 하면 투과한 모든 물질의 감쇄 값 합을 알 수 있을 뿐 물질의 위치나 물질 각각의 감쇄 값을 알지 못한다.  &lt;br /&gt;
 즉 Figure 1의 (a)와 (b)는 X-Ray 촬영 결과에선 동일하게 보인다.&lt;/p&gt;
 
 &lt;figure&gt;
@@ -30,18 +30,33 @@
     &lt;figcaption class=&quot;figure-caption&quot;&gt;Figure 1&lt;/figcaption&gt;
 &lt;/figure&gt;
 
+&lt;p&gt;하지만 X-Ray 장비를 회전 시켜서 물체를 다른 각도로 촬영하면 Figure 1와는 다르게 (a)와 (b)의 촬영 결과는 달라지게 된다.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/PrincipleOfCT/1_X-ray2_dark.png&quot; alt=&quot;Figure 2&quot; width=&quot;858&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Figure 2&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;즉 CT는 X-Ray 촬영을 여러 각도에서 수행하여 다양한 정보를 수집하고 그 정보를 조합하여 물체 내부의 영상을 추출하는 방식이다. 정보를 조합하는 방법은 아래에서 수학적으로 설명한다.&lt;/p&gt;
+
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;2-수학적-접근&quot;&gt;2. 수학적 접근&lt;/h2&gt;
 
 &lt;h3 id=&quot;21-radon-transform&quot;&gt;2.1. Radon transform&lt;/h3&gt;
-&lt;p&gt;X선이 물체를 투과하여 감쇄된&lt;/p&gt;
+&lt;p&gt;작성중&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;22-fourier-slice-theorem&quot;&gt;2.2. Fourier slice theorem&lt;/h3&gt;
+&lt;p&gt;작성중&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;23-convolution-backprojection&quot;&gt;2.3. Convolution backprojection&lt;/h3&gt;
+&lt;p&gt;작성중&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;3-예제-코드&quot;&gt;3. 예제 코드&lt;/h2&gt;
 
@@ -93,7 +108,7 @@
 &lt;h2 id=&quot;4-참고문헌&quot;&gt;4. 참고문헌&lt;/h2&gt;
 &lt;p&gt;[1] https://www.medicalradiation.com/types-of-medical-imaging/imaging-using-x-rays/computed-tomography-ct/&lt;/p&gt;
 </description>
-				<pubDate>Sat, 19 Oct 2019 07:33:00 +0900</pubDate>
+				<pubDate>Sat, 19 Oct 2019 00:33:00 +0200</pubDate>
 				<link>/2019/10/191019_PrincipleOfCT</link>
 				<guid isPermaLink="true">/2019/10/191019_PrincipleOfCT</guid>
 			</item>
@@ -383,7 +398,7 @@ GPU Result: -6470.2724609375
 &lt;h2 id=&quot;4-참고자료&quot;&gt;4. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] Dr. Brian Tuomanen. (2018). Chapter3, Hands-On GPU Programming with Python and CUDA (39).&lt;/p&gt;
 </description>
-				<pubDate>Sun, 07 Jul 2019 21:58:00 +0900</pubDate>
+				<pubDate>Sun, 07 Jul 2019 14:58:00 +0200</pubDate>
 				<link>/2019/07/190707_Numba_Cuda</link>
 				<guid isPermaLink="true">/2019/07/190707_Numba_Cuda</guid>
 			</item>
@@ -871,7 +886,7 @@ Null Space is correct.
 [2] https://github.com/pmneila/Lights-Out&lt;br /&gt;
 [3] https://github.com/ok97465/GameLightsOut&lt;/p&gt;
 </description>
-				<pubDate>Sun, 21 Apr 2019 23:13:00 +0900</pubDate>
+				<pubDate>Sun, 21 Apr 2019 16:13:00 +0200</pubDate>
 				<link>/2019/04/190421_LightsOutPuzzle</link>
 				<guid isPermaLink="true">/2019/04/190421_LightsOutPuzzle</guid>
 			</item>
@@ -1033,7 +1048,7 @@ Null Space is correct.
 
 &lt;p&gt;&lt;a href=&quot;/assets/data/Spyder-ide/snippet.json&quot;&gt;snippet.json&lt;/a&gt;&lt;/p&gt;
 </description>
-				<pubDate>Sun, 27 Jan 2019 23:06:00 +0900</pubDate>
+				<pubDate>Sun, 27 Jan 2019 15:06:00 +0100</pubDate>
 				<link>/2019/01/190127_SpyderIde</link>
 				<guid isPermaLink="true">/2019/01/190127_SpyderIde</guid>
 			</item>
@@ -1212,7 +1227,7 @@ Null Space is correct.
 &lt;h2 id=&quot;9-참고자료&quot;&gt;9. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] https://wayhome25.github.io/git/2017/07/08/git-first-pull-request-story/&lt;/p&gt;
 </description>
-				<pubDate>Thu, 20 Dec 2018 20:53:00 +0900</pubDate>
+				<pubDate>Thu, 20 Dec 2018 12:53:00 +0100</pubDate>
 				<link>/2018/12/181220_GitHubPullRequest</link>
 				<guid isPermaLink="true">/2018/12/181220_GitHubPullRequest</guid>
 			</item>
@@ -1405,7 +1420,7 @@ Null Space is correct.
 &lt;p&gt;[1] Mary L. Boas. (2005). 9. Calculus of Variations. Mathematical Methods in the physical sciences (474)  &lt;br /&gt;
 [2] http://pgautam.com.np/blog/2017/12/23/brachistochrone-problem/&lt;/p&gt;
 </description>
-				<pubDate>Thu, 22 Nov 2018 04:33:00 +0900</pubDate>
+				<pubDate>Wed, 21 Nov 2018 20:33:00 +0100</pubDate>
 				<link>/2018/11/181122_EulerLagrangeEquation</link>
 				<guid isPermaLink="true">/2018/11/181122_EulerLagrangeEquation</guid>
 			</item>
@@ -1568,7 +1583,7 @@ simplify 이용하여 다시 결과를 뽑아보면 다음과 같다.&lt;/p&gt;
 &lt;h2 id=&quot;3-참고자료&quot;&gt;3. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] https://ko.wikipedia.org/wiki/%ED%8E%98%EB%A5%B4%EB%A7%88%EC%9D%98_%EC%9B%90%EB%A6%AC&lt;/p&gt;
 </description>
-				<pubDate>Mon, 05 Nov 2018 20:00:00 +0900</pubDate>
+				<pubDate>Mon, 05 Nov 2018 12:00:00 +0100</pubDate>
 				<link>/2018/11/181105_Reflection_Refraction</link>
 				<guid isPermaLink="true">/2018/11/181105_Reflection_Refraction</guid>
 			</item>
@@ -1664,7 +1679,7 @@ python setup.py &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;eng&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
-				<pubDate>Wed, 10 Oct 2018 10:08:00 +0900</pubDate>
+				<pubDate>Wed, 10 Oct 2018 03:08:00 +0200</pubDate>
 				<link>/2018/10/181030_MatlabApiInPython</link>
 				<guid isPermaLink="true">/2018/10/181030_MatlabApiInPython</guid>
 			</item>
@@ -1735,7 +1750,7 @@ python setup.py &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
 &lt;h2 id=&quot;5-참고자료&quot;&gt;5. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] 이종필. (2017). 18. 고전역학 강의, 이종필의 아주 특별한 상대성이론 강의 (쪽). 동아시아&lt;/p&gt;
 </description>
-				<pubDate>Sun, 23 Sep 2018 10:32:00 +0900</pubDate>
+				<pubDate>Sun, 23 Sep 2018 03:32:00 +0200</pubDate>
 				<link>/2018/09/180922_CentripetalForce</link>
 				<guid isPermaLink="true">/2018/09/180922_CentripetalForce</guid>
 			</item>
@@ -1855,7 +1870,7 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
 &lt;h2 id=&quot;4-참고자료&quot;&gt;4. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] https://www.youtube.com/watch?v=i4VqXRRXi68&amp;amp;t=275s&lt;/p&gt;
 </description>
-				<pubDate>Tue, 11 Sep 2018 23:50:00 +0900</pubDate>
+				<pubDate>Tue, 11 Sep 2018 16:50:00 +0200</pubDate>
 				<link>/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate</link>
 				<guid isPermaLink="true">/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate</guid>
 			</item>

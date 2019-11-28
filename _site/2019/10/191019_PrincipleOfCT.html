@@ -138,7 +138,7 @@
 
 <h2 id="1-computed-tomography란">1. Computed Tomography란?</h2>
 
-<p>CT는 아래 그림과 같이 내부 상태를 알고자 하는 부위에 X-Ray를 찍고 X-Ray 장비를 회전 시키며 다양한 각도에서 X-Ray를 찍은 후 X-Ray 정보를 합성하여 내부의 상태를 알아내는 것이다.</p>
+<p>CT는 아래 그림과 같이 내부 상태를 알고자 하는 부위에 X-Ray를 찍고 X-Ray 장비를 회전시키며 다양한 각도에서 X-Ray를 찍은 후 X-Ray 정보를 합성하여 내부의 상태를 알아내는 것이다.</p>
 
 <figure>
     <img src="/assets/images/PrincipleOfCT/CT_Figure_dark.jpg" alt="CT" width="633" />
@@ -148,7 +148,7 @@
 <p>X-Ray를 회전하면서 촬영하면 왜 내부의 정보를 정확하게 알 수 있는 것일까?</p>
 
 <p>X-Ray 촬영은 Figure 1과 같이 X-Ray가 투과하면서 감쇄되는 값을 측정하는 것이다. (네모 안의 값이 감쇄 값)  <br />
-하나의 방향에서만 X-Ray를 촬영하면 투과한 모든 물질의 감쇄값 합을 알 수 있을뿐 물질의 위치나 물질 각각의 감쇄값을 알지 못한다.  <br />
+하나의 방향에서만 X-Ray 촬영을 하면 투과한 모든 물질의 감쇄 값 합을 알 수 있을 뿐 물질의 위치나 물질 각각의 감쇄 값을 알지 못한다.  <br />
 즉 Figure 1의 (a)와 (b)는 X-Ray 촬영 결과에선 동일하게 보인다.</p>
 
 <figure>
@@ -156,18 +156,33 @@
     <figcaption class="figure-caption">Figure 1</figcaption>
 </figure>
 
+<p>하지만 X-Ray 장비를 회전 시켜서 물체를 다른 각도로 촬영하면 Figure 1와는 다르게 (a)와 (b)의 촬영 결과는 달라지게 된다.</p>
+
+<figure>
+    <img src="/assets/images/PrincipleOfCT/1_X-ray2_dark.png" alt="Figure 2" width="858" />
+    <figcaption class="figure-caption">Figure 2</figcaption>
+</figure>
+
+<p>즉 CT는 X-Ray 촬영을 여러 각도에서 수행하여 다양한 정보를 수집하고 그 정보를 조합하여 물체 내부의 영상을 추출하는 방식이다. 정보를 조합하는 방법은 아래에서 수학적으로 설명한다.</p>
+
 <p><br /></p>
 
 <h2 id="2-수학적-접근">2. 수학적 접근</h2>
 
 <h3 id="21-radon-transform">2.1. Radon transform</h3>
-<p>X선이 물체를 투과하여 감쇄된</p>
+<p>작성중</p>
 
 <p><br /></p>
 
 <h3 id="22-fourier-slice-theorem">2.2. Fourier slice theorem</h3>
+<p>작성중</p>
+
+<p><br /></p>
 
 <h3 id="23-convolution-backprojection">2.3. Convolution backprojection</h3>
+<p>작성중</p>
+
+<p><br /></p>
 
 <h2 id="3-예제-코드">3. 예제 코드</h2>
 
