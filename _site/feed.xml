@@ -7,6 +7,110 @@
 		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>타원을 등간격으로 N 등분하기</title>
+				<description>&lt;h1 id=&quot;타원을-등간격으로-n-등분하기&quot;&gt;타원을 등간격으로 N 등분하기&lt;/h1&gt;
+
+&lt;p&gt;타원 호의 길이가 동일하게 타원을 N 등분을 시도해 보았지만 쉽지 않았다. 결국 구글신[1]의 도움을 받아 해결하기는 했지만 이 문제는 직관적으로 해결 가능한 문제가 아니기에 여기에 정리해 둔다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;1-호의-길이-구하기&quot;&gt;1. 호의 길이 구하기&lt;/h2&gt;
+
+&lt;p&gt;타원을 적분하기 위한 많은 방법들이 존재한다[2]. 여기서는 incomplete elliptic integral of the second kind[3]을 이용한다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;E\left( \phi ,k \right) \equiv \int _{ 0 }^{ \phi }{ \sqrt { 1-{ k }^{ 2 }\sin ^{ 2 }{ (\theta)  }  }  } d\theta&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;k=\sqrt{1 - b^2 / a^2}, \quad\quad\quad \text{a: 장축, b: 단축}&lt;/script&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/Equidistant_on_ecllipse/fig1_dark.png&quot; alt=&quot;Figure 1&quot; width=&quot;480&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Figure 1&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;여기서 $\phi$는 원점과 타원 위의 점과의 각도 $\psi$ 와는 다르다. $\phi$는 장축을 반지름으로 하는 원위의 점과 원점과의 각도이다.&lt;/p&gt;
+
+&lt;p&gt;위의 함수를 이용하여 타원이 둘레($c$)를 구하는 공식은 다음과 같다.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;c = 4aE\left(\pi/2, k\right)&lt;/script&gt;
+
+&lt;p&gt;즉 incomplete elliptic integral of the second kind 함수를 이용하면 장축 a 단축이 b인 타원에서 $\phi$ 각도만큼 이동하였을 경우의 호의 길이를 계산 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-code-4&quot;&gt;2. Code [4]&lt;/h2&gt;
+
+&lt;p&gt;Python을 이용하여 타원을 등간격으로 N 등분하는 위치를 계산해 본다. 위에서 소개한 incomplete elliptic integral of the second kind 함수는 scipy에서 쉽게 찾을 수 있다. 이 함수의 결과가 등간격이 되는 입력 $\phi$을 구하는 문제는 scipy의 root함수를 이용하면 쉽게 해결 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;21-함수-선언&quot;&gt;2.1. 함수 선언&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scipy.optimize&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find_root&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy.core.umath&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy.core.numeric&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ndarray&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scipy.special&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ellipeinc&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ang_for_equidistant_in_ellipse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_long&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_short&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;호의 길이가 등간격이 되도록 타원을 N등분하는 각도를 계산한다.
+
+    Parameters
+    ----------
+    num : int
+    r_long : float
+    r_short : float
+
+    Returns
+    -------
+    angles : ndarray
+        [rad].
+
+    &quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;angles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 수치 해석에 사용할 각도 초기값
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_short&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_long&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_short&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_long&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;perimeter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ellipeinc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;arcs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;perimeter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+        &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find_root&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ellipeinc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arcs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;angles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;angles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;angles&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;22-예제&quot;&gt;2.2. 예제&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ang_for_equidistant_in_ellipse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;arcs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ellipeinc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# Phi 각도별 호의 길이
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;23-예제-결과-확인&quot;&gt;2.3. 예제 결과 확인&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/2019-12-04-191204_Equidistant_points_on_ellipse/output_11_0.png&quot; alt=&quot;img&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3-참고-자료&quot;&gt;3. 참고 자료&lt;/h2&gt;
+&lt;p&gt;[1] https://math.stackexchange.com/questions/172766/calculating-equidistant-points-around-an-ellipse-arc  &lt;br /&gt;
+[2] https://en.wikipedia.org/wiki/Elliptic_integral  &lt;br /&gt;
+[3] http://mathworld.wolfram.com/EllipticIntegraloftheSecondKind.html  &lt;br /&gt;
+[4] https://stackoverflow.com/questions/6972331/how-can-i-generate-a-set-of-points-evenly-distributed-along-the-perimeter-of-an&lt;/p&gt;
+</description>
+				<pubDate>Wed, 04 Dec 2019 21:07:00 +0900</pubDate>
+				<link>/2019/12/191204_Equidistant_points_on_ellipse</link>
+				<guid isPermaLink="true">/2019/12/191204_Equidistant_points_on_ellipse</guid>
+			</item>
+		
+			<item>
 				<title>Computed Tomography (CT) 촬영의 원리</title>
 				<description>&lt;h1 id=&quot;computed-tomography-ct-촬영의-원리&quot;&gt;Computed Tomography (CT) 촬영의 원리&lt;/h1&gt;
 
@@ -159,7 +263,7 @@
 &lt;p&gt;[1] https://www.medicalradiation.com/types-of-medical-imaging/imaging-using-x-rays/computed-tomography-ct/  &lt;br /&gt;
 [2] https://freshrimpsushi.tistory.com/1165?category=695651&lt;/p&gt;
 </description>
-				<pubDate>Sat, 19 Oct 2019 00:33:00 +0200</pubDate>
+				<pubDate>Sat, 19 Oct 2019 07:33:00 +0900</pubDate>
 				<link>/2019/10/191019_PrincipleOfCT</link>
 				<guid isPermaLink="true">/2019/10/191019_PrincipleOfCT</guid>
 			</item>
@@ -449,7 +553,7 @@ GPU Result: -6470.2724609375
 &lt;h2 id=&quot;4-참고자료&quot;&gt;4. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] Dr. Brian Tuomanen. (2018). Chapter3, Hands-On GPU Programming with Python and CUDA (39).&lt;/p&gt;
 </description>
-				<pubDate>Sun, 07 Jul 2019 14:58:00 +0200</pubDate>
+				<pubDate>Sun, 07 Jul 2019 21:58:00 +0900</pubDate>
 				<link>/2019/07/190707_Numba_Cuda</link>
 				<guid isPermaLink="true">/2019/07/190707_Numba_Cuda</guid>
 			</item>
@@ -937,7 +1041,7 @@ Null Space is correct.
 [2] https://github.com/pmneila/Lights-Out&lt;br /&gt;
 [3] https://github.com/ok97465/GameLightsOut&lt;/p&gt;
 </description>
-				<pubDate>Sun, 21 Apr 2019 16:13:00 +0200</pubDate>
+				<pubDate>Sun, 21 Apr 2019 23:13:00 +0900</pubDate>
 				<link>/2019/04/190421_LightsOutPuzzle</link>
 				<guid isPermaLink="true">/2019/04/190421_LightsOutPuzzle</guid>
 			</item>
@@ -1099,7 +1203,7 @@ Null Space is correct.
 
 &lt;p&gt;&lt;a href=&quot;/assets/data/Spyder-ide/snippet.json&quot;&gt;snippet.json&lt;/a&gt;&lt;/p&gt;
 </description>
-				<pubDate>Sun, 27 Jan 2019 15:06:00 +0100</pubDate>
+				<pubDate>Sun, 27 Jan 2019 23:06:00 +0900</pubDate>
 				<link>/2019/01/190127_SpyderIde</link>
 				<guid isPermaLink="true">/2019/01/190127_SpyderIde</guid>
 			</item>
@@ -1278,7 +1382,7 @@ Null Space is correct.
 &lt;h2 id=&quot;9-참고자료&quot;&gt;9. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] https://wayhome25.github.io/git/2017/07/08/git-first-pull-request-story/&lt;/p&gt;
 </description>
-				<pubDate>Thu, 20 Dec 2018 12:53:00 +0100</pubDate>
+				<pubDate>Thu, 20 Dec 2018 20:53:00 +0900</pubDate>
 				<link>/2018/12/181220_GitHubPullRequest</link>
 				<guid isPermaLink="true">/2018/12/181220_GitHubPullRequest</guid>
 			</item>
@@ -1471,7 +1575,7 @@ Null Space is correct.
 &lt;p&gt;[1] Mary L. Boas. (2005). 9. Calculus of Variations. Mathematical Methods in the physical sciences (474)  &lt;br /&gt;
 [2] http://pgautam.com.np/blog/2017/12/23/brachistochrone-problem/&lt;/p&gt;
 </description>
-				<pubDate>Wed, 21 Nov 2018 20:33:00 +0100</pubDate>
+				<pubDate>Thu, 22 Nov 2018 04:33:00 +0900</pubDate>
 				<link>/2018/11/181122_EulerLagrangeEquation</link>
 				<guid isPermaLink="true">/2018/11/181122_EulerLagrangeEquation</guid>
 			</item>
@@ -1634,7 +1738,7 @@ simplify 이용하여 다시 결과를 뽑아보면 다음과 같다.&lt;/p&gt;
 &lt;h2 id=&quot;3-참고자료&quot;&gt;3. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] https://ko.wikipedia.org/wiki/%ED%8E%98%EB%A5%B4%EB%A7%88%EC%9D%98_%EC%9B%90%EB%A6%AC&lt;/p&gt;
 </description>
-				<pubDate>Mon, 05 Nov 2018 12:00:00 +0100</pubDate>
+				<pubDate>Mon, 05 Nov 2018 20:00:00 +0900</pubDate>
 				<link>/2018/11/181105_Reflection_Refraction</link>
 				<guid isPermaLink="true">/2018/11/181105_Reflection_Refraction</guid>
 			</item>
@@ -1730,7 +1834,7 @@ python setup.py &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;eng&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
-				<pubDate>Wed, 10 Oct 2018 03:08:00 +0200</pubDate>
+				<pubDate>Wed, 10 Oct 2018 10:08:00 +0900</pubDate>
 				<link>/2018/10/181030_MatlabApiInPython</link>
 				<guid isPermaLink="true">/2018/10/181030_MatlabApiInPython</guid>
 			</item>
@@ -1801,129 +1905,9 @@ python setup.py &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
 &lt;h2 id=&quot;5-참고자료&quot;&gt;5. 참고자료&lt;/h2&gt;
 &lt;p&gt;[1] 이종필. (2017). 18. 고전역학 강의, 이종필의 아주 특별한 상대성이론 강의 (쪽). 동아시아&lt;/p&gt;
 </description>
-				<pubDate>Sun, 23 Sep 2018 03:32:00 +0200</pubDate>
+				<pubDate>Sun, 23 Sep 2018 10:32:00 +0900</pubDate>
 				<link>/2018/09/180922_CentripetalForce</link>
 				<guid isPermaLink="true">/2018/09/180922_CentripetalForce</guid>
-			</item>
-		
-			<item>
-				<title>정사각형 내 임의의 두점의 거리</title>
-				<description>&lt;h1 id=&quot;정사각형-내-임의의-두점의-거리&quot;&gt;정사각형 내 임의의 두점의 거리&lt;/h1&gt;
-&lt;hr /&gt;
-&lt;p&gt;정사각형 내 임의의 두 점 P1, P2 사이의 거리 기댓값을 계산한다.  &lt;br /&gt;
-P1 = ($x_1$, $y_1$)  &lt;br /&gt;
-P2 = ($x_2$, $y_2$)  &lt;br /&gt;
-$x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt; 
-    &lt;img src=&quot;/assets/images/DistanceBetweenTwoPointsOfQuadrate/DistanceOfpoints_onedork.png&quot; alt=&quot;distance img&quot; width=&quot;313&quot; /&gt;
- &lt;/p&gt;
-
-&lt;p&gt;간단해 보이는 문제이지만 쉽게 풀리지도 않고 답 또한 딱 떨어지지 않는다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;1-simulation&quot;&gt;1. Simulation&lt;/h2&gt;
-&lt;p&gt;uniform random 좌표를 생성하여 좌표 간 거리의 평균을 계산한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy.random_intel&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uniform&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uniform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uniform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uniform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;uniform&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;distances&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;distances_mean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;distances&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;정사각형 내 두 점 사이의 거리 평균 = 0.5213815545906049
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;2-수치해석&quot;&gt;2. 수치해석&lt;/h2&gt;
-&lt;p&gt;거리를 구하는 적분식 근을 scipy의 nquad를 이용하여 구한다.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { \left( { x }_{ 1 }-{ x }_{ 2 } \right) +\left( { y }_{ 1 }-y_{ 2 } \right)  } d{ x }_{ 1 } } d{ x }_{ 2 } } dy_{ 1 } } d{ y }_{ 2 } }&lt;/script&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scipy.integrate&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nquad&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;integrand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;lambda&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;distances_mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;abserr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;out_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nquad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;integrand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;full_output&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;정사각형 내 두 점 사이의 거리 평균 = 0.5214054334862938
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;3-함수-적분1&quot;&gt;3. 함수 적분[1]&lt;/h2&gt;
-&lt;p&gt;위의 수식에서 $|x_1-x_2|=u,\text{    }|y_1-y_2|=v$로 치환한다.  &lt;br /&gt;
-$|a-b|=c$이고 a, b가 uniform random variable이면 c의 PDF는 2(1-c)임을 이용하여 적분식을 정리하면 아래와 같다. [아래 절 참조]&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;4\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { { u }^{ 2 }+{ v }^{ 2 } } \left( 1-u \right) \left( 1-v \right) du } dv }&lt;/script&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-위의 수식을 적분하기 위해 변수를 Polar Form으로 변환한다. 변환 시 적분 구간에 유의 해야한다.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-\begin{matrix} u=r\cos{\theta} &amp; 0\le{\theta}\le\pi/4 \\ v=r\sin{\theta} &amp; 0\le{r}\le{1/\cos{\theta}} \end{matrix} %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-정사각형 내의 점들의 길이를 구하는 것이므로 r은 $1/\cos{\theta}$를 넘을 수 없다.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt; 
-  &lt;img src=&quot;/assets/images/DistanceBetweenTwoPointsOfQuadrate/IntegralRegion_onedork.png&quot; alt=&quot;Integral Region&quot; width=&quot;313&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-변수를 치환하면 아래와 같고 적분 구간을 정사각형의 절반만 정의하였으므로 2가 곱해진다.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;4\int _{ 0 }^{ \pi /4 }{ 2\int _{ 0 }^{ 1/\cos { \theta  }  }{ \sqrt { r^{ { 2 } }{ \cos   }^{ { 2 } }\theta +r^{ { 2 } }{ \sin   }^{ { 2 } }\theta  } (1-r{ \cos   }\theta )(1-r{ \sin   }\theta )rdr } d\theta  }&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;=8\int _{ 0 }^{ \pi /4 }{ \int _{ 0 }^{ 1/\cos { \theta  }  }{ r^{ { 2 } }-r^{ { 3 } }{ \cos   }\theta -r^{ { 3 } }{ \sin   }\theta +r^{ { 4 } }{ \cos }\theta { \sin }\theta dr} d\theta  }&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;=8\int _{ 0 }^{ \pi /4 }{ \frac { { \sec } ^ { 3 } \theta } { 12 } - \frac { { \sec } ^ { 3 } \theta { \tan } \theta } { 20 }d\theta  }&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;=8\cdot \left( \frac { { \sec   }\theta { \tan   }\theta +{ \ln { \left| { \sec   }\theta +{ \tan   }\theta  \right|}}}{ 24 } -\frac { { \sec   }^{ { 3 } }\theta  }{ 60 }  \right) _{ { 0 } }^{ { \pi /4 } }&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;=\frac { 2+\sqrt { 2 } +5{ \ln { (\sqrt { 2 } +1) }  } }{ 15 }&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;=0.5214054331647207&lt;/script&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;31-a-b-의-pdf-probability-density-function&quot;&gt;3.1. |a-b| 의 PDF (Probability Density Function)&lt;/h3&gt;
-
-&lt;p&gt;두 random variable의 합의 PDF는 각각의 PDF의 Convolution이다&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt; 
-  &lt;img src=&quot;/assets/images/DistanceBetweenTwoPointsOfQuadrate/ab_convolution_onedork.png&quot; alt=&quot;a plus b pdf&quot; width=&quot;720&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계산된다.&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt; 
-  &lt;img src=&quot;/assets/images/DistanceBetweenTwoPointsOfQuadrate/ad_convolution_onedork.png&quot; alt=&quot;a minus b pdf&quot; width=&quot;720&quot; /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-(a-b) &amp;lt; 0인 경우와 (a-b) &amp;gt; 0인 경우의 확률은 대칭이므로 |a-b|의 확률은 아래와 같다.&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt; 
-  &lt;img src=&quot;/assets/images/DistanceBetweenTwoPointsOfQuadrate/a_b_minus_abs_pdf_onedork.png&quot; alt=&quot;|a-b| pdf&quot; width=&quot;216&quot; /&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;4-참고자료&quot;&gt;4. 참고자료&lt;/h2&gt;
-&lt;p&gt;[1] https://www.youtube.com/watch?v=i4VqXRRXi68&amp;amp;t=275s&lt;/p&gt;
-</description>
-				<pubDate>Tue, 11 Sep 2018 16:50:00 +0200</pubDate>
-				<link>/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate</link>
-				<guid isPermaLink="true">/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate</guid>
 			</item>
 		
 	</channel>
