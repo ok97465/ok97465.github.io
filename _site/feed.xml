@@ -29,7 +29,7 @@
 
 &lt;p&gt;여기서 $\phi$는 원점과 타원 위의 점과의 각도 $\psi$ 와는 다르다. $\phi$는 장축을 반지름으로 하는 원위의 점과 원점과의 각도이다.&lt;/p&gt;
 
-&lt;p&gt;위의 함수를 이용하여 타원이 둘레($c$)를 구하는 공식은 다음과 같다.&lt;/p&gt;
+&lt;p&gt;위의 함수를 이용하여 타원 둘레($c$)를 구하는 공식은 다음과 같다.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;c = 4aE\left(\pi/2, k\right)&lt;/script&gt;
 
