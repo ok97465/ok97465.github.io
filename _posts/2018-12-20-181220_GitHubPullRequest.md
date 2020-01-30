@@ -87,6 +87,22 @@ sitemap :
     * develop
       master
 ```
+  
+  
+- upstream master가 아닌 다른 branch에서 작업하고 싶다면 
+```bash
+    # upstream의 다른 branch를 확인한다.
+    git branch -r
+      origin/HEAD -> origin/master
+      upstream/4.x
+      
+    # branch를 다운 받는다.
+    git checkout -t upstream/4.x
+    
+    # develop 이라는 이름의 branch를 생성한다.
+    git checkout -b develop
+    Switched to a new branch 'develop'
+```
 
 <br>
 
