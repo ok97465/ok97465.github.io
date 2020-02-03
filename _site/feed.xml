@@ -1297,7 +1297,10 @@ Null Space is correct.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;upstream master가 아닌 다른 branch에서 작업하고 싶다면
-    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c&quot;&gt;# upstream의 다른 branch를 확인한다.&lt;/span&gt;
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;c&quot;&gt;# upstream brach를 갱신한다.&lt;/span&gt;
+  git remote update
+    
+  &lt;span class=&quot;c&quot;&gt;# upstream의 다른 branch를 확인한다.&lt;/span&gt;
   git branch &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt;
     origin/HEAD -&amp;gt; origin/master
     upstream/4.x
