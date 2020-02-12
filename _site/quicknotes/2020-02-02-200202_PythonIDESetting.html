@@ -11,13 +11,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ok97465 | Spyder project 설정 </title>
-    <meta name="description" content="Spyder project 설정을 위한 노트.">
+    <title>ok97465 | Python IDE 설정 </title>
+    <meta name="description" content="Python IDE 설정을 위한 자료 정리.">
     <meta name="theme-color" content="#222222"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Spyder project 설정">
-    <meta property="og:description" content="Spyder project 설정을 위한 노트.">
+    <meta property="og:title" content="Python IDE 설정">
+    <meta property="og:description" content="Python IDE 설정을 위한 자료 정리.">
     <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
     <meta property="og:url" content="http://ok97465.github.io">
     <script src="/assets/js/jquery.min.js"></script>
@@ -95,7 +95,7 @@
             <div class="col-md-8 offset-md-1">
               <div class="article">
                 <div class="card">
-                  <h1><a href="/quicknotes/2020-02-02-200202_spyder_project_setting">Spyder project 설정</a></h1>
+                  <h1><a href="/quicknotes/2020-02-02-200202_PythonIDESetting">Python IDE 설정</a></h1>
                   <div class="post-meta">
                     <div class="post-time">
                       <i class="fa fa-calendar-alt"></i>
@@ -109,9 +109,11 @@
                   </div>
                   <div class="post-content">
                     
-                    <h1 id="spyder-project-설정">Spyder Project 설정</h1>
+                    <h1 id="python-ide-설정">Python IDE 설정</h1>
 
-<h2 id="1-isort-설정">1. ISORT 설정</h2>
+<h2 id="1-spyder-project-설정">1. Spyder Project 설정</h2>
+
+<h3 id="11-isort-설정">1.1. ISORT 설정</h3>
 
 <p>.isort.cfg를 프로젝트 root 폴더에 만들고 아래내용으로 채운다.</p>
 
@@ -132,13 +134,90 @@ import_heading_thirdparty = Third party imports
 <p>생성한 Python Project 폴더에 아래 파일을 압축 해제하여 oklib 폴더를 생성한다.  <br />
 <a href="/assets/data/oklib.zip">oklib Download</a></p>
 
+<p><br /></p>
+
+<h2 id="3-필요한-package">3. 필요한 Package</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>이름</th>
+      <th>저장소</th>
+      <th>설명</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pymap3d</td>
+      <td>PyPi</td>
+      <td>지구 좌표계 변화</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>basemap</td>
+      <td>anaconda</td>
+      <td>Matplotlib 지도 투영</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>basemap-data-hires</td>
+      <td>anaconda</td>
+      <td>Matplotlib 지도 투영(with coastlines and political boundaries)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>pyqtgraph</td>
+      <td>anaconda</td>
+      <td>QT를 이용한 빠른 Plot</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>vispy</td>
+      <td>conda-forge</td>
+      <td>GPU 가속을 이용한 빠른 Plot</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>mplcursors</td>
+      <td>conda-forge</td>
+      <td>Maplotlib에 Data Cursor 추가</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>jupyterthemes</td>
+      <td>conda-forge</td>
+      <td>Mapplotlib theme 지원</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>pyautogui</td>
+      <td>conda-forge</td>
+      <td>컴퓨터 자동화</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
                     
 
 <div class="share-bar">
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/quicknotes/2020-02-02-200202_spyder_project_setting"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/quicknotes/2020-02-02-200202_PythonIDESetting"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -150,7 +229,7 @@ import_heading_thirdparty = Third party imports
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/quicknotes/2020-02-02-200202_spyder_project_setting&text=Spyder project 설정" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/quicknotes/2020-02-02-200202_PythonIDESetting&text=Python IDE 설정" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -161,7 +240,7 @@ import_heading_thirdparty = Third party imports
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/quicknotes/2020-02-02-200202_spyder_project_setting" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/quicknotes/2020-02-02-200202_PythonIDESetting" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -176,7 +255,7 @@ import_heading_thirdparty = Third party imports
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Spyder project 설정&body=Spyder project 설정을 위한 노트. http://localhost:4000/quicknotes/2020-02-02-200202_spyder_project_setting" target="_blank" title="Email">
+      <a href="mailto:?&subject=Python IDE 설정&body=Python IDE 설정을 위한 자료 정리. http://localhost:4000/quicknotes/2020-02-02-200202_PythonIDESetting" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>
@@ -283,7 +362,7 @@ import_heading_thirdparty = Third party imports
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
-  var disqus_identifier = "/quicknotes/2020-02-02-200202_spyder_project_setting";
+  var disqus_identifier = "/quicknotes/2020-02-02-200202_PythonIDESetting";
 
   /* * * DON'T EDIT BELOW THIS LINE * * */
   (function() {
