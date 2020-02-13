@@ -91,6 +91,9 @@ sitemap :
   
 - upstream master가 아닌 다른 branch에서 작업하고 싶다면 
 ```bash
+    # upstream brach를 갱신한다.
+    git remote update
+    
     # upstream의 다른 branch를 확인한다.
     git branch -r
       origin/HEAD -> origin/master
