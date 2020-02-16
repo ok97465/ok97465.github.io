@@ -75,8 +75,3 @@ MPLCURSORS={"multiple": 1}
 | python-pptx        | conda-forge | Python에서 pptx 작성                                            |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
-
-
-```python
-
-```
