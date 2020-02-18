@@ -1,0 +1,958 @@
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ok97465 | Python에서 이진파일 (Binary file) 입출력 </title>
+    <meta name="description" content="Python에서 이진 파일을 다루는 법을 소개한다.">
+    <meta name="theme-color" content="#222222"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Python에서 이진파일 (Binary file) 입출력">
+    <meta property="og:description" content="Python에서 이진 파일을 다루는 법을 소개한다.">
+    <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
+    <meta property="og:url" content="http://ok97465.github.io">
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap4.min.js"></script>
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/css/svg-with-js/js/fontawesome-all.js"></script>
+    <link href="/assets/css/bootstrap4.min.css" rel="stylesheet">
+    <link href="/assets/css/theme.css" rel="stylesheet">
+    <link href="/assets/css/syntax.css" rel="stylesheet">
+ </head>
+
+<body>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-125307858-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+    WebFontConfig = {
+        google: {
+            families: ['Ubuntu::latin']
+        }
+    };
+    (function () {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+</script>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">ok97465</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/">/home</a>
+                <a class="nav-item nav-link" href="/archive.html">/archive</a>
+                <a class="nav-item nav-link" href="/tags.html">/tags</a>
+                <a class="nav-item nav-link" href="/notes.html">/notes</a>
+                <a class="nav-item nav-link" href="/about.html">/about</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <div class="wrapper">
+      <div class="content">
+        <div class="container container-center">
+          <div class="row">
+            <div class="col-md-8 offset-md-1">
+              <div class="article">
+                <div class="card">
+                  <h1><a href="/2020/02/200215_BinaryFileIO">Python에서 이진파일 (Binary file) 입출력</a></h1>
+                  <div class="post-meta">
+                    <div class="post-time">
+                      <i class="fa fa-calendar-alt"></i>
+                      <time>15 Feb 2020</time>
+                    </div>
+                    <ul>
+                      
+                        <li><a href="/tag/python">python</a></li>
+                      
+                    </ul>
+                  </div>
+                  <div class="post-content">
+                    
+                      <ul class="toc">
+  <li><a href="#python에서-이진파일-binary-file-입출력">Python에서 이진파일 (Binary file) 입출력</a>
+    <ul>
+      <li><a href="#1-numpy-module을-이용한-이진파일-처리">1. Numpy module을 이용한 이진파일 처리</a>
+        <ul>
+          <li><a href="#11-byte-order1">1.1. Byte order[1]</a></li>
+          <li><a href="#12-자료형명">1.2. 자료형명</a></li>
+          <li><a href="#13-이진-파일-읽기">1.3. 이진 파일 읽기</a>
+            <ul>
+              <li><a href="#131-파일을-dict에-저장">1.3.1. 파일을 dict에 저장</a></li>
+              <li><a href="#132-순차적으로-읽어오기">1.3.2. 순차적으로 읽어오기</a></li>
+            </ul>
+          </li>
+          <li><a href="#14-이진-파일-쓰기">1.4. 이진 파일 쓰기</a></li>
+        </ul>
+      </li>
+      <li><a href="#2-ctypes-module을-이용한-이진파일-처리">2. Ctypes module을 이용한 이진파일 처리</a>
+        <ul>
+          <li><a href="#21-ctypes-struct">2.1. Ctypes struct</a></li>
+          <li><a href="#22-이진-파일-읽기">2.2. 이진 파일 읽기</a></li>
+          <li><a href="#23-이진-파일-쓰기">2.3. 이진 파일 쓰기</a></li>
+        </ul>
+      </li>
+      <li><a href="#3-struct-module을-이용한-이진파일-처리">3. Struct module을 이용한 이진파일 처리</a>
+        <ul>
+          <li><a href="#31-byte-order-2">3.1. Byte order [2]</a></li>
+          <li><a href="#32-format-characters-2">3.2. Format Characters [2]</a></li>
+          <li><a href="#33-이진-파일-읽기">3.3. 이진 파일 읽기</a></li>
+          <li><a href="#34-이진-파일-쓰기">3.4. 이진 파일 쓰기</a></li>
+        </ul>
+      </li>
+      <li><a href="#4-참고-문헌">4. 참고 문헌</a></li>
+    </ul>
+  </li>
+</ul>
+                    
+                    <h1 id="python에서-이진파일-binary-file-입출력">Python에서 이진파일 (Binary file) 입출력</h1>
+
+<p>Python에는 이진파일을 다루는 여러 방법이 존재한다. 여기서는 numpy, ctypes ,struct 모듈을 이용하는 방법을 소개한다.</p>
+
+<p>아래 예제코드에서 다룰 이진파일의 구조는 다음과 같다.</p>
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Litte endian</span>
+<span class="k">struct</span> <span class="n">header</span>
+<span class="p">{</span>
+    <span class="kt">int8_t</span> <span class="n">val1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">34</span><span class="p">;</span>
+    <span class="kt">uint16_t</span> <span class="n">val2</span> <span class="o">=</span> <span class="mi">257</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">val3</span> <span class="o">=</span> <span class="mf">36.3948</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">array</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> 
+    <span class="p">{</span>
+        <span class="p">{</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">8.8</span><span class="p">},</span>
+        <span class="p">{</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">9.9</span><span class="p">},</span>
+        <span class="p">{</span><span class="mf">6.6</span><span class="p">,</span> <span class="mf">7.7</span><span class="p">}</span>
+    <span class="p">};</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">carray</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> 
+    <span class="p">{</span>
+        <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">},</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">},</span> <span class="p">{</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">},</span> <span class="p">{</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">}</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="1-numpy-module을-이용한-이진파일-처리">1. Numpy module을 이용한 이진파일 처리</h2>
+
+<p>Numpy에서는 행렬 저장을 위한 Npy 파일 형태만이 아니라 C언어 형태의 이진파일을 읽고 쓸수 있다. Bitfield를 포함하는 이진파일이 아니라면 Numpy API로 이진 파일을 다룰수 있기 때문에 내가 가장 많이 쓰는 방법이다.</p>
+
+<p>이진파일을 처리하기 위해서는 우선 Byte order와 자료형명이 정해져야 한다. Byte order와 자료형명은 다음과 같다.</p>
+
+<p><br /></p>
+
+<h3 id="11-byte-order1">1.1. Byte order[1]</h3>
+
+<p>Numpy에서 Byte order는 &lt;, &gt;를 이용하여 지정할 수 있다. 자료형명과 붙여서 사용하게 된다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Character</th>
+      <th>Byte order</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">=</td>
+      <td>native</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&lt;</td>
+      <td>little-endian</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&gt;</td>
+      <td>big-endian</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">|</td>
+      <td>not applicable</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="12-자료형명">1.2. 자료형명</h3>
+
+<p>numpy.sctypeDict를 참조하면 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Code</th>
+      <th style="text-align: center">C Type</th>
+      <th>Alias</th>
+      <th style="text-align: center">Size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">?, b1</td>
+      <td style="text-align: center">_Bool</td>
+      <td>bool, Bool, bool8</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">b, i1</td>
+      <td style="text-align: center">signed char</td>
+      <td>int8, Int8, byte</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">B, u1</td>
+      <td style="text-align: center">unsigned char</td>
+      <td>uint8, UInt8, ubyte</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">h, i2</td>
+      <td style="text-align: center">short</td>
+      <td>int16, Int16, short</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H, u2</td>
+      <td style="text-align: center">unsigned short</td>
+      <td>uint16, UInt16, ushort</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">i, i4</td>
+      <td style="text-align: center">int</td>
+      <td>int32, Int32, intc</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">I, u4</td>
+      <td style="text-align: center">unsigned int</td>
+      <td>uint32, UInt32, uintc</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">l, i8</td>
+      <td style="text-align: center">long</td>
+      <td>int, int0, int64, Int64, intp, long</td>
+      <td style="text-align: center">8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">L, u8</td>
+      <td style="text-align: center">unsigned long</td>
+      <td>uint, uint0, uint64, Uint64, UInt64, uintp</td>
+      <td style="text-align: center">8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">q</td>
+      <td style="text-align: center">long long</td>
+      <td>longlong</td>
+      <td style="text-align: center">8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Q</td>
+      <td style="text-align: center">unsigned long long</td>
+      <td>ulonglong</td>
+      <td style="text-align: center">8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">e, f2</td>
+      <td style="text-align: center">half precision</td>
+      <td>float16, Float16, half</td>
+      <td style="text-align: center">2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">f, f4</td>
+      <td style="text-align: center">float</td>
+      <td>float32, Float32, single</td>
+      <td style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">d, f8</td>
+      <td style="text-align: center">double</td>
+      <td>float, float64, Float64, double</td>
+      <td style="text-align: center">8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">g, f16</td>
+      <td style="text-align: center">__float128</td>
+      <td>float128, Float128, longdouble, longfloat</td>
+      <td style="text-align: center">16</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">F, c8</td>
+      <td style="text-align: center">complex&lt;float&gt;</td>
+      <td>Complex32, complex64, csingle, singlecomplex</td>
+      <td style="text-align: center">8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">D, c16</td>
+      <td style="text-align: center">complex&lt;double&gt;</td>
+      <td>cdouble, cfloat, complex, complex128, Complex64</td>
+      <td style="text-align: center">16</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">G, c32</td>
+      <td style="text-align: center">complex&lt;__float128&gt;</td>
+      <td>clongdouble, clongfloat, Complex128, complex256, longcomplex</td>
+      <td style="text-align: center">32</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Numpy는 하나의 자료형에 너무 많은 이름을 지원하고 있다. signed char를 표현하는 방법은 ‘b’, ‘i1’, ‘int8’, ‘Int8’, ‘byte’, numpy.byte, numpy.int8 등 7가지로 오히려 혼란스럽다. 특히 Complex자료형의 경우 Complex32와 complex32 전혀 다른 자료형이므로 numpy 자료형에서는 대소문자에 특별히 유의하여야 한다.</p>
+
+<p><br /></p>
+
+<h3 id="13-이진-파일-읽기">1.3. 이진 파일 읽기</h3>
+<p>Numpy에서는 이진 파일 전체를 dict형태로 읽어오는 방법과 순차적으로 읽어오는 방법이 있다.</p>
+
+<p><br /></p>
+
+<h4 id="131-파일을-dict에-저장">1.3.1. 파일을 dict에 저장</h4>
+<p>파일 전체를 dict에 저장하기 위해서는 읽어올 변수와 변수들의 자료형을 np.dtype에 선언해야 한다. 자료형은 문자형과 numpy built-in type으로 선언할 수 있다. 자료형을 문자형으로 선언할 시에는 “Byte-order” + “element 개수” + “자료형명”순이다. Byte-order가 현재 장비와 동일할 경우 생략할 수 있고 element 개수도 1일 경우에 생략할 수 있다. ALIAS 자료형명을 사용할 경우에는 Byte-order를 명시 할 수 없다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">fromfile</span>
+
+<span class="n">types</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s">'val1'</span><span class="p">,</span> <span class="s">'&lt;b'</span><span class="p">),</span>
+                  <span class="p">(</span><span class="s">'val2'</span><span class="p">,</span> <span class="s">'&lt;u2'</span><span class="p">),</span>
+                  <span class="p">(</span><span class="s">'valf'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span>
+                  <span class="p">(</span><span class="s">'array1'</span><span class="p">,</span> <span class="s">'&lt;(3, 2)f'</span><span class="p">),</span>
+                  <span class="p">(</span><span class="s">'array2'</span><span class="p">,</span> <span class="s">'5complex128'</span><span class="p">)])</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="s">'data_c.dat'</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'val1'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'val2'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'valf'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'array1'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'array2'</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[-34]
+[257]
+[36.3948]
+[[[1.1 8.8]
+  [5.5 9.9]
+  [6.6 7.7]]]
+[[1.+2.j 3.+4.j 5.+6.j 7.+8.j 8.+9.j]]
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h4 id="132-순차적으로-읽어오기">1.3.2. 순차적으로 읽어오기</h4>
+<p>fromfile에 count를 설정하지 않으면 지정된 자료형으로 파일 끝까지 읽어오기 때문에 꼭 Count를 지정하여야 한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c.dat'</span> <span class="p">,</span><span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">val1</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">val2</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">"int16"</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">valf</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">"&lt;d"</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">array1</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">"&lt;(3, 2)f"</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">array2</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">"c16"</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    
+<span class="k">print</span><span class="p">(</span><span class="n">val1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">val2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">valf</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[-34]
+[257]
+[36.3948]
+[[[1.1 8.8]
+  [5.5 9.9]
+  [6.6 7.7]]]
+[1.+2.j 3.+4.j 5.+6.j 7.+8.j 8.+9.j]
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="14-이진-파일-쓰기">1.4. 이진 파일 쓰기</h3>
+<p>Numpy array는 tofile을 이용하여 자신의 값을 Binary로 저장할 수 있다. tofile 사용 시에는 <code class="highlighter-rouge">자료형 선언을 위해서 format=을 명시하거나 자료형 선언 전에 ""을 추가해야만 한다.</code></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c_by_numpy.dat'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">val1</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'int8'</span><span class="p">)</span>
+    <span class="n">val2</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'i2'</span><span class="p">)</span>
+    <span class="n">valf</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'&lt;f8'</span><span class="p">)</span>
+    <span class="n">array1</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'f4'</span><span class="p">)</span>
+    <span class="n">array2</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">'c16'</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">filecmp</span> <span class="kn">import</span> <span class="nb">cmp</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'File is same : {cmp("data_c.dat", "data_c_by_numpy.dat")}'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File is same : True
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-ctypes-module을-이용한-이진파일-처리">2. Ctypes module을 이용한 이진파일 처리</h2>
+
+<p>ctypes 모듈의 struct를 이용하면 Bitfiled 까지 쉽게 다룰수 있다. ctypes struct는 C언어의 구조체와 유사한 형태를 가지고 있어서 C언어에 익숙한 사람에게 유용하다.</p>
+
+<p><a href="https://github.com/trolldbois/ctypeslib">ctypeslib2</a> 를 이용하면 C언어 구조체를 ctypes struct로 쉽게 변환 할수도 있다. 현재 C 언어 프로그램과 병행하는 업무를 진행중이라면 추천할 만한 이진파일 처리 방법이다.</p>
+
+<p><br /></p>
+
+<h3 id="21-ctypes-struct">2.1. Ctypes struct</h3>
+
+<p>ctypes struct는 python의 class를 이용하고 class 선언시에 ctypes의 Structure를 상속받는다. Byte order는 LittelEndianStructure, BigEndianStructure를 이용하여 지정할 수 있다.  <br />
+Structure의 attribute로 _pack_의 값을 설정하면 C 언어의 #pragma pack(1)과 동일한 역할을 하게 되고 변수명과 자료형은 _fields_를 이용한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">ctypes</span> <span class="kn">import</span> <span class="p">(</span><span class="n">LittleEndianStructure</span><span class="p">,</span> <span class="n">c_float</span><span class="p">,</span> <span class="n">c_double</span><span class="p">,</span>
+                    <span class="n">c_int8</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Header</span><span class="p">(</span><span class="n">LittleEndianStructure</span><span class="p">):</span>
+    <span class="n">_pack_</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">_fields_</span> <span class="o">=</span> <span class="p">[(</span><span class="s">'val1'</span><span class="p">,</span> <span class="n">c_int8</span><span class="p">),</span>
+                <span class="p">(</span><span class="s">'val2'</span><span class="p">,</span> <span class="n">c_uint16</span><span class="p">),</span>
+                <span class="p">(</span><span class="s">'valf'</span><span class="p">,</span> <span class="n">c_double</span><span class="p">),</span>
+                <span class="p">(</span><span class="s">'array1'</span><span class="p">,</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">c_float</span><span class="p">),</span>
+                <span class="p">(</span><span class="s">'array2'</span><span class="p">,</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">c_double</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="22-이진-파일-읽기">2.2. 이진 파일 읽기</h3>
+
+<p>파일을 ‘rb’로 열고 readinto를 수행하면 이진 파일을 읽을 수 있다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c.dat'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">val1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">val2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">valf</span><span class="p">)</span>
+
+<span class="n">array1</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">array1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span>
+
+<span class="n">array2</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">array2</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1j</span> <span class="o">*</span> <span class="n">array</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">array2</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-34
+257
+36.3948
+[1.1 8.8 5.5 9.9 6.6 7.7]
+[1.+2.j 3.+4.j 5.+6.j 7.+8.j 8.+9.j]
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="23-이진-파일-쓰기">2.3. 이진 파일 쓰기</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c_ctypes.dat'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+    
+<span class="kn">from</span> <span class="nn">filecmp</span> <span class="kn">import</span> <span class="nb">cmp</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'File is same : {cmp("data_c.dat", "data_c_ctypes.dat")}'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File is same : True
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3-struct-module을-이용한-이진파일-처리">3. Struct module을 이용한 이진파일 처리</h2>
+
+<p>Numpy가 없는 python에서 간단한 이진파일을 처리할때 사용한다.</p>
+
+<p><br /></p>
+
+<h3 id="31-byte-order-2">3.1. Byte order [2]</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Character</th>
+      <th>Byte order</th>
+      <th>Size</th>
+      <th>Alignment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>@</td>
+      <td>native</td>
+      <td>native</td>
+      <td>native</td>
+    </tr>
+    <tr>
+      <td>=</td>
+      <td>native</td>
+      <td>standard</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>&lt;</td>
+      <td>little-endian</td>
+      <td>standard</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>&gt;</td>
+      <td>big-endian</td>
+      <td>standard</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <td>!</td>
+      <td>network (= big-endian)</td>
+      <td>standard</td>
+      <td>none</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="32-format-characters-2">3.2. Format Characters [2]</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Format</th>
+      <th>C Type</th>
+      <th>Python type</th>
+      <th>Standard size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>x</td>
+      <td>pad byte</td>
+      <td>no value</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>c</td>
+      <td>char</td>
+      <td>bytes of length 1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>b</td>
+      <td>signed char</td>
+      <td>integer</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>unsigned char</td>
+      <td>integer</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>?</td>
+      <td>_Bool</td>
+      <td>bool</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>h</td>
+      <td>short</td>
+      <td>integer</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>H</td>
+      <td>unsigned short</td>
+      <td>integer</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>i</td>
+      <td>int</td>
+      <td>integer</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>I</td>
+      <td>unsigned int</td>
+      <td>integer</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>l</td>
+      <td>long</td>
+      <td>integer</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>L</td>
+      <td>unsigned long</td>
+      <td>integer</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>q</td>
+      <td>long long</td>
+      <td>integer</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>Q</td>
+      <td>unsigned long long</td>
+      <td>integer</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>n</td>
+      <td>ssize_t</td>
+      <td>integer</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>N</td>
+      <td>size_t</td>
+      <td>integer</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>e</td>
+      <td>half precision</td>
+      <td>float</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>f</td>
+      <td>float</td>
+      <td>float</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>d</td>
+      <td>double</td>
+      <td>float</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>s</td>
+      <td>char[]</td>
+      <td>bytes</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>p</td>
+      <td>char[]</td>
+      <td>bytes</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>P</td>
+      <td>void *</td>
+      <td>integer</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="33-이진-파일-읽기">3.3. 이진 파일 읽기</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">struct</span> <span class="kn">import</span> <span class="n">unpack</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c.dat'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">val1</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;1b'</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">val2</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'H'</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">valf</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;d'</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+    <span class="n">array1</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;6f'</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">24</span><span class="p">))</span>
+    <span class="n">array2</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;10d'</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">80</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">val1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">val2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">valf</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(-34,)
+(257,)
+(36.3948,)
+(1.100000023841858, 8.800000190734863, 5.5, 9.899999618530273, 6.599999904632568, 7.699999809265137)
+(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 8.0, 9.0)
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="34-이진-파일-쓰기">3.4. 이진 파일 쓰기</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">struct</span> <span class="kn">import</span> <span class="n">pack</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c_struct.dat'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;1b'</span><span class="p">,</span> <span class="o">*</span><span class="n">val1</span><span class="p">))</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'H'</span><span class="p">,</span> <span class="o">*</span><span class="n">val2</span><span class="p">))</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;d'</span><span class="p">,</span> <span class="o">*</span><span class="n">valf</span><span class="p">))</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;6f'</span><span class="p">,</span> <span class="o">*</span><span class="n">array1</span><span class="p">))</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;10d'</span><span class="p">,</span> <span class="o">*</span><span class="n">array2</span><span class="p">))</span>
+    
+<span class="kn">from</span> <span class="nn">filecmp</span> <span class="kn">import</span> <span class="nb">cmp</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'File is same : {cmp("data_c.dat", "data_c_struct.dat")}'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File is same : True
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="4-참고-문헌">4. 참고 문헌</h2>
+<p>[1] https://docs.scipy.org/doc/numpy/reference/generated/numpy.dtype.byteorder.html<br />
+[2] https://docs.python.org/3/library/struct.html</p>
+
+                    
+
+<div class="share-bar">
+  <ul class="share-buttons">
+    
+      <li class="share-facebook">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2020/02/200215_BinaryFileIO"
+             target="_blank" title="Share on Facebook">
+            <span class="fa-layers fa-fw fa-2x">
+                <i class="far fa-square"></i>
+                <i class="fab fa-facebook-f" data-fa-transform="shrink-8"></i>
+            </span>
+          </a>
+      </li>
+    
+
+    
+    <li class="share-twitter">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2020/02/200215_BinaryFileIO&text=Python에서 이진파일 (Binary file) 입출력" target="_blank" title="Tweet">
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-google-plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/2020/02/200215_BinaryFileIO" target="_blank" title="Share on Google Plus">
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="share-envelope">
+      <a href="mailto:?&subject=Python에서 이진파일 (Binary file) 입출력&body=Python에서 이진 파일을 다루는 법을 소개한다. http://localhost:4000/2020/02/200215_BinaryFileIO" target="_blank" title="Email">
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="far fa-envelope" data-fa-transform="shrink-8"></i>
+        </span>
+      </a>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+                  </div>
+                  
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                  </div>
+                  
+                </div>
+				<script type="text/x-mathjax-config">
+                  MathJax.Hub.Config({
+                    tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    processEscapes: true
+                    }
+                  });
+                </script>
+				<script type="text/javascript" async
+                  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+                </script>
+              </div>
+            </div>
+            <div class="col-md-3 hidden-xs">
+              <div class="sidebar ">
+  <h5><br><br><br>Recent Posts</h5>
+  <ul>
+    
+    <li><h6><a href="/2020/02/200215_BinaryFileIO">Python에서 이진파일 (Binary file) 입출력</a></h6></li>
+    
+    <li><h6><a href="/2019/12/191204_Equidistant_points_on_ellipse">타원을 등간격으로 N 등분하기</a></h6></li>
+    
+    <li><h6><a href="/2019/10/191019_PrincipleOfCT">Computed Tomography (CT) 촬영의 원리</a></h6></li>
+    
+    <li><h6><a href="/2019/07/200215_BinaryFileIO">Python에서 이진파일 (Binary file) 입출력</a></h6></li>
+    
+  </ul>
+</div>
+
+<div class="sidebar">
+  <h5>Tags</h5>
+  <ul class="sideBarTags">
+    
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/cuda" data-toggle="tooltip" data-placement="right" title="2">
+        <span>cuda</span></a><span>&nbsp(2)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/github" data-toggle="tooltip" data-placement="right" title="1">
+        <span>github</span></a><span>&nbsp(1)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/jupyter" data-toggle="tooltip" data-placement="right" title="1">
+        <span>jupyter</span></a><span>&nbsp(1)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="8">
+        <span>math</span></a><span>&nbsp(8)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/matlab" data-toggle="tooltip" data-placement="right" title="2">
+        <span>matlab</span></a><span>&nbsp(2)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/physics" data-toggle="tooltip" data-placement="right" title="3">
+        <span>physics</span></a><span>&nbsp(3)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/pycharm" data-toggle="tooltip" data-placement="right" title="1">
+        <span>pycharm</span></a><span>&nbsp(1)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="15">
+        <span>python</span></a><span>&nbsp(15)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/signal_system" data-toggle="tooltip" data-placement="right" title="1">
+        <span>signal_system</span></a><span>&nbsp(1)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="4">
+        <span>sympy</span></a><span>&nbsp(4)</span></h6></li>
+    
+  </ul>
+</div>
+
+            </div>
+          </div>
+        </div>
+        
+<!-- Add Disqus comments. -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
+  var disqus_identifier = "/2020/02/200215_BinaryFileIO";
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </div>
+          <footer class="footer-distributed">
+      <div class="container">
+        <div class="footer">
+          <p>ok97465 &copy; 2018-</p>
+          <h6>Follow me</h6>
+
+<ul class="social-media">
+
+  
+    <li>
+      <a title="ok97465 on Github" href="https://github.com/ok97465" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="9015220/lowqualitydelivery on StackOverflow" href="https://stackoverflow.com/users/9015220/lowqualitydelivery" target="_blank"><i class="fab fa-stack-overflow fa-2x"></i></a>
+    </li>
+  
+
+  
+
+  
+    <li>
+      <a title=" on Instagram" href="https://instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title=" on Last.fm" href="https://www.lastfm.com/user/" target="_blank"><i class="fab fa-lastfm fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="feed.xml RSS" href="/feed.xml" target="_blank"><i class="fas fa-rss fa-2x"></i></a>
+    </li>
+  
+
+</ul>
+
+        </div>
+      </div>
+    </footer>
+
+    </div>
+  </body>
+</html>
