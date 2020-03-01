@@ -161,6 +161,11 @@ sitemap :
     
     git push origin develop --force
 ```
+- 내 코드와 관계 없이 Test에 실패하여 Test를 다시 수행해 보고 싶은 경우 마지막 commit의 주석만 고친다.
+```bash
+git commit --amend -m "이전 내용에서 약간 수정한 내용"
+git push origin develop --force
+```
 
 <br>
 
