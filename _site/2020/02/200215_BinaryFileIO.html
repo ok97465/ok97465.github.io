@@ -360,6 +360,15 @@
                   <span class="p">(</span><span class="s">'array1'</span><span class="p">,</span> <span class="s">'&lt;(3, 2)f'</span><span class="p">),</span>
                   <span class="p">(</span><span class="s">'array2'</span><span class="p">,</span> <span class="s">'5complex128'</span><span class="p">)])</span>
 
+<span class="c1"># 뒤에 [0]을 붙여주면 data의 출력의 불필요한 Dimension이 줄어든다.
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="s">'data_c.dat'</span><span class="p">,</span> <span class="n">types</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'val1'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'val2'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'valf'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'array1'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'array2'</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">[0]을 붙이지 않은 경우'</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="s">'data_c.dat'</span><span class="p">,</span> <span class="n">types</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'val1'</span><span class="p">])</span>
 <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'val2'</span><span class="p">])</span>
@@ -368,7 +377,16 @@
 <span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s">'array2'</span><span class="p">])</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[-34]
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-34
+257
+36.3948
+[[1.1 8.8]
+ [5.5 9.9]
+ [6.6 7.7]]
+[1.+2.j 3.+4.j 5.+6.j 7.+8.j 8.+9.j]
+
+[0]을 붙이지 않은 경우
+[-34]
 [257]
 [36.3948]
 [[[1.1 8.8]
