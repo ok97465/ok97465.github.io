@@ -1,0 +1,396 @@
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ok97465 | Google App Engine에 코드 올리기 </title>
+    <meta name="description" content="Google App Engine에 코드 올리기.">
+    <meta name="theme-color" content="#222222"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Google App Engine에 코드 올리기">
+    <meta property="og:description" content="Google App Engine에 코드 올리기.">
+    <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
+    <meta property="og:url" content="http://ok97465.github.io">
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap4.min.js"></script>
+    <script src="/assets/js/header.js"></script>
+    <script src="/assets/css/svg-with-js/js/fontawesome-all.js"></script>
+    <link href="/assets/css/bootstrap4.min.css" rel="stylesheet">
+    <link href="/assets/css/theme.css" rel="stylesheet">
+    <link href="/assets/css/syntax.css" rel="stylesheet">
+ </head>
+
+<body>
+
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-125307858-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+    WebFontConfig = {
+        google: {
+            families: ['Ubuntu::latin']
+        }
+    };
+    (function () {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+</script>
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">ok97465</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/">/home</a>
+                <a class="nav-item nav-link" href="/archive.html">/archive</a>
+                <a class="nav-item nav-link" href="/tags.html">/tags</a>
+                <a class="nav-item nav-link" href="/notes.html">/notes</a>
+                <a class="nav-item nav-link" href="/about.html">/about</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <div class="wrapper">
+      <div class="content">
+        <div class="container container-center">
+          <div class="row">
+            <div class="col-md-8 offset-md-1">
+              <div class="article">
+                <div class="card">
+                  <h1><a href="/quicknotes/2020-03-16-200316_GAE_Create">Google App Engine에 코드 올리기</a></h1>
+                  <div class="post-meta">
+                    <div class="post-time">
+                      <i class="fa fa-calendar-alt"></i>
+                      <time>17 Mar 2020</time>
+                    </div>
+                    <ul>
+                      
+                        <li><a href="/tag/note">note</a></li>
+                      
+                    </ul>
+                  </div>
+                  <div class="post-content">
+                    
+                    <h1 id="gaegoogle-app-engine에-코드-올리기">GAE(Google App Engine)에 코드 올리기</h1>
+
+<h2 id="1-sdk-설치">1. SDK 설치</h2>
+
+<ul>
+  <li>패키지 소스로 Cloud SDK 배포 URI를 추가 <a href="https://cloud.google.com/sdk/docs/downloads-apt-get?hl=ko">Ref</a></li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main"</span> | <span class="nb">sudo tee</span> <span class="nt">-a</span> /etc/apt/sources.list.d/google-cloud-sdk.list
+</code></pre></div></div>
+
+<ul>
+  <li>apt-transport-https 설치</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>apt-transport-https ca-certificates gnupg
+</code></pre></div></div>
+
+<ul>
+  <li>Google Cloud 공개 키를 가져온다</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | <span class="nb">sudo </span>apt-key <span class="nt">--keyring</span> /usr/share/keyrings/cloud.google.gpg add
+</code></pre></div></div>
+
+<ul>
+  <li>Cloud SDK를 설치</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt-get <span class="nb">install </span>google-cloud-sdk
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>google-cloud-sdk-app-engine-python
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>google-cloud-sdk-app-engine-python-extras
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>google-cloud-sdk-cloud-build-local
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-project-생성">2. Project 생성</h2>
+
+<ul>
+  <li>폴더 생성</li>
+  <li>GAE 초기화</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud init
+</code></pre></div></div>
+
+<ul>
+  <li>venv 설정</li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>your-project
+python <span class="nt">-m</span> venv venv
+<span class="nb">source </span>venv/bin/activate
+pip <span class="nb">install </span>google-cloud-storage
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3-project-upload">3. Project Upload</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud app deploy
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="4-할일-예약">4. 할일 예약</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud app deploy cron.yaml
+</code></pre></div></div>
+
+                    
+
+<div class="share-bar">
+  <ul class="share-buttons">
+    
+      <li class="share-facebook">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/quicknotes/2020-03-16-200316_GAE_Create"
+             target="_blank" title="Share on Facebook">
+            <span class="fa-layers fa-fw fa-2x">
+                <i class="far fa-square"></i>
+                <i class="fab fa-facebook-f" data-fa-transform="shrink-8"></i>
+            </span>
+          </a>
+      </li>
+    
+
+    
+    <li class="share-twitter">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/quicknotes/2020-03-16-200316_GAE_Create&text=Google App Engine에 코드 올리기" target="_blank" title="Tweet">
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+    <li class="share-google-plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/quicknotes/2020-03-16-200316_GAE_Create" target="_blank" title="Share on Google Plus">
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
+        </span>
+      </a>
+    </li>
+    
+
+    
+
+    
+
+    
+    <li class="share-envelope">
+      <a href="mailto:?&subject=Google App Engine에 코드 올리기&body=Google App Engine에 코드 올리기. http://localhost:4000/quicknotes/2020-03-16-200316_GAE_Create" target="_blank" title="Email">
+        <span class="fa-layers fa-fw fa-2x">
+            <i class="far fa-circle"></i>
+            <i class="far fa-envelope" data-fa-transform="shrink-8"></i>
+        </span>
+      </a>
+    </li>
+    
+
+  </ul>
+</div>
+
+
+                  </div>
+                  
+                  <div id="disqus_thread">
+                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                  </div>
+                  
+                </div>
+				<script type="text/x-mathjax-config">
+                  MathJax.Hub.Config({
+                    tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    processEscapes: true
+                    }
+                  });
+                </script>
+				<script type="text/javascript" async
+                  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+                </script>
+              </div>
+            </div>
+            <div class="col-md-3 hidden-xs">
+              <div class="sidebar ">
+  <h5><br><br><br>Recent Posts</h5>
+  <ul>
+    
+    <li><h6><a href="/2020/02/200215_BinaryFileIO">Python에서 이진파일 (Binary file) 입출력</a></h6></li>
+    
+    <li><h6><a href="/2019/12/191204_Equidistant_points_on_ellipse">타원을 등간격으로 N 등분하기</a></h6></li>
+    
+    <li><h6><a href="/2019/10/191019_PrincipleOfCT">Computed Tomography (CT) 촬영의 원리</a></h6></li>
+    
+    <li><h6><a href="/2019/07/190707_Numba_Cuda">Numba를 이용한 Cuda 프로그램 예제</a></h6></li>
+    
+  </ul>
+</div>
+
+<div class="sidebar">
+  <h5>Tags</h5>
+  <ul class="sideBarTags">
+    
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/cuda" data-toggle="tooltip" data-placement="right" title="2">
+        <span>cuda</span></a><span>&nbsp(2)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/github" data-toggle="tooltip" data-placement="right" title="1">
+        <span>github</span></a><span>&nbsp(1)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/jupyter" data-toggle="tooltip" data-placement="right" title="1">
+        <span>jupyter</span></a><span>&nbsp(1)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/math" data-toggle="tooltip" data-placement="right" title="8">
+        <span>math</span></a><span>&nbsp(8)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/matlab" data-toggle="tooltip" data-placement="right" title="2">
+        <span>matlab</span></a><span>&nbsp(2)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/physics" data-toggle="tooltip" data-placement="right" title="3">
+        <span>physics</span></a><span>&nbsp(3)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/pycharm" data-toggle="tooltip" data-placement="right" title="1">
+        <span>pycharm</span></a><span>&nbsp(1)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="14">
+        <span>python</span></a><span>&nbsp(14)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/signal_system" data-toggle="tooltip" data-placement="right" title="1">
+        <span>signal_system</span></a><span>&nbsp(1)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/sympy" data-toggle="tooltip" data-placement="right" title="4">
+        <span>sympy</span></a><span>&nbsp(4)</span></h6></li>
+    
+  </ul>
+</div>
+
+            </div>
+          </div>
+        </div>
+        
+<!-- Add Disqus comments. -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
+  var disqus_identifier = "/quicknotes/2020-03-16-200316_GAE_Create";
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+      </div>
+          <footer class="footer-distributed">
+      <div class="container">
+        <div class="footer">
+          <p>ok97465 &copy; 2018-</p>
+          <h6>Follow me</h6>
+
+<ul class="social-media">
+
+  
+    <li>
+      <a title="ok97465 on Github" href="https://github.com/ok97465" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="9015220/lowqualitydelivery on StackOverflow" href="https://stackoverflow.com/users/9015220/lowqualitydelivery" target="_blank"><i class="fab fa-stack-overflow fa-2x"></i></a>
+    </li>
+  
+
+  
+
+  
+    <li>
+      <a title=" on Instagram" href="https://instagram.com/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title=" on Last.fm" href="https://www.lastfm.com/user/" target="_blank"><i class="fab fa-lastfm fa-2x"></i></a>
+    </li>
+  
+
+  
+    <li>
+      <a title="feed.xml RSS" href="/feed.xml" target="_blank"><i class="fas fa-rss fa-2x"></i></a>
+    </li>
+  
+
+</ul>
+
+        </div>
+      </div>
+    </footer>
+
+    </div>
+  </body>
+</html>
