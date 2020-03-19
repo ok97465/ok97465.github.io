@@ -123,13 +123,12 @@
       <li><a href="#5-matplotlib의-한글-표시">5. Matplotlib의 한글 표시</a></li>
       <li><a href="#6-matlab의-자주쓰는-keyword-추가">6. Matlab의 자주쓰는 Keyword 추가</a>
         <ul>
-          <li><a href="#61-clear-명령">6.1. clear 명령</a></li>
-          <li><a href="#62-새로운-figure-명령">6.2. 새로운 figure 명령</a></li>
-          <li><a href="#63-matlab-명령-import">6.3. matlab 명령 import</a></li>
-          <li><a href="#64-모든-figure-창-닫기">6.4. 모든 figure 창 닫기</a></li>
-          <li><a href="#65-save-명령">6.5. save 명령</a></li>
-          <li><a href="#66-load-명령">6.6. load 명령</a></li>
-          <li><a href="#67-sympy-명령">6.7. sympy 명령</a></li>
+          <li><a href="#61-새로운-figure-명령">6.1. 새로운 figure 명령</a></li>
+          <li><a href="#62-matlab-명령-import">6.2. matlab 명령 import</a></li>
+          <li><a href="#63-모든-figure-창-닫기">6.3. 모든 figure 창 닫기</a></li>
+          <li><a href="#64-save-명령">6.4. save 명령</a></li>
+          <li><a href="#65-load-명령">6.5. load 명령</a></li>
+          <li><a href="#66-sympy-명령">6.6. sympy 명령</a></li>
         </ul>
       </li>
       <li><a href="#7-auto-import">7. Auto import</a></li>
@@ -245,18 +244,7 @@ Value : {“multiple”: 1}</p>
 
 <p><br /></p>
 
-<h3 id="61-clear-명령">6.1. clear 명령</h3>
-<p>Abbreviation : clear  <br />
-Template text :</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">oklib.init</span> <span class="kn">import</span> <span class="n">ipython_clear</span>
-<span class="n">ipython_clear</span><span class="p">(</span><span class="n">b_plot_close</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">oklib</span> <span class="kn">import</span> <span class="o">*</span>
-
-</code></pre></div></div>
-
-<p><br /></p>
-
-<h3 id="62-새로운-figure-명령">6.2. 새로운 figure 명령</h3>
+<h3 id="61-새로운-figure-명령">6.1. 새로운 figure 명령</h3>
 <p>Abbreviation : fig,  <br />
 Template text :</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">()</span>
@@ -269,32 +257,32 @@ Template text :</p>
 
 <p><br /></p>
 
-<h3 id="63-matlab-명령-import">6.3. matlab 명령 import</h3>
+<h3 id="62-matlab-명령-import">6.2. matlab 명령 import</h3>
 <p>Abbreviation : matlab   <br />
 Template text :</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">oklib.signal</span> <span class="kn">import</span> <span class="p">(</span>
-        <span class="n">db2</span><span class="p">,</span> <span class="n">nextpow2</span><span class="p">,</span> <span class="n">sind</span><span class="p">,</span> <span class="n">cosd</span><span class="p">,</span> <span class="n">tand</span><span class="p">,</span> <span class="n">arcsind</span><span class="p">,</span> <span class="n">arccosd</span><span class="p">,</span> <span class="n">arctand</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">sindg</span><span class="p">,</span> <span class="n">cosdg</span><span class="p">,</span> <span class="n">tandg</span>
+<span class="kn">from</span> <span class="nn">oklib.signal</span> <span class="kn">import</span> <span class="n">db2</span><span class="p">,</span> <span class="n">nextpow2</span><span class="p">,</span> <span class="n">arcsindg</span><span class="p">,</span> <span class="n">arccosdg</span><span class="p">,</span> <span class="n">arctandg</span>
 <span class="kn">from</span> <span class="nn">oklib.plot_ok</span> <span class="kn">import</span> <span class="n">imagesc</span>
-<span class="kn">from</span> <span class="nn">oklib.plot_pg</span> <span class="kn">import</span> <span class="n">imagesc_pg</span>
+<span class="kn">from</span> <span class="nn">oklib.plot_qt</span> <span class="kn">import</span> <span class="n">imagescqt</span><span class="p">,</span> <span class="n">plotqt</span>
 <span class="kn">from</span> <span class="nn">oklib.file</span> <span class="kn">import</span> <span class="n">save_vars</span><span class="p">,</span> <span class="n">load_vars</span>
 <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">hist</span><span class="p">,</span> <span class="n">figure</span><span class="p">,</span> <span class="n">subplots</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">pi</span><span class="p">,</span> <span class="n">deg2rad</span><span class="p">,</span> <span class="n">rad2deg</span><span class="p">,</span> <span class="n">unwrap</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">zeros</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">ones</span><span class="p">,</span> <span class="n">linspace</span><span class="p">,</span> <span class="n">cumsum</span><span class="p">,</span>
-    <span class="n">diff</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">interp</span><span class="p">,</span> <span class="n">conj</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">vstack</span><span class="p">,</span> <span class="n">hstack</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">newaxis</span><span class="p">)</span>
+    <span class="n">diff</span><span class="p">,</span> <span class="n">arange</span><span class="p">,</span> <span class="n">interp</span><span class="p">,</span> <span class="n">conj</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">vstack</span><span class="p">,</span> <span class="n">hstack</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">cross</span><span class="p">,</span> <span class="n">newaxis</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">cos</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">tan</span><span class="p">,</span> <span class="n">arcsin</span><span class="p">,</span> <span class="n">arccos</span><span class="p">,</span> <span class="n">arctan</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">amin</span><span class="p">,</span> <span class="n">amax</span><span class="p">,</span> <span class="n">argmin</span><span class="p">,</span> <span class="n">argmax</span><span class="p">,</span> <span class="nb">sum</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="p">(</span><span class="n">amin</span><span class="p">,</span> <span class="n">amax</span><span class="p">,</span> <span class="n">argmin</span><span class="p">,</span> <span class="n">argmax</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">numpy.fft</span> <span class="kn">import</span> <span class="p">(</span><span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span><span class="p">,</span> <span class="n">fft2</span><span class="p">,</span> <span class="n">ifft2</span><span class="p">,</span> <span class="n">fftshift</span><span class="p">,</span> <span class="n">ifftshift</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">svd</span><span class="p">,</span> <span class="n">norm</span>
-<span class="kn">from</span> <span class="nn">numpy.random_intel</span> <span class="kn">import</span> <span class="p">(</span>
-        <span class="n">randn</span><span class="p">,</span> <span class="n">standard_normal</span><span class="p">,</span> <span class="n">randint</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="n">uniform</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">randn</span><span class="p">,</span> <span class="n">standard_normal</span><span class="p">,</span> <span class="n">randint</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="n">uniform</span><span class="p">)</span>
 
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h3 id="64-모든-figure-창-닫기">6.4. 모든 figure 창 닫기</h3>
+<h3 id="63-모든-figure-창-닫기">6.3. 모든 figure 창 닫기</h3>
 <p>Abbreviation : close all<br />
 Template text :</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s">'all'</span><span class="p">)</span>
@@ -302,7 +290,7 @@ Template text :</p>
 
 <p><br /></p>
 
-<h3 id="65-save-명령">6.5. save 명령</h3>
+<h3 id="64-save-명령">6.4. save 명령</h3>
 <p>Abbreviation : save  <br />
 Template text :</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">save_vars</span><span class="p">(</span><span class="s">'$END$'</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
@@ -310,7 +298,7 @@ Template text :</p>
 
 <p><br /></p>
 
-<h3 id="66-load-명령">6.6. load 명령</h3>
+<h3 id="65-load-명령">6.5. load 명령</h3>
 <p>Abbreviation : load  <br />
 Template text :</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">load_vars</span><span class="p">(</span><span class="s">'$END$'</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
@@ -318,7 +306,7 @@ Template text :</p>
 
 <p><br /></p>
 
-<h3 id="67-sympy-명령">6.7. sympy 명령</h3>
+<h3 id="66-sympy-명령">6.6. sympy 명령</h3>
 <p>Abbreviation : sympy  <br />
 Template text :</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sympy</span>
@@ -399,7 +387,7 @@ Notes
 
 References
 ----------
-.. [] 책: 저자명. (발행년). Title of chapter. In 편집자명 (역할), title of book (쪽). 발행지 : 발행사
+.. [] 책: 저자명. (년). 챕터명. In 편집자명 (역할), 책명 (쪽). 발행지 : 발행사
 .. [] 학위 논문: 학위자명, "논문제목", 대학원 이름 석사 학위논문, 1990 
 .. [] 저널 논문: 저자. "논문제목". 저널명, . pp.
 
