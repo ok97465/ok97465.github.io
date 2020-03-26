@@ -56,18 +56,19 @@ MPLCURSORS={"multiple": 1}
 
 | 이름                | 저장소       | 설명                                                           |
 |--------------------|-------------|---------------------------------------------------------------|
-| pymap3d            | PyPi        | 지구 좌표계 변화                                                 |
 | basemap            | anaconda    | Matplotlib 지도 투영                                            |
 | basemap-data-hires | anaconda    | Matplotlib 지도 투영(with coastlines and political boundaries)  |
 | pyqtgraph          | anaconda    | QT를 이용한 빠른 Plot                                            |
 | opencv             | anaconda    | 영상처리 Library                                                |
 | dill               | anaconda    | Python 변수 파일 입출력                                          |
+| pymap3d            | conda-forge | 지구 좌표계 변화                                                 |
 | vispy              | conda-forge | GPU 가속을 이용한 빠른 Plot                                       |
 | mplcursors         | conda-forge | Maplotlib에 Data Cursor 추가                                    |
 | jupyter_contrib_nbextensions | conda-forge | jupyter notebook extension                          |
 | jupyterthemes      | conda-forge | Mapplotlib theme 지원                                          |
 | imutils            | conda-forge | 영상처리 library                                                |
 | paramiko           | anaconda    | SSH 활용                                                       |
+| dataslots          | Github      | dataclass를 __slots__ class로 변환                              |
 | ctypeslib2         | PyPi        | c header를 python class로 변환                                  |
 | pyinstaller        | anaconda    | python을 실행파일로 변환                                          |
 | pyautogui          | conda-forge | 컴퓨터 자동화                                                    |
