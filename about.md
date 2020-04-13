@@ -14,7 +14,7 @@ title: About
 
 # 자기소개
 회사에서 하는 일 : 레이더 신호처리 조금 + 단순 코딩 + 프로젝트 특성에 맞춰 상사가 시키는 일
-Email : ok?????@nate.com (ok????? <= BlogName)
+Email : ok?????@kakao.com (ok????? <= BlogName)
 
 
 ![About Logo]({{ '/assets/images/about/balance.jpg' | relative_url }}){: .center-image }*Life is Balance*
