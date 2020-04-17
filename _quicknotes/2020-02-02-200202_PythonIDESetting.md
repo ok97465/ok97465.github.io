@@ -69,6 +69,7 @@ MPLCURSORS={"multiple": 1}
 | imutils            | conda-forge | 영상처리 library                                                |
 | paramiko           | anaconda    | SSH 활용                                                       |
 | dataslots          | Github      | dataclass를 __slots__ class로 변환                              |
+| numexpr3           | Github      | 간단한 연산에 대한 최적화                                         |
 | ctypeslib2         | PyPi        | c header를 python class로 변환                                  |
 | pyinstaller        | anaconda    | python을 실행파일로 변환                                          |
 | pyautogui          | conda-forge | 컴퓨터 자동화                                                    |
