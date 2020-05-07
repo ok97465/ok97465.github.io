@@ -78,3 +78,13 @@ MPLCURSORS={"multiple": 1}
 | python-pptx        | conda-forge | Python에서 pptx 작성                                            |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
+
+<br>
+
+## 5. Linux에서 한글 입력
+
+LINUX의 QT 프로그램에서는 한글 입력이 가능하지만 Anaconda의 QT를 사용하는 GUI 프로그램의 경우 한글 입력이 되지 않는 경우가 있다. 그럴 경우에는 Linux의 Qt 입력기 Library를 anaconda에 복사해 준다.
+
+```sh
+cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libqt5im-nimf.so /home/ok97465/anaconda3/plugins/platforminputcontexts
+```
