@@ -115,15 +115,44 @@
 
 <h2 id="2-설정">2. 설정</h2>
 
-<h3 id="21-esc-입력시-자동-영어-변환-vscode">2.1. ESC 입력시 자동 영어 변환 (VScode)</h3>
+<h3 id="21-neovim-설치">2.1. Neovim 설치</h3>
+
+<p>Neovim 최신 안정 버전 설치</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>add-apt-repository ppa:neovim-ppa/stable
+<span class="nb">sudo </span>apt-get update
+<span class="nb">sudo </span>apt-get <span class="nb">install </span>neovim
+</code></pre></div></div>
+
+<p>vi를 neovim으로 대체</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>update-alternatives <span class="nt">--install</span> /usr/bin/vi vi /usr/bin/nvim 60
+<span class="nb">sudo </span>update-alternatives <span class="nt">--config</span> vi 
+<span class="nb">sudo </span>update-alternatives <span class="nt">--install</span> /usr/bin/vim vim /usr/bin/nvim 60 
+<span class="nb">sudo </span>update-alternatives <span class="nt">--config</span> vim 
+<span class="nb">sudo </span>update-alternatives <span class="nt">--install</span> /usr/bin/editor editor /usr/bin/nvim 60
+<span class="nb">sudo </span>update-alternatives <span class="nt">--config</span> editor
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="3-neovim-initvim-설정">3. Neovim init.vim 설정</h2>
+
+<p>Neovim의 설정 파일은 ~/.config/nvim/init.vim에 위치한다.  <br />
+https://seulcode.tistory.com/272 을 참고한 <a href="/assets/data/vim/init.vim">init.vim</a></p>
+
+<p><br /></p>
+
+<h3 id="31-esc-입력시-자동-영어-변환-vscode">3.1. ESC 입력시 자동 영어 변환 (VScode)</h3>
 
 <p>Vim에서 한글 입력 후에 ESC를 눌려 Normal 모드로 진입하면 어떤 명령어도 동작되지 않는 문제가 발생한다. 명령어가 영어가 아닌 한글로 입력되면서 벌어지는 문제인데 VScode의 Vim Plugin은 이 문제를 해결하기 위한 방안을 제공한다.</p>
 
 <p><br /></p>
 
-<h4 id="211-windows">2.1.1. Windows</h4>
+<h4 id="311-windows">3.1.1. Windows</h4>
 
-<p>https://github.com/daipeihust/im-select 에서 <a href="/assets/data/vim/im-select.zip">im-select</a> 를 다운 받는다.  <br />
+<p>설정 -&gt; 언어 -&gt; 영어(미국) 추가한다.<br />
+https://github.com/daipeihust/im-select 에서 <a href="/assets/data/vim/im-select.zip">im-select</a> 를 다운 받는다.  <br />
 Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"vim.autoSwitchInputMethod.enable": true,
@@ -134,7 +163,7 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <p><br /></p>
 
-<h4 id="212-ubuntu">2.1.2. Ubuntu</h4>
+<h4 id="312-ubuntu">3.1.2. Ubuntu</h4>
 
 <p>Nimf 사용자일 경우 Vscode 환경설정에 다음 내용을 추가한다.</p>
 
@@ -142,18 +171,27 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <p><br /></p>
 
-<h3 id="22-capslock---esc">2.2. Capslock -&gt; ESC</h3>
+<h3 id="32-capslock---esc">3.2. Capslock -&gt; ESC</h3>
 
-<h4 id="221-windows">2.2.1. Windows</h4>
-<p>AutoHotKey를 설치하고 ahk 확장자 파일을 만들어 아래 내용을 추가한다.<br />
-Capslock::Esc</p>
+<h4 id="321-windows">3.2.1. Windows</h4>
+<p>AutoHotKey를 설치하고 ahk 확장자 파일을 만들어 아래 내용을 추가한다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Capslock::Esc
+Esc::Capslock
+</code></pre></div></div>
 
 <p><br /></p>
 
-<h4 id="222-mint">2.2.2. Mint</h4>
+<h4 id="322-mint">3.2.2. Mint</h4>
 
 <ul>
   <li>설정 -&gt; 키보드 -&gt; 배치 -&gt; 옵션 -&gt; Capslock 동작 변경</li>
+  <li>위의 방안이 동작 안할 시 .xsession 혹은 .xinirc 혹은 .bashrc에 아래 내용 추가</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>setxkbmap -option caps:swapescape
+</code></pre></div></div>
+
+<ul>
   <li>vscode 환경 설정에 아래 내용 추가</li>
 </ul>
 
