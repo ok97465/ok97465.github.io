@@ -111,7 +111,16 @@
                     
                     <h1 id="calibre">Calibre</h1>
 
-<h2 id="1-dark-css-for-viewer">1. Dark CSS for viewer</h2>
+<h2 id="1-linux에서-한글-쓰기">1. Linux에서 한글 쓰기</h2>
+
+<p>Calibre는 자체 입력기를 사용하기 때문에 한글 입력을 위해서는 Linux 입력기를 Calibre 폴더에 복사해야 한다.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libqt5im-nimf.so /opt/calibre/plugins/platforminputcontexts
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="2-dark-css-for-viewer">2. Dark CSS for viewer</h2>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="sx">url('https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911')</span><span class="p">;</span>
 <span class="nt">article</span><span class="o">,</span>

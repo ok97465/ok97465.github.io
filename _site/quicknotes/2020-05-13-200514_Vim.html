@@ -136,20 +136,29 @@
 
 <p><br /></p>
 
-<h2 id="3-neovim-initvim-설정">3. Neovim init.vim 설정</h2>
+<h3 id="22-neovim-initvim-설정">2.2. Neovim init.vim 설정</h3>
 
 <p>Neovim의 설정 파일은 ~/.config/nvim/init.vim에 위치한다.  <br />
 https://seulcode.tistory.com/272 을 참고한 <a href="/assets/data/vim/init.vim">init.vim</a></p>
 
 <p><br /></p>
 
-<h3 id="31-esc-입력시-자동-영어-변환-vscode">3.1. ESC 입력시 자동 영어 변환 (VScode)</h3>
+<h3 id="23-ipython-vim-keybinding">2.3. ipython vim keybinding</h3>
+
+<p>~/.ipython/profile_default/ipython_config.py에 아래 명령어 추가</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c.TerminalInteractiveShell.editing_mode = 'vi'
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="24-esc-입력시-자동-영어-변환-vscode">2.4. ESC 입력시 자동 영어 변환 (VScode)</h3>
 
 <p>Vim에서 한글 입력 후에 ESC를 눌려 Normal 모드로 진입하면 어떤 명령어도 동작되지 않는 문제가 발생한다. 명령어가 영어가 아닌 한글로 입력되면서 벌어지는 문제인데 VScode의 Vim Plugin은 이 문제를 해결하기 위한 방안을 제공한다.</p>
 
 <p><br /></p>
 
-<h4 id="311-windows">3.1.1. Windows</h4>
+<h4 id="241-windows">2.4.1. Windows</h4>
 
 <p>설정 -&gt; 언어 -&gt; 영어(미국) 추가한다.<br />
 https://github.com/daipeihust/im-select 에서 <a href="/assets/data/vim/im-select.zip">im-select</a> 를 다운 받는다.  <br />
@@ -163,7 +172,7 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <p><br /></p>
 
-<h4 id="312-ubuntu">3.1.2. Ubuntu</h4>
+<h4 id="242-ubuntu">2.4.2. Ubuntu</h4>
 
 <p>Nimf 사용자일 경우 Vscode 환경설정에 다음 내용을 추가한다.</p>
 
@@ -171,9 +180,9 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <p><br /></p>
 
-<h3 id="32-capslock---esc">3.2. Capslock -&gt; ESC</h3>
+<h3 id="25-capslock---esc">2.5. Capslock -&gt; ESC</h3>
 
-<h4 id="321-windows">3.2.1. Windows</h4>
+<h4 id="251-windows">2.5.1. Windows</h4>
 <p>AutoHotKey를 설치하고 ahk 확장자 파일을 만들어 아래 내용을 추가한다.</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Capslock::Esc
 Esc::Capslock
@@ -181,7 +190,7 @@ Esc::Capslock
 
 <p><br /></p>
 
-<h4 id="322-mint">3.2.2. Mint</h4>
+<h4 id="252-mint">2.5.2. Mint</h4>
 
 <ul>
   <li>설정 -&gt; 키보드 -&gt; 배치 -&gt; 옵션 -&gt; Capslock 동작 변경</li>
