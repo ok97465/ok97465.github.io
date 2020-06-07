@@ -112,25 +112,271 @@
                   <div class="post-content">
                     
                       <ul class="toc">
-  <li><a href="#numba를-이용한-cuda-프로그램-예제">Numba를 이용한 Cuda 프로그램 예제</a>
+  <li><a href="#numba를-이용한-cuda-프로그램">Numba를 이용한 Cuda 프로그램</a>
     <ul>
-      <li><a href="#1-시간-측정-함수">1. 시간 측정 함수</a></li>
-      <li><a href="#2-device-info-1">2. Device Info [1]</a></li>
-      <li><a href="#3-sum">3. Sum</a>
+      <li><a href="#1-cuda-정리1">1. Cuda 정리[1]</a>
         <ul>
-          <li><a href="#31-sum-kernel-code-using-reduce-of-numba">3.1. Sum Kernel Code using reduce of numba</a></li>
-          <li><a href="#32-sum-host-code-using-reduce-of-numba">3.2. Sum Host Code using reduce of numba</a></li>
-          <li><a href="#33-sum-code-using-reduction">3.3. Sum Code using reduction</a></li>
+          <li><a href="#11-memory-hierarchy">1.1. Memory hierarchy</a></li>
+          <li><a href="#12-host---device">1.2. Host &lt;-&gt; Device</a></li>
+          <li><a href="#13-pinned-memory">1.3. Pinned Memory</a></li>
+          <li><a href="#14-zero-copy-memory">1.4. Zero-Copy Memory</a></li>
         </ul>
       </li>
-      <li><a href="#4-참고자료">4. 참고자료</a></li>
+      <li><a href="#2-코드">2. 코드</a>
+        <ul>
+          <li><a href="#21-시간-측정-함수">2.1. 시간 측정 함수</a></li>
+          <li><a href="#22-device-info-2">2.2. Device Info [2]</a></li>
+          <li><a href="#23-sum">2.3. Sum</a>
+            <ul>
+              <li><a href="#231-sum-kernel-code-using-reduce-of-numba">2.3.1. Sum Kernel Code using reduce of numba</a></li>
+              <li><a href="#232-sum-host-code-using-reduce-of-numba">2.3.2. Sum Host Code using reduce of numba</a></li>
+              <li><a href="#233-sum-code-using-reduction">2.3.3. Sum Code using reduction</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#3-참고자료">3. 참고자료</a></li>
     </ul>
   </li>
 </ul>
                     
-                    <h1 id="numba를-이용한-cuda-프로그램-예제">Numba를 이용한 Cuda 프로그램 예제</h1>
+                    <h1 id="numba를-이용한-cuda-프로그램">Numba를 이용한 Cuda 프로그램</h1>
 
-<h2 id="1-시간-측정-함수">1. 시간 측정 함수</h2>
+<h2 id="1-cuda-정리1">1. Cuda 정리[1]</h2>
+
+<p>이 절에서는 간단한 Cuda 프로그래밍 내용을 정리한다.</p>
+
+<p><br /></p>
+
+<h3 id="11-memory-hierarchy">1.1. Memory hierarchy</h3>
+
+<figure>
+    <img src="/assets/images/Cuda/memory_hierarchy.png" alt="Memory hierarchy" width="640" />
+    <figcaption class="figure-caption">Memory hierarchy</figcaption>
+</figure>
+
+<ul>
+  <li>Registers
+    <ul>
+      <li>Thread 간에도 공유되지 않는다.</li>
+      <li>함수에서 선언한 변수를 저장한다.</li>
+      <li>함수에서 선언한 변수의 크기가 Thread의 Register개수를 넘을 경우 Local 메모리에 위치한다.</li>
+    </ul>
+  </li>
+  <li>Shared memory
+    <ul>
+      <li>__shared__를 이용하여 선언한다.</li>
+      <li>Local, Global memory보다 지연시간이 적다.</li>
+      <li>Block내의 Thread간 공유된다.</li>
+      <li>__syncThreads()으로 Shared memory의 Coherent를 유지한다.</li>
+      <li>L1 cache와 하드웨어를 공유하고 할당량은 cudaFuncSetCache함수를 이용하여 설정가능한다.</li>
+    </ul>
+  </li>
+  <li>Local memory
+    <ul>
+      <li>Registers의 공간 부족으로 Cache에 위치한 변수</li>
+    </ul>
+  </li>
+  <li>Constant memory
+    <ul>
+      <li>__constant__를 이용하여 선언한다.</li>
+      <li>Global scope 선언되어야 한다.</li>
+      <li>Kernel 실행 전 cudaMemcpyToSymbo로 값을 설정하여야한다.</li>
+    </ul>
+  </li>
+  <li>Texture memory
+    <ul>
+      <li>Read Only</li>
+      <li>2D Spatial Locality에 최적회 되어 있다.</li>
+    </ul>
+  </li>
+  <li>Global memory
+    <ul>
+      <li><strong>device</strong> 식별자를 이용하여 선언하거나 Host에서 cudaMalloc을 이용한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<ul>
+  <li>CUDA Variable and Type Qualifier</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Qualifier</th>
+      <th style="text-align: center">Variable Name</th>
+      <th style="text-align: center">Memory</th>
+      <th style="text-align: center">Scope</th>
+      <th style="text-align: center">Lifespan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">float var</td>
+      <td style="text-align: center">Register</td>
+      <td style="text-align: center">Thread</td>
+      <td style="text-align: center">Thread</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">float var[100]</td>
+      <td style="text-align: center">Local</td>
+      <td style="text-align: center">Thread</td>
+      <td style="text-align: center">Thread</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>shared</strong></td>
+      <td style="text-align: center">float var</td>
+      <td style="text-align: center">Shared</td>
+      <td style="text-align: center">Block</td>
+      <td style="text-align: center">Block</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>device</strong></td>
+      <td style="text-align: center">float var</td>
+      <td style="text-align: center">Global</td>
+      <td style="text-align: center">Global</td>
+      <td style="text-align: center">Application</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><strong>constant</strong></td>
+      <td style="text-align: center">float var</td>
+      <td style="text-align: center">Constant</td>
+      <td style="text-align: center">Global</td>
+      <td style="text-align: center">Application</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>Salient Features of Device Memory</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Memory</th>
+      <th style="text-align: center">On/Off Chip</th>
+      <th style="text-align: center">Cached</th>
+      <th style="text-align: center">Access</th>
+      <th style="text-align: center">Scope</th>
+      <th style="text-align: center">Lifetime</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Register</td>
+      <td style="text-align: center">On</td>
+      <td style="text-align: center">n/a</td>
+      <td style="text-align: center">R/W</td>
+      <td style="text-align: center">1 thread</td>
+      <td style="text-align: center">Thread</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Local</td>
+      <td style="text-align: center">Off</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">R/W</td>
+      <td style="text-align: center">1 thread</td>
+      <td style="text-align: center">Thread</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Shared</td>
+      <td style="text-align: center">On</td>
+      <td style="text-align: center">n/a</td>
+      <td style="text-align: center">R/W</td>
+      <td style="text-align: center">All threads in block</td>
+      <td style="text-align: center">Block</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Global</td>
+      <td style="text-align: center">Off</td>
+      <td style="text-align: center">†</td>
+      <td style="text-align: center">R/W</td>
+      <td style="text-align: center">All threads + host</td>
+      <td style="text-align: center">Host allocation</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Constant</td>
+      <td style="text-align: center">Off</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">R</td>
+      <td style="text-align: center">All threads + host</td>
+      <td style="text-align: center">Host allocation</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Texture</td>
+      <td style="text-align: center">Off</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">R</td>
+      <td style="text-align: center">All threads + host</td>
+      <td style="text-align: center">Host allocation</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<h3 id="12-host---device">1.2. Host &lt;-&gt; Device</h3>
+<p>Host와 device의 변수가 동일한 파일에 선언되어 있어도 직접적인 참조는 불가능한다. 배열의 경우 cudaAlloc으로 할당된 포인터와 cudaMemcpy를 이용하여 Host와 device간 데이터를 교환할 수 있다. 하지만 Global scope에 __device__로 선언된 변수의 경우는 변수의 주소값과 cudaMemcpy를 이용하여 값을 전송 할 수 없다. 이런 경우에는 cudaGetSymboAddress를 이용하여 포인터를 얻어와서 cudaMemcpy를 이용하거나 cudaMemcpyToSymbol 명령을 이용하여 한다.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;cuda_runtime.h&gt;
+#include &lt;stdio.h&gt;
+</span><span class="n">__device__</span> <span class="kt">float</span> <span class="n">devData</span><span class="p">;</span>
+<span class="n">__global__</span> <span class="kt">void</span> <span class="nf">checkGlobalVariable</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">devData</span> <span class="o">+=</span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="n">f</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kt">float</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">3</span><span class="p">.</span><span class="mi">14</span><span class="n">f</span><span class="p">;</span>
+   <span class="n">cudaMemcpyToSymbol</span><span class="p">(</span><span class="n">devData</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">value</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+   <span class="c1">// 위의 처럼 devData에 저장하거나</span>
+   <span class="kt">float</span> <span class="o">*</span><span class="n">dptr</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+   <span class="n">cudaGetSymbolAddress</span><span class="p">((</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">dptr</span><span class="p">,</span> <span class="n">devData</span><span class="p">);</span>
+   <span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">dptr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">value</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">),</span> <span class="n">cudaMemcpyHostToDevice</span><span class="p">);</span>
+   <span class="c1">//</span>
+   <span class="n">checkGlobalVariable</span> <span class="o">&lt;&lt;&lt;</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;&gt;&gt;</span><span class="p">();</span>
+   <span class="n">cudaMemcpyFromSymbol</span><span class="p">(</span><span class="o">&amp;</span><span class="n">value</span><span class="p">,</span> <span class="n">devData</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">));</span>
+   <span class="n">cudaDeviceReset</span><span class="p">();</span>
+   <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="13-pinned-memory">1.3. Pinned Memory</h3>
+
+<p>CPU에서 선언한 배열의 경우 Pageable 메모리 형태로 생성되므로 Device로 데이터를 전송 할때 Overhead가 생성된다. Host에서 사용할 메모리를 cudaMallocHost/cudaFreeHost를 이용하면 Pinned Memory(Non-pageable)로 선언되므로 Overhead를 줄일 수 있다. Pinned Memory가 많을 수록 host의 전체 성능이 저하 될 수 있으므로 시스템과 프로그램 상황에 맞게 조절되어야 한다.</p>
+
+<figure>
+    <img src="/assets/images/Cuda/pinned_memroy.png" alt="Pinned Memory" width="641" />
+    <figcaption class="figure-caption">Pinned Memory</figcaption>
+</figure>
+
+<p><br /></p>
+
+<h3 id="14-zero-copy-memory">1.4. Zero-Copy Memory</h3>
+
+<p>일반적으로는 Host&lt;-&gt;Device간의 데이터를 직접 주고 받을 수 없지만 Zero-Copy memory로 선언된 영역에 대해서는 Host와 device가 접근할 수 있다. cudaHostAlloc/cudaFreeHost를 이용하여 선언/해제 할 수 있다.</p>
+
+<p>Zero-Copy Memory의 장점은 다음과 같다.</p>
+
+<ul>
+  <li>Leveraging host memory when there is insufficient device memory</li>
+  <li>Avoiding explicit data transfer between the host and device</li>
+  <li>Improving PCIe transfer rates</li>
+</ul>
+
+<p>큰 배열의 경우 cudaMalloc을 사용하는 것이 훨씬 효율적이다.</p>
+
+<p><br /></p>
+
+<h2 id="2-코드">2. 코드</h2>
+
+<h3 id="21-시간-측정-함수">2.1. 시간 측정 함수</h3>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Timer</span><span class="p">:</span>
     <span class="s">"""클래스 생성 시점부터 소멸 시점까지의 시간을 출력한다."""</span>
@@ -156,7 +402,7 @@
 
 <p><br /></p>
 
-<h2 id="2-device-info-1">2. Device Info [1]</h2>
+<h3 id="22-device-info-2">2.2. Device Info [2]</h3>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pycuda.driver</span> <span class="k">as</span> <span class="n">drv</span>
 <span class="n">drv</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
@@ -291,13 +537,13 @@ Device 0: GeForce GTX 850M
 
 <p><br /></p>
 
-<h2 id="3-sum">3. Sum</h2>
+<h3 id="23-sum">2.3. Sum</h3>
 
 <p>GPU는 Code 최적화에 따라서 연산 시간에 많은 차이를 보인다. 간단한 SUM Code 조차도 CUDA에서 최적화 하는 것이 쉽지 않은 일이다(<a href="/assets/data/Numba_Cuda/gpu_sum_reduction.pdf">GPU_SUM.pdf</a>). 하지만 Numba의 reduce를 이용하면 SUM을 CUDA로 쉽게 Coding 할 수 있다.</p>
 
 <p><br /></p>
 
-<h3 id="31-sum-kernel-code-using-reduce-of-numba">3.1. Sum Kernel Code using reduce of numba</h3>
+<h4 id="231-sum-kernel-code-using-reduce-of-numba">2.3.1. Sum Kernel Code using reduce of numba</h4>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
 <span class="kn">from</span> <span class="nn">numba.cuda</span> <span class="kn">import</span> <span class="n">to_device</span>
@@ -310,14 +556,14 @@ Device 0: GeForce GTX 850M
 
 <p><br /></p>
 
-<h3 id="32-sum-host-code-using-reduce-of-numba">3.2. Sum Host Code using reduce of numba</h3>
+<h4 id="232-sum-host-code-using-reduce-of-numba">2.3.2. Sum Host Code using reduce of numba</h4>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">float32</span>
-<span class="kn">from</span> <span class="nn">numpy.random_intel</span> <span class="kn">import</span> <span class="n">standard_normal</span>
+<span class="kn">from</span> <span class="nn">mkl_random</span> <span class="kn">import</span> <span class="n">standard_normal</span>
 
-<span class="n">n_sample</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">27</span> <span class="o">-</span> <span class="mi">157</span>
+<span class="n">n_sample</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">26</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">float32</span><span class="p">(</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n_sample</span><span class="p">))</span>
 <span class="n">d_data</span> <span class="o">=</span> <span class="n">to_device</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
@@ -334,17 +580,17 @@ Device 0: GeForce GTX 850M
 <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'GPU Result: {sum_gpu}'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum By CPU ==&gt; Elapsed time: 0.21539920 sec
-Sum By GPU ==&gt; Elapsed time: 0.02144496 sec
-CPU Result: 2670.03662109375
-GPU Result: 2670.000244140625
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum By CPU ==&gt; Elapsed time: 0.02662821 sec
+Sum By GPU ==&gt; Elapsed time: 0.01087535 sec
+CPU Result: 4220.08349609375
+GPU Result: 4220.095703125
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h3 id="33-sum-code-using-reduction">3.3. Sum Code using reduction</h3>
+<h4 id="233-sum-code-using-reduction">2.3.3. Sum Code using reduction</h4>
 
-<p><a href="/assets/data/Numba_Cuda/gpu_sum_reduction.pdf">GPU_SUM.pdf</a>의 예제를 Numba에서도 구현 해 볼 수 있다. 아래 Sum_kernel을 한번만 호출하고 남은 연산을 CPU에서 처리 하여도 GPU를 활용하는 것이 더 효율적임을 볼 수 있다.</p>
+<p><a href="/assets/data/Numba_Cuda/gpu_sum_reduction.pdf">GPU_SUM.pdf</a>의 예제를 Numba에서도 구현 해 볼 수 있다.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Kernel Code
 </span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
@@ -375,9 +621,9 @@ GPU Result: 2670.000244140625
 </span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">float32</span>
-<span class="kn">from</span> <span class="nn">numpy.random_intel</span> <span class="kn">import</span> <span class="n">standard_normal</span>
+<span class="kn">from</span> <span class="nn">mkl_random</span> <span class="kn">import</span> <span class="n">standard_normal</span>
 
-<span class="n">n_sample</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">27</span> <span class="o">-</span> <span class="mi">157</span>
+<span class="n">n_sample</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">26</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">float32</span><span class="p">(</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n_sample</span><span class="p">))</span>
 <span class="n">d_data</span> <span class="o">=</span> <span class="n">to_device</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
@@ -400,16 +646,17 @@ GPU Result: 2670.000244140625
 <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'GPU Result: {sum_gpu}'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum By CPU ==&gt; Elapsed time: 0.21521380 sec
-Sum By GPU ==&gt; Elapsed time: 0.08513450 sec
-CPU Result: -6470.31591796875
-GPU Result: -6470.2724609375
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum By CPU ==&gt; Elapsed time: 0.02695911 sec
+Sum By GPU ==&gt; Elapsed time: 0.05354665 sec
+CPU Result: 458.8485107421875
+GPU Result: 458.8516845703125
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h2 id="4-참고자료">4. 참고자료</h2>
-<p>[1] Dr. Brian Tuomanen. (2018). Chapter3, Hands-On GPU Programming with Python and CUDA (39).</p>
+<h2 id="3-참고자료">3. 참고자료</h2>
+<p>[1] Professional CUDA C Programming  <br />
+[2] Dr. Brian Tuomanen. (2018). Chapter3, Hands-On GPU Programming with Python and CUDA (39).</p>
 
                     
 

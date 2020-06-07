@@ -899,9 +899,243 @@
 		
 			<item>
 				<title>Numba를 이용한 Cuda 프로그램 예제</title>
-				<description>&lt;h1 id=&quot;numba를-이용한-cuda-프로그램-예제&quot;&gt;Numba를 이용한 Cuda 프로그램 예제&lt;/h1&gt;
+				<description>&lt;h1 id=&quot;numba를-이용한-cuda-프로그램&quot;&gt;Numba를 이용한 Cuda 프로그램&lt;/h1&gt;
 
-&lt;h2 id=&quot;1-시간-측정-함수&quot;&gt;1. 시간 측정 함수&lt;/h2&gt;
+&lt;h2 id=&quot;1-cuda-정리1&quot;&gt;1. Cuda 정리[1]&lt;/h2&gt;
+
+&lt;p&gt;이 절에서는 간단한 Cuda 프로그래밍 내용을 정리한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;11-memory-hierarchy&quot;&gt;1.1. Memory hierarchy&lt;/h3&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/Cuda/memory_hierarchy.png&quot; alt=&quot;Memory hierarchy&quot; width=&quot;640&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Memory hierarchy&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Registers
+    &lt;ul&gt;
+      &lt;li&gt;Thread 간에도 공유되지 않는다.&lt;/li&gt;
+      &lt;li&gt;함수에서 선언한 변수를 저장한다.&lt;/li&gt;
+      &lt;li&gt;함수에서 선언한 변수의 크기가 Thread의 Register개수를 넘을 경우 Local 메모리에 위치한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Shared memory
+    &lt;ul&gt;
+      &lt;li&gt;__shared__를 이용하여 선언한다.&lt;/li&gt;
+      &lt;li&gt;Local, Global memory보다 지연시간이 적다.&lt;/li&gt;
+      &lt;li&gt;Block내의 Thread간 공유된다.&lt;/li&gt;
+      &lt;li&gt;__syncThreads()으로 Shared memory의 Coherent를 유지한다.&lt;/li&gt;
+      &lt;li&gt;L1 cache와 하드웨어를 공유하고 할당량은 cudaFuncSetCache함수를 이용하여 설정가능한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Local memory
+    &lt;ul&gt;
+      &lt;li&gt;Registers의 공간 부족으로 Cache에 위치한 변수&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Constant memory
+    &lt;ul&gt;
+      &lt;li&gt;__constant__를 이용하여 선언한다.&lt;/li&gt;
+      &lt;li&gt;Global scope 선언되어야 한다.&lt;/li&gt;
+      &lt;li&gt;Kernel 실행 전 cudaMemcpyToSymbo로 값을 설정하여야한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Texture memory
+    &lt;ul&gt;
+      &lt;li&gt;Read Only&lt;/li&gt;
+      &lt;li&gt;2D Spatial Locality에 최적회 되어 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Global memory
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;device&lt;/strong&gt; 식별자를 이용하여 선언하거나 Host에서 cudaMalloc을 이용한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;CUDA Variable and Type Qualifier&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Qualifier&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Variable Name&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Memory&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Scope&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Lifespan&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;float var&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Register&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Thread&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Thread&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;float var[100]&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Local&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Thread&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Thread&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;shared&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;float var&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Shared&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Block&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Block&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;device&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;float var&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Global&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Global&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Application&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;strong&gt;constant&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;float var&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Constant&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Global&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Application&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Salient Features of Device Memory&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Memory&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;On/Off Chip&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Cached&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Access&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Scope&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Lifetime&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Register&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;On&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;n/a&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;R/W&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1 thread&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Thread&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Local&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Off&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Yes&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;R/W&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1 thread&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Thread&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Shared&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;On&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;n/a&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;R/W&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;All threads in block&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Block&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Global&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Off&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;†&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;R/W&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;All threads + host&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Host allocation&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Constant&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Off&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Yes&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;R&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;All threads + host&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Host allocation&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Texture&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Off&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Yes&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;R&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;All threads + host&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Host allocation&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;12-host---device&quot;&gt;1.2. Host &amp;lt;-&amp;gt; Device&lt;/h3&gt;
+&lt;p&gt;Host와 device의 변수가 동일한 파일에 선언되어 있어도 직접적인 참조는 불가능한다. 배열의 경우 cudaAlloc으로 할당된 포인터와 cudaMemcpy를 이용하여 Host와 device간 데이터를 교환할 수 있다. 하지만 Global scope에 __device__로 선언된 변수의 경우는 변수의 주소값과 cudaMemcpy를 이용하여 값을 전송 할 수 없다. 이런 경우에는 cudaGetSymboAddress를 이용하여 포인터를 얻어와서 cudaMemcpy를 이용하거나 cudaMemcpyToSymbol 명령을 이용하여 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;cuda_runtime.h&amp;gt;
+#include &amp;lt;stdio.h&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__device__&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;devData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;__global__&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;checkGlobalVariable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;devData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;cudaMemcpyToSymbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;devData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+   &lt;span class=&quot;c1&quot;&gt;// 위의 처럼 devData에 저장하거나&lt;/span&gt;
+   &lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dptr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;cudaGetSymbolAddress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;devData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;cudaMemcpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cudaMemcpyHostToDevice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+   &lt;span class=&quot;c1&quot;&gt;//&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;checkGlobalVariable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;cudaMemcpyFromSymbol&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;devData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;cudaDeviceReset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EXIT_SUCCESS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;13-pinned-memory&quot;&gt;1.3. Pinned Memory&lt;/h3&gt;
+
+&lt;p&gt;CPU에서 선언한 배열의 경우 Pageable 메모리 형태로 생성되므로 Device로 데이터를 전송 할때 Overhead가 생성된다. Host에서 사용할 메모리를 cudaMallocHost/cudaFreeHost를 이용하면 Pinned Memory(Non-pageable)로 선언되므로 Overhead를 줄일 수 있다. Pinned Memory가 많을 수록 host의 전체 성능이 저하 될 수 있으므로 시스템과 프로그램 상황에 맞게 조절되어야 한다.&lt;/p&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/Cuda/pinned_memroy.png&quot; alt=&quot;Pinned Memory&quot; width=&quot;641&quot; /&gt;
+    &lt;figcaption class=&quot;figure-caption&quot;&gt;Pinned Memory&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;14-zero-copy-memory&quot;&gt;1.4. Zero-Copy Memory&lt;/h3&gt;
+
+&lt;p&gt;일반적으로는 Host&amp;lt;-&amp;gt;Device간의 데이터를 직접 주고 받을 수 없지만 Zero-Copy memory로 선언된 영역에 대해서는 Host와 device가 접근할 수 있다. cudaHostAlloc/cudaFreeHost를 이용하여 선언/해제 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;Zero-Copy Memory의 장점은 다음과 같다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Leveraging host memory when there is insufficient device memory&lt;/li&gt;
+  &lt;li&gt;Avoiding explicit data transfer between the host and device&lt;/li&gt;
+  &lt;li&gt;Improving PCIe transfer rates&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;큰 배열의 경우 cudaMalloc을 사용하는 것이 훨씬 효율적이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-코드&quot;&gt;2. 코드&lt;/h2&gt;
+
+&lt;h3 id=&quot;21-시간-측정-함수&quot;&gt;2.1. 시간 측정 함수&lt;/h3&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Timer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;클래스 생성 시점부터 소멸 시점까지의 시간을 출력한다.&quot;&quot;&quot;&lt;/span&gt;
@@ -927,7 +1161,7 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;2-device-info-1&quot;&gt;2. Device Info [1]&lt;/h2&gt;
+&lt;h3 id=&quot;22-device-info-2&quot;&gt;2.2. Device Info [2]&lt;/h3&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pycuda.driver&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;drv&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;drv&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -1062,13 +1296,13 @@ Device 0: GeForce GTX 850M
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;3-sum&quot;&gt;3. Sum&lt;/h2&gt;
+&lt;h3 id=&quot;23-sum&quot;&gt;2.3. Sum&lt;/h3&gt;
 
 &lt;p&gt;GPU는 Code 최적화에 따라서 연산 시간에 많은 차이를 보인다. 간단한 SUM Code 조차도 CUDA에서 최적화 하는 것이 쉽지 않은 일이다(&lt;a href=&quot;/assets/data/Numba_Cuda/gpu_sum_reduction.pdf&quot;&gt;GPU_SUM.pdf&lt;/a&gt;). 하지만 Numba의 reduce를 이용하면 SUM을 CUDA로 쉽게 Coding 할 수 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;31-sum-kernel-code-using-reduce-of-numba&quot;&gt;3.1. Sum Kernel Code using reduce of numba&lt;/h3&gt;
+&lt;h4 id=&quot;231-sum-kernel-code-using-reduce-of-numba&quot;&gt;2.3.1. Sum Kernel Code using reduce of numba&lt;/h4&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numba&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cuda&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numba.cuda&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_device&lt;/span&gt;
@@ -1081,14 +1315,14 @@ Device 0: GeForce GTX 850M
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;32-sum-host-code-using-reduce-of-numba&quot;&gt;3.2. Sum Host Code using reduce of numba&lt;/h3&gt;
+&lt;h4 id=&quot;232-sum-host-code-using-reduce-of-numba&quot;&gt;2.3.2. Sum Host Code using reduce of numba&lt;/h4&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;math&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy.random_intel&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;standard_normal&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;mkl_random&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;standard_normal&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;n_sample&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;157&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;n_sample&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;standard_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;d_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_device&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
@@ -1105,17 +1339,17 @@ Device 0: GeForce GTX 850M
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'GPU Result: {sum_gpu}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sum By CPU ==&amp;gt; Elapsed time: 0.21539920 sec
-Sum By GPU ==&amp;gt; Elapsed time: 0.02144496 sec
-CPU Result: 2670.03662109375
-GPU Result: 2670.000244140625
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sum By CPU ==&amp;gt; Elapsed time: 0.02662821 sec
+Sum By GPU ==&amp;gt; Elapsed time: 0.01087535 sec
+CPU Result: 4220.08349609375
+GPU Result: 4220.095703125
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;33-sum-code-using-reduction&quot;&gt;3.3. Sum Code using reduction&lt;/h3&gt;
+&lt;h4 id=&quot;233-sum-code-using-reduction&quot;&gt;2.3.3. Sum Code using reduction&lt;/h4&gt;
 
-&lt;p&gt;&lt;a href=&quot;/assets/data/Numba_Cuda/gpu_sum_reduction.pdf&quot;&gt;GPU_SUM.pdf&lt;/a&gt;의 예제를 Numba에서도 구현 해 볼 수 있다. 아래 Sum_kernel을 한번만 호출하고 남은 연산을 CPU에서 처리 하여도 GPU를 활용하는 것이 더 효율적임을 볼 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/assets/data/Numba_Cuda/gpu_sum_reduction.pdf&quot;&gt;GPU_SUM.pdf&lt;/a&gt;의 예제를 Numba에서도 구현 해 볼 수 있다.&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Kernel Code
 &lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numba&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cuda&lt;/span&gt;
@@ -1146,9 +1380,9 @@ GPU Result: 2670.000244140625
 &lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;math&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy.random_intel&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;standard_normal&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;mkl_random&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;standard_normal&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;n_sample&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;27&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;157&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;n_sample&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;float32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;standard_normal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n_sample&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;d_data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;to_device&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
@@ -1171,16 +1405,17 @@ GPU Result: 2670.000244140625
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'GPU Result: {sum_gpu}'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sum By CPU ==&amp;gt; Elapsed time: 0.21521380 sec
-Sum By GPU ==&amp;gt; Elapsed time: 0.08513450 sec
-CPU Result: -6470.31591796875
-GPU Result: -6470.2724609375
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sum By CPU ==&amp;gt; Elapsed time: 0.02695911 sec
+Sum By GPU ==&amp;gt; Elapsed time: 0.05354665 sec
+CPU Result: 458.8485107421875
+GPU Result: 458.8516845703125
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;4-참고자료&quot;&gt;4. 참고자료&lt;/h2&gt;
-&lt;p&gt;[1] Dr. Brian Tuomanen. (2018). Chapter3, Hands-On GPU Programming with Python and CUDA (39).&lt;/p&gt;
+&lt;h2 id=&quot;3-참고자료&quot;&gt;3. 참고자료&lt;/h2&gt;
+&lt;p&gt;[1] Professional CUDA C Programming  &lt;br /&gt;
+[2] Dr. Brian Tuomanen. (2018). Chapter3, Hands-On GPU Programming with Python and CUDA (39).&lt;/p&gt;
 </description>
 				<pubDate>Sun, 07 Jul 2019 21:58:00 +0900</pubDate>
 				<link>/2019/07/190707_Numba_Cuda</link>
@@ -1790,12 +2025,18 @@ Null Space is correct.
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;9-python-opensource&quot;&gt;9. Python Opensource&lt;/h2&gt;
+&lt;h2 id=&quot;9-vim-binding&quot;&gt;9. Vim binding&lt;/h2&gt;
+
+&lt;p&gt;Vim을 완벽하기 지원하지는 않지만 편집에 필요한 필수 기능들은 지원하고 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;10-python-opensource&quot;&gt;10. Python Opensource&lt;/h2&gt;
 &lt;p&gt;Spyder IDE는 가독성이 좋은 Python으로 작성된 Opensource이고 Maintainer가 지속해서 Source를 관리하고 있기 때문에 코드만으로도 Spyder IDE의 Source 구조를 쉽게 파악할 수 있다. 쉽게 이해할 수 있기 때문에 내가 원하는 기능을 Spyder에 추가해서 사용하는 것도 어렵지 않다. 나는 아래 2가지 기능을 코딩하여 사용하고 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;91-auto-import&quot;&gt;9.1. Auto Import&lt;/h3&gt;
+&lt;h3 id=&quot;101-auto-import&quot;&gt;10.1. Auto Import&lt;/h3&gt;
 &lt;p&gt;Spyder 개발팀에서 개발 계획을 가지고 있지만 현재 다른 개발에 바빠 auto import가 언제 개발될 지 모르는 상황이다. 그래서 내가 개발하여 사용하고 있다.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -1820,7 +2061,7 @@ Null Space is correct.
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;92-auto-snippet&quot;&gt;9.2. Auto Snippet&lt;/h3&gt;
+&lt;h3 id=&quot;102-auto-snippet&quot;&gt;10.2. Auto Snippet&lt;/h3&gt;
 &lt;p&gt;이것도 Spyder 개발팀에서 개발 중이지만 빨리 쓰고 싶어서 Hardcoding하여 사용중이다.&lt;/p&gt;
 
 &lt;figure&gt;
