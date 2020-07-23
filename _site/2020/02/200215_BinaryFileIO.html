@@ -151,7 +151,7 @@
 
 <p>아래 예제코드에서 다룰 이진파일의 구조는 다음과 같다.</p>
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Litte endian</span>
-<span class="k">struct</span> <span class="n">header</span>
+<span class="k">struct</span> <span class="nc">header</span>
 <span class="p">{</span>
     <span class="kt">int8_t</span> <span class="n">val1</span> <span class="o">=</span> <span class="o">-</span><span class="mi">34</span><span class="p">;</span>
     <span class="kt">uint16_t</span> <span class="n">val2</span> <span class="o">=</span> <span class="mi">257</span><span class="p">;</span>
@@ -354,9 +354,9 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">fromfile</span>
 
-<span class="n">types</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s">'val1'</span><span class="p">,</span> <span class="s">'&lt;b'</span><span class="p">),</span>
+<span class="n">types</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dtype</span><span class="p">([(</span><span class="s">'val1'</span><span class="p">,</span> <span class="s">'&lt;b'</span><span class="p">),</span>
                   <span class="p">(</span><span class="s">'val2'</span><span class="p">,</span> <span class="s">'&lt;u2'</span><span class="p">),</span>
-                  <span class="p">(</span><span class="s">'valf'</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">),</span>
+                  <span class="p">(</span><span class="s">'valf'</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">float64</span><span class="p">),</span>
                   <span class="p">(</span><span class="s">'array1'</span><span class="p">,</span> <span class="s">'&lt;(3, 2)f'</span><span class="p">),</span>
                   <span class="p">(</span><span class="s">'array2'</span><span class="p">,</span> <span class="s">'5complex128'</span><span class="p">)])</span>
 
@@ -379,7 +379,7 @@
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>----fromfile만 사용한 경우----
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>----fromfile만 사용한 경우----
 [-34]
 [257]
 [36.3948]
@@ -405,7 +405,7 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c.dat'</span> <span class="p">,</span><span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-    <span class="n">val1</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">val1</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">int8</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">val2</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">"int16"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">valf</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">"&lt;d"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">array1</span> <span class="o">=</span> <span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">"&lt;(3, 2)f"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -418,7 +418,7 @@
 <span class="k">print</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[-34]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[-34]
 [257]
 [36.3948]
 [[[1.1 8.8]
@@ -430,20 +430,20 @@
 <p><br /></p>
 
 <h3 id="14-이진-파일-쓰기">1.4. 이진 파일 쓰기</h3>
-<p>Numpy array는 tofile을 이용하여 자신의 값을 Binary로 저장할 수 있다. tofile 사용 시에는 <code class="highlighter-rouge">자료형 선언을 위해서 format=을 명시하거나 자료형 선언 전에 ""을 추가해야만 한다.</code></p>
+<p>Numpy array는 tofile을 이용하여 자신의 값을 Binary로 저장할 수 있다. tofile 사용 시에는 <code class="language-plaintext highlighter-rouge">자료형 선언을 위해서 format=을 명시하거나 자료형 선언 전에 ""을 추가해야만 한다.</code></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c_by_numpy.dat'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-    <span class="n">val1</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'int8'</span><span class="p">)</span>
-    <span class="n">val2</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'i2'</span><span class="p">)</span>
-    <span class="n">valf</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'&lt;f8'</span><span class="p">)</span>
-    <span class="n">array1</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'f4'</span><span class="p">)</span>
-    <span class="n">array2</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">'c16'</span><span class="p">)</span>
+    <span class="n">val1</span><span class="p">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'int8'</span><span class="p">)</span>
+    <span class="n">val2</span><span class="p">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'i2'</span><span class="p">)</span>
+    <span class="n">valf</span><span class="p">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'&lt;f8'</span><span class="p">)</span>
+    <span class="n">array1</span><span class="p">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s">'f4'</span><span class="p">)</span>
+    <span class="n">array2</span><span class="p">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="s">'c16'</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">filecmp</span> <span class="kn">import</span> <span class="nb">cmp</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'File is same : {cmp("data_c.dat", "data_c_by_numpy.dat")}'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f'File is same : </span><span class="si">{</span><span class="nb">cmp</span><span class="p">(</span><span class="s">"data_c.dat"</span><span class="p">,</span> <span class="s">"data_c_by_numpy.dat"</span><span class="p">)</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File is same : True
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File is same : True
 </code></pre></div></div>
 
 <p><br /></p>
@@ -484,20 +484,20 @@
 
 <span class="n">header</span> <span class="o">=</span> <span class="n">Header</span><span class="p">()</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c.dat'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-    <span class="n">fp</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">fp</span><span class="p">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">val1</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">val2</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">valf</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="p">.</span><span class="n">val1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="p">.</span><span class="n">val2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header</span><span class="p">.</span><span class="n">valf</span><span class="p">)</span>
 
-<span class="n">array1</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">array1</span><span class="p">)</span>
+<span class="n">array1</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">header</span><span class="p">.</span><span class="n">array1</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span>
 
-<span class="n">array2</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">array2</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1j</span> <span class="o">*</span> <span class="n">array</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">array2</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">array2</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">header</span><span class="p">.</span><span class="n">array2</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span> <span class="o">+</span> <span class="mf">1j</span> <span class="o">*</span> <span class="n">array</span><span class="p">(</span><span class="n">header</span><span class="p">.</span><span class="n">array2</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
 <span class="k">print</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-34
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-34
 257
 36.3948
 [1.1 8.8 5.5 9.9 6.6 7.7]
@@ -509,13 +509,13 @@
 <h3 id="23-이진-파일-쓰기">2.3. 이진 파일 쓰기</h3>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c_ctypes.dat'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">fp</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
     
 <span class="kn">from</span> <span class="nn">filecmp</span> <span class="kn">import</span> <span class="nb">cmp</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'File is same : {cmp("data_c.dat", "data_c_ctypes.dat")}'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f'File is same : </span><span class="si">{</span><span class="nb">cmp</span><span class="p">(</span><span class="s">"data_c.dat"</span><span class="p">,</span> <span class="s">"data_c_ctypes.dat"</span><span class="p">)</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File is same : True
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File is same : True
 </code></pre></div></div>
 
 <p><br /></p>
@@ -721,11 +721,11 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">struct</span> <span class="kn">import</span> <span class="n">unpack</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c.dat'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-    <span class="n">val1</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;1b'</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-    <span class="n">val2</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'H'</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-    <span class="n">valf</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;d'</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
-    <span class="n">array1</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;6f'</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">24</span><span class="p">))</span>
-    <span class="n">array2</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;10d'</span><span class="p">,</span> <span class="n">fp</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">80</span><span class="p">))</span>
+    <span class="n">val1</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;1b'</span><span class="p">,</span> <span class="n">fp</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">val2</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'H'</span><span class="p">,</span> <span class="n">fp</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">valf</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;d'</span><span class="p">,</span> <span class="n">fp</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+    <span class="n">array1</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;6f'</span><span class="p">,</span> <span class="n">fp</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">24</span><span class="p">))</span>
+    <span class="n">array2</span> <span class="o">=</span> <span class="n">unpack</span><span class="p">(</span><span class="s">'&lt;10d'</span><span class="p">,</span> <span class="n">fp</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">80</span><span class="p">))</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">val1</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">val2</span><span class="p">)</span>
@@ -734,7 +734,7 @@
 <span class="k">print</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(-34,)
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(-34,)
 (257,)
 (36.3948,)
 (1.100000023841858, 8.800000190734863, 5.5, 9.899999618530273, 6.599999904632568, 7.699999809265137)
@@ -748,17 +748,17 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">struct</span> <span class="kn">import</span> <span class="n">pack</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'data_c_struct.dat'</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;1b'</span><span class="p">,</span> <span class="o">*</span><span class="n">val1</span><span class="p">))</span>
-    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'H'</span><span class="p">,</span> <span class="o">*</span><span class="n">val2</span><span class="p">))</span>
-    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;d'</span><span class="p">,</span> <span class="o">*</span><span class="n">valf</span><span class="p">))</span>
-    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;6f'</span><span class="p">,</span> <span class="o">*</span><span class="n">array1</span><span class="p">))</span>
-    <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;10d'</span><span class="p">,</span> <span class="o">*</span><span class="n">array2</span><span class="p">))</span>
+    <span class="n">fp</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;1b'</span><span class="p">,</span> <span class="o">*</span><span class="n">val1</span><span class="p">))</span>
+    <span class="n">fp</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'H'</span><span class="p">,</span> <span class="o">*</span><span class="n">val2</span><span class="p">))</span>
+    <span class="n">fp</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;d'</span><span class="p">,</span> <span class="o">*</span><span class="n">valf</span><span class="p">))</span>
+    <span class="n">fp</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;6f'</span><span class="p">,</span> <span class="o">*</span><span class="n">array1</span><span class="p">))</span>
+    <span class="n">fp</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">pack</span><span class="p">(</span><span class="s">'&lt;10d'</span><span class="p">,</span> <span class="o">*</span><span class="n">array2</span><span class="p">))</span>
     
 <span class="kn">from</span> <span class="nn">filecmp</span> <span class="kn">import</span> <span class="nb">cmp</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'File is same : {cmp("data_c.dat", "data_c_struct.dat")}'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f'File is same : </span><span class="si">{</span><span class="nb">cmp</span><span class="p">(</span><span class="s">"data_c.dat"</span><span class="p">,</span> <span class="s">"data_c_struct.dat"</span><span class="p">)</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File is same : True
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File is same : True
 </code></pre></div></div>
 
 <p><br /></p>

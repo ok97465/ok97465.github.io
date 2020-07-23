@@ -138,8 +138,18 @@
 
 <h3 id="22-neovim-initvim-설정">2.2. Neovim init.vim 설정</h3>
 
-<p>Neovim의 설정 파일은 ~/.config/nvim/init.vim에 위치한다.  <br />
-https://seulcode.tistory.com/272 을 참고한 <a href="/assets/data/vim/init.vim">init.vim</a></p>
+<p>Neovim의 설정 파일은 ~/.config/nvim/init.vim에 위치한다.<br />
+init.vim에서 vim-plugin을 사용할 것이므로 vim-plugin을 설치한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh <span class="nt">-c</span> <span class="s1">'curl -fLo ~/.config/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'</span>
+</code></pre></div></div>
+
+<p>그리고 deoplete 사용을 위해 pynvim을 설치한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>pynvim
+</code></pre></div></div>
+
+<p>https://seulcode.tistory.com/272 을 참고한 <a href="/assets/data/vim/init.vim">init.vim</a></p>
 
 <p><br /></p>
 
@@ -147,7 +157,7 @@ https://seulcode.tistory.com/272 을 참고한 <a href="/assets/data/vim/init.vi
 
 <p>~/.ipython/profile_default/ipython_config.py에 아래 명령어 추가</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c.TerminalInteractiveShell.editing_mode = 'vi'
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c.TerminalInteractiveShell.editing_mode = 'vi'
 </code></pre></div></div>
 
 <p><br /></p>
@@ -164,7 +174,7 @@ https://seulcode.tistory.com/272 을 참고한 <a href="/assets/data/vim/init.vi
 https://github.com/daipeihust/im-select 에서 <a href="/assets/data/vim/im-select.zip">im-select</a> 를 다운 받는다.  <br />
 Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"vim.autoSwitchInputMethod.enable": true,
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"vim.autoSwitchInputMethod.enable": true,
 "vim.autoSwitchInputMethod.defaultIM": "1033",
 "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\bin\\im-select.exe",
 "vim.autoSwitchInputMethod.switchIMCmd": "D:\\bin\\im-select.exe {im}"
@@ -176,7 +186,7 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <p>Nimf 사용자일 경우 Vscode 환경설정에 다음 내용을 추가한다.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
 <p><br /></p>
 
@@ -184,7 +194,7 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <h4 id="251-windows">2.5.1. Windows</h4>
 <p>AutoHotKey를 설치하고 ahk 확장자 파일을 만들어 아래 내용을 추가한다.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Capslock::Esc
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Capslock::Esc
 Esc::Capslock
 </code></pre></div></div>
 
@@ -197,14 +207,14 @@ Esc::Capslock
   <li>위의 방안이 동작 안할 시 .xsession 혹은 .xinirc 혹은 .bashrc에 아래 내용 추가</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>setxkbmap -option caps:swapescape
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>setxkbmap -option caps:swapescape
 </code></pre></div></div>
 
 <ul>
   <li>vscode 환경 설정에 아래 내용 추가</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"keyboard.dispatch": "keyCode"
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"keyboard.dispatch": "keyCode"
 </code></pre></div></div>
 
                     

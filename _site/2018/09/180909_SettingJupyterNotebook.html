@@ -158,7 +158,7 @@
 <ul>
   <li>
     <p>onedork theme 설정  <br />
-<code class="highlighter-rouge">./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T</code></p>
+<code class="language-plaintext highlighter-rouge">./jt -t onedork -fs 12 -nfs 13 -tfs 12 -ofs 11 -mathfs 90 -T</code></p>
   </li>
   <li>
     <p>scratchpad의 배경색 변경</p>
@@ -203,16 +203,16 @@
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
     <span class="n">port</span> <span class="o">=</span> <span class="mi">9876</span>
-    <span class="n">jupyter_server_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">notebookapp</span><span class="o">.</span><span class="n">list_running_servers</span><span class="p">())</span>
+    <span class="n">jupyter_server_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">notebookapp</span><span class="p">.</span><span class="n">list_running_servers</span><span class="p">())</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">jupyter_server_list</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">server</span><span class="p">[</span><span class="s">'port'</span><span class="p">]</span> <span class="o">==</span> <span class="n">port</span><span class="p">:</span>
-                <span class="n">webbrowser</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'url'</span><span class="p">]</span><span class="o">+</span><span class="s">'tree'</span><span class="p">)</span>
-                <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">webbrowser</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'url'</span><span class="p">]</span><span class="o">+</span><span class="s">'tree'</span><span class="p">)</span>
+                <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">'/home/ok97465/python/BlogSrcByJupyter'</span><span class="p">)</span>  <span class="c1"># notebook을 저장할 폴더
-</span>    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">))</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">'/home/ok97465/python/BlogSrcByJupyter'</span><span class="p">)</span>  <span class="c1"># notebook을 저장할 폴더
+</span>    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">))</span>
 </code></pre></div></div>
 
 <ul>
@@ -231,7 +231,7 @@
   <li>Window용 스크립트 (run_jupyter.vbs)</li>
 </ul>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set oShell = CreateObject ("Wscript.Shell")
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Set oShell = CreateObject ("Wscript.Shell")
 Dim strArgs
 strArgs = "cmd /v:on /k (set MPLCURSORS=" + "{" + Chr(34) + "multiple" + Chr(34) + ": 1" + "}" + ")" + " &amp; (set PYTHONPATH=D:\python\scientific) &amp; C:\IntelPython3\python.exe D:\python\start_jupyter.py"
 oShell.Run strArgs, 0, false

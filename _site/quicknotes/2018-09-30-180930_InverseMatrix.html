@@ -149,7 +149,7 @@
         dimension of null space
 
     """</span>
-    <span class="n">n_row</span><span class="p">,</span> <span class="n">n_col</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">n_row</span><span class="p">,</span> <span class="n">n_col</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">shape</span>
 
     <span class="k">if</span> <span class="n">n_row</span> <span class="o">!=</span> <span class="n">n_col</span><span class="p">:</span>
         <span class="k">raise</span> <span class="nb">IndexError</span><span class="p">(</span><span class="s">"The rows and columns are different sizes."</span><span class="p">)</span>
@@ -166,7 +166,7 @@
             <span class="n">null_dim</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="k">if</span> <span class="n">idx_pivot</span> <span class="o">!=</span> <span class="n">idx_row</span><span class="p">:</span>
-            <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:].</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_pivot</span><span class="p">,</span> <span class="p">:]</span>
             <span class="n">data</span><span class="p">[</span><span class="n">idx_pivot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">tmp</span>
 
@@ -218,7 +218,7 @@
             <span class="k">break</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>same
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>same
 </code></pre></div></div>
 
                     

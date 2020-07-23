@@ -382,22 +382,22 @@
     <span class="s">"""클래스 생성 시점부터 소멸 시점까지의 시간을 출력한다."""</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func_name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s">'this func'</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">func_name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">func_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">func_name</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">time_start</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
 
     <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">sys</span>
         <span class="kn">import</span> <span class="nn">time</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">'{} ==&gt;'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s">' '</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">process_time</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'{} ==&gt;'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">func_name</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s">' '</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">time_start</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">process_time</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="kn">import</span> <span class="nn">time</span>
-        <span class="n">time_end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">process_time</span><span class="p">()</span>
-        <span class="n">interval</span> <span class="o">=</span> <span class="n">time_end</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_start</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">'Elapsed time: {:.8f} sec'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">interval</span><span class="p">))</span>
+        <span class="n">time_end</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">process_time</span><span class="p">()</span>
+        <span class="n">interval</span> <span class="o">=</span> <span class="n">time_end</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">time_start</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Elapsed time: {:.8f} sec'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">interval</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -405,19 +405,19 @@
 <h3 id="22-device-info-2">2.2. Device Info [2]</h3>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pycuda.driver</span> <span class="k">as</span> <span class="n">drv</span>
-<span class="n">drv</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="n">drv</span><span class="p">.</span><span class="n">init</span><span class="p">()</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s">'Detected {} CUDA Capable device(s) </span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="nb">format</span><span class="p">(</span><span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="o">.</span><span class="n">count</span><span class="p">()))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Detected {} CUDA Capable device(s) </span><span class="se">\n</span><span class="s">'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">drv</span><span class="p">.</span><span class="n">Device</span><span class="p">.</span><span class="n">count</span><span class="p">()))</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">drv</span><span class="p">.</span><span class="n">Device</span><span class="p">.</span><span class="n">count</span><span class="p">()):</span>
 
-    <span class="n">dev</span> <span class="o">=</span> <span class="n">drv</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'Device {i}: {dev.name()}'</span><span class="p">)</span>
-    <span class="n">compute_capability</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">d.</span><span class="si">%</span><span class="s">d'</span> <span class="o">%</span> <span class="n">dev</span><span class="o">.</span><span class="n">compute_capability</span><span class="p">())</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  Compute Capability: {compute_capability}'</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  Total Memory: {dev.total_memory() // (1024**2)} MB'</span><span class="p">)</span>
+    <span class="n">dev</span> <span class="o">=</span> <span class="n">drv</span><span class="p">.</span><span class="n">Device</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">f'Device </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">dev</span><span class="p">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="n">compute_capability</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s">'%d.%d'</span> <span class="o">%</span> <span class="n">dev</span><span class="p">.</span><span class="n">compute_capability</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">f'  Compute Capability: </span><span class="si">{</span><span class="n">compute_capability</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">f'  Total Memory: </span><span class="si">{</span><span class="n">dev</span><span class="p">.</span><span class="n">total_memory</span><span class="p">()</span> <span class="o">//</span> <span class="p">(</span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s"> MB'</span><span class="p">)</span>
 
-    <span class="n">dev_attr_tuples</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">get_attributes</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+    <span class="n">dev_attr_tuples</span> <span class="o">=</span> <span class="n">dev</span><span class="p">.</span><span class="n">get_attributes</span><span class="p">().</span><span class="n">items</span><span class="p">()</span>
     <span class="n">dev_attributes</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">dev_attr_tuples</span><span class="p">:</span>
@@ -431,18 +431,18 @@
                          <span class="mf">6.0</span> <span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
                          <span class="mf">6.1</span> <span class="p">:</span> <span class="mi">128</span><span class="p">,</span>
                          <span class="mf">6.2</span> <span class="p">:</span> <span class="mi">128</span><span class="p">}[</span><span class="n">compute_capability</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  Multiprocessors: {num_mp}'</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  CUDA Cores Per Multiprocessor: {cuda_cores_per_mp}'</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  Total CUDA Cores: {num_mp * cuda_cores_per_mp}'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">f'  Multiprocessors: </span><span class="si">{</span><span class="n">num_mp</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">f'  CUDA Cores Per Multiprocessor: </span><span class="si">{</span><span class="n">cuda_cores_per_mp</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">f'  Total CUDA Cores: </span><span class="si">{</span><span class="n">num_mp</span> <span class="o">*</span> <span class="n">cuda_cores_per_mp</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
 
-    <span class="n">dev_attributes</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s">'MULTIPROCESSOR_COUNT'</span><span class="p">)</span>
+    <span class="n">dev_attributes</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="s">'MULTIPROCESSOR_COUNT'</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dev_attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'  {k}: {dev_attributes[k]}'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dev_attributes</span><span class="p">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">f'  </span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">dev_attributes</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
 
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Detected 1 CUDA Capable device(s) 
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Detected 1 CUDA Capable device(s) 
 
 Device 0: GeForce GTX 850M
   Compute Capability: 5.0
@@ -549,7 +549,7 @@ Device 0: GeForce GTX 850M
 <span class="kn">from</span> <span class="nn">numba.cuda</span> <span class="kn">import</span> <span class="n">to_device</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
-<span class="o">@</span><span class="n">cuda</span><span class="o">.</span><span class="nb">reduce</span>
+<span class="o">@</span><span class="n">cuda</span><span class="p">.</span><span class="nb">reduce</span>
 <span class="k">def</span> <span class="nf">sum_reduce</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 </code></pre></div></div>
@@ -566,21 +566,21 @@ Device 0: GeForce GTX 850M
 <span class="n">n_sample</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">26</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">float32</span><span class="p">(</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n_sample</span><span class="p">))</span>
-<span class="n">d_data</span> <span class="o">=</span> <span class="n">to_device</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="n">d_data</span> <span class="o">=</span> <span class="n">to_device</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
 
 <span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s">'Sum By CPU'</span><span class="p">):</span>
-    <span class="n">sum_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">sum_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">sum_reduce</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
     
 <span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s">'Sum By GPU'</span><span class="p">):</span>
     <span class="n">sum_gpu</span> <span class="o">=</span> <span class="n">sum_reduce</span><span class="p">(</span><span class="n">d_data</span><span class="p">)</span>
     
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'CPU Result: {sum_cpu}'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'GPU Result: {sum_gpu}'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f'CPU Result: </span><span class="si">{</span><span class="n">sum_cpu</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f'GPU Result: </span><span class="si">{</span><span class="n">sum_gpu</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum By CPU ==&gt; Elapsed time: 0.02662821 sec
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum By CPU ==&gt; Elapsed time: 0.02662821 sec
 Sum By GPU ==&gt; Elapsed time: 0.01087535 sec
 CPU Result: 4220.08349609375
 GPU Result: 4220.095703125
@@ -597,25 +597,25 @@ GPU Result: 4220.095703125
 <span class="kn">from</span> <span class="nn">numba.cuda</span> <span class="kn">import</span> <span class="n">to_device</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
-<span class="o">@</span><span class="n">cuda</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="s">"void(float32[:], float32[:], int64)"</span><span class="p">)</span>
+<span class="o">@</span><span class="n">cuda</span><span class="p">.</span><span class="n">jit</span><span class="p">(</span><span class="s">"void(float32[:], float32[:], int64)"</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">sum_kernel</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="n">tid</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">threadIdx</span><span class="o">.</span><span class="n">x</span>
-    <span class="n">idx</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">idx_block_start</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">blockIdx</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">cuda</span><span class="o">.</span><span class="n">blockDim</span><span class="o">.</span><span class="n">x</span>
+    <span class="n">tid</span> <span class="o">=</span> <span class="n">cuda</span><span class="p">.</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">cuda</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">idx_block_start</span> <span class="o">=</span> <span class="n">cuda</span><span class="p">.</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">cuda</span><span class="p">.</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span>
 
     <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">:</span>
         <span class="k">return</span>
 
-    <span class="n">stride</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">blockDim</span><span class="o">.</span><span class="n">x</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">stride</span> <span class="o">=</span> <span class="n">cuda</span><span class="p">.</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">//</span> <span class="mi">2</span>
 
     <span class="k">while</span> <span class="n">stride</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">tid</span> <span class="o">&lt;</span> <span class="n">stride</span> <span class="ow">and</span> <span class="p">(</span><span class="n">idx_block_start</span> <span class="o">+</span> <span class="n">tid</span> <span class="o">+</span> <span class="n">stride</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
             <span class="n">data</span><span class="p">[</span><span class="n">idx_block_start</span> <span class="o">+</span> <span class="n">tid</span><span class="p">]</span> <span class="o">+=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_block_start</span> <span class="o">+</span> <span class="n">tid</span> <span class="o">+</span> <span class="n">stride</span><span class="p">]</span>
-        <span class="n">cuda</span><span class="o">.</span><span class="n">syncthreads</span><span class="p">()</span>
+        <span class="n">cuda</span><span class="p">.</span><span class="n">syncthreads</span><span class="p">()</span>
         <span class="n">stride</span> <span class="o">//=</span> <span class="mi">2</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">tid</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="n">out</span><span class="p">[</span><span class="n">cuda</span><span class="o">.</span><span class="n">blockIdx</span><span class="o">.</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_block_start</span><span class="p">]</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">cuda</span><span class="p">.</span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_block_start</span><span class="p">]</span>
 
 <span class="c1"># Host Code
 </span><span class="kn">import</span> <span class="nn">math</span>
@@ -626,27 +626,27 @@ GPU Result: 4220.095703125
 <span class="n">n_sample</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">26</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">float32</span><span class="p">(</span><span class="n">standard_normal</span><span class="p">(</span><span class="n">n_sample</span><span class="p">))</span>
-<span class="n">d_data</span> <span class="o">=</span> <span class="n">to_device</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="n">d_data</span> <span class="o">=</span> <span class="n">to_device</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">copy</span><span class="p">())</span>
 
 <span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s">'Sum By CPU'</span><span class="p">):</span>
-    <span class="n">sum_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">sum_cpu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 <span class="n">threadsperblock</span> <span class="o">=</span> <span class="mi">128</span>
-<span class="n">blockspergrid</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n_sample</span> <span class="o">/</span> <span class="n">threadsperblock</span><span class="p">)</span>
-<span class="n">out_of_gpu</span> <span class="o">=</span> <span class="n">cuda</span><span class="o">.</span><span class="n">device_array</span><span class="p">(</span><span class="n">blockspergrid</span><span class="p">,</span> <span class="n">float32</span><span class="p">)</span>
+<span class="n">blockspergrid</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n_sample</span> <span class="o">/</span> <span class="n">threadsperblock</span><span class="p">)</span>
+<span class="n">out_of_gpu</span> <span class="o">=</span> <span class="n">cuda</span><span class="p">.</span><span class="n">device_array</span><span class="p">(</span><span class="n">blockspergrid</span><span class="p">,</span> <span class="n">float32</span><span class="p">)</span>
 
 <span class="n">sum_kernel</span><span class="p">[</span><span class="n">blockspergrid</span><span class="p">,</span> <span class="n">threadsperblock</span><span class="p">](</span><span class="n">out_of_gpu</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">n_sample</span><span class="p">)</span> <span class="c1"># For Compile
 </span>
 <span class="k">with</span> <span class="n">Timer</span><span class="p">(</span><span class="s">'Sum By GPU'</span><span class="p">):</span>
     <span class="n">sum_kernel</span><span class="p">[</span><span class="n">blockspergrid</span><span class="p">,</span> <span class="n">threadsperblock</span><span class="p">](</span><span class="n">out_of_gpu</span><span class="p">,</span> <span class="n">d_data</span><span class="p">,</span> <span class="n">n_sample</span><span class="p">)</span>
-    <span class="n">out_from_gpu</span> <span class="o">=</span> <span class="n">out_of_gpu</span><span class="o">.</span><span class="n">copy_to_host</span><span class="p">()</span>
-    <span class="n">sum_gpu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">out_from_gpu</span><span class="p">)</span>
+    <span class="n">out_from_gpu</span> <span class="o">=</span> <span class="n">out_of_gpu</span><span class="p">.</span><span class="n">copy_to_host</span><span class="p">()</span>
+    <span class="n">sum_gpu</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">out_from_gpu</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'CPU Result: {sum_cpu}'</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'GPU Result: {sum_gpu}'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f'CPU Result: </span><span class="si">{</span><span class="n">sum_cpu</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">f'GPU Result: </span><span class="si">{</span><span class="n">sum_gpu</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum By CPU ==&gt; Elapsed time: 0.02695911 sec
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sum By CPU ==&gt; Elapsed time: 0.02695911 sec
 Sum By GPU ==&gt; Elapsed time: 0.05354665 sec
 CPU Result: 458.8485107421875
 GPU Result: 458.8516845703125

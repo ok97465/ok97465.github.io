@@ -140,7 +140,7 @@ $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.</
 <span class="n">distances_mean</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>정사각형 내 두 점 사이의 거리 평균 = 0.5213815545906049
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>정사각형 내 두 점 사이의 거리 평균 = 0.5213815545906049
 </code></pre></div></div>
 
 <p><br /></p>
@@ -148,7 +148,7 @@ $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.</
 <h2 id="2-수치해석">2. 수치해석</h2>
 <p>거리를 구하는 적분식 근을 scipy의 nquad를 이용하여 구한다.</p>
 
-<script type="math/tex; mode=display">\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { \left( { x }_{ 1 }-{ x }_{ 2 } \right) +\left( { y }_{ 1 }-y_{ 2 } \right)  } d{ x }_{ 1 } } d{ x }_{ 2 } } dy_{ 1 } } d{ y }_{ 2 } }</script>
+\[\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { \left( { x }_{ 1 }-{ x }_{ 2 } \right) +\left( { y }_{ 1 }-y_{ 2 } \right)  } d{ x }_{ 1 } } d{ x }_{ 2 } } dy_{ 1 } } d{ y }_{ 2 } }\]
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">nquad</span>
@@ -157,7 +157,7 @@ $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.</
 <span class="p">(</span><span class="n">distances_mean</span><span class="p">,</span> <span class="n">abserr</span><span class="p">,</span> <span class="n">out_dict</span><span class="p">)</span> <span class="o">=</span> <span class="n">nquad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">full_output</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>정사각형 내 두 점 사이의 거리 평균 = 0.5214054334862938
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>정사각형 내 두 점 사이의 거리 평균 = 0.5214054334862938
 </code></pre></div></div>
 
 <p><br /></p>
@@ -166,13 +166,12 @@ $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.</
 <p>위의 수식에서 $|x_1-x_2|=u,\text{    }|y_1-y_2|=v$로 치환한다.  <br />
 $|a-b|=c$이고 a, b가 uniform random variable이면 c의 PDF는 2(1-c)임을 이용하여 적분식을 정리하면 아래와 같다. [아래 절 참조]</p>
 
-<script type="math/tex; mode=display">4\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { { u }^{ 2 }+{ v }^{ 2 } } \left( 1-u \right) \left( 1-v \right) du } dv }</script>
+\[4\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { { u }^{ 2 }+{ v }^{ 2 } } \left( 1-u \right) \left( 1-v \right) du } dv }\]
 
 <p><br /><br />
 위의 수식을 적분하기 위해 변수를 Polar Form으로 변환한다. 변환 시 적분 구간에 유의 해야한다.</p>
 
-<script type="math/tex; mode=display">% <![CDATA[
-\begin{matrix} u=r\cos{\theta} & 0\le{\theta}\le\pi/4 \\ v=r\sin{\theta} & 0\le{r}\le{1/\cos{\theta}} \end{matrix} %]]></script>
+\[\begin{matrix} u=r\cos{\theta} &amp; 0\le{\theta}\le\pi/4 \\ v=r\sin{\theta} &amp; 0\le{r}\le{1/\cos{\theta}} \end{matrix}\]
 
 <p><br /><br />
 정사각형 내의 점들의 길이를 구하는 것이므로 r은 $1/\cos{\theta}$를 넘을 수 없다.</p>
@@ -184,17 +183,17 @@ $|a-b|=c$이고 a, b가 uniform random variable이면 c의 PDF는 2(1-c)임을 �
 <p><br /><br />
 변수를 치환하면 아래와 같고 적분 구간을 정사각형의 절반만 정의하였으므로 2가 곱해진다.</p>
 
-<script type="math/tex; mode=display">4\int _{ 0 }^{ \pi /4 }{ 2\int _{ 0 }^{ 1/\cos { \theta  }  }{ \sqrt { r^{ { 2 } }{ \cos   }^{ { 2 } }\theta +r^{ { 2 } }{ \sin   }^{ { 2 } }\theta  } (1-r{ \cos   }\theta )(1-r{ \sin   }\theta )rdr } d\theta  }</script>
+\[4\int _{ 0 }^{ \pi /4 }{ 2\int _{ 0 }^{ 1/\cos { \theta  }  }{ \sqrt { r^{ { 2 } }{ \cos   }^{ { 2 } }\theta +r^{ { 2 } }{ \sin   }^{ { 2 } }\theta  } (1-r{ \cos   }\theta )(1-r{ \sin   }\theta )rdr } d\theta  }\]
 
-<script type="math/tex; mode=display">=8\int _{ 0 }^{ \pi /4 }{ \int _{ 0 }^{ 1/\cos { \theta  }  }{ r^{ { 2 } }-r^{ { 3 } }{ \cos   }\theta -r^{ { 3 } }{ \sin   }\theta +r^{ { 4 } }{ \cos }\theta { \sin }\theta dr} d\theta  }</script>
+\[=8\int _{ 0 }^{ \pi /4 }{ \int _{ 0 }^{ 1/\cos { \theta  }  }{ r^{ { 2 } }-r^{ { 3 } }{ \cos   }\theta -r^{ { 3 } }{ \sin   }\theta +r^{ { 4 } }{ \cos }\theta { \sin }\theta dr} d\theta  }\]
 
-<script type="math/tex; mode=display">=8\int _{ 0 }^{ \pi /4 }{ \frac { { \sec } ^ { 3 } \theta } { 12 } - \frac { { \sec } ^ { 3 } \theta { \tan } \theta } { 20 }d\theta  }</script>
+\[=8\int _{ 0 }^{ \pi /4 }{ \frac { { \sec } ^ { 3 } \theta } { 12 } - \frac { { \sec } ^ { 3 } \theta { \tan } \theta } { 20 }d\theta  }\]
 
-<script type="math/tex; mode=display">=8\cdot \left( \frac { { \sec   }\theta { \tan   }\theta +{ \ln { \left| { \sec   }\theta +{ \tan   }\theta  \right|}}}{ 24 } -\frac { { \sec   }^{ { 3 } }\theta  }{ 60 }  \right) _{ { 0 } }^{ { \pi /4 } }</script>
+\[=8\cdot \left( \frac { { \sec   }\theta { \tan   }\theta +{ \ln { \left| { \sec   }\theta +{ \tan   }\theta  \right|}}}{ 24 } -\frac { { \sec   }^{ { 3 } }\theta  }{ 60 }  \right) _{ { 0 } }^{ { \pi /4 } }\]
 
-<script type="math/tex; mode=display">=\frac { 2+\sqrt { 2 } +5{ \ln { (\sqrt { 2 } +1) }  } }{ 15 }</script>
+\[=\frac { 2+\sqrt { 2 } +5{ \ln { (\sqrt { 2 } +1) }  } }{ 15 }\]
 
-<script type="math/tex; mode=display">=0.5214054331647207</script>
+\[=0.5214054331647207\]
 
 <p><br /></p>
 

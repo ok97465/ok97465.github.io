@@ -191,30 +191,30 @@ Value : {“multiple”: 1}</p>
 <h2 id="4-variable-창에서-자주-쓰는-함수-숨김">4. Variable 창에서 자주 쓰는 함수 숨김</h2>
 <p>pycharm 폴더/helpers/pydev/_pydev_bundle/pydev_ipython_console.py의 get_ipython_hidden_vars_dict 함수의 user_hidden_dict.setdefault(‘___’, ‘’) 밑에 추가 (들여쓰기는 space로 동일하게 맞추어야 함)</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'rad2deg'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'deg2rad'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arange'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arccos'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arcsin'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arctan'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'array'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'conj'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'cos'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sin'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'tan'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'exp'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'zeros'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'pi'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randn'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'standard_normal'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randint'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'uniform'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'choice'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sqrt'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'dot'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'fig'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'ax'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'newaxis'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'rad2deg'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'deg2rad'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arange'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arccos'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arcsin'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arctan'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'array'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'conj'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'cos'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sin'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'tan'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'exp'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'zeros'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'pi'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randn'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'standard_normal'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randint'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'uniform'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'choice'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sqrt'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'dot'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'fig'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'ax'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'newaxis'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -248,11 +248,11 @@ Value : {“multiple”: 1}</p>
 <p>Abbreviation : fig,  <br />
 Template text :</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="err">$</span><span class="mi">1</span><span class="err">$</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'$2$'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'$3$'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'$4$'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="err">$</span><span class="mi">1</span><span class="err">$</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'$2$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'$3$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'$4$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -285,7 +285,7 @@ Template text :</p>
 <h3 id="63-모든-figure-창-닫기">6.3. 모든 figure 창 닫기</h3>
 <p>Abbreviation : close all<br />
 Template text :</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s">'all'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">close</span><span class="p">(</span><span class="s">'all'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -340,7 +340,7 @@ Template text :</p>
 
 <span class="c1"># substitute
 </span><span class="n">expr</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">th1</span>
-<span class="n">display</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="n">th1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">expr</span><span class="p">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="n">th1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]))</span>
 
 <span class="c1">#fourier transform
 </span><span class="n">Fourier_y</span> <span class="o">=</span> <span class="n">fourier_transform</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="mf">1j</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
