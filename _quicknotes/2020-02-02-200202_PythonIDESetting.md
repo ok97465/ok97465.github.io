@@ -68,7 +68,6 @@ MPLCURSORS={"multiple": 1}
 | jupyter_contrib_nbextensions | conda-forge | jupyter notebook extension                          |
 | jupyterthemes      | conda-forge | Mapplotlib theme 지원                                          |
 | imutils            | conda-forge | 영상처리 library                                                |
-| paramiko           | anaconda    | SSH 활용                                                       |
 | dataslots          | Github      | dataclass를 __slots__ class로 변환                              |
 | numexpr3           | Github      | 간단한 연산에 대한 최적화                                         |
 | ctypeslib2         | PyPi        | c header를 python class로 변환                                  |
