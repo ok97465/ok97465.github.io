@@ -168,13 +168,13 @@ build_prompt<span class="o">()</span> <span class="o">{</span>
 
 <h3 id="23-plugin-설치">2.3. Plugin 설치</h3>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># zsh-syntax-highlighting</span>
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="se">\$</span><span class="o">{</span>ZSH_CUSTOM:-~/.oh-my-zsh/custom<span class="o">}</span>/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="nv">$ZSH_CUSTOM</span>/plugins/zsh-syntax-highlighting
 
 <span class="c"># zsh-autosuggestions</span>
-git clone git://github.com/zsh-users/zsh-autosuggestions <span class="se">\$</span>ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone git://github.com/zsh-users/zsh-autosuggestions <span class="nv">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions
 
 <span class="c"># zsh-vim</span>
-git clone https://github.com/softmoth/zsh-vim-mode.git <span class="se">\$</span><span class="o">{</span>ZSH_CUSTOM:-~/.oh-my-zsh/custom<span class="o">}</span>/plugins/zsh-vim-mode
+git clone https://github.com/softmoth/zsh-vim-mode.git <span class="nv">$ZSH_CUSTOM</span>/plugins/zsh-vim-mode
 </code></pre></div></div>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">plugins</span><span class="o">=(</span>
