@@ -168,11 +168,96 @@ _vimrc에서 vim-plugin을 사용할 것이므로 powershell에서 아래 명령
 </span><span class="p">)</span><span class="w">
 </span></code></pre></div></div>
 
-<p><a href="/assets/data/vim/_vimrc">_vimrc</a></p>
+<p><a href="/assets/data/vim/_vimrc">_vimrc</a><br />
+<a href="/assets/data/vim/gvim.ico">vim.ico</a></p>
 
 <p><br /></p>
 
-<h3 id="24-ipython-vim-keybinding">2.4. ipython vim keybinding</h3>
+<h3 id="24-gvim-anaconda-환경에서-설정">2.4. Gvim anaconda 환경에서 설정</h3>
+
+<p>anaconda를 active하고 gvim을 실행하기 위해 간단한 실행 파일을 작성하였다. 이 파일을 gvim.exe로 대체하고 gvim.exe는 gvim_.exe로 변경한다.</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// gvim_launcher.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.</span>
+<span class="c1">//</span>
+
+<span class="cp">#include &lt;Windows.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;tchar.h&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">TCHAR</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">FreeConsole</span><span class="p">();</span>
+    <span class="n">STARTUPINFO</span> <span class="n">si</span><span class="p">;</span>
+    <span class="n">PROCESS_INFORMATION</span> <span class="n">pi</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">idx_arg_start</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">idx_arg</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">size_t</span> <span class="n">commandline_size</span> <span class="o">=</span> <span class="mi">4096</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">size_t</span> <span class="n">buff_size</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+
+    <span class="n">ZeroMemory</span><span class="p">(</span><span class="o">&amp;</span><span class="n">si</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">si</span><span class="p">));</span>
+    <span class="n">si</span><span class="p">.</span><span class="n">cb</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">si</span><span class="p">);</span>
+    <span class="n">ZeroMemory</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pi</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">pi</span><span class="p">));</span>
+    <span class="n">TCHAR</span> <span class="n">tcsCommandLine</span><span class="p">[</span><span class="n">commandline_size</span><span class="p">];</span>
+    <span class="n">TCHAR</span> <span class="n">tcsAnacondaVim</span><span class="p">[]</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">"CMD.EXE /C set MPLCURSORS={</span><span class="se">\"</span><span class="s">multiple</span><span class="se">\"</span><span class="s">: 1}&amp;c:</span><span class="se">\\</span><span class="s">anaconda3</span><span class="se">\\</span><span class="s">scripts</span><span class="se">\\</span><span class="s">activate&amp;</span><span class="se">\"</span><span class="s">C:</span><span class="se">\\</span><span class="s">Program Files (x86)</span><span class="se">\\</span><span class="s">Vim</span><span class="se">\\</span><span class="s">vim82</span><span class="se">\\</span><span class="s">gvim_.exe</span><span class="se">\"</span><span class="s">"</span><span class="p">);</span>
+    <span class="n">TCHAR</span> <span class="n">tcsDiffArg</span><span class="p">[]</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">" --literal -d"</span><span class="p">);</span>
+    <span class="n">TCHAR</span> <span class="n">tcsTabArg</span><span class="p">[]</span> <span class="o">=</span> <span class="n">_T</span><span class="p">(</span><span class="s">" --literal -p"</span><span class="p">);</span>
+    <span class="n">TCHAR</span> <span class="n">tcsBuff</span><span class="p">[</span><span class="n">buff_size</span><span class="p">];</span>
+
+	<span class="n">swprintf</span><span class="p">(</span><span class="n">tcsCommandLine</span><span class="p">,</span> <span class="n">commandline_size</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">"%s"</span><span class="p">),</span> <span class="n">tcsAnacondaVim</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="n">strcmp</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">"-d"</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1">// For diff</span>
+    <span class="p">{</span>
+        <span class="n">_tcscat_s</span><span class="p">(</span><span class="n">tcsCommandLine</span><span class="p">,</span> <span class="n">commandline_size</span><span class="p">,</span> <span class="n">tcsDiffArg</span><span class="p">);</span>
+        <span class="n">idx_arg_start</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">_tcscat_s</span><span class="p">(</span><span class="n">tcsCommandLine</span><span class="p">,</span> <span class="n">commandline_size</span><span class="p">,</span> <span class="n">tcsTabArg</span><span class="p">);</span>
+        <span class="n">idx_arg_start</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">idx_arg</span> <span class="o">=</span> <span class="n">idx_arg_start</span><span class="p">;</span> <span class="n">idx_arg</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">idx_arg</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">_tcscat_s</span><span class="p">(</span><span class="n">tcsCommandLine</span><span class="p">,</span> <span class="n">commandline_size</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">" "</span><span class="p">));</span>
+        <span class="n">MultiByteToWideChar</span><span class="p">(</span><span class="n">CP_ACP</span><span class="p">,</span> <span class="n">MB_PRECOMPOSED</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">argv</span><span class="p">[</span><span class="n">idx_arg</span><span class="p">],</span> <span class="n">strlen</span><span class="p">((</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">argv</span><span class="p">[</span><span class="n">idx_arg</span><span class="p">]),</span> <span class="n">tcsBuff</span><span class="p">,</span> <span class="n">buff_size</span><span class="p">);</span>
+
+        <span class="n">_tcscat_s</span><span class="p">(</span><span class="n">tcsCommandLine</span><span class="p">,</span> <span class="n">commandline_size</span><span class="p">,</span> <span class="n">tcsBuff</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">_tcscat_s</span><span class="p">(</span><span class="n">tcsCommandLine</span><span class="p">,</span> <span class="n">commandline_size</span><span class="p">,</span> <span class="n">_T</span><span class="p">(</span><span class="s">"</span><span class="se">\0</span><span class="s">"</span><span class="p">));</span>
+
+    <span class="c1">// Start the child process. </span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">CreateProcess</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span>   <span class="c1">// No module name (use command line)</span>
+        <span class="n">tcsCommandLine</span><span class="p">,</span>        <span class="c1">// Command line</span>
+        <span class="nb">NULL</span><span class="p">,</span>           <span class="c1">// Process handle not inheritable</span>
+        <span class="nb">NULL</span><span class="p">,</span>           <span class="c1">// Thread handle not inheritable</span>
+        <span class="n">FALSE</span><span class="p">,</span>          <span class="c1">// Set handle inheritance to FALSE</span>
+        <span class="n">CREATE_NO_WINDOW</span><span class="p">,</span>              <span class="c1">// No creation flags</span>
+        <span class="nb">NULL</span><span class="p">,</span>           <span class="c1">// Use parent's environment block</span>
+        <span class="nb">NULL</span><span class="p">,</span>           <span class="c1">// Use parent's starting directory </span>
+        <span class="o">&amp;</span><span class="n">si</span><span class="p">,</span>            <span class="c1">// Pointer to STARTUPINFO structure</span>
+        <span class="o">&amp;</span><span class="n">pi</span><span class="p">)</span>           <span class="c1">// Pointer to PROCESS_INFORMATION structure</span>
+        <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"CreateProcess failed (%d).</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">GetLastError</span><span class="p">());</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Wait until child process exits.</span>
+    <span class="n">WaitForSingleObject</span><span class="p">(</span><span class="n">pi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">,</span> <span class="n">INFINITE</span><span class="p">);</span>
+
+    <span class="c1">// Close process and thread handles. </span>
+    <span class="n">CloseHandle</span><span class="p">(</span><span class="n">pi</span><span class="p">.</span><span class="n">hProcess</span><span class="p">);</span>
+    <span class="n">CloseHandle</span><span class="p">(</span><span class="n">pi</span><span class="p">.</span><span class="n">hThread</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+<p><a href="/assets/data/vim/gvim_launcher.exe">gvim_launcher.exe</a></p>
+
+<p><br /></p>
+
+<h3 id="25-ipython-vim-keybinding">2.5. ipython vim keybinding</h3>
 
 <p>~/.ipython/profile_default/ipython_config.py에 아래 명령어 추가</p>
 
@@ -181,13 +266,13 @@ _vimrc에서 vim-plugin을 사용할 것이므로 powershell에서 아래 명령
 
 <p><br /></p>
 
-<h3 id="25-esc-입력시-자동-영어-변환-vscode">2.5. ESC 입력시 자동 영어 변환 (VScode)</h3>
+<h3 id="26-esc-입력시-자동-영어-변환-vscode">2.6. ESC 입력시 자동 영어 변환 (VScode)</h3>
 
 <p>Vim에서 한글 입력 후에 ESC를 눌려 Normal 모드로 진입하면 어떤 명령어도 동작되지 않는 문제가 발생한다. 명령어가 영어가 아닌 한글로 입력되면서 벌어지는 문제인데 VScode의 Vim Plugin은 이 문제를 해결하기 위한 방안을 제공한다.</p>
 
 <p><br /></p>
 
-<h4 id="251-windows">2.5.1. Windows</h4>
+<h4 id="261-windows">2.6.1. Windows</h4>
 
 <p>설정 -&gt; 언어 -&gt; 영어(미국) 추가한다.<br />
 https://github.com/daipeihust/im-select 에서 <a href="/assets/data/vim/im-select.zip">im-select</a> 를 다운 받는다.  <br />
@@ -201,7 +286,7 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <p><br /></p>
 
-<h4 id="252-ubuntu">2.5.2. Ubuntu</h4>
+<h4 id="262-ubuntu">2.6.2. Ubuntu</h4>
 
 <p>Nimf 사용자일 경우 Vscode 환경설정에 다음 내용을 추가한다.</p>
 
@@ -209,9 +294,9 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <p><br /></p>
 
-<h3 id="26-capslock---esc">2.6. Capslock -&gt; ESC</h3>
+<h3 id="27-capslock---esc">2.7. Capslock -&gt; ESC</h3>
 
-<h4 id="261-windows">2.6.1. Windows</h4>
+<h4 id="271-windows">2.7.1. Windows</h4>
 <p>AutoHotKey를 설치하고 ahk 확장자 파일을 만들어 아래 내용을 추가한다.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Capslock::Esc
 Esc::Capslock
@@ -219,7 +304,7 @@ Esc::Capslock
 
 <p><br /></p>
 
-<h4 id="262-mint">2.6.2. Mint</h4>
+<h4 id="272-mint">2.7.2. Mint</h4>
 
 <ul>
   <li>설정 -&gt; 키보드 -&gt; 배치 -&gt; 옵션 -&gt; Capslock 동작 변경</li>
