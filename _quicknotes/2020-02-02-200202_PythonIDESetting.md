@@ -75,6 +75,7 @@ MPLCURSORS={"multiple": 1}
 | pyautogui          | conda-forge | 컴퓨터 자동화                                                    |
 | pyperclip          | conda-forge | 컴퓨터 clipboard 활용                                            |
 | python-pptx        | conda-forge | Python에서 pptx 작성                                            |
+| python-docx        | conda-forge | Python에서 docx 작성                                            |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
 
