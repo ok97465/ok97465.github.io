@@ -155,6 +155,15 @@ init.vim에서 vim-plugin을 사용할 것이므로 vim-plugin을 설치한다.<
 
 <p><br /></p>
 
+<h4 id="221-coc-plugin-설치">2.2.1. COC plugin 설치</h4>
+
+<pre><code class="language-vi">:CocInstall coc-json
+:CocInstall coc-python
+:CocInstall coc-tabnine
+</code></pre>
+
+<p><br /></p>
+
 <h3 id="23-gvim-_vimrc-설정">2.3. Gvim _vimrc 설정</h3>
 
 <p>gvim 설정 파일은 %HOME% 폴더에 위치한다.<br />
@@ -218,7 +227,7 @@ gvim에서 64bit python을 사용하기 위해서는 64bit gvim을 찾아서 설
     <span class="k">else</span>
     <span class="p">{</span>
         <span class="n">_tcscat_s</span><span class="p">(</span><span class="n">tcsCommandLine</span><span class="p">,</span> <span class="n">commandline_size</span><span class="p">,</span> <span class="n">tcsTabArg</span><span class="p">);</span>
-        <span class="n">idx_arg_start</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="n">idx_arg_start</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="k">for</span> <span class="p">(</span><span class="n">idx_arg</span> <span class="o">=</span> <span class="n">idx_arg_start</span><span class="p">;</span> <span class="n">idx_arg</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">idx_arg</span><span class="o">++</span><span class="p">)</span>
