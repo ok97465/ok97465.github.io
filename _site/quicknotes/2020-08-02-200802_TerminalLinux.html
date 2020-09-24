@@ -166,7 +166,25 @@ build_prompt<span class="o">()</span> <span class="o">{</span>
 
 <p><br /></p>
 
-<h3 id="23-plugin-설치">2.3. Plugin 설치</h3>
+<h3 id="23-fzf">2.3. FZF</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>fd-find
+git clone <span class="nt">--depth</span> 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+</code></pre></div></div>
+
+<p>.zshrc에 아래 내용을 추가한다.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">fd</span><span class="o">=</span>fdfind
+<span class="nb">export </span><span class="nv">FZF_DEFAULT_COMMAND</span><span class="o">=</span><span class="s2">"fdfind . </span><span class="nv">$HOME</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">FZF_CTRL_T_COMMAND</span><span class="o">=</span><span class="s2">"</span><span class="nv">$FZF_DEFAULT_COMMAND</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">FZF_ALT_C_COMMAND</span><span class="o">=</span><span class="s2">"fdfind -t d . </span><span class="nv">$HOME</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<p>~/.fzf/shell/key-bindings.zsh에서 find를 fd로 변경한다.</p>
+
+<p><br /></p>
+
+<h3 id="24-plugin-설치">2.4. Plugin 설치</h3>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># zsh-syntax-highlighting</span>
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="nv">$ZSH_CUSTOM</span>/plugins/zsh-syntax-highlighting
 
