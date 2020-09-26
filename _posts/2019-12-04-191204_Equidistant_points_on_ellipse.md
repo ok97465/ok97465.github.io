@@ -107,7 +107,9 @@ arcs = ellipeinc(phi, e)  # Phi 각도별 호의 길이
 
 
 
+    
 ![img]({{ '/assets/images/2019-12-04-191204_Equidistant_points_on_ellipse/output_11_0.png' | relative_url }}){: .center-image }
+    
 
 
 <br>

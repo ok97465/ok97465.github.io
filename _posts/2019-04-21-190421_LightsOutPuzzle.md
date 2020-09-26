@@ -23,13 +23,17 @@ sitemap :
 
 
 
+    
 ![img]({{ '/assets/images/2019-04-21-190421_LightsOutPuzzle/output_4_0.png' | relative_url }}){: .center-image }
+    
 
 
 
 
 
+    
 ![img]({{ '/assets/images/2019-04-21-190421_LightsOutPuzzle/output_5_0.png' | relative_url }}){: .center-image }
+    
 
 
 <br>
@@ -342,7 +346,9 @@ draw_state_trasition(state_mat, ax)
 ```
 
 
+    
 ![img]({{ '/assets/images/2019-04-21-190421_LightsOutPuzzle/output_19_0.png' | relative_url }}){: .center-image }
+    
 
 
 <br>
@@ -511,7 +517,9 @@ solution = solution.reshape(n_lightsout, n_lightsout)
 
 
 
+    
 ![img]({{ '/assets/images/2019-04-21-190421_LightsOutPuzzle/output_31_0.png' | relative_url }}){: .center-image }
+    
 
 
 <br>
