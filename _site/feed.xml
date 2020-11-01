@@ -2024,18 +2024,31 @@ Null Space is correct.
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;9-vim-binding&quot;&gt;9. Vim binding&lt;/h2&gt;
+&lt;h2 id=&quot;9-user-snippets&quot;&gt;9. User snippets&lt;/h2&gt;
+
+&lt;figure&gt;
+    &lt;img src=&quot;/assets/images/spyder-ide/snippets.gif&quot; alt=&quot;User snippets&quot; width=&quot;320&quot; /&gt;
+    &lt;figcaption class=&quot;Snippet&quot;&gt;snippet&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;사용자 편의를 위한 user snippets을 지원한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/data/Spyder-ide/spyder_snippets_ok97465.json&quot;&gt;snippet.json&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;10-vim-binding&quot;&gt;10. Vim binding&lt;/h2&gt;
 
 &lt;p&gt;Vim을 완벽하기 지원하지는 않지만 편집에 필요한 필수 기능들은 지원하고 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;10-python-opensource&quot;&gt;10. Python Opensource&lt;/h2&gt;
+&lt;h2 id=&quot;11-python-opensource&quot;&gt;11. Python Opensource&lt;/h2&gt;
 &lt;p&gt;Spyder IDE는 가독성이 좋은 Python으로 작성된 Opensource이고 Maintainer가 지속해서 Source를 관리하고 있기 때문에 코드만으로도 Spyder IDE의 Source 구조를 쉽게 파악할 수 있다. 쉽게 이해할 수 있기 때문에 내가 원하는 기능을 Spyder에 추가해서 사용하는 것도 어렵지 않다. 나는 아래 2가지 기능을 코딩하여 사용하고 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;101-auto-import&quot;&gt;10.1. Auto Import&lt;/h3&gt;
+&lt;h3 id=&quot;111-auto-import&quot;&gt;11.1. Auto Import&lt;/h3&gt;
 &lt;p&gt;Spyder 개발팀에서 개발 계획을 가지고 있지만 현재 다른 개발에 바빠 auto import가 언제 개발될 지 모르는 상황이다. 그래서 내가 개발하여 사용하고 있다.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -2057,18 +2070,6 @@ Null Space is correct.
 &lt;p&gt;&lt;a href=&quot;/assets/data/Spyder-ide/import_python.json&quot;&gt;import_python.json&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/data/Spyder-ide/get_function_name.py&quot;&gt;get_function_name.py&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;102-auto-snippet&quot;&gt;10.2. Auto Snippet&lt;/h3&gt;
-&lt;p&gt;이것도 Spyder 개발팀에서 개발 중이지만 빨리 쓰고 싶어서 Hardcoding하여 사용중이다.&lt;/p&gt;
-
-&lt;figure&gt;
-    &lt;img src=&quot;/assets/images/spyder-ide/snippets.gif&quot; alt=&quot;Auto docstring&quot; width=&quot;320&quot; /&gt;
-    &lt;figcaption class=&quot;Snippet&quot;&gt;snippet&lt;/figcaption&gt;
-&lt;/figure&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/data/Spyder-ide/snippet.json&quot;&gt;snippet.json&lt;/a&gt;&lt;/p&gt;
 </description>
 				<pubDate>Sun, 27 Jan 2019 23:06:00 +0900</pubDate>
 				<link>/2019/01/190127_SpyderIde</link>
