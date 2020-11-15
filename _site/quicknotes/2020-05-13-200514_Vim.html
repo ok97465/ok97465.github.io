@@ -347,6 +347,31 @@ Esc::Capslock
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"keyboard.dispatch": "keyCode"
 </code></pre></div></div>
 
+<p><br /></p>
+
+<h3 id="28-ideavim-설정">2.8. IdeaVim 설정</h3>
+
+<p>pycharm에서 ideavim을 이용하여 vim 모드를 사용할수 있다. 현재 ideavim의 설정 파일인 .ideavimrc는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>" ----- Options -----
+set hls     "hlsearch
+set ic      "ignorecase
+set is      "incsearch
+set scs     "smartcase
+set nu      "line number
+set rnu     "line relativenumber
+
+" ----- Plugins -----
+set commentary
+set highlightedyank
+
+" ----- KeyMap -----
+let mapleader=" "
+:map &lt;leader&gt;f &lt;Action&gt;(ReformatCode)
+:map &lt;leader&gt;d &lt;Action&gt;(Debug)
+:map &lt;leader&gt;b &lt;Action&gt;(ToggleLineBreakpoint)
+</code></pre></div></div>
+
                     
 
 <div class="share-bar">
