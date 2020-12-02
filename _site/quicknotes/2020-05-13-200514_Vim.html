@@ -323,9 +323,23 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 <h3 id="27-capslock---esc">2.7. Capslock -&gt; ESC</h3>
 
 <h4 id="271-windows">2.7.1. Windows</h4>
-<p>AutoHotKey를 설치하고 ahk 확장자 파일을 만들어 아래 내용을 추가한다.</p>
+<p>AutoHotKey를 설치하고 ahk 확장자 파일을 만들어 아래 내용을 추가하거나 Registry를 변경한다.</p>
+
+<ul>
+  <li>AutoHotKey Script</li>
+</ul>
+
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Capslock::Esc
 Esc::Capslock
+</code></pre></div></div>
+
+<ul>
+  <li>Registry</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Windows Registry Editor Version 5.00
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+"Scancode Map"=hex:00,00,00,00,00,00,00,00,03,00,00,00,3a,00,01,00,01,00,3a,00,00,00,00,00
 </code></pre></div></div>
 
 <p><br /></p>
