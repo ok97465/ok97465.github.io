@@ -62,6 +62,7 @@ MPLCURSORS={"multiple": 1}
 | opencv             | anaconda    | 영상처리 Library                                                |
 | dill               | anaconda    | Python 변수 파일 입출력                                          |
 | mayavi             | anaconda    | surf, mesh등 3d Plot 가속화                                     |
+| pyserial           | anaconda    | Serial library                                               |
 | pymap3d            | conda-forge | 지구 좌표계 변화                                                 |
 | vispy              | conda-forge | GPU 가속을 이용한 빠른 Plot                                       |
 | mplcursors         | conda-forge | Maplotlib에 Data Cursor 추가                                    |
@@ -78,6 +79,9 @@ MPLCURSORS={"multiple": 1}
 | python-docx        | conda-forge | Python에서 docx 작성                                            |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
+| jupyterlab_vim     | PyPi        | jupyterlab vim extension                                       |
+| jupyterlab-kite    | PyPi        | jupyterlab kite                                                |
+
 
 <br>
 
