@@ -68,6 +68,8 @@ MPLCURSORS={"multiple": 1}
 | mplcursors         | conda-forge | Maplotlib에 Data Cursor 추가                                    |
 | jupyter_contrib_nbextensions | conda-forge | jupyter notebook extension                          |
 | jupyterthemes      | conda-forge | Mapplotlib theme 지원                                          |
+| ipympl             | conda-forge | Jupyterlab maplotlib extension                                |
+| xeus-python        | conda-forge | Jupyterlab debugger extension                                |
 | imutils            | conda-forge | 영상처리 library                                                |
 | dataslots          | Github      | dataclass를 __slots__ class로 변환                              |
 | numexpr3           | Github      | 간단한 연산에 대한 최적화                                         |
@@ -81,7 +83,6 @@ MPLCURSORS={"multiple": 1}
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
 | jupyterlab_vim     | PyPi        | jupyterlab vim extension                                       |
 | jupyterlab-kite    | PyPi        | jupyterlab kite                                                |
-
 
 <br>
 
