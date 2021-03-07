@@ -63,6 +63,7 @@ MPLCURSORS={"multiple": 1}
 | dill               | anaconda    | Python 변수 파일 입출력                                          |
 | mayavi             | anaconda    | surf, mesh등 3d Plot 가속화                                     |
 | pyserial           | anaconda    | Serial library                                               |
+| rasterio           | anaconda    | GeoTiff library                                               |
 | pymap3d            | conda-forge | 지구 좌표계 변화                                                 |
 | vispy              | conda-forge | GPU 가속을 이용한 빠른 Plot                                       |
 | mplcursors         | conda-forge | Maplotlib에 Data Cursor 추가                                    |
