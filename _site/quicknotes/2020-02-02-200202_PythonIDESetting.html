@@ -148,6 +148,100 @@ import_heading_thirdparty = Third party imports
 MPLCURSORS={"multiple": 1}
 </code></pre></div></div>
 
+<p>Setting.json 설정</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"workbench.startupEditor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newUntitledFile"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"terminal.integrated.inheritEnv"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"editor.fontFamily"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D2Coding Ligature"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"editor.fontLigatures"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"editor.formatOnPaste"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"editor.formatOnSave"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"editor.formatOnType"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"editor.formatOnSaveMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"modifications"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"editor.snippetSuggestions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"top"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"editor.minimap.enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"editor.lineNumbers"</span><span class="p">:</span><span class="w"> </span><span class="s2">"relative"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"editor.rulers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">79</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"python.showStartPage"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"python.pythonPath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/ok97465/anaconda3/bin/python"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"python.languageServer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pylance"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"python.linting.enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"python.linting.lintOnSave"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"python.linting.pylintEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"python.linting.pylintArgs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"--disable=None"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"--const-rgx=(([a-z_][a-z0-9_]{2,30})|([A-Z_][A-Z0-9_]{2,30})|(__*.__))"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"python.linting.pydocstyleEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"python.linting.pycodestyleEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"python.linting.pycodestyleArgs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"--ignore=W503"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"python.formatting.autopep8Args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"--ignore"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"E402"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"jupyter.sendSelectionToInteractiveWindow"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"jupyter.alwaysTrustNotebooks"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vim.easymotion"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vim.smartRelativeLine"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vim.highlightedyank.enable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vim.highlightedyank.duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"vim.leader"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;space&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"markdown-preview-enhanced.previewTheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"atom-light.css"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"markdown-preview-enhanced.codeBlockTheme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"atom-dark.css"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.generic.briefTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">brief {text} </span><span class="se">\n</span><span class="s2"> * </span><span class="se">\\</span><span class="s2">details </span><span class="se">\\</span><span class="s2">verbatim </span><span class="se">\\</span><span class="s2">endverbatim"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.generic.paramTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">param {param} "</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.generic.returnTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">return {type} "</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.generic.authorEmail"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok97465@gmail.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.generic.authorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok97465"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.generic.authorTag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">author {author}"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.cpp.tparamTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">tparam {param} "</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.generic.dateTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">date {date}"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.file.fileTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\\</span><span class="s2">file {name}"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.file.versionTag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.file.copyrightTag"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"doxdocgen.generic.order"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"brief"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tparam"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"param"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"return"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"doxdocgen.file.fileOrder"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"file"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"date"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"brief"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"AREPL.customCSS"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"AREPL.defaultFilterTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"&lt;class 'module'&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"&lt;class 'function'&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"&lt;class 'builtin_function_or_method'&gt;"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"&lt;class 'numpy.ufunc'&gt;"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"AREPL.defaultFilterVars"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"colormap"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"jtstyle"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"newaxis"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fig"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ax1"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"gitlens.views.repositories.files.layout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"explorer.confirmDelete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"keyboard.dispatch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"keyCode"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"search.smartCase"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"window.zoomLevel"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"workbench.editorAssociations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"viewType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jupyter.notebook.ipynb"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"filenamePattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*.ipynb"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
 <p><br /></p>
 
 <h2 id="3-자주-사용하는-library">3. 자주 사용하는 Library</h2>

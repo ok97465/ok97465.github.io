@@ -43,6 +43,101 @@ PYTHONPATH=/home/ok97465/codepy/scientific
 MPLCURSORS={"multiple": 1}
 ```
 
+Setting.json 설정
+
+```json
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "terminal.integrated.inheritEnv": false,
+    "editor.fontFamily": "D2Coding Ligature",
+    "editor.fontLigatures": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.snippetSuggestions": "top",
+    "editor.minimap.enabled": false,
+    "editor.lineNumbers": "relative",
+    "editor.rulers": [
+        79
+    ],
+    "python.showStartPage": false,
+    "python.pythonPath": "/home/ok97465/anaconda3/bin/python",
+    "python.languageServer": "Pylance",
+    "python.linting.enabled": true,
+    "python.linting.lintOnSave": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--disable=None",
+        "--const-rgx=(([a-z_][a-z0-9_]{2,30})|([A-Z_][A-Z0-9_]{2,30})|(__*.__))"],
+    "python.linting.pydocstyleEnabled": true,
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.pycodestyleArgs": ["--ignore=W503"],
+    "python.formatting.autopep8Args": [
+        "--ignore",
+        "E402"
+    ],
+    "jupyter.sendSelectionToInteractiveWindow": true,
+    "jupyter.alwaysTrustNotebooks": true,
+    "vim.easymotion": true,
+    "vim.smartRelativeLine": true,
+    "vim.highlightedyank.enable": true,
+    "vim.highlightedyank.duration": 400,
+    "vim.leader": "<space>",
+    "markdown-preview-enhanced.previewTheme": "atom-light.css",
+    "markdown-preview-enhanced.codeBlockTheme": "atom-dark.css",
+    "doxdocgen.generic.briefTemplate": "\\brief {text} \n * \\details \\verbatim \\endverbatim",
+    "doxdocgen.generic.paramTemplate": "\\param {param} ",
+    "doxdocgen.generic.returnTemplate": "\\return {type} ",
+    "doxdocgen.generic.authorEmail": "ok97465@gmail.com",
+    "doxdocgen.generic.authorName": "ok97465",
+    "doxdocgen.generic.authorTag": "\\author {author}",
+    "doxdocgen.cpp.tparamTemplate": "\\tparam {param} ",
+    "doxdocgen.generic.dateTemplate": "\\date {date}",
+    "doxdocgen.file.fileTemplate": "\\file {name}",
+    "doxdocgen.file.versionTag": "",
+    "doxdocgen.file.copyrightTag": "",
+    "doxdocgen.generic.order": [
+        "brief",
+        "tparam",
+        "param",
+        "return"
+    ],
+    "doxdocgen.file.fileOrder": [
+        "file",
+        "author",
+        "date",
+        "brief"
+    ],
+    "AREPL.customCSS": "",
+    "AREPL.defaultFilterTypes": [
+        "<class 'module'>",
+        "<class 'function'>",
+        "<class 'builtin_function_or_method'>",
+        "<class 'numpy.ufunc'>"
+    ],
+    "AREPL.defaultFilterVars": [
+        "colormap",
+        "jtstyle",
+        "newaxis",
+        "pi",
+        "fig",
+        "ax1"
+    ],
+    "gitlens.views.repositories.files.layout": "list",
+    "explorer.confirmDelete": false,
+    "keyboard.dispatch": "keyCode",
+    "search.smartCase": true,
+    "window.zoomLevel": 0,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ]
+}
+```
+
 <br>
 
 ## 3. 자주 사용하는 Library
