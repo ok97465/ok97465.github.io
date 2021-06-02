@@ -69,6 +69,7 @@ import_heading_thirdparty = Third party imports
 | python-pptx        | conda-forge | Python에서 pptx 작성                                            |
 | python-docx        | conda-forge | Python에서 docx 작성                                            |
 | jupyterlab-git     | conda-forge | Jupyterlab에서 git 사용                                        |
+| jupyterlab-variableinspector | conda-forge | Jupyterlab variableinspector                                        |
 | jupyterlab_vim     | PyPi        | jupyterlab vim extension                                       |
 | jupyterlab-kite    | PyPi        | jupyterlab kite                                                |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
