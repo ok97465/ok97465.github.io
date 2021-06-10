@@ -44,14 +44,14 @@ import_heading_thirdparty = Third party imports
 
 | 이름                | 저장소       | 설명                                                           |
 |--------------------|-------------|---------------------------------------------------------------|
+| opencv             | anaconda    | 영상처리 Library                                                |
+| mayavi             | anaconda    | surf, mesh등 3d Plot 가속화                                     |
+| pyqtgraph          | anaconda    | QT를 이용한 빠른 Plot                                            |
+| rasterio           | anaconda    | GeoTiff library                                               |
 | basemap            | anaconda    | Matplotlib 지도 투영                                            |
 | basemap-data-hires | anaconda    | Matplotlib 지도 투영(with coastlines and political boundaries)  |
-| pyqtgraph          | anaconda    | QT를 이용한 빠른 Plot                                            |
-| opencv             | anaconda    | 영상처리 Library                                                |
 | dill               | anaconda    | Python 변수 파일 입출력                                          |
-| mayavi             | anaconda    | surf, mesh등 3d Plot 가속화                                     |
 | pyserial           | anaconda    | Serial library                                               |
-| rasterio           | anaconda    | GeoTiff library                                               |
 | pymap3d            | conda-forge | 지구 좌표계 변화                                                 |
 | vispy              | conda-forge | GPU 가속을 이용한 빠른 Plot                                       |
 | mplcursors         | conda-forge | Maplotlib에 Data Cursor 추가                                    |
@@ -71,7 +71,6 @@ import_heading_thirdparty = Third party imports
 | jupyterlab-git     | conda-forge | Jupyterlab에서 git 사용                                        |
 | jupyterlab-variableinspector | conda-forge | Jupyterlab variableinspector                                        |
 | jupyterlab_vim     | PyPi        | jupyterlab vim extension                                       |
-| jupyterlab-kite    | PyPi        | jupyterlab kite                                                |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
 

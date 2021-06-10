@@ -147,9 +147,9 @@
 
 <p>타원을 적분하기 위한 많은 방법들이 존재한다[2]. 여기서는 incomplete elliptic integral of the second kind[3]을 이용한다.</p>
 
-\[E\left( \phi ,k \right) \equiv \int _{ 0 }^{ \phi }{ \sqrt { 1-{ k }^{ 2 }\sin ^{ 2 }{ (\theta)  }  }  } d\theta\]
+<script type="math/tex; mode=display">E\left( \phi ,k \right) \equiv \int _{ 0 }^{ \phi }{ \sqrt { 1-{ k }^{ 2 }\sin ^{ 2 }{ (\theta)  }  }  } d\theta</script>
 
-\[k=\sqrt{1 - b^2 / a^2}, \quad\quad\quad \text{a: 장축, b: 단축}\]
+<script type="math/tex; mode=display">k=\sqrt{1 - b^2 / a^2}, \quad\quad\quad \text{a: 장축, b: 단축}</script>
 
 <figure>
     <img src="/assets/images/Equidistant_on_ecllipse/fig1_dark.png" alt="Figure 1" width="480" />
@@ -160,7 +160,7 @@
 
 <p>위의 함수를 이용하여 타원 둘레($c$)를 구하는 공식은 다음과 같다.</p>
 
-\[c = 4aE\left(\pi/2, k\right)\]
+<script type="math/tex; mode=display">c = 4aE\left(\pi/2, k\right)</script>
 
 <p>즉 incomplete elliptic integral of the second kind 함수를 이용하면 장축 a 단축 b인 타원에서 $\phi$ 각도만큼 이동하였을 경우의 호의 길이를 계산 할 수 있다.</p>
 
@@ -202,7 +202,7 @@
         <span class="n">arcs</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">perimeter</span> <span class="o">/</span> <span class="n">num</span><span class="p">)</span>
 
         <span class="n">res</span> <span class="o">=</span> <span class="n">find_root</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">ellipeinc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-</span> <span class="n">arcs</span><span class="p">),</span> <span class="n">angles</span><span class="p">)</span>
-        <span class="n">angles</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">x</span>
+        <span class="n">angles</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>
     <span class="k">return</span> <span class="n">angles</span>
 </code></pre></div></div>
 
@@ -240,7 +240,7 @@
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2019/12/191204_Equidistant_points_on_ellipse"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/2019/12/191204_Equidistant_points_on_ellipse"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -252,7 +252,7 @@
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2019/12/191204_Equidistant_points_on_ellipse&text=타원을 등간격으로 N 등분하기" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/2019/12/191204_Equidistant_points_on_ellipse&text=타원을 등간격으로 N 등분하기" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -263,7 +263,7 @@
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/2019/12/191204_Equidistant_points_on_ellipse" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=https://ok97465.github.io/2019/12/191204_Equidistant_points_on_ellipse" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -278,7 +278,7 @@
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=타원을 등간격으로 N 등분하기&body=타원의 호의 길이가 등간격이 되도록 N 등분한다. http://localhost:4000/2019/12/191204_Equidistant_points_on_ellipse" target="_blank" title="Email">
+      <a href="mailto:?&subject=타원을 등간격으로 N 등분하기&body=타원의 호의 길이가 등간격이 되도록 N 등분한다. https://ok97465.github.io/2019/12/191204_Equidistant_points_on_ellipse" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>

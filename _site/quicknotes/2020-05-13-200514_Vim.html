@@ -149,9 +149,10 @@
 <h3 id="22-neovim-initvim-설정">2.2. Neovim init.vim 설정</h3>
 
 <p>Neovim의 설정 파일은 ~/.config/nvim/init.vim에 위치한다.<br />
-init.vim에서 vim-plugin을 사용할 것이므로 vim-plugin을 설치한다.</p>
+init.vim에서 vim-plug을 사용할 것이므로 vim-plug을 설치한다.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh <span class="nt">-c</span> <span class="s1">'curl -fLo ~/.config/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh <span class="nt">-c</span> <span class="s1">'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'</span>
 </code></pre></div></div>
 
 <p>그리고 deoplete 사용을 위해 pynvim을 설치한다.</p>
@@ -166,6 +167,8 @@ init.vim에서 vim-plugin을 사용할 것이므로 vim-plugin을 설치한다.<
 <p><br /></p>
 
 <h4 id="221-coc-plugin-설치">2.2.1. COC plugin 설치</h4>
+
+<p>Coc 사용을 위해서 nodejs와 npm가 필요하므로 linux에 nodejs와 npm을 설치한 후 vim에서 다음 명령을 실행한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:CocInstall coc-json
 :CocInstall coc-python
@@ -395,7 +398,7 @@ map &lt;leader&gt;e :NERDTree&lt;CR&gt;
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/quicknotes/2020-05-13-200514_Vim"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/quicknotes/2020-05-13-200514_Vim"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -407,7 +410,7 @@ map &lt;leader&gt;e :NERDTree&lt;CR&gt;
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/quicknotes/2020-05-13-200514_Vim&text=Vim" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/quicknotes/2020-05-13-200514_Vim&text=Vim" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -418,7 +421,7 @@ map &lt;leader&gt;e :NERDTree&lt;CR&gt;
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/quicknotes/2020-05-13-200514_Vim" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=https://ok97465.github.io/quicknotes/2020-05-13-200514_Vim" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -433,7 +436,7 @@ map &lt;leader&gt;e :NERDTree&lt;CR&gt;
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Vim&body=Vim 사용을 위한 자료 정리 http://localhost:4000/quicknotes/2020-05-13-200514_Vim" target="_blank" title="Email">
+      <a href="mailto:?&subject=Vim&body=Vim 사용을 위한 자료 정리 https://ok97465.github.io/quicknotes/2020-05-13-200514_Vim" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>

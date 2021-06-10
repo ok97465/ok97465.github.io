@@ -158,7 +158,7 @@ $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.</
 <h2 id="2-수치해석">2. 수치해석</h2>
 <p>거리를 구하는 적분식 근을 scipy의 nquad를 이용하여 구한다.</p>
 
-\[\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { \left( { x }_{ 1 }-{ x }_{ 2 } \right) +\left( { y }_{ 1 }-y_{ 2 } \right)  } d{ x }_{ 1 } } d{ x }_{ 2 } } dy_{ 1 } } d{ y }_{ 2 } }\]
+<script type="math/tex; mode=display">\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { \left( { x }_{ 1 }-{ x }_{ 2 } \right) +\left( { y }_{ 1 }-y_{ 2 } \right)  } d{ x }_{ 1 } } d{ x }_{ 2 } } dy_{ 1 } } d{ y }_{ 2 } }</script>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">nquad</span>
@@ -176,12 +176,13 @@ $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.</
 <p>위의 수식에서 $|x_1-x_2|=u,\text{    }|y_1-y_2|=v$로 치환한다.  <br />
 $|a-b|=c$이고 a, b가 uniform random variable이면 c의 PDF는 2(1-c)임을 이용하여 적분식을 정리하면 아래와 같다. [아래 절 참조]</p>
 
-\[4\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { { u }^{ 2 }+{ v }^{ 2 } } \left( 1-u \right) \left( 1-v \right) du } dv }\]
+<script type="math/tex; mode=display">4\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { { u }^{ 2 }+{ v }^{ 2 } } \left( 1-u \right) \left( 1-v \right) du } dv }</script>
 
 <p><br /><br />
 위의 수식을 적분하기 위해 변수를 Polar Form으로 변환한다. 변환 시 적분 구간에 유의 해야한다.</p>
 
-\[\begin{matrix} u=r\cos{\theta} &amp; 0\le{\theta}\le\pi/4 \\ v=r\sin{\theta} &amp; 0\le{r}\le{1/\cos{\theta}} \end{matrix}\]
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{matrix} u=r\cos{\theta} & 0\le{\theta}\le\pi/4 \\ v=r\sin{\theta} & 0\le{r}\le{1/\cos{\theta}} \end{matrix} %]]></script>
 
 <p><br /><br />
 정사각형 내의 점들의 길이를 구하는 것이므로 r은 $1/\cos{\theta}$를 넘을 수 없다.</p>
@@ -193,17 +194,17 @@ $|a-b|=c$이고 a, b가 uniform random variable이면 c의 PDF는 2(1-c)임을 �
 <p><br /><br />
 변수를 치환하면 아래와 같고 적분 구간을 정사각형의 절반만 정의하였으므로 2가 곱해진다.</p>
 
-\[4\int _{ 0 }^{ \pi /4 }{ 2\int _{ 0 }^{ 1/\cos { \theta  }  }{ \sqrt { r^{ { 2 } }{ \cos   }^{ { 2 } }\theta +r^{ { 2 } }{ \sin   }^{ { 2 } }\theta  } (1-r{ \cos   }\theta )(1-r{ \sin   }\theta )rdr } d\theta  }\]
+<script type="math/tex; mode=display">4\int _{ 0 }^{ \pi /4 }{ 2\int _{ 0 }^{ 1/\cos { \theta  }  }{ \sqrt { r^{ { 2 } }{ \cos   }^{ { 2 } }\theta +r^{ { 2 } }{ \sin   }^{ { 2 } }\theta  } (1-r{ \cos   }\theta )(1-r{ \sin   }\theta )rdr } d\theta  }</script>
 
-\[=8\int _{ 0 }^{ \pi /4 }{ \int _{ 0 }^{ 1/\cos { \theta  }  }{ r^{ { 2 } }-r^{ { 3 } }{ \cos   }\theta -r^{ { 3 } }{ \sin   }\theta +r^{ { 4 } }{ \cos }\theta { \sin }\theta dr} d\theta  }\]
+<script type="math/tex; mode=display">=8\int _{ 0 }^{ \pi /4 }{ \int _{ 0 }^{ 1/\cos { \theta  }  }{ r^{ { 2 } }-r^{ { 3 } }{ \cos   }\theta -r^{ { 3 } }{ \sin   }\theta +r^{ { 4 } }{ \cos }\theta { \sin }\theta dr} d\theta  }</script>
 
-\[=8\int _{ 0 }^{ \pi /4 }{ \frac { { \sec } ^ { 3 } \theta } { 12 } - \frac { { \sec } ^ { 3 } \theta { \tan } \theta } { 20 }d\theta  }\]
+<script type="math/tex; mode=display">=8\int _{ 0 }^{ \pi /4 }{ \frac { { \sec } ^ { 3 } \theta } { 12 } - \frac { { \sec } ^ { 3 } \theta { \tan } \theta } { 20 }d\theta  }</script>
 
-\[=8\cdot \left( \frac { { \sec   }\theta { \tan   }\theta +{ \ln { \left| { \sec   }\theta +{ \tan   }\theta  \right|}}}{ 24 } -\frac { { \sec   }^{ { 3 } }\theta  }{ 60 }  \right) _{ { 0 } }^{ { \pi /4 } }\]
+<script type="math/tex; mode=display">=8\cdot \left( \frac { { \sec   }\theta { \tan   }\theta +{ \ln { \left| { \sec   }\theta +{ \tan   }\theta  \right|}}}{ 24 } -\frac { { \sec   }^{ { 3 } }\theta  }{ 60 }  \right) _{ { 0 } }^{ { \pi /4 } }</script>
 
-\[=\frac { 2+\sqrt { 2 } +5{ \ln { (\sqrt { 2 } +1) }  } }{ 15 }\]
+<script type="math/tex; mode=display">=\frac { 2+\sqrt { 2 } +5{ \ln { (\sqrt { 2 } +1) }  } }{ 15 }</script>
 
-\[=0.5214054331647207\]
+<script type="math/tex; mode=display">=0.5214054331647207</script>
 
 <p><br /></p>
 
@@ -237,7 +238,7 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -249,7 +250,7 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate&text=정사각형 내 임의의 두점의 거리" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate&text=정사각형 내 임의의 두점의 거리" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -260,7 +261,7 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=https://ok97465.github.io/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -275,7 +276,7 @@ a-b의 pdf는 c=-b이고 a+c의 pdf와 동일 하므로 PDF(a) * PDF(-b)로 계�
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=정사각형 내 임의의 두점의 거리&body=정사각형 내 임의의 두 점을 선정 했을 때의 두점 사이의 거리의 기대 값을 수식과 Simulation으로 계산한다. http://localhost:4000/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate" target="_blank" title="Email">
+      <a href="mailto:?&subject=정사각형 내 임의의 두점의 거리&body=정사각형 내 임의의 두 점을 선정 했을 때의 두점 사이의 거리의 기대 값을 수식과 Simulation으로 계산한다. https://ok97465.github.io/2018/09/180911_DistanceBetweenTwoPointsOfQuadrate" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>

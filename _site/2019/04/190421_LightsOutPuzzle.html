@@ -312,7 +312,7 @@
 <p><br />  <br />
 초기 상태를 $s$로 놓고 $s$를 0으로 만드는 버튼은 다음과 같이 표현 할 수 있다.</p>
 
-\[s + v_i + v_j + v_k \cdots = 0,\quad \quad \quad i\neq j\neq k\quad(v_1 + v_1 = 0\text{이므로})\]
+<script type="math/tex; mode=display">s + v_i + v_j + v_k \cdots = 0,\quad \quad \quad i\neq j\neq k\quad(v_1 + v_1 = 0\text{이므로})</script>
 
 <p>즉 Lights Out 문제는 GF(2)에서 $s$가 $v_i$의 벡터의 합으로 표현 할수 있는가의 문제가 된다.</p>
 
@@ -322,11 +322,12 @@
 
 <p>상태 천이 벡터($v_i$)로 이루어진 상태 천이 행렬($M$)을 정의한다.</p>
 
-\[M=\left[ \begin{matrix} { v }_{ 1 } &amp; { v }_{ 2 } &amp; \cdots  &amp; { v }_{ n-1 } &amp; { v }_{ n } \end{matrix} \right]\]
+<script type="math/tex; mode=display">% <![CDATA[
+M=\left[ \begin{matrix} { v }_{ 1 } & { v }_{ 2 } & \cdots  & { v }_{ n-1 } & { v }_{ n } \end{matrix} \right] %]]></script>
 
 <p>Lights Out 문제는 GF2에서 아래의 수식의 $x$를 찾는 방정식 문제로 정리된다.</p>
 
-\[Mx=s\]
+<script type="math/tex; mode=display">Mx=s</script>
 
 <p>벡터들이 실수에서 정의 되어 있다면 이미 구현된 라이브러리들을 이용하여 ${M}^{-1}$를 쉽게 구할 수 있지만 GF2의 경우 ${M}^{-1}$를 직접 계산하여야 한다. GF2의 ${M}^{-1}$는 Gauss Elimination을 이용하여 구할 수 있다.</p>
 
@@ -347,53 +348,53 @@
     <span class="s">"""Galois field GF(2)."""</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
 
     <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
         <span class="s">"""."""</span>
-        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">+</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">).</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
         <span class="s">"""."""</span>
-        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">).</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
         <span class="s">"""."""</span>
-        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">).</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
         <span class="s">"""."""</span>
-        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">).</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GF2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">/</span> <span class="n">GF2</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">"""."""</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
         <span class="s">"""."""</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">GF2</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">value</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">rhs</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">rhs</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">rhs</span>
 
     <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
         <span class="s">"""."""</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">GF2</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">value</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="n">rhs</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="n">rhs</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;=</span> <span class="n">rhs</span>
 
     <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">):</span>
         <span class="s">"""."""</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">GF2</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">rhs</span><span class="p">.</span><span class="n">value</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">rhs</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">rhs</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">&lt;</span> <span class="n">rhs</span>
 
     <span class="k">def</span> <span class="nf">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">"""."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
 
     <span class="k">def</span> <span class="nf">__long__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">"""."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">value</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
     
 <span class="n">GF2array</span> <span class="o">=</span> <span class="n">vectorize</span><span class="p">(</span><span class="n">GF2</span><span class="p">)</span>
 </code></pre></div></div>
@@ -407,11 +408,11 @@
     <span class="s">"""Plot State-Transition Matrix"""</span>
     <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arange</span>
     <span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span><span class="s">'k'</span><span class="p">,</span> <span class="s">'g'</span><span class="p">])</span>
-    <span class="n">ax</span><span class="p">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">flipud</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-    <span class="n">ax</span><span class="p">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-    <span class="n">ax</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'grey'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">grid_width</span><span class="p">)</span>
-    <span class="n">ax</span><span class="p">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelleft</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">labelbottom</span><span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">flipud</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">arange</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'grey'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">grid_width</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">labelleft</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span><span class="n">labelbottom</span><span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">zeros</span>
@@ -435,7 +436,7 @@
             <span class="n">ax</span> <span class="o">=</span> <span class="n">subplot</span><span class="p">(</span><span class="n">grid_spec</span><span class="p">[</span><span class="n">idx_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">idx_col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
             <span class="n">draw_state_trasition</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span>
 
-            <span class="n">matrix</span><span class="p">[(</span><span class="n">idx_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="p">(</span><span class="n">idx_col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">vector</span><span class="p">.</span><span class="n">ravel</span><span class="p">()</span>
+            <span class="n">matrix</span><span class="p">[(</span><span class="n">idx_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="p">(</span><span class="n">idx_col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">vector</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">matrix</span>
 
@@ -444,13 +445,13 @@
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
 
-<span class="n">fig</span><span class="p">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">"   Trasition Vectors                                           Trasition Matrix"</span><span class="p">,</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">"   Trasition Vectors                                           Trasition Matrix"</span><span class="p">,</span>
              <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">gs1</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="n">n_lightsout</span><span class="p">,</span> <span class="n">n_lightsout</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
-<span class="n">gs1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.48</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">gs1</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.48</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
 
 <span class="n">gs2</span> <span class="o">=</span> <span class="n">GridSpec</span><span class="p">(</span><span class="n">n_lightsout</span><span class="p">,</span> <span class="n">n_lightsout</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
-<span class="n">gs2</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.98</span><span class="p">)</span>
+<span class="n">gs2</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.98</span><span class="p">)</span>
 
 <span class="n">state_mat</span> <span class="o">=</span> <span class="n">state_transition_matrix_lightsout</span><span class="p">(</span><span class="n">n_lightsout</span><span class="p">,</span> <span class="n">gs1</span><span class="p">)</span>
 
@@ -484,7 +485,7 @@
         null space matrix.
 
     """</span>
-    <span class="n">n_row</span><span class="p">,</span> <span class="n">n_col</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">shape</span>
+    <span class="n">n_row</span><span class="p">,</span> <span class="n">n_col</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span>
 
     <span class="k">if</span> <span class="n">n_row</span> <span class="o">!=</span> <span class="n">n_col</span><span class="p">:</span>
         <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"n_row and n_col are diffrents."</span><span class="p">)</span>
@@ -505,7 +506,7 @@
             <span class="k">continue</span>
 
         <span class="k">if</span> <span class="n">idx_pivot</span> <span class="o">!=</span> <span class="n">idx_row_src</span><span class="p">:</span>
-            <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row_src</span><span class="p">,</span> <span class="p">:].</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row_src</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="n">data</span><span class="p">[</span><span class="n">idx_row_src</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_pivot</span><span class="p">,</span> <span class="p">:]</span>
             <span class="n">data</span><span class="p">[</span><span class="n">idx_pivot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">tmp</span>
 
@@ -513,7 +514,7 @@
             <span class="n">data</span><span class="p">[</span><span class="n">idx_row_dst</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">idx_row_src</span><span class="p">,</span> <span class="p">:]</span>
                                      <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row_dst</span><span class="p">,</span> <span class="n">idx_row_src</span><span class="p">])</span>
 
-    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="n">n_col</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="n">n_col</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">n_null_dim</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="c1"># inverse matrix
@@ -558,7 +559,7 @@
     <span class="n">is_solvable</span> <span class="o">=</span> <span class="bp">True</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mat_null</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">((</span><span class="n">int32</span><span class="p">(</span><span class="n">lights_mat</span><span class="p">.</span><span class="n">ravel</span><span class="p">())</span> <span class="o">@</span> <span class="n">int32</span><span class="p">(</span><span class="n">mat_null</span><span class="p">))</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">((</span><span class="n">int32</span><span class="p">(</span><span class="n">lights_mat</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span> <span class="o">@</span> <span class="n">int32</span><span class="p">(</span><span class="n">mat_null</span><span class="p">))</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ret</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">is_solvable</span> <span class="o">=</span> <span class="bp">False</span>
 
@@ -579,9 +580,9 @@
 <h4 id="352-null-space가-잘-계산되어-있는지-확인">3.5.2. Null Space가 잘 계산되어 있는지 확인</h4>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">state_mat_null</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">f"No. vectors of null space is </span><span class="si">{</span><span class="n">state_mat_null</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">."</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">"No. vectors of null space is {state_mat_null.shape[1]}."</span><span class="p">)</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="n">int32</span><span class="p">(</span><span class="n">state_mat</span><span class="p">)</span> <span class="o">@</span> <span class="n">int32</span><span class="p">(</span><span class="n">state_mat_null</span><span class="p">))</span> <span class="o">%</span> <span class="mi">2</span>
-    <span class="n">has_value</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">any</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+    <span class="n">has_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">any</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">has_value</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="s">"====&gt; Null Space is wrong. &lt;===="</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -604,10 +605,10 @@ Null Space is correct.
                     <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 
 <span class="n">is_solvable</span> <span class="o">=</span> <span class="n">check_solvable</span><span class="p">(</span><span class="n">lights_mat</span><span class="p">,</span> <span class="n">state_mat_null</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">f'Solvable </span><span class="si">{</span><span class="n">is_solvable</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'Solvable {is_solvable}'</span><span class="p">)</span>
 
-<span class="n">solution</span> <span class="o">=</span> <span class="p">(</span><span class="n">int32</span><span class="p">(</span><span class="n">state_mat_inv</span><span class="p">)</span> <span class="o">@</span> <span class="n">int32</span><span class="p">(</span><span class="n">lights_mat</span><span class="p">.</span><span class="n">ravel</span><span class="p">()))</span> <span class="o">%</span> <span class="mi">2</span>
-<span class="n">solution</span> <span class="o">=</span> <span class="n">solution</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_lightsout</span><span class="p">,</span> <span class="n">n_lightsout</span><span class="p">)</span>
+<span class="n">solution</span> <span class="o">=</span> <span class="p">(</span><span class="n">int32</span><span class="p">(</span><span class="n">state_mat_inv</span><span class="p">)</span> <span class="o">@</span> <span class="n">int32</span><span class="p">(</span><span class="n">lights_mat</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span> <span class="o">%</span> <span class="mi">2</span>
+<span class="n">solution</span> <span class="o">=</span> <span class="n">solution</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_lightsout</span><span class="p">,</span> <span class="n">n_lightsout</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Solvable True
@@ -639,7 +640,7 @@ Null Space is correct.
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2019/04/190421_LightsOutPuzzle"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/2019/04/190421_LightsOutPuzzle"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -651,7 +652,7 @@ Null Space is correct.
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2019/04/190421_LightsOutPuzzle&text=Lights Out 퍼즐 풀기" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/2019/04/190421_LightsOutPuzzle&text=Lights Out 퍼즐 풀기" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -662,7 +663,7 @@ Null Space is correct.
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/2019/04/190421_LightsOutPuzzle" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=https://ok97465.github.io/2019/04/190421_LightsOutPuzzle" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -677,7 +678,7 @@ Null Space is correct.
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Lights Out 퍼즐 풀기&body=주어진 초기 상태에서, 모든 버튼의 불을 끄는 버튼 순서를 찾아본다. http://localhost:4000/2019/04/190421_LightsOutPuzzle" target="_blank" title="Email">
+      <a href="mailto:?&subject=Lights Out 퍼즐 풀기&body=주어진 초기 상태에서, 모든 버튼의 불을 끄는 버튼 순서를 찾아본다. https://ok97465.github.io/2019/04/190421_LightsOutPuzzle" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>

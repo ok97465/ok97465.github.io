@@ -128,14 +128,14 @@
 <p>숫자를 찾고 싶은 경우 \d를 이용하고 수량을 지정하고 싶은 경우 {}에 숫자를 기입한다. <em>{}의 내부 숫자는 띄어쓰기 없이 입력한다.</em></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text</span> <span class="o">=</span> <span class="s">"나의 전화번호는 032-123-3456 혹은 02-1234-9876 혹은 01011112222 이다."</span>
-<span class="n">phone_regex1</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r"0\d{1,2}-\d{3,4}-\d{4}"</span><span class="p">)</span>
-<span class="n">phone_regex2</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r"0\d{9,10}"</span><span class="p">)</span>
+<span class="n">phone_regex1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r"0\d{1,2}-\d{3,4}-\d{4}"</span><span class="p">)</span>
+<span class="n">phone_regex2</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r"0\d{9,10}"</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">re</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">phone_regex1</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">f'str(</span><span class="si">{</span><span class="n">match</span><span class="p">.</span><span class="n">group</span><span class="p">()</span><span class="si">}</span><span class="s">) start(</span><span class="si">{</span><span class="n">match</span><span class="p">.</span><span class="n">start</span><span class="p">()</span><span class="si">}</span><span class="s">) end(</span><span class="si">{</span><span class="n">match</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="si">}</span><span class="s">)'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">phone_regex1</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'str({match.group()}) start({match.start()}) end({match.end()})'</span><span class="p">)</span>
     
-<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">re</span><span class="p">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">phone_regex2</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">f'str(</span><span class="si">{</span><span class="n">match</span><span class="p">.</span><span class="n">group</span><span class="p">()</span><span class="si">}</span><span class="s">) start(</span><span class="si">{</span><span class="n">match</span><span class="p">.</span><span class="n">start</span><span class="p">()</span><span class="si">}</span><span class="s">) end(</span><span class="si">{</span><span class="n">match</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="si">}</span><span class="s">)'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">phone_regex2</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">'str({match.group()}) start({match.start()}) end({match.end()})'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>str(032-123-3456) start(9) end(21)
@@ -153,8 +153,8 @@ str(01011112222) start(41) end(52)
 I have a 64,000,000 years old egg.
 I have 2 babies.
 """</span>
-<span class="n">number_regex</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r"(\d{1,3}(,\d{3})*)"</span><span class="p">)</span>
-<span class="n">result_list</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">number_regex</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="n">number_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r"(\d{1,3}(,\d{3})*)"</span><span class="p">)</span>
+<span class="n">result_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">number_regex</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">result_list</span><span class="p">)</span>
 </code></pre></div></div>
@@ -170,8 +170,8 @@ I have 2 babies.
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">text</span> <span class="o">=</span> <span class="s">"Good &lt;TO SERVE HUMANS&gt; &lt;TO SERVE DOG&gt;"</span>
 
-<span class="n">bracket_regex</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r"&lt;.*?&gt;"</span><span class="p">)</span>
-<span class="n">result_list</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="n">bracket_regex</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="n">bracket_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r"&lt;.*?&gt;"</span><span class="p">)</span>
+<span class="n">result_list</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">bracket_regex</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">result_list</span><span class="p">)</span>
 </code></pre></div></div>
@@ -250,7 +250,7 @@ $ : End of string, or end of line in multi-line pattern  <br />
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/quicknotes/2020-03-12-200312_RegexSnippets"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/quicknotes/2020-03-12-200312_RegexSnippets"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -262,7 +262,7 @@ $ : End of string, or end of line in multi-line pattern  <br />
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/quicknotes/2020-03-12-200312_RegexSnippets&text=Regex 설명" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/quicknotes/2020-03-12-200312_RegexSnippets&text=Regex 설명" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -273,7 +273,7 @@ $ : End of string, or end of line in multi-line pattern  <br />
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/quicknotes/2020-03-12-200312_RegexSnippets" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=https://ok97465.github.io/quicknotes/2020-03-12-200312_RegexSnippets" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -288,7 +288,7 @@ $ : End of string, or end of line in multi-line pattern  <br />
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Regex 설명&body=Regex Expression snippets. http://localhost:4000/quicknotes/2020-03-12-200312_RegexSnippets" target="_blank" title="Email">
+      <a href="mailto:?&subject=Regex 설명&body=Regex Expression snippets. https://ok97465.github.io/quicknotes/2020-03-12-200312_RegexSnippets" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>

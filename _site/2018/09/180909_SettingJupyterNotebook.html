@@ -213,16 +213,16 @@
 
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
     <span class="n">port</span> <span class="o">=</span> <span class="mi">9876</span>
-    <span class="n">jupyter_server_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">notebookapp</span><span class="p">.</span><span class="n">list_running_servers</span><span class="p">())</span>
+    <span class="n">jupyter_server_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">notebookapp</span><span class="o">.</span><span class="n">list_running_servers</span><span class="p">())</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">jupyter_server_list</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">server</span><span class="p">[</span><span class="s">'port'</span><span class="p">]</span> <span class="o">==</span> <span class="n">port</span><span class="p">:</span>
-                <span class="n">webbrowser</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'url'</span><span class="p">]</span><span class="o">+</span><span class="s">'tree'</span><span class="p">)</span>
-                <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">webbrowser</span><span class="o">.</span><span class="nb">open</span><span class="p">(</span><span class="n">jupyter_server_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'url'</span><span class="p">]</span><span class="o">+</span><span class="s">'tree'</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="n">os</span><span class="p">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">'/home/ok97465/python/BlogSrcByJupyter'</span><span class="p">)</span>  <span class="c1"># notebook을 저장할 폴더
-</span>    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">))</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">'/home/ok97465/python/BlogSrcByJupyter'</span><span class="p">)</span>  <span class="c1"># notebook을 저장할 폴더
+</span>    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">))</span>
 </code></pre></div></div>
 
 <ul>
@@ -253,7 +253,7 @@ oShell.Run strArgs, 0, false
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/09/180909_SettingJupyterNotebook"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/2018/09/180909_SettingJupyterNotebook"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -265,7 +265,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/09/180909_SettingJupyterNotebook&text=Jupyter NoteBook에서 신호처리를 위한 설정" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/2018/09/180909_SettingJupyterNotebook&text=Jupyter NoteBook에서 신호처리를 위한 설정" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -276,7 +276,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/09/180909_SettingJupyterNotebook" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=https://ok97465.github.io/2018/09/180909_SettingJupyterNotebook" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -291,7 +291,7 @@ oShell.Run strArgs, 0, false
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Jupyter NoteBook에서 신호처리를 위한 설정&body=Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다. http://localhost:4000/2018/09/180909_SettingJupyterNotebook" target="_blank" title="Email">
+      <a href="mailto:?&subject=Jupyter NoteBook에서 신호처리를 위한 설정&body=Jupyter NoteBook에서 신호처리를 편리하게 하기 위해 설정 값을 조정한다. https://ok97465.github.io/2018/09/180909_SettingJupyterNotebook" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>
