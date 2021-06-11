@@ -243,6 +243,50 @@ git clone https://github.com/softmoth/zsh-vim-mode.git <span class="nv">$ZSH_CUS
 <span class="k">fi</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
+<h2 id="4-폴더-변경-시-venv-자동-activate">4. 폴더 변경 시 venv 자동 activate</h2>
+
+<p>cd 명령 시 폴더 내에 venv 폴더가 있을 경우 Conda env와 다른 venv를 deactivate하고 현재 폴더의 venv를 활성화 한다.(<a href="https://bhupesh-v.github.io/the-unholy-way-of-using-virtual-environments">ref</a>)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># &gt;&gt;&gt; CD for virtual environment &gt;&gt;&gt;</span>
+vcd<span class="o">()</span> <span class="o">{</span>
+    <span class="nv">folder_input</span><span class="o">=</span><span class="nv">$1</span>
+
+    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$folder_input</span> <span class="o">!=</span> <span class="s2">""</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+        case</span> <span class="nv">$folder_input</span> <span class="k">in</span>
+            <span class="s2">".."</span> <span class="p">)</span> <span class="nb">cd</span> .. <span class="o">&amp;&amp;</span> <span class="k">return</span><span class="p">;;</span>
+            <span class="s2">"-"</span> <span class="p">)</span>  <span class="nb">cd</span> -  <span class="o">&amp;&amp;</span> <span class="k">return</span><span class="p">;;</span>
+            <span class="s2">"/"</span> <span class="p">)</span>  <span class="nb">cd</span> /  <span class="o">&amp;&amp;</span> <span class="k">return</span><span class="p">;;</span>
+            <span class="k">*</span> <span class="p">)</span>    <span class="nb">cd</span> <span class="s2">"</span><span class="nv">$folder_input</span><span class="s2">"</span> <span class="o">||</span> <span class="k">return</span><span class="p">;;</span>
+        <span class="k">esac</span>
+
+        <span class="c"># activate venv</span>
+        <span class="nv">path_activate</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/venv/bin/activate"</span>
+        <span class="k">if</span> <span class="o">[[</span> <span class="nt">-f</span> <span class="nv">$path_activate</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+            <span class="c"># deactivate any existing virtual env</span>
+            <span class="o">[[</span> <span class="nv">$VIRTUAL_ENV</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> deactivate
+
+            <span class="c"># deactivate any existing conda env</span>
+            <span class="o">[[</span> <span class="nv">$CONDA_PROMPT_MODIFIER</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> conda deactivate
+
+            <span class="nb">source</span> <span class="nv">$path_activate</span><span class="p">;</span>
+        <span class="k">fi</span>
+        <span class="c"># activate venv end</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="nb">alias cd</span><span class="o">=</span>vcd
+<span class="c"># &lt;&lt;&lt; CD for virtual environment &lt;&lt;&lt;</span>
+
+<span class="c"># &gt;&gt;&gt; command for activate conda &gt;&gt;&gt;</span>
+aconda<span class="o">(){</span>
+    <span class="o">[[</span> <span class="nv">$VIRTUAL_ENV</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> deactivate
+    <span class="nb">source</span> ~/anaconda3/bin/activate
+<span class="o">}</span>
+<span class="c"># &lt;&lt;&lt; command for activate conda &lt;&lt;&lt;</span>
+</code></pre></div></div>
+
                     
 
 <div class="share-bar">
