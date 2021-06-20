@@ -38,15 +38,35 @@ Calibre는 최근 읽은 파일에 대한 정렬을 지원 하지 않는다. 하
 4. 인수의 갯수: -1
 5. Programe code
 
-
-```sh
+```python
 def evaluate(self, formatter, kwargs, mi, locals):
     from os import stat
-    from time import ctime
-    book_paths = [f['path'] for f in mi.get('format_metadata', {}).values()]
-    atimes = map(lambda f: stat(f).st_atime, book_paths)
-    most_recent = max(atimes)
-    return ctime(most_recent)
+    import os.path as osp
+    from time import localtime, strftime
+
+    times = []
+    path = ''
+    for data in mi.get('format_metadata', {}).values():
+        path = data['path']
+
+        if not osp.isfile(path):
+            continue
+
+        times.append(stat(path).st_mtime)
+        times.append(stat(path).st_atime)
+
+    folder, _ = osp.split(path)
+    if osp.isdir(folder):
+        path_meta = osp.join(folder, 'metadata.opf')
+        if osp.isfile(path_meta):
+            times.append(stat(path_meta).st_mtime)
+            times.append(stat(path_meta).st_atime)
+
+    if len(times) < 1:
+        return ""
+
+    most_recent = max(times)
+    return strftime('%y.%m.%d %H:%M:%S', localtime(most_recent))
 ```
 
 6. 생성 (생성한 이후에는 교체)
@@ -62,7 +82,7 @@ def evaluate(self, formatter, kwargs, mi, locals):
 4. Lookup name: last_accessed
 5. column heading: 최근 읽은 날짜
 6. 템플릿(T): {:'last_accessed()'}
-7. 열 정렬/검색 기준: 날짜
+7. 열 정렬/검색 기준: 텍스트
 
 <br>
 

@@ -146,13 +146,34 @@
   <li>Programe code</li>
 </ol>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def evaluate<span class="o">(</span>self, formatter, kwargs, mi, locals<span class="o">)</span>:
-    from os import <span class="nb">stat
-    </span>from <span class="nb">time </span>import ctime
-    book_paths <span class="o">=</span> <span class="o">[</span>f[<span class="s1">'path'</span><span class="o">]</span> <span class="k">for </span>f <span class="k">in </span>mi.get<span class="o">(</span><span class="s1">'format_metadata'</span>, <span class="o">{})</span>.values<span class="o">()]</span>
-    atimes <span class="o">=</span> map<span class="o">(</span>lambda f: <span class="nb">stat</span><span class="o">(</span>f<span class="o">)</span>.st_atime, book_paths<span class="o">)</span>
-    most_recent <span class="o">=</span> max<span class="o">(</span>atimes<span class="o">)</span>
-    <span class="k">return </span>ctime<span class="o">(</span>most_recent<span class="o">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formatter</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">mi</span><span class="p">,</span> <span class="nb">locals</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">stat</span>
+    <span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="n">osp</span>
+    <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">localtime</span><span class="p">,</span> <span class="n">strftime</span>
+
+    <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">mi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'format_metadata'</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'path'</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">osp</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">)</span>
+        <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">st_atime</span><span class="p">)</span>
+
+    <span class="n">folder</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+        <span class="n">path_meta</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="s">'metadata.opf'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path_meta</span><span class="p">):</span>
+            <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path_meta</span><span class="p">)</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">)</span>
+            <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path_meta</span><span class="p">)</span><span class="o">.</span><span class="n">st_atime</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">""</span>
+
+    <span class="n">most_recent</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">y.</span><span class="si">%</span><span class="s">m.</span><span class="si">%</span><span class="s">d </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S'</span><span class="p">,</span> <span class="n">localtime</span><span class="p">(</span><span class="n">most_recent</span><span class="p">))</span>
 </code></pre></div></div>
 
 <ol>
@@ -171,7 +192,7 @@
   <li>Lookup name: last_accessed</li>
   <li>column heading: 최근 읽은 날짜</li>
   <li>템플릿(T): {:’last_accessed()’}</li>
-  <li>열 정렬/검색 기준: 날짜</li>
+  <li>열 정렬/검색 기준: 텍스트</li>
 </ol>
 
 <p><br /></p>
