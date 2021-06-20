@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Calibre Dark css for viewer"
+title: "Calibre 설정"
 comments: true
 share: true
 date: 2018-11-30 22:33:00
-description: Calibre Dark Css.
+description: Calibre 설정.
 tags: note
 toc: false
 sitemap :
@@ -19,12 +19,54 @@ sitemap :
 Calibre는 자체 입력기를 사용하기 때문에 한글 입력을 위해서는 Linux 입력기를 Calibre 폴더에 복사해야 한다.
 
 ```sh
-cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libqt5im-nimf.so /opt/calibre/plugins/platforminputcontexts
+cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so /opt/calibre/plugins/platforminputcontexts
 ```
 
 <br>
 
-## 2. Dark CSS for viewer
+## 2. "최근 읽은 책" 열 추가 [[ref]](https://gist.github.com/sjrogers/673e22bc93835dc8c9a37ef6794383db)
+
+Calibre는 최근 읽은 파일에 대한 정렬을 지원 하지 않는다. 하지만 Calibre는 책을 읽을 때 마다 metadata.opf를 수정하므로 metadata.opf 수정 일자를 Calibre 열에 추가하면 최근 읽은 책 기준으로 정렬이 가능해 진다.
+
+<br>
+
+### 2.1. Template Function 생성
+
+1. 환경설정 -> 고급 -> 템플릿 함수
+2. Template functions
+3. Function: last_accessed
+4. 인수의 갯수: -1
+5. Programe code
+
+
+```sh
+def evaluate(self, formatter, kwargs, mi, locals):
+    from os import stat
+    from time import ctime
+    book_paths = [f['path'] for f in mi.get('format_metadata', {}).values()]
+    atimes = map(lambda f: stat(f).st_atime, book_paths)
+    most_recent = max(atimes)
+    return ctime(most_recent)
+```
+
+6. 생성 (생성한 이후에는 교체)
+7. 적용
+
+<br>
+
+### 2.2. 사용자 정의 열 추가
+
+1. 환경설정 -> 인터페이스 -> 사용자 정의 열 추가
+2. 사용자 정의 열 추가
+3. 빠른생성: 형식
+4. Lookup name: last_accessed
+5. column heading: 최근 읽은 날짜
+6. 템플릿(T): {:'last_accessed()'}
+7. 열 정렬/검색 기준: 날짜
+
+<br>
+
+## 3. Dark CSS for viewer
 
 ```css
 @import url('https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911');

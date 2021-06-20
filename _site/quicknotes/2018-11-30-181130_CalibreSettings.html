@@ -21,13 +21,13 @@
     </script>
 
     <meta charset="UTF-8">
-    <title>ok97465 | Calibre Dark css for viewer </title>
-    <meta name="description" content="Calibre Dark Css.">
+    <title>ok97465 | Calibre 설정 </title>
+    <meta name="description" content="Calibre 설정.">
     <meta name="theme-color" content="#222222"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Calibre Dark css for viewer">
-    <meta property="og:description" content="Calibre Dark Css.">
+    <meta property="og:title" content="Calibre 설정">
+    <meta property="og:description" content="Calibre 설정.">
     <meta property="og:image" content="http://ok97465.github.io/ok_64x64.png">
     <meta property="og:url" content="http://ok97465.github.io">
     <script src="/assets/js/jquery.min.js"></script>
@@ -105,7 +105,7 @@
             <div class="col-md-8 offset-md-1">
               <div class="article">
                 <div class="card">
-                  <h1><a href="/quicknotes/2018-11-30-181130_CalibreDarkCSS">Calibre Dark css for viewer</a></h1>
+                  <h1><a href="/quicknotes/2018-11-30-181130_CalibreSettings">Calibre 설정</a></h1>
                   <div class="post-meta">
                     <div class="post-time">
                       <i class="fa fa-calendar-alt"></i>
@@ -125,12 +125,58 @@
 
 <p>Calibre는 자체 입력기를 사용하기 때문에 한글 입력을 위해서는 Linux 입력기를 Calibre 폴더에 복사해야 한다.</p>
 
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libqt5im-nimf.so /opt/calibre/plugins/platforminputcontexts
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so /opt/calibre/plugins/platforminputcontexts
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h2 id="2-dark-css-for-viewer">2. Dark CSS for viewer</h2>
+<h2 id="2-최근-읽은-책-열-추가-ref">2. “최근 읽은 책” 열 추가 <a href="https://gist.github.com/sjrogers/673e22bc93835dc8c9a37ef6794383db">[ref]</a></h2>
+
+<p>Calibre는 최근 읽은 파일에 대한 정렬을 지원 하지 않는다. 하지만 Calibre는 책을 읽을 때 마다 metadata.opf를 수정하므로 metadata.opf 수정 일자를 Calibre 열에 추가하면 최근 읽은 책 기준으로 정렬이 가능해 진다.</p>
+
+<p><br /></p>
+
+<h3 id="21-template-function-생성">2.1. Template Function 생성</h3>
+
+<ol>
+  <li>환경설정 -&gt; 고급 -&gt; 템플릿 함수</li>
+  <li>Template functions</li>
+  <li>Function: last_accessed</li>
+  <li>인수의 갯수: -1</li>
+  <li>Programe code</li>
+</ol>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def evaluate<span class="o">(</span>self, formatter, kwargs, mi, locals<span class="o">)</span>:
+    from os import <span class="nb">stat
+    </span>from <span class="nb">time </span>import ctime
+    book_paths <span class="o">=</span> <span class="o">[</span>f[<span class="s1">'path'</span><span class="o">]</span> <span class="k">for </span>f <span class="k">in </span>mi.get<span class="o">(</span><span class="s1">'format_metadata'</span>, <span class="o">{})</span>.values<span class="o">()]</span>
+    atimes <span class="o">=</span> map<span class="o">(</span>lambda f: <span class="nb">stat</span><span class="o">(</span>f<span class="o">)</span>.st_atime, book_paths<span class="o">)</span>
+    most_recent <span class="o">=</span> max<span class="o">(</span>atimes<span class="o">)</span>
+    <span class="k">return </span>ctime<span class="o">(</span>most_recent<span class="o">)</span>
+</code></pre></div></div>
+
+<ol>
+  <li>생성 (생성한 이후에는 교체)</li>
+  <li>적용</li>
+</ol>
+
+<p><br /></p>
+
+<h3 id="22-사용자-정의-열-추가">2.2. 사용자 정의 열 추가</h3>
+
+<ol>
+  <li>환경설정 -&gt; 인터페이스 -&gt; 사용자 정의 열 추가</li>
+  <li>사용자 정의 열 추가</li>
+  <li>빠른생성: 형식</li>
+  <li>Lookup name: last_accessed</li>
+  <li>column heading: 최근 읽은 날짜</li>
+  <li>템플릿(T): {:’last_accessed()’}</li>
+  <li>열 정렬/검색 기준: 날짜</li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="3-dark-css-for-viewer">3. Dark CSS for viewer</h2>
 
 <div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@import</span> <span class="sx">url('https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911')</span><span class="p">;</span>
 <span class="nt">article</span><span class="o">,</span>
@@ -444,7 +490,7 @@
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreDarkCSS"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreSettings"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -456,7 +502,7 @@
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreDarkCSS&text=Calibre Dark css for viewer" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreSettings&text=Calibre 설정" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -467,7 +513,7 @@
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreDarkCSS" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreSettings" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -482,7 +528,7 @@
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Calibre Dark css for viewer&body=Calibre Dark Css. https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreDarkCSS" target="_blank" title="Email">
+      <a href="mailto:?&subject=Calibre 설정&body=Calibre 설정. https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreSettings" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>
@@ -589,7 +635,7 @@
 <script type="text/javascript">
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   var disqus_shortname = 'ok97465s-blog'; // required: replace example with your forum shortname
-  var disqus_identifier = "/quicknotes/2018-11-30-181130_CalibreDarkCSS";
+  var disqus_identifier = "/quicknotes/2018-11-30-181130_CalibreSettings";
 
   /* * * DON'T EDIT BELOW THIS LINE * * */
   (function() {
