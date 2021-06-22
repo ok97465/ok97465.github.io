@@ -166,6 +166,8 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud init
 </code></pre></div></div>
 
+<p>Asia-northeast3 선택 (리전 및 영역에서 확인 필요)</p>
+
 <ul>
   <li>venv 설정</li>
 </ul>
@@ -173,7 +175,7 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>your-project
 python <span class="nt">-m</span> venv venv
 <span class="nb">source </span>venv/bin/activate
-pip <span class="nb">install </span>google-cloud-storage
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
 </code></pre></div></div>
 
 <p><br /></p>
@@ -182,6 +184,9 @@ pip <span class="nb">install </span>google-cloud-storage
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud app deploy
 </code></pre></div></div>
+
+<p>Google App Engine -&gt; 버전 에서 불필요한 버전 삭제  <br />
+Cloud Storage에서 staging과 artifacts를 삭제</p>
 
 <p><br /></p>
 
