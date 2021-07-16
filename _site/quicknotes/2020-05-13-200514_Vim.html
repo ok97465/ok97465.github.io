@@ -148,7 +148,7 @@ init.vim에서 vim-plug을 사용할 것이므로 vim-plug을 설치한다.</p>
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'</span>
 </code></pre></div></div>
 
-<p>그리고 nvim에서 Python plugin을 사용하기 위해 pynvim을 설치한다.</p>
+<p>nvim에서 Python plugin을 사용하기 위해 pynvim을 설치한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda <span class="nb">install</span> <span class="nt">-c</span> conda-forge pynvim
 </code></pre></div></div>
@@ -168,6 +168,11 @@ init.vim에서 vim-plug을 사용할 것이므로 vim-plug을 설치한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iwr <span class="nt">-useb</span> https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |<span class="sb">`</span>
     ni <span class="s2">"</span><span class="si">$(</span>@<span class="o">(</span><span class="nv">$env</span>:XDG_DATA_HOME, <span class="nv">$env</span>:LOCALAPPDATA<span class="o">)[</span><span class="nv">$null</span> <span class="nt">-eq</span> <span class="nv">$env</span>:XDG_DATA_HOME]<span class="si">)</span><span class="s2">/nvim-data/site/autoload/plug.vim"</span> <span class="nt">-Force</span>
+</code></pre></div></div>
+
+<p>nvim에서 Python plugin을 사용하기 위해 pynvim을 설치한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda <span class="nb">install</span> <span class="nt">-c</span> conda-forge pynvim
 </code></pre></div></div>
 
 <p>UltiSnips의 Python snippets를 ~/AppData/local/nvim/UltiSnips에 복사한다. <a href="/assets/data/vim/python.snippets">python.snippets</a></p>
