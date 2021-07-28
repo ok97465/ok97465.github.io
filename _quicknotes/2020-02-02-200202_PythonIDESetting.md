@@ -22,10 +22,8 @@ sitemap :
 
 ```
 [settings]
-line_length=79
-use_parentheses=True
-atomic=False
-multi_line_output=4
+profile = black
+multi_line_output=3
 import_heading_stdlib = Standard library imports
 import_heading_firstparty = Local imports
 import_heading_thirdparty = Third party imports
@@ -57,6 +55,7 @@ import_heading_thirdparty = Third party imports
 | mplcursors         | conda-forge | Maplotlib에 Data Cursor 추가                                    |
 | jupyter_contrib_nbextensions | conda-forge | jupyter notebook extension                          |
 | jupyterthemes      | conda-forge | Mapplotlib theme 지원                                          |
+| debugpy            | conda-forge | Debug tool for nvim                                           |
 | ipympl             | conda-forge | Jupyterlab maplotlib extension                                |
 | xeus-python        | conda-forge | Jupyterlab debugger extension                                |
 | imutils            | conda-forge | 영상처리 library                                                |
@@ -70,6 +69,7 @@ import_heading_thirdparty = Third party imports
 | python-docx        | conda-forge | Python에서 docx 작성                                            |
 | jupyterlab-git     | conda-forge | Jupyterlab에서 git 사용                                        |
 | jupyterlab-variableinspector | conda-forge | Jupyterlab variableinspector                                        |
+| nb_black           | conda-forge | jupyterlab black formatter extension                                         |
 | jupyterlab_vim     | PyPi        | jupyterlab vim extension                                       |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
@@ -101,44 +101,62 @@ Setting.json 설정
 
 ```json
 {
-    "workbench.startupEditor": "newUntitledFile",
     "terminal.integrated.inheritEnv": false,
+    "terminal.integrated.tabs.enabled": true,
     "editor.fontFamily": "D2Coding Ligature",
     "editor.fontLigatures": true,
+    "editor.snippetSuggestions": "top",
+    "editor.minimap.enabled": false,
+    "editor.lineNumbers": "on",
+    "editor.rulers": [
+        88
+    ],
+    "editor.tabSize": 4,
+    "editor.cursorStyle": "line",
+    "editor.insertSpaces": false,
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.wordWrap": "off",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "editor.formatOnSaveMode": "modifications",
-    "editor.snippetSuggestions": "top",
-    "editor.minimap.enabled": false,
-    "editor.lineNumbers": "relative",
-    "editor.rulers": [
-        79
-    ],
-    "python.showStartPage": false,
-    "python.pythonPath": "/home/ok97465/anaconda3/bin/python",
+    "[python]": {
+        "editor.formatOnSaveMode": "file"
+    },
+    "python.formatting.provider": "black",
+    "python.showStartPage": true,
+    "python.analysis.diagnosticMode": "workspace",
     "python.languageServer": "Pylance",
     "python.linting.enabled": true,
     "python.linting.lintOnSave": true,
     "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
+        "--max-line-length=88",
         "--disable=None",
         "--const-rgx=(([a-z_][a-z0-9_]{2,30})|([A-Z_][A-Z0-9_]{2,30})|(__*.__))"],
     "python.linting.pydocstyleEnabled": true,
     "python.linting.pydocstyleArgs": ["--convention=google"],
     "python.linting.pycodestyleEnabled": true,
-    "python.linting.pycodestyleArgs": ["--ignore=W503"],
+    "python.linting.pycodestyleArgs": [
+        "--ignore=W503,E203",
+        "--max-line-length=88"],
     "python.formatting.autopep8Args": [
         "--ignore",
         "E402"
     ],
     "jupyter.sendSelectionToInteractiveWindow": true,
-    "jupyter.alwaysTrustNotebooks": true,
+    "jupyter.enableNativeInteractiveWindow": true,
+    "jupyter.themeMatplotlibPlots": true,
+    "jupyter.experiments.enabled": true,
     "vim.easymotion": true,
     "vim.smartRelativeLine": true,
     "vim.highlightedyank.enable": true,
     "vim.highlightedyank.duration": 400,
     "vim.leader": "<space>",
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.autoSwitchInputMethod.defaultIM": "fcitx-keyboard-kr-kr104",
+    "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/bin/fcitx-remote",
+    "vim.autoSwitchInputMethod.switchIMCmd": "/usr/bin/fcitx-remote -s {im}",
     "markdown-preview-enhanced.previewTheme": "atom-light.css",
     "markdown-preview-enhanced.codeBlockTheme": "atom-dark.css",
     "doxdocgen.generic.briefTemplate": "\\brief {text} \n * \\details \\verbatim \\endverbatim",
@@ -183,12 +201,14 @@ Setting.json 설정
     "explorer.confirmDelete": false,
     "keyboard.dispatch": "keyCode",
     "search.smartCase": true,
-    "window.zoomLevel": 0,
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ]
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.startupEditor": "none",
 }
 ```
