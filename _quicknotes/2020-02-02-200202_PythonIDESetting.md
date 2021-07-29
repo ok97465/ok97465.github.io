@@ -70,6 +70,7 @@ import_heading_thirdparty = Third party imports
 | jupyterlab-git     | conda-forge | Jupyterlab에서 git 사용                                        |
 | jupyterlab-variableinspector | conda-forge | Jupyterlab variableinspector                                        |
 | nb_black           | conda-forge | jupyterlab black formatter extension                                         |
+| jupyterlab-drawio  | conda-forge | jupyterlab drawio extension                                         |
 | jupyterlab_vim     | PyPi        | jupyterlab vim extension                                       |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
