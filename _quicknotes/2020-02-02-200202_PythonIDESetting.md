@@ -72,6 +72,8 @@ import_heading_thirdparty = Third party imports
 | nb_black           | conda-forge | jupyterlab black formatter extension                                         |
 | jupyterlab-drawio  | conda-forge | jupyterlab drawio extension                                         |
 | jupyterlab_vim     | PyPi        | jupyterlab vim extension                                       |
+| cmake-language-server     | PyPi        | cmake lsp for nvim-lsp                                       |
+| pynvim             | PyPi        | util for nvim                                       |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
 
