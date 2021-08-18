@@ -226,11 +226,17 @@ pip <span class="nb">install </span>cmake-language-server
 
 <p><br /></p>
 
-<h2 id="2-ipython-vim-keybinding">2. ipython vim keybinding</h2>
+<h2 id="2-vim을-위한-ipython-설정">2. vim을 위한 ipython 설정</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ipython profile create autoreload
+vi ~/.ipython/profile_autoreload/ipython_config.py
+</code></pre></div></div>
 
 <p>~/.ipython/profile_default/ipython_config.py에 아래 명령어 추가</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c.TerminalInteractiveShell.editing_mode = 'vi'
+c.InteractiveShellApp.exec_lines = ['%autoreload 2']
+c.InteractiveShellApp.extensions = ['autoreload']
 </code></pre></div></div>
 
 <p><br /></p>
