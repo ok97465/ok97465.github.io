@@ -228,14 +228,16 @@ pip <span class="nb">install </span>cmake-language-server
 
 <h2 id="2-vim을-위한-ipython-설정">2. vim을 위한 ipython 설정</h2>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ipython profile create autoreload
+<p>Vim을 위한 ipython 설정을 위해서 profile을 생성한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ipython profile create vim
 vi ~/.ipython/profile_autoreload/ipython_config.py
 </code></pre></div></div>
 
-<p>~/.ipython/profile_default/ipython_config.py에 아래 명령어 추가</p>
+<p>~/.ipython/profile_vim/ipython_config.py에 아래 명령어 추가</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>c.TerminalInteractiveShell.editing_mode = 'vi'
-c.InteractiveShellApp.exec_lines = ['%autoreload 2']
+c.InteractiveShellApp.exec_lines = ['%autoreload 2', 'import matplotlib.pyplot as plt;plt.ion()']
 c.InteractiveShellApp.extensions = ['autoreload']
 </code></pre></div></div>
 
