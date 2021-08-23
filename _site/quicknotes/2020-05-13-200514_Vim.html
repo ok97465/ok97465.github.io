@@ -161,6 +161,11 @@ pip <span class="nb">install </span>cmake-language-server
 
 <p>clang-format을 사용하기 위해서 Project folder에 <a href="/assets/data/vim/clang-format">clang-format 설정파일</a>를 .clang-format파일로 저장한다(버전 12이상 지원).</p>
 
+<p>gnome-terminal에는 ctrl+shift 키가 정상 동작하지 않으므로 Autokey를 설치하고 아래와 같이 Ctrl+Shift+f와 Ctrl+Shift+p를 remapping 한다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">keyboard</span><span class="p">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s">"&lt;shift&gt;+&lt;home&gt;f"</span><span class="p">)</span>
+</code></pre></div></div>
+
 <p><br /></p>
 
 <h3 id="12-window">1.2. Window</h3>
@@ -231,7 +236,7 @@ pip <span class="nb">install </span>cmake-language-server
 <p>Vim을 위한 ipython 설정을 위해서 profile을 생성한다.</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ipython profile create vim
-vi ~/.ipython/profile_autoreload/ipython_config.py
+vi ~/.ipython/profile_vim/ipython_config.py
 </code></pre></div></div>
 
 <p>~/.ipython/profile_vim/ipython_config.py에 아래 명령어 추가</p>
