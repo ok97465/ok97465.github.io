@@ -107,7 +107,7 @@ x_randn_matlab_T = eng.transpose(x_randn_matlab)
 
 ```python
 y = arange(16).reshape(4, 4)
-y_matlab = eng.double(double_m(y.tolist()))
+y_matlab = double_m(y.tolist(), is_complex=True)
 eng.workspace['y'] = y_matlab
 ```
 

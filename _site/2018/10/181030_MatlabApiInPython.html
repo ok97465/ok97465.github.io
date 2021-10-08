@@ -164,67 +164,67 @@ python setup.py <span class="nb">install</span>
 
 <h2 id="3-matlab-시작하기">3. MATLAB 시작하기</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span> <span class="o">=</span> <span class="n">matlab</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">start_matlab</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span> <span class="o">=</span> <span class="n">matlab</span><span class="p">.</span><span class="n">engine</span><span class="p">.</span><span class="n">start_matlab</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
 <h2 id="4-python과-동기된-matlab-gui-띄우기">4. Python과 동기된 MATLAB GUI 띄우기</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="o">.</span><span class="n">desktop</span><span class="p">(</span><span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="p">.</span><span class="n">desktop</span><span class="p">(</span><span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
 <h2 id="5-matlab에-명령-보내기">5. MATLAB에 명령 보내기</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="o">.</span><span class="n">workspace</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="s">"x+3;"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="p">.</span><span class="n">workspace</span><span class="p">[</span><span class="s">'x'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">eng</span><span class="p">.</span><span class="nb">eval</span><span class="p">(</span><span class="s">"x+3;"</span><span class="p">)</span>
 
-<span class="n">eng</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="s">"y = 5;"</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">eng</span><span class="o">.</span><span class="n">workspace</span><span class="p">[</span><span class="s">'y'</span><span class="p">])</span>
+<span class="n">eng</span><span class="p">.</span><span class="nb">eval</span><span class="p">(</span><span class="s">"y = 5;"</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">eng</span><span class="p">.</span><span class="n">workspace</span><span class="p">[</span><span class="s">'y'</span><span class="p">])</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
 <h2 id="6-matlab-행렬-numpy에-저장">6. MATLAB 행렬 Numpy에 저장</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x_matlab</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x_matlab</span> <span class="o">=</span> <span class="n">eng</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">x_py</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">x_matlab</span><span class="p">)</span>
 
-<span class="n">eng</span><span class="o">.</span><span class="nb">eval</span><span class="p">(</span><span class="s">'x = linspace(0, 1000, -1, 1000)'</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">x_py</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">eng</span><span class="o">.</span><span class="n">workspace</span><span class="p">[</span><span class="s">'x'</span><span class="p">])</span>
+<span class="n">eng</span><span class="p">.</span><span class="nb">eval</span><span class="p">(</span><span class="s">'x = linspace(0, 1000, -1, 1000)'</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x_py</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">eng</span><span class="p">.</span><span class="n">workspace</span><span class="p">[</span><span class="s">'x'</span><span class="p">])</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
 <h2 id="7-matlab에-경로-추가">7. MATLAB에 경로 추가</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="o">.</span><span class="n">addpath</span><span class="p">(</span><span class="s">'/home/kkk/matlab_utility'</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="p">.</span><span class="n">addpath</span><span class="p">(</span><span class="s">'/home/kkk/matlab_utility'</span><span class="p">,</span> <span class="n">nargout</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
 <h2 id="8-matlab의-함수-실행">8. MATLAB의 함수 실행</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x_randn_matlab</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">x_randn_matlab_T</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">x_randn_matlab</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x_randn_matlab</span> <span class="o">=</span> <span class="n">eng</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">x_randn_matlab_T</span> <span class="o">=</span> <span class="n">eng</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">x_randn_matlab</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
 <h2 id="9-numpy-데이터를-matlab에서-사용하기">9. Numpy 데이터를 Matlab에서 사용하기</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">y_matlab</span> <span class="o">=</span> <span class="n">eng</span><span class="o">.</span><span class="n">double</span><span class="p">(</span><span class="n">double_m</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">tolist</span><span class="p">()))</span>
-<span class="n">eng</span><span class="o">.</span><span class="n">workspace</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_matlab</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">).</span><span class="n">reshape</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">y_matlab</span> <span class="o">=</span> <span class="n">double_m</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">is_complex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">eng</span><span class="p">.</span><span class="n">workspace</span><span class="p">[</span><span class="s">'y'</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_matlab</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
 <h2 id="10-matlab-종료하기">10. MATLAB 종료하기</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eng</span><span class="p">.</span><span class="n">quit</span><span class="p">()</span>
 </code></pre></div></div>
 
                     
