@@ -59,6 +59,7 @@ import_heading_thirdparty = Third party imports
 | ipympl             | conda-forge | Jupyterlab maplotlib extension                                |
 | xeus-python        | conda-forge | Jupyterlab debugger extension                                |
 | imutils            | conda-forge | 영상처리 library                                                |
+| qscintilla2        | conda-forge | Syntax highlight editor                                       |
 | dataslots          | Github      | dataclass를 __slots__ class로 변환                              |
 | numexpr3           | Github      | 간단한 연산에 대한 최적화                                         |
 | ctypeslib2         | PyPi        | c header를 python class로 변환                                  |
