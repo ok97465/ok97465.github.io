@@ -45,9 +45,9 @@ import_heading_thirdparty = Third party imports
 | opencv             | anaconda    | 영상처리 Library                                                |
 | mayavi             | anaconda    | surf, mesh등 3d Plot 가속화                                     |
 | pyqtgraph          | anaconda    | QT를 이용한 빠른 Plot                                            |
-| rasterio           | anaconda    | GeoTiff library                                               |
 | basemap            | anaconda    | Matplotlib 지도 투영                                            |
 | basemap-data-hires | anaconda    | Matplotlib 지도 투영(with coastlines and political boundaries)  |
+| rasterio           | anaconda    | GeoTiff library                                               |
 | dill               | anaconda    | Python 변수 파일 입출력                                          |
 | pyserial           | anaconda    | Serial library                                               |
 | pymap3d            | conda-forge | 지구 좌표계 변화                                                 |
@@ -60,6 +60,7 @@ import_heading_thirdparty = Third party imports
 | xeus-python        | conda-forge | Jupyterlab debugger extension                                |
 | imutils            | conda-forge | 영상처리 library                                                |
 | qscintilla2        | conda-forge | Syntax highlight editor                                       |
+| borb               | conda-forge | PDF util                                                      |
 | dataslots          | Github      | dataclass를 __slots__ class로 변환                              |
 | numexpr3           | Github      | 간단한 연산에 대한 최적화                                         |
 | ctypeslib2         | PyPi        | c header를 python class로 변환                                  |
@@ -72,9 +73,9 @@ import_heading_thirdparty = Third party imports
 | jupyterlab-variableinspector | conda-forge | Jupyterlab variableinspector                                        |
 | nb_black           | conda-forge | jupyterlab black formatter extension                                         |
 | jupyterlab-drawio  | conda-forge | jupyterlab drawio extension                                         |
-| jupyterlab_vim     | PyPi        | jupyterlab vim extension                                       |
+| jupyterlab_vim     | conda-forge | jupyterlab vim extension                                       |
+| pynvim             | conda-forge | util for nvim                                       |
 | cmake-language-server     | PyPi        | cmake lsp for nvim-lsp                                       |
-| pynvim             | PyPi        | util for nvim                                       |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
 
