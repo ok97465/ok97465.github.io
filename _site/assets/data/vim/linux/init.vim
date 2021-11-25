@@ -30,6 +30,12 @@ syntax sync minlines=200                                     " speed-up vim
 set colorcolumn=89                                           " ruler
 highlight colorcolumn ctermbg=0 guibg=darkgreen              " color of ruler
 
+" ============================ highlighted yank ==============================
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=400}
+augroup END
+
 " =================================== Search ==================================
 set ic                                                       " 검색시 대소문자 무시
 set scs                                                      " 똑똑한 대소문자 구별 기능
@@ -70,6 +76,7 @@ Plug 'b3nj5m1n/kommentary'                                    " Comment toggle
 Plug 'lukas-reineke/indent-blankline.nvim'                    " Indent guide
 Plug 'RRethy/vim-illuminate'                                  " Highlight word under cursor
 Plug 'tpope/vim-fugitive'                                     " For git
+Plug 'junegunn/gv.vim'                                        " Git commit browser
 Plug 'mbbill/undotree'                                        " Visualize undo history
 Plug 'alfredodeza/pytest.vim'                                 " Pytest
 Plug 'ThePrimeagen/vim-be-good'                               " Vim Game
@@ -79,7 +86,6 @@ Plug 'coachshea/vim-textobj-markdown'                         " Textobj for mark
 Plug 'junegunn/vim-easy-align'                                " Vim alignment
 Plug 'fisadev/vim-isort'                                      " Sort import statements of python
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }  " Autodocstring
-Plug 'machakann/vim-highlightedyank'                          " Highlight after yank
 Plug 'phaazon/hop.nvim'                                       " easymotion for nvim
 Plug 'kyazdani42/nvim-web-devicons'                           " File icons for nvim-tree, lualine
 Plug 'kyazdani42/nvim-tree.lua'                               " File explorer
@@ -371,9 +377,6 @@ nnoremap <silent> <leader>d <cmd>Pydocstring<cr>
 let g:pydocstring_formatter = 'google'
 let g:pydocstring_enable_mapping=0  " Disable default keymap of pydocstring
 
-" ----- vim-highlightedyank -----
-let g:highlightedyank_highlight_duration = 400
-
 " ----- hop.nvim (easymotion) -----
 lua require'hop'.setup()
 nnoremap <silent> <leader><leader>w <cmd>HopWord<cr>
@@ -521,12 +524,12 @@ nvim_lsp.jsonls.setup {
     }
 }
 
------- pyls -----
+------ pylsp -----
 -- Window에서는 관리자 권한에서만 수행하여야 한다.
-nvim_lsp.pyls.setup{
+nvim_lsp.pylsp.setup{
   --on_attach=require'completion'.on_attach
   settings = {
-    pyls = {
+    pylsp = {
       plugins = {
         pyflakes = { enabled = true },
         pydocstyle = { enabled = true,
@@ -704,7 +707,7 @@ vim.g.symbols_outline = {
         rename_symbol = "r",
         code_actions = "a",
     },
-    lsp_blacklist = {"pyls"},
+    lsp_blacklist = {"pylsp"},
     symbol_blacklist = {
         "File",
         "Module",
@@ -1033,6 +1036,8 @@ wk.register({
     l = { "<cmd>Git log<cr>", "Git log" },
     c = { "<cmd>Git commit<cr>", "Git commit" },
     p = { "<cmd>Git push<cr>", "Git push" },
+    v = { "<cmd>GV<cr>", "Commit browser" },
+    V = { "<cmd>GV!<cr>", "Commit browser this" },
   },
 }, { prefix = "<leader>" })
 EOF
