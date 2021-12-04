@@ -75,8 +75,11 @@ import_heading_thirdparty = Third party imports
 | jupyterlab-drawio  | conda-forge | jupyterlab drawio extension                                         |
 | jupyterlab_vim     | conda-forge | jupyterlab vim extension                                       |
 | pynvim             | conda-forge | util for nvim                                       |
+| Pyside2     | conda-forge        | pyside2                                       |
+| Geopandas    | conda-forge        |  working with geospatial data in python easier.                                      |
 | doq                | PyPi | Docstring generator.                                       |
 | cmake-language-server     | PyPi        | cmake lsp for nvim-lsp                                       |
+| qt-material     | PyPi        | Qt material theme                                      |
 | pyswarms           | PyPi        | Partical Swarms Optimization                                   |
 | hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
 

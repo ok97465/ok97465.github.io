@@ -158,9 +158,9 @@ dashboard.section.header.opts.hl = 'dashboard'
 
 -- Set menu
 dashboard.section.buttons.val = {
-    dashboard.button( "Ctrl+Shift+p", " > Select Project", "<cmd>lua require'telescope'.extensions.project.project{}<CR>"),
+    dashboard.button( "Ctrl+Shift+p", "  > Select Project", "<cmd>lua require'telescope'.extensions.project.project{}<CR>"),
     dashboard.button( "Leader t o", "  > Recent files"   , "<cmd>lua require'telescope.builtin'.oldfiles{}<CR>"),
-    dashboard.button( "Ctrl+p", " ﯒ > Find files" , "<cmd>Telescope find_files<CR>"),
+    dashboard.button( "Ctrl+p", "﯒  > Find files" , "<cmd>Telescope find_files<CR>"),
     dashboard.button( "e", "  > New file" , ":enew <CR>"),
     dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
 }
@@ -451,12 +451,12 @@ nnoremap <silent><F3> <cmd>TZAtaraxis<CR>
 let g:winresizer_start_key = '<C-W>r'
 
 " ----- nvim lint -----
-lua << EOF
--- require('lint').linters_by_ft = {
---   markdown = {'markdownlint'},
--- }
-EOF
-
+" lua << EOF
+" require('lint').linters_by_ft = {
+"   markdown = {'markdownlint'},
+" }
+" EOF
+"
 " au BufWritePost *.md lua require('lint').try_lint()
 " au BufEnter *.md lua require('lint').try_lint()
 
@@ -581,25 +581,25 @@ require('lspkind').init({
       Text = "",
       Method = "",
       Function = "",
-      Constructor = "",
-      Field = "ﰠ  ",
+      Constructor = " ",
+      Field = "",
       Variable = "",
-      Class = "ﴯ  ",
+      Class = "",
       Interface = "",
       Module = "",
-      Property = "ﰠ  ",
-      Unit = "塞",
+      Property = " ",
+      Unit = "",
       Value = "",
       Enum = "",
-      Keyword = "",
+      Keyword = "",
       Snippet = "",
       Color = "",
-      File = "",
-      Reference = "",
+      File = "",
+      Reference = "﬌",
       Folder = "",
       EnumMember = " ",
-      Constant = "",
-      Struct = "פּ",
+      Constant = "",
+      Struct = "",
       Event = "",
       Operator = "",
       TypeParameter = ""
