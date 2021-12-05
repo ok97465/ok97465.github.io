@@ -126,6 +126,7 @@ Plug 'gelguy/wilder.nvim', { 'do': ':UpdateRemotePlugins' }   " Autocompletion i
 Plug 'folke/which-key.nvim'                                   " Which key
 Plug 'abecodes/tabout.nvim'                                   " tabout
 Plug 'ok97465/ok97465.nvim', { 'do': ':UpdateRemotePlugins' } " python import from list
+Plug 'is0n/jaq-nvim'                                          " run script in float window
 
 call plug#end()
 
@@ -276,7 +277,7 @@ require("indent_blankline").setup {
     show_end_of_line = false,
     space_char_blankline = " ",
     show_current_context = false,
-    filetype_exclude = {"alpha"}
+    filetype_exclude = {"alpha", "dap-repl", "dapui_scopes", "dapui_watches"},
 }
 EOF
 
@@ -756,6 +757,8 @@ autocmd FileType c,cpp,objc,python,dap-repl,dapui_watches nnoremap <buffer><f11>
 autocmd FileType c,cpp,objc,python,dap-repl,dapui_watches inoremap <buffer><f11> <cmd>lua require'dap'.step_into()<CR>
 autocmd FileType c,cpp,objc,python,dap-repl,dapui_watches nnoremap <buffer><f12> <cmd>lua require'dap'.step_out()<CR>
 autocmd FileType c,cpp,objc,python,dap-repl,dapui_watches inoremap <buffer><f12> <cmd>lua require'dap'.step_out()<CR>
+autocmd FileType dap-repl lua require('dap.ext.autocompl').attach()
+autocmd FileType dap-repl inoremap <buffer><tab> <c-x><c-o>
 
 " ----- dap for c language ----
 lua <<EOF
@@ -1089,6 +1092,75 @@ vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_binding()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_binding()", {expr = true})
 EOF
 
+"--------- run python ------
+lua <<EOF
+require('jaq-nvim').setup{
+	-- Commands used with 'Jaq'
+	cmds = {
+		-- Default UI used (see `Usage` for options)
+		default = "float",
+
+		-- Uses external commands such as 'g++' and 'cargo'
+		external = {
+			typescript = "deno run %",
+			javascript = "node %",
+			markdown = "glow %",
+			python = "python3 -m $moduleName",
+			rust = "rustc % && ./$fileBase && rm $fileBase",
+			cpp = "g++ % -o $fileBase && ./$fileBase",
+			go = "go run %",
+			sh = "sh %",
+		},
+
+		-- Uses external commands made for formatting code
+		format = {
+			sh = "shfmt -w %",
+
+			-- Config used for all filetypes without a config
+			["*"] = "gsed -i 's/[ \t]*$//' %"
+		},
+
+		-- Uses internal commands such as 'source' and 'luafile'
+		internal = {
+			lua = "luafile %",
+			vim = "source %"
+		}
+
+	},
+
+	-- UI settings
+	ui = {
+		-- Start in insert mode
+		startinsert = false,
+
+		-- Floating Window settings
+		float = {
+			-- Floating window border (see ':h nvim_open_win')
+			border    = "rounded",
+
+			-- Num from `0 - 1` for measurements
+			height    = 0.8,
+			width     = 0.8,
+
+			-- Highlight group for floating window/border (see ':h winhl')
+			border_hl = "FloatBorder",
+			float_hl  = "Normal",
+
+			-- Floating Window Transparency (see ':h winblend')
+			blend     = 0
+		},
+
+		terminal = {
+			-- Position of terminal
+			position = "bot",
+
+			-- Size of terminal
+			size     = 10
+		}
+	}
+}
+EOF
+
 "================================= Key binding ==================================
 " ----- pip install . -----
 nnoremap <silent> <Leader>in :w<CR>:!pip install .<CR>
@@ -1241,8 +1313,9 @@ autocmd FileType python vnoremap <buffer><f9> <cmd>call SendCmd2Ipython(VisualSe
 autocmd FileType python nnoremap <buffer> <F4> <cmd>w<CR><cmd>call SendCmd2Ipython("%run ".expand("%:r")."\n")<CR>
 autocmd FileType python inoremap <buffer> <F4> <cmd>w<CR><cmd>call SendCmd2Ipython("%run ".expand("%:r")."\n")<CR>
 " run module
-autocmd FileType python nnoremap <buffer> <F5> :w<CR>:exec '!python' shellescape('-m', 1) shellescape(substitute(substitute(fnamemodify(expand("%:r"), ":~:."), "/", ".", "g"), "\\", ".", "g"), 1)<CR>
-autocmd FileType python inoremap <buffer> <F5> <esc>:w<CR>:exec '!python' shellescape('-m', 1) shellescape(substitute(substitute(fnamemodify(expand("%:r"), ":~:."), "/", ".", "g"), "\\", ".", "g"), 1)<CR>
+" autocmd FileType python nnoremap <buffer> <F5> :w<CR>:exec '!python' shellescape('-m', 1) shellescape(substitute(substitute(fnamemodify(expand("%:r"), ":~:."), "/", ".", "g"), "\\", ".", "g"), 1)<CR>
+autocmd FileType python nnoremap <buffer> <F5> :w<CR>:Jaq<CR>
+autocmd FileType python inoremap <buffer> <F5> <esc>:w<CR>:Jaq<CR>
 
 " run python file
 autocmd FileType python nnoremap <buffer> <s-F5> :w<CR>:exec '!python' shellescape(@%, 1)<CR>
