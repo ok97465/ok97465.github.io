@@ -68,17 +68,16 @@ set ci                                                        " C 형태의 들�
 " =================================== Plugin ==================================
 call plug#begin('~/.vim/plugged')
 
-Plug 'jiangmiao/auto-pairs'                                   " Auto pair for ',), }, ]...
-Plug 'tmhedberg/matchit'                                      " Extended % matching
+Plug 'windwp/nvim-autopairs'                                  " Automatically insert pair char, ex (<->)
+Plug 'numToStr/Comment.nvim'                                  " Comment toggle
 Plug 'goolord/alpha-nvim'                                     " Greeter
-Plug 'b3nj5m1n/kommentary'                                    " Comment toggle
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }            " Theme
 Plug 'lukas-reineke/indent-blankline.nvim'                    " Indent guide
 Plug 'RRethy/vim-illuminate'                                  " Highlight word under cursor
 Plug 'tpope/vim-fugitive'                                     " For git
 Plug 'junegunn/gv.vim'                                        " Git commit browser
 Plug 'mbbill/undotree'                                        " Visualize undo history
 Plug 'alfredodeza/pytest.vim'                                 " Pytest
-Plug 'ThePrimeagen/vim-be-good'                               " Vim Game
 Plug 'seandewar/nvimesweeper'                                 " minesweeper
 Plug 'kana/vim-textobj-user'                                  " Engine Textobj
 Plug 'coachshea/vim-textobj-markdown'                         " Textobj for markdown
@@ -94,6 +93,7 @@ Plug 'nvim-telescope/telescope.nvim'                          " Fuzzy finder
 Plug 'nvim-telescope/telescope-fzy-native.nvim'               " Fzy for fuzzy finder
 Plug 'nvim-telescope/telescope-project.nvim'                  " project manager
 Plug 'ok97465/telescope-py-importer.nvim'                     " python import in workspace
+Plug 'ok97465/telescope-py-outline.nvim'                      " python outline
 Plug 'ryanoasis/vim-devicons'                                 " Icons for lualine
 Plug 'nvim-lualine/lualine.nvim'                              " Status bar
 Plug 'akinsho/bufferline.nvim'                                " Buffer line
@@ -110,8 +110,8 @@ Plug 'hrsh7th/cmp-vsnip'                                      " Integrate vim-vs
 Plug 'hrsh7th/vim-vsnip'                                      " vim-vsnip
 Plug 'ray-x/lsp_signature.nvim'                               " Show function signature when you type
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}   " Code highlight
+Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }      " UI for rename
 Plug 'simrat39/symbols-outline.nvim'                          " Outline
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }            " Theme
 Plug 'mfussenegger/nvim-dap'                                  " debugger
 Plug 'rcarriga/nvim-dap-ui'                                   " debugger ui
 Plug 'theHamsta/nvim-dap-virtual-text'                        " text for debugger
@@ -130,6 +130,12 @@ Plug 'is0n/jaq-nvim'                                          " run script in fl
 call plug#end()
 
 " ================================= Plugins setting ==================================
+" ----- Auto Pair -----
+lua require('nvim-autopairs').setup{}
+
+" ---- Comment -----
+lua require('Comment').setup()
+
 " ----- Greeter -----
 lua << EOF
 local alpha = require("alpha")
@@ -361,6 +367,10 @@ endif
 lua require('telescope').load_extension('py_importer')
 autocmd FileType python nnoremap <silent> <leader>I <cmd>Telescope py_importer workspace<cr>
 
+" ----- telescope-py-importer ----
+lua require('telescope').load_extension('py_outline')
+autocmd FileType python nnoremap <silent> <leader>s <cmd>lua require 'telescope'.extensions.py_outline.outline_file({layout_config={prompt_position="top"}, sorting_strategy="ascending"})<cr>
+
 " ----- isort -----
 autocmd FileType python nnoremap <silent> <leader>i <cmd>ImportFromJson<cr>
 let g:vim_isort_map = ''
@@ -553,13 +563,6 @@ nvim_lsp.pylsp.setup{
 }
 EOF
 
-" ----- vsnip -----
-" Jump forward or backward for snippets
-" imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-" smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-" imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-" smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-
 " ----- lspkind -----
 lua << EOF
 require('lspkind').init({
@@ -689,8 +692,14 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+" ---- renamer ----
+lua require('renamer').setup()
+inoremap <silent> <F2> <cmd>lua require('renamer').rename()<cr>
+nnoremap <silent> <leader>rn <cmd>lua require('renamer').rename()<cr>
+vnoremap <silent> <leader>rn <cmd>lua require('renamer').rename()<cr>
+
 " ---- outline ----
-nnoremap <silent> <leader>s <cmd>SymbolsOutline<CR>
+autocmd FileType c,cpp,objc nnoremap <silent> <leader>s <cmd>SymbolsOutline<CR>
 lua <<EOF
 vim.g.symbols_outline = {
     highlight_hovered_item = true,
