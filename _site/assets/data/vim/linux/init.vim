@@ -437,7 +437,22 @@ EOF
 autocmd TermOpen * set nobuflisted
 autocmd FileType dap-repl set nobuflisted
 lua << EOF
-require("bufferline").setup{}
+require("bufferline").setup{
+    options = { 
+        numbers="ordinal",
+        diagnostics = "nvim_lsp",
+        diagnostics_update_in_insert = false,
+        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            local s = " "
+            for e, n in pairs(diagnostics_dict) do
+                local sym = e == "error" and " "
+                or (e == "warning" and " ") or "i "
+              s = s .. n .. sym
+            end
+            return s
+        end
+        }
+    }
 EOF
 " unmap gt
 " unmap gT
