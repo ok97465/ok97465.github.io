@@ -365,7 +365,7 @@ endif
 
 " ----- telescope-py-importer ----
 lua require('telescope').load_extension('py_importer')
-autocmd FileType python nnoremap <silent> <leader>I <cmd>Telescope py_importer workspace<cr>
+autocmd FileType python nnoremap <silent> <leader>I <cmd>lua require 'telescope'.extensions.py_importer.workspace({layout_config={prompt_position="top"}, sorting_strategy="ascending"})<cr>
 
 " ----- telescope-py-importer ----
 lua require('telescope').load_extension('py_outline')
