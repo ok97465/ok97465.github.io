@@ -86,7 +86,19 @@ import_heading_thirdparty = Third party imports
 
 <br>
 
-## 4. Linux에서 한글 입력
+## 4. 필요한 Package for ML
+
+| 이름                | 저장소       | 설명                                                           |
+|--------------------|-------------|---------------------------------------------------------------|
+| pytorch            | pytorch     | https://pytorch.org/get-started/locally/에서 확인               |
+| pytorch-lightning  | conda       | lightweight PyTorch wrapper for high-performance              |
+| torchmetrics       | conda       | collection of ML metrics for distributed, scalable PyTorch    |
+| mlxtend            | conda       | Mlxtend is extension for ML                                   |
+| tensorboard        | conda       | tensorboard                                                   |
+
+<br>
+
+## 5. Linux에서 한글 입력
 
 LINUX의 QT 프로그램에서는 한글 입력이 가능하지만 Anaconda의 QT를 사용하는 GUI 프로그램의 경우 한글 입력이 되지 않는 경우가 있다. 그럴 경우에는 Linux의 Qt 입력기 Library를 anaconda에 복사해 준다.
 
@@ -96,9 +108,9 @@ cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libqt5im-nimf.so 
 
 <br>
 
-## 5. VScode Project 설정
+## 6. VScode Project 설정
 
-### 5.1. 환경변수 설정
+### 6.1. 환경변수 설정
 .env를 프로젝트 root 폴더에 만들고 아래 내용으로 채운다.
 
 ```
