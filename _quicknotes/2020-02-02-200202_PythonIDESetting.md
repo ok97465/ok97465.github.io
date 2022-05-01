@@ -95,7 +95,6 @@ import_heading_thirdparty = Third party imports
 | torchmetrics       | conda       | collection of ML metrics for distributed, scalable PyTorch    |
 | mlxtend            | conda       | Mlxtend is extension for ML                                   |
 | tensorboard        | conda       | tensorboard                                                   |
-| torchinfo          | conda       | Torchinfo provides information complementary to what is provided by print(model) |
 | pytorchviz         | pip         | Visualize ML model backward(need graphviz)                    |
 | hiddenlayer        | pip         | Visualize ML model forward                                    |
 
