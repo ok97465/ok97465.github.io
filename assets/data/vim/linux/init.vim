@@ -94,7 +94,7 @@ Plug 'kyazdani42/nvim-web-devicons'                           " File icons for n
 Plug 'kyazdani42/nvim-tree.lua'                               " File explorer
 Plug 'nvim-lua/popup.nvim'                                    " Dependency of telescope
 Plug 'nvim-lua/plenary.nvim'                                  " Dependency of telescope
-Plug 'nvim-telescope/telescope.nvim'                          " Fuzzy finder
+Plug 'nvim-telescope/telescope.nvim',                         " Fuzzy finder
 Plug 'nvim-telescope/telescope-fzy-native.nvim'               " Fzy for fuzzy finder
 Plug 'nvim-telescope/telescope-project.nvim'                  " project manager
 Plug 'ok97465/telescope-py-importer.nvim'                     " python import in workspace
@@ -119,6 +119,7 @@ Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }      " UI for rename
 Plug 'simrat39/symbols-outline.nvim'                          " Outline
 Plug 'mfussenegger/nvim-dap'                                  " debugger
 Plug 'rcarriga/nvim-dap-ui'                                   " debugger ui
+Plug 'rcarriga/cmp-dap'                                       " cmp for dap
 Plug 'theHamsta/nvim-dap-virtual-text'                        " text for debugger
 Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}      " python formatter
 Plug 'rhysd/vim-clang-format'                                 " c++ formatter
@@ -212,6 +213,8 @@ let g:nvim_tree_show_icons = {
 " a list of groups can be found at `:help nvim_tree_highlight`
 " highlight NvimTreeFolderIcon guibg=black
 nnoremap <silent> <Leader>e <cmd>NvimTreeToggle<CR>
+autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+
 lua << EOF
 require'nvim-tree'.setup {
   -- disables netrw completely
@@ -222,8 +225,6 @@ require'nvim-tree'.setup {
   open_on_setup       = false,
   -- will not open on setup if the filetype is in this list
   ignore_ft_on_setup  = {'alpha', 'dashboard'},
-  -- closes neovim automatically when the tree is the last **WINDOW** in the view
-  auto_close          = true,
   -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
   open_on_tab         = false,
   -- hijack the cursor in the tree to put it at the start of the filename
@@ -259,7 +260,6 @@ require'nvim-tree'.setup {
     -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
     side = 'left',
     -- if true the tree will resize itself after opening a file
-    auto_resize = true,
     mappings = {
       -- custom only false will merge the list with the default mappings
       -- if true, it will only use your list to set the mappings
@@ -548,7 +548,7 @@ local on_attach = function(client, bufnr)
   -- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   -- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   -- buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  -- buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>R', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   -- buf_set_keymap('n', '<space>l', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
@@ -725,7 +725,7 @@ EOF
 " ---- treesitter ----
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = {}, -- List of parsers to ignore installing
   highlight = {
     enable = true,              -- false will disable the whole extension
@@ -950,6 +950,20 @@ require("dapui").setup({
   },
   windows = { indent = 1 },
 })
+EOF
+
+" ----- cmp-dap -----
+lua <<EOF
+require'cmp'.setup {
+  -- nvim-cmp by defaults disables autocomplete for prompt buffers
+  enabled = function ()
+    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+      or require("cmp_dap").is_dap_buffer()
+  end,
+  sources = {
+    { name = 'dap' }
+  }
+}
 EOF
 
 " ----- nvim-dap-virtual-text -----
