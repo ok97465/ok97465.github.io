@@ -56,6 +56,7 @@ import_heading_thirdparty = Third party imports
 | jupyter_contrib_nbextensions | conda-forge | jupyter notebook extension                          |
 | jupyterthemes      | conda-forge | Mapplotlib theme 지원                                          |
 | debugpy            | conda-forge | Debug tool for nvim                                           |
+| pylsp-mypy         | conda-forge | Mypy linter for the Python LSP Server.                        |
 | ipympl             | conda-forge | Jupyterlab maplotlib extension                                |
 | xeus-python        | conda-forge | Jupyterlab debugger extension                                |
 | imutils            | conda-forge | 영상처리 library                                                |
