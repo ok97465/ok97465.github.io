@@ -121,9 +121,17 @@
                     
                     <h1 id="vim">Vim</h1>
 
-<h2 id="1-neovim-설치">1. Neovim 설치</h2>
+<h2 id="1-cheatsheet">1. CheatSheet</h2>
 
-<h3 id="11-linux">1.1. Linux</h3>
+<p>[Dark sheet/assets/images/vim/vim_background.png)<br />
+[Blue sheet/assets/images/vim/vim_background2.png)<br />
+[highdpi sheet/assets/images/vim/vim_background3.png)</p>
+
+<p><br /></p>
+
+<h2 id="2-neovim-설치">2. Neovim 설치</h2>
+
+<h3 id="21-linux">2.1. Linux</h3>
 
 <p>Neovim 최신 안정 버전 설치</p>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>add-apt-repository ppa:neovim-ppa/stable
@@ -173,7 +181,7 @@ pip <span class="nb">install </span>cmake-language-server
 
 <p><br /></p>
 
-<h3 id="12-window">1.2. Window</h3>
+<h3 id="22-window">2.2. Window</h3>
 
 <p>https://github.com/neovim/neovim/releases 에서 실행 파일 다운로드</p>
 
@@ -239,7 +247,7 @@ pip <span class="nb">install </span>cmake-language-server
 
 <p><br /></p>
 
-<h2 id="2-vim을-위한-ipython-설정">2. vim을 위한 ipython 설정</h2>
+<h2 id="3-vim을-위한-ipython-설정">3. vim을 위한 ipython 설정</h2>
 
 <p>Vim을 위한 ipython 설정을 위해서 profile을 생성한다.</p>
 
@@ -255,13 +263,13 @@ c.InteractiveShellApp.extensions = ['autoreload']
 
 <p><br /></p>
 
-<h2 id="3-esc-입력시-자동-영어-변환-vscode">3. ESC 입력시 자동 영어 변환 (VScode)</h2>
+<h2 id="4-esc-입력시-자동-영어-변환-vscode">4. ESC 입력시 자동 영어 변환 (VScode)</h2>
 
 <p>Vim에서 한글 입력 후에 ESC를 눌려 Normal 모드로 진입하면 어떤 명령어도 동작되지 않는 문제가 발생한다. 명령어가 영어가 아닌 한글로 입력되면서 벌어지는 문제인데 VScode의 Vim Plugin은 이 문제를 해결하기 위한 방안을 제공한다.</p>
 
 <p><br /></p>
 
-<h3 id="31-windows">3.1. Windows</h3>
+<h3 id="41-windows">4.1. Windows</h3>
 
 <p>설정 -&gt; 언어 -&gt; 영어(미국) 추가한다.<br />
 https://github.com/daipeihust/im-select 에서 <a href="/assets/data/vim/im-select.zip">im-select</a> 를 다운 받는다.  <br />
@@ -275,7 +283,7 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <p><br /></p>
 
-<h3 id="32-ubuntu">3.2. Ubuntu</h3>
+<h3 id="42-ubuntu">4.2. Ubuntu</h3>
 
 <p>fcitx 사용자일 경우 Vscode 환경설정에 다음 내용을 추가한다.</p>
 
@@ -287,9 +295,9 @@ Vscode의 환경설정에 다음 내용을 추가한다.</p>
 
 <p><br /></p>
 
-<h2 id="4-capslock---esc">4. Capslock -&gt; ESC</h2>
+<h2 id="5-capslock---esc">5. Capslock -&gt; ESC</h2>
 
-<h3 id="41-windows">4.1. Windows</h3>
+<h3 id="51-windows">5.1. Windows</h3>
 <p>AutoHotKey를 설치하고 ahk 확장자 파일을 만들어 아래 내용을 추가하거나 Registry를 변경한다.</p>
 
 <ul>
@@ -311,7 +319,7 @@ Esc::Capslock
 
 <p><br /></p>
 
-<h3 id="42-mint">4.2. Mint</h3>
+<h3 id="52-mint">5.2. Mint</h3>
 
 <ul>
   <li>설정 -&gt; 키보드 -&gt; 배치 -&gt; 옵션 -&gt; Capslock 동작 변경</li>
@@ -330,7 +338,7 @@ Esc::Capslock
 
 <p><br /></p>
 
-<h2 id="5-ideavim-설정">5. IdeaVim 설정</h2>
+<h2 id="6-ideavim-설정">6. IdeaVim 설정</h2>
 
 <p>pycharm에서 ideavim을 이용하여 vim 모드를 사용할수 있다. 현재 ideavim의 설정 파일인 .ideavimrc는 아래와 같다.</p>
 
@@ -362,7 +370,7 @@ map &lt;leader&gt;e :NERDTree&lt;CR&gt;
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/quicknotes/2020-05-13-200514_Vim"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/quicknotes/2020-05-13-200514_Vim"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -374,7 +382,7 @@ map &lt;leader&gt;e :NERDTree&lt;CR&gt;
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/quicknotes/2020-05-13-200514_Vim&text=Vim" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/quicknotes/2020-05-13-200514_Vim&text=Vim" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -385,7 +393,7 @@ map &lt;leader&gt;e :NERDTree&lt;CR&gt;
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=https://ok97465.github.io/quicknotes/2020-05-13-200514_Vim" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/quicknotes/2020-05-13-200514_Vim" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -400,7 +408,7 @@ map &lt;leader&gt;e :NERDTree&lt;CR&gt;
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Vim&body=Vim 사용을 위한 자료 정리 https://ok97465.github.io/quicknotes/2020-05-13-200514_Vim" target="_blank" title="Email">
+      <a href="mailto:?&subject=Vim&body=Vim 사용을 위한 자료 정리 http://localhost:4000/quicknotes/2020-05-13-200514_Vim" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>

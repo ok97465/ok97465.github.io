@@ -201,30 +201,30 @@ Value : {“multiple”: 1}</p>
 <h2 id="4-variable-창에서-자주-쓰는-함수-숨김">4. Variable 창에서 자주 쓰는 함수 숨김</h2>
 <p>pycharm 폴더/helpers/pydev/_pydev_bundle/pydev_ipython_console.py의 get_ipython_hidden_vars_dict 함수의 user_hidden_dict.setdefault(‘___’, ‘’) 밑에 추가 (들여쓰기는 space로 동일하게 맞추어야 함)</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'rad2deg'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'deg2rad'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arange'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arccos'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arcsin'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arctan'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'array'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'conj'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'cos'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sin'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'tan'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'exp'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'zeros'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'pi'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randn'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'standard_normal'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randint'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'uniform'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'choice'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sqrt'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'dot'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'fig'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'ax'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
-    <span class="n">user_hidden_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'newaxis'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'rad2deg'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'deg2rad'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arange'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arccos'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arcsin'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'arctan'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'array'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'conj'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'cos'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sin'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'tan'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'exp'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'zeros'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'pi'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randn'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'standard_normal'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'randint'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'uniform'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'choice'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'sqrt'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'dot'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'fig'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'ax'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">user_hidden_dict</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">'newaxis'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -258,11 +258,11 @@ Value : {“multiple”: 1}</p>
 <p>Abbreviation : fig,  <br />
 Template text :</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">subplots</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="err">$</span><span class="mi">1</span><span class="err">$</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'$2$'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'$3$'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'$4$'</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="err">$</span><span class="mi">1</span><span class="err">$</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">'$2$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'$3$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'$4$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -295,7 +295,7 @@ Template text :</p>
 <h3 id="63-모든-figure-창-닫기">6.3. 모든 figure 창 닫기</h3>
 <p>Abbreviation : close all<br />
 Template text :</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s">'all'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="n">close</span><span class="p">(</span><span class="s">'all'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><br /></p>
@@ -350,7 +350,7 @@ Template text :</p>
 
 <span class="c1"># substitute
 </span><span class="n">expr</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="n">th1</span>
-<span class="n">display</span><span class="p">(</span><span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="n">th1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">expr</span><span class="p">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="n">th1</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]))</span>
 
 <span class="c1">#fourier transform
 </span><span class="n">Fourier_y</span> <span class="o">=</span> <span class="n">fourier_transform</span><span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="mf">1j</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -383,7 +383,7 @@ Template text :</p>
 <h2 id="9-file-생성-시-주석-추가">9. File 생성 시 주석 추가</h2>
 <p>File –&gt; Settings –&gt; File and Code Templates –&gt; Python script에 추가</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># -*- coding: utf-8 -*-
-</span><span class="s">r"""[Title].  # noqa: 501.
+</span><span class="sa">r</span><span class="s">"""[Title].  # noqa: 501.
 
 [Description]
 
@@ -432,7 +432,7 @@ References
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/2018/09/180904_SettingPycharm"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2018/09/180904_SettingPycharm"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -444,7 +444,7 @@ References
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/2018/09/180904_SettingPycharm&text=Pycharm(Python)을 Matlab 처럼" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/2018/09/180904_SettingPycharm&text=Pycharm(Python)을 Matlab 처럼" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -455,7 +455,7 @@ References
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=https://ok97465.github.io/2018/09/180904_SettingPycharm" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/2018/09/180904_SettingPycharm" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -470,7 +470,7 @@ References
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Pycharm(Python)을 Matlab 처럼&body=Spyder IDE는 Python을 Matlab처럼 사용 할 수 있는 Open Source 이지만, 안정성과 편의성이 좀 떨어진다. 그래서 개발툴로서 완성도 높은 Pycharm의 설정을 수정하여 Matlab처럼 사용하는 방법을 정리한다. https://ok97465.github.io/2018/09/180904_SettingPycharm" target="_blank" title="Email">
+      <a href="mailto:?&subject=Pycharm(Python)을 Matlab 처럼&body=Spyder IDE는 Python을 Matlab처럼 사용 할 수 있는 Open Source 이지만, 안정성과 편의성이 좀 떨어진다. 그래서 개발툴로서 완성도 높은 Pycharm의 설정을 수정하여 Matlab처럼 사용하는 방법을 정리한다. http://localhost:4000/2018/09/180904_SettingPycharm" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>

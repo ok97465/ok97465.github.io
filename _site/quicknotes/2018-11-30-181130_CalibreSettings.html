@@ -153,27 +153,27 @@
 
     <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">path</span> <span class="o">=</span> <span class="s">''</span>
-    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">mi</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">'format_metadata'</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">mi</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'format_metadata'</span><span class="p">,</span> <span class="p">{}).</span><span class="n">values</span><span class="p">():</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s">'path'</span><span class="p">]</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">osp</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">osp</span><span class="p">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
             <span class="k">continue</span>
 
-        <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">)</span>
-        <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">st_atime</span><span class="p">)</span>
+        <span class="n">times</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path</span><span class="p">).</span><span class="n">st_mtime</span><span class="p">)</span>
+        <span class="n">times</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path</span><span class="p">).</span><span class="n">st_atime</span><span class="p">)</span>
 
-    <span class="n">folder</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
-        <span class="n">path_meta</span> <span class="o">=</span> <span class="n">osp</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="s">'metadata.opf'</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">osp</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path_meta</span><span class="p">):</span>
-            <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path_meta</span><span class="p">)</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">)</span>
-            <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path_meta</span><span class="p">)</span><span class="o">.</span><span class="n">st_atime</span><span class="p">)</span>
+    <span class="n">folder</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">osp</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">osp</span><span class="p">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+        <span class="n">path_meta</span> <span class="o">=</span> <span class="n">osp</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="s">'metadata.opf'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">osp</span><span class="p">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path_meta</span><span class="p">):</span>
+            <span class="n">times</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path_meta</span><span class="p">).</span><span class="n">st_mtime</span><span class="p">)</span>
+            <span class="n">times</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">stat</span><span class="p">(</span><span class="n">path_meta</span><span class="p">).</span><span class="n">st_atime</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="s">""</span>
 
     <span class="n">most_recent</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">times</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">strftime</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">y.</span><span class="si">%</span><span class="s">m.</span><span class="si">%</span><span class="s">d </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S'</span><span class="p">,</span> <span class="n">localtime</span><span class="p">(</span><span class="n">most_recent</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">strftime</span><span class="p">(</span><span class="s">'%y.%m.%d %H:%M:%S'</span><span class="p">,</span> <span class="n">localtime</span><span class="p">(</span><span class="n">most_recent</span><span class="p">))</span>
 </code></pre></div></div>
 
 <ol>
@@ -511,7 +511,7 @@
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreSettings"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/quicknotes/2018-11-30-181130_CalibreSettings"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -523,7 +523,7 @@
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreSettings&text=Calibre 설정" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/quicknotes/2018-11-30-181130_CalibreSettings&text=Calibre 설정" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -534,7 +534,7 @@
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreSettings" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/quicknotes/2018-11-30-181130_CalibreSettings" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -549,7 +549,7 @@
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Calibre 설정&body=Calibre 설정. https://ok97465.github.io/quicknotes/2018-11-30-181130_CalibreSettings" target="_blank" title="Email">
+      <a href="mailto:?&subject=Calibre 설정&body=Calibre 설정. http://localhost:4000/quicknotes/2018-11-30-181130_CalibreSettings" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>

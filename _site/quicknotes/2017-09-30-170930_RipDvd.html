@@ -130,18 +130,18 @@
 <span class="n">lang_name</span> <span class="o">=</span> <span class="p">[</span><span class="s">'en'</span><span class="p">,</span> <span class="s">'cr'</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chapter_name</span><span class="p">)):</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">'HandBrakeCLI'</span><span class="p">,</span> <span class="s">'--input'</span><span class="p">,</span> <span class="s">'/dev/sr0'</span><span class="p">,</span> <span class="s">'--title'</span><span class="p">,</span> <span class="s">'1'</span><span class="p">,</span> <span class="s">'--chapters'</span><span class="p">,</span> <span class="n">f</span><span class="s">'{idx+1}'</span><span class="p">,</span> <span class="s">'--audio'</span><span class="p">,</span> <span class="s">'1'</span><span class="p">,</span> <span class="s">'--output'</span><span class="p">,</span> <span class="n">f</span><span class="s">'/home/ok97465/dvd_rip/{album_name[0]}_{idx+1}_{chapter_name[idx]}_{lang_name[0]}.mp4'</span><span class="p">,</span> <span class="s">'--encoder'</span><span class="p">,</span> <span class="s">'x264'</span><span class="p">,</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">'HandBrakeCLI'</span><span class="p">,</span> <span class="s">'--input'</span><span class="p">,</span> <span class="s">'/dev/sr0'</span><span class="p">,</span> <span class="s">'--title'</span><span class="p">,</span> <span class="s">'1'</span><span class="p">,</span> <span class="s">'--chapters'</span><span class="p">,</span> <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">'</span><span class="p">,</span> <span class="s">'--audio'</span><span class="p">,</span> <span class="s">'1'</span><span class="p">,</span> <span class="s">'--output'</span><span class="p">,</span> <span class="sa">f</span><span class="s">'/home/ok97465/dvd_rip/</span><span class="si">{</span><span class="n">album_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">chapter_name</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">lang_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">.mp4'</span><span class="p">,</span> <span class="s">'--encoder'</span><span class="p">,</span> <span class="s">'x264'</span><span class="p">,</span>
                           <span class="s">'--quality'</span><span class="p">,</span> <span class="s">'10'</span><span class="p">,</span> <span class="s">'--rate'</span><span class="p">,</span> <span class="s">'29.97'</span><span class="p">,</span> <span class="s">'-B'</span><span class="p">,</span> <span class="s">'129'</span><span class="p">,</span> <span class="s">'-X'</span><span class="p">,</span> <span class="s">'720'</span><span class="p">])</span>
     
-    <span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>  
-    <span class="n">p_status</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">communicate</span><span class="p">()</span>  
+    <span class="n">p_status</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">wait</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">chapter_name</span><span class="p">)):</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">'HandBrakeCLI'</span><span class="p">,</span> <span class="s">'--input'</span><span class="p">,</span> <span class="s">'/dev/sr0'</span><span class="p">,</span> <span class="s">'--title'</span><span class="p">,</span> <span class="s">'1'</span><span class="p">,</span> <span class="s">'--chapters'</span><span class="p">,</span> <span class="n">f</span><span class="s">'{idx+1}'</span><span class="p">,</span> <span class="s">'--audio'</span><span class="p">,</span> <span class="s">'2'</span><span class="p">,</span> <span class="s">'--output'</span><span class="p">,</span> <span class="n">f</span><span class="s">'/home/ok97465/dvd_rip/{album_name[0]}_{idx+1}_{chapter_name[idx]}_{lang_name[1]}.mp4'</span><span class="p">,</span> <span class="s">'--encoder'</span><span class="p">,</span> <span class="s">'x264'</span><span class="p">,</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">'HandBrakeCLI'</span><span class="p">,</span> <span class="s">'--input'</span><span class="p">,</span> <span class="s">'/dev/sr0'</span><span class="p">,</span> <span class="s">'--title'</span><span class="p">,</span> <span class="s">'1'</span><span class="p">,</span> <span class="s">'--chapters'</span><span class="p">,</span> <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">'</span><span class="p">,</span> <span class="s">'--audio'</span><span class="p">,</span> <span class="s">'2'</span><span class="p">,</span> <span class="s">'--output'</span><span class="p">,</span> <span class="sa">f</span><span class="s">'/home/ok97465/dvd_rip/</span><span class="si">{</span><span class="n">album_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">chapter_name</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">lang_name</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">.mp4'</span><span class="p">,</span> <span class="s">'--encoder'</span><span class="p">,</span> <span class="s">'x264'</span><span class="p">,</span>
                           <span class="s">'--quality'</span><span class="p">,</span> <span class="s">'10'</span><span class="p">,</span> <span class="s">'--rate'</span><span class="p">,</span> <span class="s">'29.97'</span><span class="p">,</span> <span class="s">'-B'</span><span class="p">,</span> <span class="s">'129'</span><span class="p">,</span> <span class="s">'-X'</span><span class="p">,</span> <span class="s">'720'</span><span class="p">])</span>
     
-    <span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>  
-    <span class="n">p_status</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">communicate</span><span class="p">()</span>  
+    <span class="n">p_status</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">wait</span><span class="p">()</span>
 </code></pre></div></div>
 
                     
@@ -150,7 +150,7 @@
   <ul class="share-buttons">
     
       <li class="share-facebook">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://ok97465.github.io/quicknotes/2017-09-30-170930_RipDvd"
+          <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/quicknotes/2017-09-30-170930_RipDvd"
              target="_blank" title="Share on Facebook">
             <span class="fa-layers fa-fw fa-2x">
                 <i class="far fa-square"></i>
@@ -162,7 +162,7 @@
 
     
     <li class="share-twitter">
-      <a href="https://twitter.com/intent/tweet?url=https://ok97465.github.io/quicknotes/2017-09-30-170930_RipDvd&text=Dvd 동영상 굽기" target="_blank" title="Tweet">
+      <a href="https://twitter.com/intent/tweet?url=http://localhost:4000/quicknotes/2017-09-30-170930_RipDvd&text=Dvd 동영상 굽기" target="_blank" title="Tweet">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
@@ -173,7 +173,7 @@
 
     
     <li class="share-google-plus">
-      <a href="https://plus.google.com/share?url=https://ok97465.github.io/quicknotes/2017-09-30-170930_RipDvd" target="_blank" title="Share on Google Plus">
+      <a href="https://plus.google.com/share?url=http://localhost:4000/quicknotes/2017-09-30-170930_RipDvd" target="_blank" title="Share on Google Plus">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="fab fa-google-plus-g" data-fa-transform="shrink-8"></i>
@@ -188,7 +188,7 @@
 
     
     <li class="share-envelope">
-      <a href="mailto:?&subject=Dvd 동영상 굽기&body=Dvd에서 동영상을 추출하는 코드. https://ok97465.github.io/quicknotes/2017-09-30-170930_RipDvd" target="_blank" title="Email">
+      <a href="mailto:?&subject=Dvd 동영상 굽기&body=Dvd에서 동영상을 추출하는 코드. http://localhost:4000/quicknotes/2017-09-30-170930_RipDvd" target="_blank" title="Email">
         <span class="fa-layers fa-fw fa-2x">
             <i class="far fa-circle"></i>
             <i class="far fa-envelope" data-fa-transform="shrink-8"></i>
