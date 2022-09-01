@@ -587,6 +587,13 @@ nvim_lsp.pylsp.setup{
             all_scopes = true,
             include_import_symbols = false
         },
+        pyls_flake8 = { enabled = false },
+        pylsp_mypy = {
+            enabled = false,
+            live_mode = false,
+            dmypy = false,
+            strict= false
+        }
       }
     }
   }
