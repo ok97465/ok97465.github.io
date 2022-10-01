@@ -40,49 +40,50 @@ import_heading_thirdparty = Third party imports
 
 ## 3. 필요한 Package
 
-| 이름                | 저장소       | 설명                                                           |
-|--------------------|-------------|---------------------------------------------------------------|
-| opencv             | anaconda    | 영상처리 Library                                                |
-| mayavi             | anaconda    | surf, mesh등 3d Plot 가속화                                     |
-| pyqtgraph          | anaconda    | QT를 이용한 빠른 Plot                                            |
-| basemap            | anaconda    | Matplotlib 지도 투영                                            |
-| basemap-data-hires | anaconda    | Matplotlib 지도 투영(with coastlines and political boundaries)  |
-| rasterio           | anaconda    | GeoTiff library                                               |
-| dill               | anaconda    | Python 변수 파일 입출력                                          |
-| pyserial           | anaconda    | Serial library                                               |
-| pymap3d            | conda-forge | 지구 좌표계 변화                                                 |
-| vispy              | conda-forge | GPU 가속을 이용한 빠른 Plot                                       |
-| mplcursors         | conda-forge | Maplotlib에 Data Cursor 추가                                    |
-| jupyter_contrib_nbextensions | conda-forge | jupyter notebook extension                          |
-| jupyterthemes      | conda-forge | Mapplotlib theme 지원                                          |
-| debugpy            | conda-forge | Debug tool for nvim                                           |
-| pylsp-mypy         | conda-forge | Mypy linter for the Python LSP Server.                        |
-| ipympl             | conda-forge | Jupyterlab maplotlib extension                                |
-| xeus-python        | conda-forge | Jupyterlab debugger extension                                |
-| imutils            | conda-forge | 영상처리 library                                                |
-| qscintilla2        | conda-forge | Syntax highlight editor                                       |
-| borb               | conda-forge | PDF util                                                      |
-| dataslots          | Github      | dataclass를 __slots__ class로 변환                              |
-| numexpr3           | Github      | 간단한 연산에 대한 최적화                                         |
-| ctypeslib2         | PyPi        | c header를 python class로 변환                                  |
-| pyinstaller        | anaconda    | python을 실행파일로 변환                                          |
-| pyautogui          | conda-forge | 컴퓨터 자동화                                                    |
-| pyperclip          | conda-forge | 컴퓨터 clipboard 활용                                            |
-| python-pptx        | conda-forge | Python에서 pptx 작성                                            |
-| python-docx        | conda-forge | Python에서 docx 작성                                            |
-| jupyterlab-git     | conda-forge | Jupyterlab에서 git 사용                                        |
-| jupyterlab-variableinspector | conda-forge | Jupyterlab variableinspector                                        |
-| nb_black           | conda-forge | jupyterlab black formatter extension                                         |
-| jupyterlab-drawio  | conda-forge | jupyterlab drawio extension                                         |
-| jupyterlab_vim     | conda-forge | jupyterlab vim extension                                       |
-| pynvim             | conda-forge | util for nvim                                       |
-| Pyside2     | conda-forge        | pyside2                                       |
-| Geopandas    | conda-forge        |  working with geospatial data in python easier.                                      |
-| doq                | PyPi | Docstring generator.                                       |
-| cmake-language-server     | PyPi        | cmake lsp for nvim-lsp                                       |
-| qt-material     | PyPi        | Qt material theme                                      |
-| pyswarms           | PyPi        | Partical Swarms Optimization                                   |
-| hml_equation_parser| PyPi        | HWP의 수식을 latex로 변환                                         |
+ | 이름                          | 저장소        | 설명                                                            | 
+ | ----------------------------- | ------------- | --------------------------------------------------------------- | 
+ | opencv                        | anaconda      | 영상처리 Library                                                | 
+ | mayavi                        | anaconda      | surf, mesh등 3d Plot 가속화                                     | 
+ | pyqtgraph                     | anaconda      | QT를 이용한 빠른 Plot                                           | 
+ | basemap                       | anaconda      | Matplotlib 지도 투영                                            | 
+ | basemap-data-hires            | anaconda      | Matplotlib 지도 투영(with coastlines and political boundaries)  | 
+ | rasterio                      | anaconda      | GeoTiff library                                                 | 
+ | dill                          | anaconda      | Python 변수 파일 입출력                                         | 
+ | pyserial                      | anaconda      | Serial library                                                  | 
+ | pymap3d                       | conda-forge   | 지구 좌표계 변화                                                | 
+ | vispy                         | conda-forge   | GPU 가속을 이용한 빠른 Plot                                     | 
+ | shapely                       | conda-forge   | Manipulation and analysis of geometric objects                  | 
+ | mplcursors                    | conda-forge   | Maplotlib에 Data Cursor 추가                                    | 
+ | jupyter_contrib_nbextensions  | conda-forge   | jupyter notebook extension                                      | 
+ | jupyterthemes                 | conda-forge   | Mapplotlib theme 지원                                           | 
+ | debugpy                       | conda-forge   | Debug tool for nvim                                             | 
+ | pylsp-mypy                    | conda-forge   | Mypy linter for the Python LSP Server.                          | 
+ | ipympl                        | conda-forge   | Jupyterlab maplotlib extension                                  | 
+ | xeus-python                   | conda-forge   | Jupyterlab debugger extension                                   | 
+ | imutils                       | conda-forge   | 영상처리 library                                                | 
+ | qscintilla2                   | conda-forge   | Syntax highlight editor                                         | 
+ | borb                          | conda-forge   | PDF util                                                        | 
+ | dataslots                     | Github        | dataclass를 __slots__ class로 변환                              | 
+ | numexpr3                      | Github        | 간단한 연산에 대한 최적화                                       | 
+ | ctypeslib2                    | PyPi          | c header를 python class로 변환                                  | 
+ | pyinstaller                   | anaconda      | python을 실행파일로 변환                                        | 
+ | pyautogui                     | conda-forge   | 컴퓨터 자동화                                                   | 
+ | pyperclip                     | conda-forge   | 컴퓨터 clipboard 활용                                           | 
+ | python-pptx                   | conda-forge   | Python에서 pptx 작성                                            | 
+ | python-docx                   | conda-forge   | Python에서 docx 작성                                            | 
+ | jupyterlab-git                | conda-forge   | Jupyterlab에서 git 사용                                         | 
+ | jupyterlab-variableinspector  | conda-forge   | Jupyterlab variableinspector                                    | 
+ | nb_black                      | conda-forge   | jupyterlab black formatter extension                            | 
+ | jupyterlab-drawio             | conda-forge   | jupyterlab drawio extension                                     | 
+ | jupyterlab_vim                | conda-forge   | jupyterlab vim extension                                        | 
+ | pynvim                        | conda-forge   | util for nvim                                                   | 
+ | Pyside2                       | conda-forge   | pyside2                                                         | 
+ | Geopandas                     | conda-forge   | working with geospatial data in python easier.                  | 
+ | doq                           | PyPi          | Docstring generator.                                            | 
+ | cmake-language-server         | PyPi          | cmake lsp for nvim-lsp                                          | 
+ | qt-material                   | PyPi          | Qt material theme                                               | 
+ | pyswarms                      | PyPi          | Partical Swarms Optimization                                    | 
+ | hml_equation_parser           | PyPi          | HWP의 수식을 latex로 변환                                       | 
 
 
 <br>
