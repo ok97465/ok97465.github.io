@@ -51,6 +51,7 @@ import_heading_thirdparty = Third party imports
  | dill                          | anaconda      | Python 변수 파일 입출력                                         | 
  | pyserial                      | anaconda      | Serial library                                                  | 
  | pymap3d                       | conda-forge   | 지구 좌표계 변화                                                | 
+ | skyfield                      | conda-forge   | Elegant astronomy for Python                                  | 
  | vispy                         | conda-forge   | GPU 가속을 이용한 빠른 Plot                                     | 
  | shapely                       | conda-forge   | Manipulation and analysis of geometric objects                  | 
  | mplcursors                    | conda-forge   | Maplotlib에 Data Cursor 추가                                    | 
@@ -63,9 +64,9 @@ import_heading_thirdparty = Third party imports
  | imutils                       | conda-forge   | 영상처리 library                                                | 
  | qscintilla2                   | conda-forge   | Syntax highlight editor                                         | 
  | borb                          | conda-forge   | PDF util                                                        | 
- | dataslots                     | Github        | dataclass를 __slots__ class로 변환                              | 
  | numexpr3                      | Github        | 간단한 연산에 대한 최적화                                       | 
  | ctypeslib2                    | PyPi          | c header를 python class로 변환                                  | 
+ | refurb                        | PyPi          | A tool for refurbishing and modernizing Python codebases       | 
  | pyinstaller                   | anaconda      | python을 실행파일로 변환                                        | 
  | pyautogui                     | conda-forge   | 컴퓨터 자동화                                                   | 
  | pyperclip                     | conda-forge   | 컴퓨터 clipboard 활용                                           | 
