@@ -52,6 +52,7 @@ import_heading_thirdparty = Third party imports
  | pyserial                      | anaconda      | Serial library                                                  | 
  | pymap3d                       | conda-forge   | 지구 좌표계 변화                                                | 
  | skyfield                      | conda-forge   | Elegant astronomy for Python                                  | 
+ | vpython                       | conda-forge   | 3D animation 생성                                         | 
  | vispy                         | conda-forge   | GPU 가속을 이용한 빠른 Plot                                     | 
  | shapely                       | conda-forge   | Manipulation and analysis of geometric objects                  | 
  | mplcursors                    | conda-forge   | Maplotlib에 Data Cursor 추가                                    | 
@@ -85,6 +86,7 @@ import_heading_thirdparty = Third party imports
  | qt-material                   | PyPi          | Qt material theme                                               | 
  | pyswarms                      | PyPi          | Partical Swarms Optimization                                    | 
  | hml_equation_parser           | PyPi          | HWP의 수식을 latex로 변환                                       | 
+ | mplcyberpunk                  | PyPi          | cyberpunk theme of matplotlib                                   | 
 
 
 <br>
