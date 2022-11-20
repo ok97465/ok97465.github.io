@@ -65,6 +65,7 @@ import_heading_thirdparty = Third party imports
  | imutils                       | conda-forge   | 영상처리 library                                                | 
  | qscintilla2                   | conda-forge   | Syntax highlight editor                                         | 
  | borb                          | conda-forge   | PDF util                                                        | 
+ | pytesseract                   | conda-forge   | optical character recognition (OCR) tool                        | 
  | numexpr3                      | Github        | 간단한 연산에 대한 최적화                                       | 
  | ctypeslib2                    | PyPi          | c header를 python class로 변환                                  | 
  | refurb                        | PyPi          | A tool for refurbishing and modernizing Python codebases       | 
