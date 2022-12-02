@@ -69,6 +69,7 @@ import_heading_thirdparty = Third party imports
  | numexpr3                      | Github        | 간단한 연산에 대한 최적화                                       | 
  | ctypeslib2                    | PyPi          | c header를 python class로 변환                                  | 
  | refurb                        | PyPi          | A tool for refurbishing and modernizing Python codebases       | 
+ | tkinterdnd2                   | PyPi          | Tkinter native drag and drop support for windows, unix and Mac OSX       | 
  | pyinstaller                   | anaconda      | python을 실행파일로 변환                                        | 
  | pyautogui                     | conda-forge   | 컴퓨터 자동화                                                   | 
  | pyperclip                     | conda-forge   | 컴퓨터 clipboard 활용                                           | 
