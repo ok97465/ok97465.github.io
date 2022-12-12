@@ -89,6 +89,7 @@ import_heading_thirdparty = Third party imports
  | pyswarms                      | PyPi          | Partical Swarms Optimization                                    | 
  | hml_equation_parser           | PyPi          | HWP의 수식을 latex로 변환                                       | 
  | mplcyberpunk                  | PyPi          | cyberpunk theme of matplotlib                                   | 
+ | lukas-blecher/LaTeX-OCR       | Github        | 수식을 Latex으로 변환.(새로운 환경에 설치할것)                        | 
 
 
 <br>
