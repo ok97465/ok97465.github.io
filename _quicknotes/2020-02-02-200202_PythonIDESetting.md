@@ -60,6 +60,7 @@ import_heading_thirdparty = Third party imports
  | jupyterthemes                 | conda-forge   | Mapplotlib theme 지원                                           | 
  | debugpy                       | conda-forge   | Debug tool for nvim                                             | 
  | pylsp-mypy                    | conda-forge   | Mypy linter for the Python LSP Server.                          | 
+ | pyupgrade                     | conda-forge   | A tool to automatically upgrade syntax for newer versions.      | 
  | ipympl                        | conda-forge   | Jupyterlab maplotlib extension                                  | 
  | xeus-python                   | conda-forge   | Jupyterlab debugger extension                                   | 
  | imutils                       | conda-forge   | 영상처리 library                                                | 
@@ -83,6 +84,8 @@ import_heading_thirdparty = Third party imports
  | pynvim                        | conda-forge   | util for nvim                                                   | 
  | Pyside2                       | conda-forge   | pyside2                                                         | 
  | Geopandas                     | conda-forge   | working with geospatial data in python easier.                  | 
+ | itur                          | PyPi          | the ITU-R Recommendations for atmospheric attenuation modeling. | 
+ | cartopy                       | PyPi          | cartographic python library with matplotlib support.            | 
  | doq                           | PyPi          | Docstring generator.                                            | 
  | cmake-language-server         | PyPi          | cmake lsp for nvim-lsp                                          | 
  | qt-material                   | PyPi          | Qt material theme                                               | 
