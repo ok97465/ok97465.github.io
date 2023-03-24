@@ -149,30 +149,42 @@ Step 5: Double-click on the newly created DisableLockWorkstation entry and chang
 
 <p>개인적인 Window 단축키 설정은 다음과 같다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#e:: Run, C:\pcsetup\lf\lf_anaconda3.bat
-^!e:: Run, explorer
-#b:: Run, firefox
-#t:: Run, "C:\Programdata\Microsoft\Windows\Start Menu\Programs\Anaconda3 (64-bit)\Anaconda Powershell Prompt (Anaconda3).lnk"
-#v:: Run, "C:\Program Files\Vim\vim82\gvim.exe"
-#c:: Run, "C:\Users\ok974\AppData\Local\Programs\Microsoft VS Code\code.exe"
-#s:: Run, "C:\codepy\spyder_ok97465\spyder.bat"
-#w:: Send, !{f4}
-#h:: Send, #{left}
-#l:: Send, #{right}
-#j:: Send, #{down}
-#k:: Send, #{up}
-#+h:: Send, #+{left}
-#+l:: Send, #+{right}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#e::
+{
+    Run '"C:\pcsetup\lf\lf_anaconda3.bat"',,,&amp;process_id
+    WinWait "ahk_pid", process_id
+    WinActivate "ahk_pid", process_id
+}
+^#e::
+{
+    Run "explorer",,,&amp;process_id
+    WinWait "ahk_pid", process_id
+    WinActivate "ahk_pid", process_id
+}
+#b:: Run '"C:\Program Files\Mozilla Firefox\firefox" -private-window'
+#t:: Run '"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Anaconda3 (64-bit)\Anaconda Prompt (anaconda3).lnk"'
+#v:: Run '*runas "C:\pcsetup\nvim\helper\vi.bat"' ,, "Hide"
+#c:: Run "C:\Users\ok974\AppData\Local\Programs\Microsoft VS Code\code.exe"
+#s:: Run '*runas "C:\codepy\spyder_ok97465\spyder.bat"'
+#w:: Send '!{f4}'
+#h:: Send '#{left}'
+#l:: Send '#{right}'
+#j:: Send '#{down}'
+#k:: Send '#{up}'
+#+h:: Send '#+{left}'
+#+l:: Send '#+{right}'
 #p::
-    MsgBox, 0x104,, HALT SYSTEM?
-    ifMsgBox, Yes
-        Shutdown, 1
-    Return
-#+p::
-    MsgBox, 0x104,, REBOOT SYSTEM?
-    ifMsgBox, Yes
-        Shutdown, 2
-    Return
+{
+    Result := MsgBox("Would you like to HaltSystem?",, "YesNo")
+    if Result = "Yes"
+        Shutdown "1"
+}
+^#p::
+{
+    Result := MsgBox("Would you like to RebootSystem?",, "YesNo")
+    if Result = "Yes"
+        Shutdown "2"
+}
 </code></pre></div></div>
 
                     

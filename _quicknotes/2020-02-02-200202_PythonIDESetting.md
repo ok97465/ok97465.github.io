@@ -56,6 +56,7 @@ import_heading_thirdparty = Third party imports
  | vispy                         | conda-forge   | GPU 가속을 이용한 빠른 Plot                                     | 
  | shapely                       | conda-forge   | Manipulation and analysis of geometric objects                  | 
  | mplcursors                    | conda-forge   | Maplotlib에 Data Cursor 추가                                    | 
+ | exifread                      | conda-forge   | Read Exif metadata from tiff and jpeg files                     | 
  | jupyter_contrib_nbextensions  | conda-forge   | jupyter notebook extension                                      | 
  | jupyterthemes                 | conda-forge   | Mapplotlib theme 지원                                           | 
  | debugpy                       | conda-forge   | Debug tool for nvim                                             | 

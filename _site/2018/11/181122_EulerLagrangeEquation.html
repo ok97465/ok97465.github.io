@@ -243,27 +243,27 @@
 
 <p>$F=\sqrt{1+{y^{\prime}}^2}$로 놓고 sympy를 이용하여 풀어본다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">init_printing</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">Function</span><span class="p">,</span> <span class="n">sympify</span>
-<span class="kn">from</span> <span class="nn">sympy.printing</span> <span class="kn">import</span> <span class="n">latex</span>
-<span class="kn">from</span> <span class="nn">sympy.calculus</span> <span class="kn">import</span> <span class="n">euler_equations</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span> <span class="k">as</span> <span class="n">print_latex</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sympy</span> <span class="kn">import</span> <span class="n">init_printing</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">Function</span><span class="p">,</span> <span class="n">sympify</span>
+<span class="kn">from</span> <span class="n">sympy.printing</span> <span class="kn">import</span> <span class="n">latex</span>
+<span class="kn">from</span> <span class="n">sympy.calculus</span> <span class="kn">import</span> <span class="n">euler_equations</span>
+<span class="kn">from</span> <span class="n">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span> <span class="k">as</span> <span class="n">print_latex</span>
+<span class="kn">from</span> <span class="n">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
 
-<span class="n">init_printing</span><span class="p">()</span>
+<span class="nf">init_printing</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s">'y'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">dy</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">F</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="nf">symbols</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nc">Function</span><span class="p">(</span><span class="s">'y'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="nf">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">print_latex</span><span class="p">(</span><span class="sa">r</span><span class="s">'$$F='</span><span class="o">+</span><span class="n">latex</span><span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s">'$$'</span><span class="p">))</span>
+<span class="nf">display</span><span class="p">(</span><span class="nf">print_latex</span><span class="p">(</span><span class="sa">r</span><span class="s">'$$F='</span><span class="o">+</span><span class="nf">latex</span><span class="p">(</span><span class="n">F</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s">'$$'</span><span class="p">))</span>
 
-<span class="n">answer_euler</span> <span class="o">=</span> <span class="n">euler_equations</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">answer_euler</span> <span class="o">=</span> <span class="nf">euler_equations</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
 
-<span class="n">display</span><span class="p">(</span><span class="n">print_latex</span><span class="p">(</span>
+<span class="nf">display</span><span class="p">(</span><span class="nf">print_latex</span><span class="p">(</span>
     <span class="sa">r</span><span class="s">'$$\frac { d } { d x } \frac { \partial F } { \partial y ^ { \prime } } - \frac { \partial F } { \partial y }='</span>
-    <span class="o">+</span> <span class="n">latex</span><span class="p">(</span><span class="n">sympify</span><span class="p">(</span><span class="n">answer_euler</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="o">+</span> <span class="nf">latex</span><span class="p">(</span><span class="nf">sympify</span><span class="p">(</span><span class="n">answer_euler</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
     <span class="o">+</span> <span class="sa">r</span><span class="s">'$$'</span><span class="p">))</span>
 </code></pre></div></div>
 
@@ -273,8 +273,8 @@
 
 <p>sympy에서 euler_euqations 함수 호출 시 내부에서 $d/dx$를 수행하여 직관적이지 않은 해가 도출되었다. 편미분만 수행해 본다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">partial_df</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="n">diff</span><span class="p">(</span><span class="n">dy</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">print_latex</span><span class="p">(</span><span class="sa">r</span><span class="s">'$$\frac{d}{dx}\left('</span> <span class="o">+</span> <span class="n">latex</span><span class="p">(</span><span class="n">partial_df</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s">'\right)=0$$'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">partial_df</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">diff</span><span class="p">(</span><span class="n">dy</span><span class="p">)</span>
+<span class="nf">display</span><span class="p">(</span><span class="nf">print_latex</span><span class="p">(</span><span class="sa">r</span><span class="s">'$$\frac{d}{dx}\left('</span> <span class="o">+</span> <span class="nf">latex</span><span class="p">(</span><span class="n">partial_df</span><span class="p">)</span> <span class="o">+</span> <span class="sa">r</span><span class="s">'\right)=0$$'</span><span class="p">))</span>
 </code></pre></div></div>
 
 \[\frac{d}{dx}\left(\frac{\frac{d}{d x} y{\left (x \right )}}{\sqrt{\left(\frac{d}{d x} y{\left (x \right )}\right)^{2} + 1}}\right)=0\]
@@ -290,31 +290,31 @@
 
 \[I = \int{dt} = \int{\frac{ds}{v}}=\frac{1}{\sqrt{2g}}\int_{x_2}^{x_2}{\frac{\sqrt{1+{y^{\prime}}^2}}{\sqrt{y}}dx}\]
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">simplify</span>
-<span class="kn">from</span> <span class="nn">sympy.printing</span> <span class="kn">import</span> <span class="n">latex</span>
-<span class="kn">from</span> <span class="nn">sympy.calculus</span> <span class="kn">import</span> <span class="n">euler_equations</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span> <span class="k">as</span> <span class="n">print_latex</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
-<span class="kn">from</span> <span class="nn">sympy.physics.mechanics</span> <span class="kn">import</span> <span class="n">mechanics_printing</span><span class="p">,</span> <span class="n">dynamicsymbols</span>
-<span class="n">mechanics_printing</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">diff</span><span class="p">,</span> <span class="n">simplify</span>
+<span class="kn">from</span> <span class="n">sympy.printing</span> <span class="kn">import</span> <span class="n">latex</span>
+<span class="kn">from</span> <span class="n">sympy.calculus</span> <span class="kn">import</span> <span class="n">euler_equations</span>
+<span class="kn">from</span> <span class="n">IPython.display</span> <span class="kn">import</span> <span class="n">Latex</span> <span class="k">as</span> <span class="n">print_latex</span>
+<span class="kn">from</span> <span class="n">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="n">sympy.physics.mechanics</span> <span class="kn">import</span> <span class="n">mechanics_printing</span><span class="p">,</span> <span class="n">dynamicsymbols</span>
+<span class="nf">mechanics_printing</span><span class="p">()</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">g</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'g'</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1">#accleration due to gravity
-</span><span class="n">y</span> <span class="o">=</span> <span class="n">dynamicsymbols</span><span class="p">(</span><span class="s">'y'</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">symbols</span><span class="p">(</span><span class="s">'x'</span><span class="p">,</span><span class="n">real</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="nf">symbols</span><span class="p">(</span><span class="s">'g'</span><span class="p">,</span><span class="n">constant</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>  <span class="c1">#accleration due to gravity
+</span><span class="n">y</span> <span class="o">=</span> <span class="nf">dynamicsymbols</span><span class="p">(</span><span class="s">'y'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>y 미분을 $\frac{dy}{dx}$가 아닌 $\dot{y}$로 표현하기 위해서 dynamicsymbols을 사용한다. dynamicsymbols은 y(t)로 기본 설정되어 있어서 코드에서 y 미분을 t에 대해서 수행하지만 수식상에서는 x에 대한 미분으로 생각하면 된다.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dy</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dy</span> <span class="o">=</span> <span class="nf">diff</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 
-<span class="n">F</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+<span class="n">F</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">dy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">g</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+<span class="nf">display</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
 </code></pre></div></div>
 
 \[\frac{\sqrt{2} \sqrt{\dot{y}^{2} + 1}}{2 \sqrt{g y}}\]
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">euler_answer</span> <span class="o">=</span> <span class="n">euler_equations</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'t'</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">display</span><span class="p">(</span><span class="n">simplify</span><span class="p">(</span><span class="n">euler_answer</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">euler_answer</span> <span class="o">=</span> <span class="nf">euler_equations</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="nf">symbols</span><span class="p">(</span><span class="s">'t'</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nf">display</span><span class="p">(</span><span class="nf">simplify</span><span class="p">(</span><span class="n">euler_answer</span><span class="p">))</span>
 </code></pre></div></div>
 
 \[\frac{\sqrt{2} \sqrt{g y} \left(2 y \ddot{y} + \dot{y}^{2} + 1\right)}{4 g \dot{y}^{2} + 1^{\frac{3}{2}} y^{2}} = 0\]

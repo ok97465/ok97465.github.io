@@ -174,10 +174,10 @@
 
 <h3 id="21-함수-선언">2.1. 함수 선언</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">root</span> <span class="k">as</span> <span class="n">find_root</span>
-<span class="kn">from</span> <span class="nn">numpy.core.umath</span> <span class="kn">import</span> <span class="n">pi</span>
-<span class="kn">from</span> <span class="nn">numpy.core.numeric</span> <span class="kn">import</span> <span class="n">arange</span><span class="p">,</span> <span class="n">ndarray</span>
-<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">ellipeinc</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">scipy.optimize</span> <span class="kn">import</span> <span class="n">root</span> <span class="k">as</span> <span class="n">find_root</span>
+<span class="kn">from</span> <span class="n">numpy.core.umath</span> <span class="kn">import</span> <span class="n">pi</span>
+<span class="kn">from</span> <span class="n">numpy.core.numeric</span> <span class="kn">import</span> <span class="n">arange</span><span class="p">,</span> <span class="n">ndarray</span>
+<span class="kn">from</span> <span class="n">scipy.special</span> <span class="kn">import</span> <span class="n">ellipeinc</span>
 
 <span class="k">def</span> <span class="nf">ang_for_equidistant_in_ellipse</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">r_long</span><span class="p">,</span> <span class="n">r_short</span><span class="p">):</span>
     <span class="s">"""호의 길이가 등간격이 되도록 타원을 N등분하는 각도를 계산한다.
@@ -194,14 +194,14 @@
         [rad].
 
     """</span>
-    <span class="n">angles</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">arange</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">/</span> <span class="n">num</span>  <span class="c1"># 수치 해석에 사용할 각도 초기값
+    <span class="n">angles</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="nf">arange</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">/</span> <span class="n">num</span>  <span class="c1"># 수치 해석에 사용할 각도 초기값
 </span>    <span class="k">if</span> <span class="n">r_short</span> <span class="o">!=</span> <span class="n">r_long</span><span class="p">:</span>
         <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">r_short</span> <span class="o">**</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="n">r_long</span> <span class="o">**</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
-        <span class="n">perimeter</span> <span class="o">=</span> <span class="n">ellipeinc</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">pi</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        <span class="n">perimeter</span> <span class="o">=</span> <span class="nf">ellipeinc</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">pi</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 
-        <span class="n">arcs</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">perimeter</span> <span class="o">/</span> <span class="n">num</span><span class="p">)</span>
+        <span class="n">arcs</span> <span class="o">=</span> <span class="nf">arange</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">perimeter</span> <span class="o">/</span> <span class="n">num</span><span class="p">)</span>
 
-        <span class="n">res</span> <span class="o">=</span> <span class="n">find_root</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">ellipeinc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-</span> <span class="n">arcs</span><span class="p">),</span> <span class="n">angles</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="nf">find_root</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="nf">ellipeinc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">-</span> <span class="n">arcs</span><span class="p">),</span> <span class="n">angles</span><span class="p">)</span>
         <span class="n">angles</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">x</span>
     <span class="k">return</span> <span class="n">angles</span>
 </code></pre></div></div>
@@ -214,10 +214,10 @@
 <span class="n">b</span> <span class="o">=</span> <span class="mi">10</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">16</span>
 
-<span class="n">phi</span> <span class="o">=</span> <span class="n">ang_for_equidistant_in_ellipse</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="nf">ang_for_equidistant_in_ellipse</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">b</span> <span class="o">**</span> <span class="mf">2.0</span> <span class="o">/</span> <span class="n">a</span><span class="o">**</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
-<span class="n">arcs</span> <span class="o">=</span> <span class="n">ellipeinc</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>  <span class="c1"># Phi 각도별 호의 길이
+<span class="n">arcs</span> <span class="o">=</span> <span class="nf">ellipeinc</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>  <span class="c1"># Phi 각도별 호의 길이
 </span></code></pre></div></div>
 
 <p><br /></p>

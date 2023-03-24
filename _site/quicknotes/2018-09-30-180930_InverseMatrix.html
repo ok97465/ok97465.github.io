@@ -138,9 +138,9 @@
 
 <h3 id="11-python-code">1.1. Python Code</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">hstack</span><span class="p">,</span> <span class="n">eye</span><span class="p">,</span> <span class="n">ndarray</span><span class="p">,</span> <span class="n">where</span><span class="p">,</span> <span class="n">allclose</span>
-<span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">LinAlgError</span><span class="p">,</span> <span class="n">matrix_rank</span>
-<span class="kn">from</span> <span class="nn">numpy.random</span> <span class="kn">import</span> <span class="n">standard_normal</span><span class="p">,</span> <span class="n">randint</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">numpy</span> <span class="kn">import</span> <span class="n">hstack</span><span class="p">,</span> <span class="n">eye</span><span class="p">,</span> <span class="n">ndarray</span><span class="p">,</span> <span class="n">where</span><span class="p">,</span> <span class="n">allclose</span>
+<span class="kn">from</span> <span class="n">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span><span class="p">,</span> <span class="n">LinAlgError</span><span class="p">,</span> <span class="n">matrix_rank</span>
+<span class="kn">from</span> <span class="n">numpy.random</span> <span class="kn">import</span> <span class="n">standard_normal</span><span class="p">,</span> <span class="n">randint</span>
 
 
 <span class="k">def</span> <span class="nf">inv_by_gauss_elimination</span><span class="p">(</span><span class="n">mat</span><span class="p">):</span>
@@ -162,34 +162,34 @@
     <span class="n">n_row</span><span class="p">,</span> <span class="n">n_col</span> <span class="o">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">shape</span>
 
     <span class="k">if</span> <span class="n">n_row</span> <span class="o">!=</span> <span class="n">n_col</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="nb">IndexError</span><span class="p">(</span><span class="s">"The rows and columns are different sizes."</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="nc">IndexError</span><span class="p">(</span><span class="s">"The rows and columns are different sizes."</span><span class="p">)</span>
 
-    <span class="n">data</span> <span class="o">=</span> <span class="n">hstack</span><span class="p">([</span><span class="n">mat</span><span class="p">,</span> <span class="n">eye</span><span class="p">(</span><span class="n">n_row</span><span class="p">)])</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="nf">hstack</span><span class="p">([</span><span class="n">mat</span><span class="p">,</span> <span class="nf">eye</span><span class="p">(</span><span class="n">n_row</span><span class="p">)])</span>
 
     <span class="n">null_dim</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="c1"># calculate row echelon form
-</span>    <span class="k">for</span> <span class="n">idx_row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span><span class="p">):</span>
-        <span class="n">idx_pivot_candidate</span> <span class="o">=</span> <span class="n">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">:,</span> <span class="n">idx_row</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">idx_pivot_candidate</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span>    <span class="k">for</span> <span class="n">idx_row</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n_row</span><span class="p">):</span>
+        <span class="n">idx_pivot_candidate</span> <span class="o">=</span> <span class="nf">where</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">:,</span> <span class="n">idx_row</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">idx_pivot_candidate</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">idx_pivot</span> <span class="o">=</span> <span class="n">idx_pivot_candidate</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">idx_row</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">null_dim</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="k">if</span> <span class="n">idx_pivot</span> <span class="o">!=</span> <span class="n">idx_row</span><span class="p">:</span>
-            <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:].</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:].</span><span class="nf">copy</span><span class="p">()</span>
             <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_pivot</span><span class="p">,</span> <span class="p">:]</span>
             <span class="n">data</span><span class="p">[</span><span class="n">idx_pivot</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">tmp</span>
 
         <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="n">idx_row</span><span class="p">]</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
             <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/=</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="n">idx_row</span><span class="p">]</span>
 
-        <span class="k">for</span> <span class="n">idx_row_dst</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">idx_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_row</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">idx_row_dst</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">idx_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_row</span><span class="p">):</span>
             <span class="n">data</span><span class="p">[</span><span class="n">idx_row_dst</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span>
                                      <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row_dst</span><span class="p">,</span> <span class="n">idx_row</span><span class="p">])</span>
 
     <span class="c1"># calculate inverse matrix
-</span>    <span class="k">for</span> <span class="n">idx_row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">idx_row_dst</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">idx_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+</span>    <span class="k">for</span> <span class="n">idx_row</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">idx_row_dst</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">idx_row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">data</span><span class="p">[</span><span class="n">idx_row_dst</span><span class="p">,</span> <span class="p">:]</span> <span class="o">-=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">idx_row</span><span class="p">,</span> <span class="p">:]</span>
                                      <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="n">idx_row_dst</span><span class="p">,</span> <span class="n">idx_row</span><span class="p">])</span>
 
@@ -204,27 +204,27 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">n_row</span> <span class="o">=</span> <span class="mi">128</span>
 
-<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">mat</span> <span class="o">=</span> <span class="n">standard_normal</span><span class="p">((</span><span class="n">n_row</span><span class="p">,</span> <span class="n">n_row</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">mat</span> <span class="o">=</span> <span class="nf">standard_normal</span><span class="p">((</span><span class="n">n_row</span><span class="p">,</span> <span class="n">n_row</span><span class="p">))</span>
 
     <span class="c1"># Test Inverse
 </span>    <span class="k">try</span><span class="p">:</span>
-        <span class="n">mat_inv_exact</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
-        <span class="n">mat_inv</span><span class="p">,</span> <span class="n">null_dim</span> <span class="o">=</span> <span class="n">inv_by_gauss_elimination</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
-        <span class="n">is_same</span> <span class="o">=</span> <span class="n">allclose</span><span class="p">(</span><span class="n">mat_inv_exact</span><span class="p">,</span> <span class="n">mat_inv</span><span class="p">)</span>
+        <span class="n">mat_inv_exact</span> <span class="o">=</span> <span class="nf">inv</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+        <span class="n">mat_inv</span><span class="p">,</span> <span class="n">null_dim</span> <span class="o">=</span> <span class="nf">inv_by_gauss_elimination</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+        <span class="n">is_same</span> <span class="o">=</span> <span class="nf">allclose</span><span class="p">(</span><span class="n">mat_inv_exact</span><span class="p">,</span> <span class="n">mat_inv</span><span class="p">)</span>
     
         <span class="k">if</span> <span class="n">is_same</span> <span class="ow">is</span> <span class="bp">True</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"same"</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"same"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"=====Error====="</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"=====Error====="</span><span class="p">)</span>
             <span class="k">break</span>
     <span class="k">except</span> <span class="n">LinAlgError</span><span class="p">:</span>
-        <span class="n">null_dim_exact</span> <span class="o">=</span> <span class="n">n_row</span> <span class="o">-</span> <span class="n">matrix_rank</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
-        <span class="n">mat_inv</span><span class="p">,</span> <span class="n">null_dim</span> <span class="o">=</span> <span class="n">inv_by_gauss_elimination</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+        <span class="n">null_dim_exact</span> <span class="o">=</span> <span class="n">n_row</span> <span class="o">-</span> <span class="nf">matrix_rank</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+        <span class="n">mat_inv</span><span class="p">,</span> <span class="n">null_dim</span> <span class="o">=</span> <span class="nf">inv_by_gauss_elimination</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">null_dim_exact</span> <span class="o">==</span> <span class="n">null_dim</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"null dim same"</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"null dim same"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">"=====null dim Error====="</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"=====null dim Error====="</span><span class="p">)</span>
             <span class="k">break</span>
 </code></pre></div></div>
 
