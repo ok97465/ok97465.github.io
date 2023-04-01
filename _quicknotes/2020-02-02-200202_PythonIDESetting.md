@@ -50,6 +50,9 @@ import_heading_thirdparty = Third party imports
  | rasterio                      | anaconda      | GeoTiff library                                                 | 
  | dill                          | anaconda      | Python 변수 파일 입출력                                         | 
  | pyserial                      | anaconda      | Serial library                                                  | 
+ | gdal                          | anaconda      | GDAL is a translator library for raster and vector geospatial data formats that is released under an X/MIT style Open Source license by the Open Source Geospatial Foundation.            | 
+ | cartopy                       | anaconda      | cartographic python library with matplotlib support.            | 
+ | cartopy_offlinedata           | conda-forge   | Offline data for using cartopy without an internet connection   | 
  | pymap3d                       | conda-forge   | 지구 좌표계 변화                                                | 
  | skyfield                      | conda-forge   | Elegant astronomy for Python                                  | 
  | vpython                       | conda-forge   | 3D animation 생성                                         | 
@@ -86,7 +89,6 @@ import_heading_thirdparty = Third party imports
  | Pyside2                       | conda-forge   | pyside2                                                         | 
  | Geopandas                     | conda-forge   | working with geospatial data in python easier.                  | 
  | itur                          | PyPi          | the ITU-R Recommendations for atmospheric attenuation modeling. | 
- | cartopy                       | PyPi          | cartographic python library with matplotlib support.            | 
  | doq                           | PyPi          | Docstring generator.                                            | 
  | cmake-language-server         | PyPi          | cmake lsp for nvim-lsp                                          | 
  | qt-material                   | PyPi          | Qt material theme                                               | 
