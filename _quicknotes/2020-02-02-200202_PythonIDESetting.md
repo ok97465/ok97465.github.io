@@ -110,6 +110,9 @@ import_heading_thirdparty = Third party imports
 | mlxtend            | conda       | Mlxtend is extension for ML                                   |
 | tensorboard        | conda       | tensorboard                                                   |
 | captum             | conda       | a model interpretability and understanding library for PyTorch|
+| albumentations     | conda       | Fast image augmentation library and easy to use wrapper around other libraries |
+| ray-tune           | conda       | Ray is a fast and simple framework for building and running distributed applications |
+| mmrotate           | github      | rotated object detection based on PyTorch                     |
 | pytorchviz         | pip         | Visualize ML model backward(need graphviz)                    |
 | hiddenlayer        | pip         | Visualize ML model forward                                    |
 
