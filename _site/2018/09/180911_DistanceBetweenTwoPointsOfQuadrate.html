@@ -162,7 +162,7 @@ $x_1, y_1, x_2, y_2$는 0~1 사이의 uniform random variable로 가정한다.</
 <h2 id="2-수치해석">2. 수치해석</h2>
 <p>거리를 구하는 적분식 근을 scipy의 nquad를 이용하여 구한다.</p>
 
-\[\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { \left( { x }_{ 1 }-{ x }_{ 2 } \right) +\left( { y }_{ 1 }-y_{ 2 } \right)  } d{ x }_{ 1 } } d{ x }_{ 2 } } dy_{ 1 } } d{ y }_{ 2 } }\]
+\[\int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \int _{ 0 }^{ 1 }{ \sqrt { \left( { x }_{ 1 }-{ x }_{ 2 } \right)^2 +\left( { y }_{ 1 }-y_{ 2 } \right)^2  } d{ x }_{ 1 } } d{ x }_{ 2 } } dy_{ 1 } } d{ y }_{ 2 } }\]
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">numpy</span> <span class="kn">import</span> <span class="n">sqrt</span>
 <span class="kn">from</span> <span class="n">scipy.integrate</span> <span class="kn">import</span> <span class="n">nquad</span>

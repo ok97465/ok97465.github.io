@@ -73,7 +73,7 @@ import_heading_thirdparty = Third party imports
  | pytesseract                   | conda-forge   | optical character recognition (OCR) tool                        | 
  | numexpr3                      | Github        | 간단한 연산에 대한 최적화                                       | 
  | ctypeslib2                    | PyPi          | c header를 python class로 변환                                  | 
- | refurb                        | PyPi          | A tool for refurbishing and modernizing Python codebases       | 
+ | refurb                        | conda-forge   | A tool for refurbishing and modernizing Python codebases       | 
  | tkinterdnd2                   | PyPi          | Tkinter native drag and drop support for windows, unix and Mac OSX       | 
  | pyinstaller                   | anaconda      | python을 실행파일로 변환                                        | 
  | pyautogui                     | conda-forge   | 컴퓨터 자동화                                                   | 
@@ -112,9 +112,11 @@ import_heading_thirdparty = Third party imports
 | captum             | conda       | a model interpretability and understanding library for PyTorch|
 | albumentations     | conda       | Fast image augmentation library and easy to use wrapper around other libraries |
 | ray-tune           | conda       | Ray is a fast and simple framework for building and running distributed applications |
+| grad-cam           | conda       | Advanced AI Explainability for computer vision |
+| fiona              | conda       | Fiona reads and writes spatial data files |
+| fvcore             | conda       | Collection of common code shared among different research projects in FAIR computer vision team |
+| explainable-cnn    | PyPi        | Flexible visualization package for generating layer-wise explanations for CNNs |
 | mmrotate           | github      | rotated object detection based on PyTorch                     |
-| pytorchviz         | pip         | Visualize ML model backward(need graphviz)                    |
-| hiddenlayer        | pip         | Visualize ML model forward                                    |
 
 <br>
 
