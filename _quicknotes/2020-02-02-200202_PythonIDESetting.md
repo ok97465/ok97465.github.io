@@ -60,6 +60,7 @@ import_heading_thirdparty = Third party imports
  | shapely                       | conda-forge   | Manipulation and analysis of geometric objects                  | 
  | mplcursors                    | conda-forge   | Maplotlib에 Data Cursor 추가                                    | 
  | exifread                      | conda-forge   | Read Exif metadata from tiff and jpeg files                     | 
+ | gitpython                     | conda-forge   | GitPython is a python library used to interact with Git repositories.| 
  | jupyter_contrib_nbextensions  | conda-forge   | jupyter notebook extension                                      | 
  | jupyterthemes                 | conda-forge   | Mapplotlib theme 지원                                           | 
  | debugpy                       | conda-forge   | Debug tool for nvim                                             | 
@@ -68,6 +69,7 @@ import_heading_thirdparty = Third party imports
  | ipympl                        | conda-forge   | Jupyterlab maplotlib extension                                  | 
  | xeus-python                   | conda-forge   | Jupyterlab debugger extension                                   | 
  | imutils                       | conda-forge   | 영상처리 library                                                | 
+ | pipreqs                       | conda-forge   | Pip requirements.txt generator based on imports in project      | 
  | qscintilla2                   | conda-forge   | Syntax highlight editor                                         | 
  | borb                          | conda-forge   | PDF util                                                        | 
  | pytesseract                   | conda-forge   | optical character recognition (OCR) tool                        | 
@@ -109,6 +111,7 @@ import_heading_thirdparty = Third party imports
 | torchmetrics       | conda       | collection of ML metrics for distributed, scalable PyTorch    |
 | mlxtend            | conda       | Mlxtend is extension for ML                                   |
 | tensorboard        | conda       | tensorboard                                                   |
+| torchinfo          | conda       | Model summary in PyTorch, based off of the original torchsummary |
 | captum             | conda       | a model interpretability and understanding library for PyTorch|
 | albumentations     | conda       | Fast image augmentation library and easy to use wrapper around other libraries |
 | ray-tune           | conda       | Ray is a fast and simple framework for building and running distributed applications |
@@ -117,6 +120,10 @@ import_heading_thirdparty = Third party imports
 | fvcore             | conda       | Collection of common code shared among different research projects in FAIR computer vision team |
 | explainable-cnn    | PyPi        | Flexible visualization package for generating layer-wise explanations for CNNs |
 | mmrotate           | github      | rotated object detection based on PyTorch                     |
+| pycuda             | conda       | Python wrapper for CUDA                                      |
+| onnx               | conda       | Open Neural Network Exchange library                          |
+| onnxruntime        | conda       | cross-platform, high performance ML inferencing and training accelerator |
+| tensorrt           | nvidia      | TensorRT is a C++ library for high performance inference on NVIDIA GPUs and deep learning accelerators. |
 
 <br>
 
