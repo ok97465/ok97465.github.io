@@ -123,7 +123,9 @@ import_heading_thirdparty = Third party imports
 | pycuda             | conda       | Python wrapper for CUDA                                      |
 | onnx               | conda       | Open Neural Network Exchange library                          |
 | onnxruntime        | conda       | cross-platform, high performance ML inferencing and training accelerator |
+| onnx_tool          | github      | A parser, editor and profiler tool for ONNX models. |
 | tensorrt           | nvidia      | TensorRT is a C++ library for high performance inference on NVIDIA GPUs and deep learning accelerators. |
+| neural-compressor  | pip         | SOTA low-bit LLM quantization. |
 
 <br>
 
