@@ -137,6 +137,13 @@
     var datePostsWords = [
         
             {
+                "t":"2024-5",
+                "year":"2024",
+                "x":1,
+                "y":227
+            },
+        
+            {
                 "t":"2020-2",
                 "year":"2020",
                 "x":1,
@@ -258,7 +265,7 @@
     ];
 
     var sy = "2018",
-        ey = "2020";
+        ey = "2024";
 
     var datePostsWordsZeros = [];
     for (var i = parseInt(sy); i <= parseInt(ey); i++) {
@@ -391,6 +398,9 @@
              "signal_system", 
         
             
+             "sar", 
+        
+            
              "pycharm", 
         
             
@@ -407,7 +417,7 @@
     var pieData = [
         
             
-             14, 
+             15, 
         
             
              8, 
@@ -423,6 +433,9 @@
         
             
              2, 
+        
+            
+             1, 
         
             
              1, 
@@ -466,6 +479,8 @@
 <script>
     var totalWords = [
         
+            227,
+        
             2221,
         
             553,
@@ -501,7 +516,7 @@
             2015,
         
     ].reduce((a, b) => a + b, 0);
-    var totalPosts = 17;
+    var totalPosts = 18;
 
     function concatBoldTextToELement(id, text) {
         var abvgd = document.createElement('b');
@@ -522,13 +537,13 @@
   <h5><br><br><br>Recent Posts</h5>
   <ul>
     
+    <li><h6><a href="/2024/05/240523_SAR_Equations">SAR 공식들</a></h6></li>
+    
     <li><h6><a href="/2020/02/200215_BinaryFileIO">Python에서 이진파일 (Binary file) 입출력</a></h6></li>
     
     <li><h6><a href="/2019/12/191204_Equidistant_points_on_ellipse">타원을 등간격으로 N 등분하기</a></h6></li>
     
     <li><h6><a href="/2019/10/191019_PrincipleOfCT">Computed Tomography (CT) 촬영의 원리</a></h6></li>
-    
-    <li><h6><a href="/2019/07/190707_Numba_Cuda">Numba를 이용한 Cuda 프로그램 예제</a></h6></li>
     
   </ul>
 </div>
@@ -567,8 +582,12 @@
         <span>pycharm</span></a><span>&nbsp(1)</span></h6></li>
     
     <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
-      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="14">
-        <span>python</span></a><span>&nbsp(14)</span></h6></li>
+      <a href="/tag/python" data-toggle="tooltip" data-placement="right" title="15">
+        <span>python</span></a><span>&nbsp(15)</span></h6></li>
+    
+    <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
+      <a href="/tag/sar" data-toggle="tooltip" data-placement="right" title="1">
+        <span>sar</span></a><span>&nbsp(1)</span></h6></li>
     
     <li><h6><i class="fas fa-tag"></i><span>&nbsp&nbsp</span>
       <a href="/tag/signal_system" data-toggle="tooltip" data-placement="right" title="1">
